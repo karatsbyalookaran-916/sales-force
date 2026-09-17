@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  admin
+  member
+}
+
+model User {
+  id         String     @id @default(uuid()) @db.Uuid
+  name       String     @db.VarChar(100)
+  email      String     @unique @db.VarChar(200)
+  password   String
+  role       Role       @default(member)
+  sessions   Session[]
+  mutations  Mutation[]
+  activities Activity[]
+  adminLock  AdminLock?
+  createdAt  DateTime   @default(now()) @map("created_at")
+
+  @@map("users")
+}
+
+model AdminLock {
+  id     Int    @id @default(1)
+  userId String @unique @map("user_id") @db.Uuid
+  user   User   @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@map("admin_lock")
+}
+
+model Session {
+  token   String   @id @db.Char(64)
+  userId  String   @map("user_id") @db.Uuid
+  expires DateTime
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model Lead {
+  id      String @id @db.Uuid
+  data    Json
+  version Int
+
+  @@map("leads")
+}
+
+model Mutation {
+  id     String @id @db.Uuid
+  userId String @map("user_id") @db.Uuid
+  result Json
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("mutations")
+}
+
+model Activity {
+  id        BigInt   @id @default(autoincrement())
+  leadId    String   @map("lead_id") @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  text      String
+  createdAt DateTime @default(now()) @map("created_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([leadId, id(sort: Desc)])
+  @@map("activity")
+}

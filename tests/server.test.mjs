@@ -1,0 +1,57 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { database, createUser } from '../server/database.mjs';
+import { makeServer } from '../server/server.mjs';
+
+test('accounts, authorization, durable leads, conflict handling and retry safety', async t => {
+  const folder = mkdtempSync(join(tmpdir(), 'karats-api-test-'));
+  const db = database(join(folder, 'test.sqlite'));
+  const admin = createUser(db, { name: 'Test Admin', email: 'admin@example.test', password: 'test-password-123', role: 'admin' });
+  const server = makeServer(db);
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const origin = `http://127.0.0.1:${server.address().port}`;
+  t.after(async () => { await new Promise(resolve => server.close(resolve)); db.close(); rmSync(folder, { recursive: true }); });
+  async function call(path, body, cookie, headers = {}) {
+    const response = await fetch(origin + path, { method: body === undefined ? 'GET' : 'POST', headers: { Origin: origin, 'Content-Type': 'application/json', 'X-Karats-Request': '1', ...(cookie ? { Cookie: cookie } : {}), ...headers }, ...(body === undefined ? {} : { body: JSON.stringify(body) }) });
+    return { status: response.status, cookie: response.headers.get('set-cookie')?.split(';')[0], data: await response.json() };
+  }
+  assert.equal((await call('/api/leads')).status, 401);
+  assert.equal((await call('/api/setup-status')).data.setupAvailable, false);
+  assert.equal((await call('/api/setup', { name: 'Attacker', email: 'new@example.test', password: 'test-password-123' })).status, 403);
+  assert.equal((await call('/api/login', { email: 'admin@example.test', password: 'wrong' })).status, 401);
+  assert.equal((await call('/api/login', { email: 'admin@example.test', password: 'test-password-123' }, null, { Origin: 'https://attacker.test' })).status, 403);
+  const login = await call('/api/login', { email: 'admin@example.test', password: 'test-password-123' });
+  assert.equal(login.status, 200); assert.equal(login.data.user.password, undefined);
+  const cookie = login.cookie;
+  const member = await call('/api/users', { name: 'Member', email: 'member@example.test', password: 'another-password-123', role: 'member' }, cookie);
+  assert.equal(member.status, 201);
+  const forcedStaff = await call('/api/users', { name: 'Second', email: 'second@example.test', password: 'abcdef', role: 'admin' }, cookie);
+  assert.equal(forcedStaff.status, 201); assert.equal(forcedStaff.data.role, 'member');
+  const memberLogin = await call('/api/login', { email: 'member@example.test', password: 'another-password-123' });
+  assert.equal((await call('/api/users', { name: 'Escalate', email: 'other@example.test', password: 'another-password-123', role: 'admin' }, memberLogin.cookie)).status, 403);
+  const lead = { id: randomUUID(), name: 'Example Jewellers', contact: 'Alex', phone: '1234', email: '', location: 'Kochi', stage: 'New', ownerId: admin.id, followUp: '2026-09-20', notes: 'First conversation' };
+  const operation = { mutationId: randomUUID(), baseVersion: 0, lead };
+  const created = await call('/api/leads', operation, cookie);
+  assert.equal(created.status, 200); assert.equal(created.data.version, 1);
+  const duplicate = await call('/api/leads', operation, cookie);
+  assert.deepEqual(duplicate.data, created.data);
+  assert.equal((await call('/api/leads', operation, memberLogin.cookie)).status, 403);
+  const changed = await call('/api/leads', { mutationId: randomUUID(), baseVersion: 1, lead: { ...lead, stage: 'Presented' } }, memberLogin.cookie);
+  assert.equal(changed.data.version, 2);
+  const conflict = await call('/api/leads', { mutationId: randomUUID(), baseVersion: 1, lead: { ...lead, stage: 'Interested' } }, cookie);
+  assert.equal(conflict.status, 409); assert.equal(conflict.data.current.stage, 'Presented');
+  const invalid = await call('/api/leads', { mutationId: randomUUID(), baseVersion: 2, lead: { ...lead, ownerId: 'missing-user' } }, cookie);
+  assert.equal(invalid.status, 400);
+  const list = await call('/api/leads', undefined, cookie);
+  assert.equal(list.data.length, 1); assert.equal(list.data[0].stage, 'Presented');
+  const activity = await call('/api/activity?lead=' + lead.id, undefined, cookie);
+  assert.equal(activity.data.length, 2); assert.equal(activity.data[0].user_name, 'Member');
+  assert.equal((await call('/server/database.mjs', undefined, cookie)).status, 404);
+  assert.equal((await call('/data/karats.sqlite', undefined, cookie)).status, 404);
+  assert.equal((await call('/api/logout', {}, cookie)).status, 200);
+  assert.equal((await call('/api/me', undefined, cookie)).status, 401);
+});

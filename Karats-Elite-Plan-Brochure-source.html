@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Alookaran Elite Plan</title>
+<script>if(location.hash==='#presentation')document.documentElement.classList.add('presentation-boot')</script>
+<style>
+@font-face{font-family:'Cormorant';src:url('fonts/cormorant-garamond-latin-400-normal.woff2');font-weight:400;}
+@font-face{font-family:'Cormorant';src:url('fonts/cormorant-garamond-latin-600-normal.woff2');font-weight:600;}
+@font-face{font-family:'Cormorant';src:url('fonts/cormorant-garamond-latin-700-normal.woff2');font-weight:700;}
+@font-face{font-family:'Cormorant';src:url('fonts/cormorant-garamond-latin-400-italic.woff2');font-weight:400;font-style:italic;}
+@font-face{font-family:'Marcellus';src:url('fonts/marcellus-latin-400-normal.woff2');font-weight:400;}
+@font-face{font-family:'Jost';src:url('fonts/jost-latin-300-normal.woff2');font-weight:300;}
+@font-face{font-family:'Jost';src:url('fonts/jost-latin-400-normal.woff2');font-weight:400;}
+@font-face{font-family:'Jost';src:url('fonts/jost-latin-500-normal.woff2');font-weight:500;}
+@font-face{font-family:'Jost';src:url('fonts/jost-latin-600-normal.woff2');font-weight:600;}
+@font-face{font-family:'Jost';src:url('fonts/jost-latin-700-normal.woff2');font-weight:700;}
+
+@page{size:A4;margin:0;}
+@view-transition{navigation:auto}
+html.presentation-boot{background:#0D0A06}html.presentation-boot body{opacity:0}body{transition:opacity .2s ease}
+*{margin:0;padding:0;box-sizing:border-box;caret-color:transparent;}
+input,textarea,body.brochure-editing [contenteditable="true"]{caret-color:auto;}
+html{-weasy-hyphens:none;}
+body{font-family:'Jost',sans-serif;color:#17130F;background:#fff;padding-top:88px;}
+.brochure-editor-bar{position:fixed;top:0;left:0;right:0;z-index:9999;background:#151109;color:#F6EFE2;border-bottom:1px solid #C9A24A;padding:12px 22px;display:grid;grid-template-columns:minmax(210px,auto) minmax(340px,1fr) minmax(210px,auto);align-items:center;gap:20px;font-family:Arial,sans-serif;box-shadow:0 8px 24px rgba(23,19,15,.2);min-height:76px;}
+.brochure-brand{border:0!important;padding:0!important;display:flex;flex-direction:column;text-decoration:none;color:#F6EFE2;min-width:215px;}
+.brochure-brand strong{font-family:Georgia,serif;font-size:18px;letter-spacing:.22em;}
+.brochure-brand small{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#BCA77B;margin-top:4px;}
+.brochure-view-switcher{display:flex;align-items:center;justify-content:center;}
+.mode-toggle{min-height:54px;border:1px solid rgba(201,162,74,.6);background:#211A10;color:#F6EFE2;padding:5px;display:grid;grid-template-columns:minmax(142px,1fr) 42px minmax(142px,1fr);align-items:center;gap:7px;font-family:Arial,sans-serif;cursor:pointer;}
+.mode-option{min-height:42px;padding:8px 11px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:800;white-space:nowrap;transition:.2s ease;}
+.mode-option svg{width:20px;height:20px;color:#D9B978;flex:0 0 auto;}
+.mode-switch{width:40px;height:22px;border:1px solid #8E7138;background:#151109;border-radius:20px;padding:2px;display:block;}
+.mode-knob{display:block;width:16px;height:16px;border-radius:50%;background:#D4AD58;transition:transform .22s ease;}
+.mode-toggle[aria-checked="false"] .mode-a4,.mode-toggle[aria-checked="true"] .mode-presentation{background:#D4AD58;color:#17130F;}
+.mode-toggle[aria-checked="false"] .mode-a4 svg,.mode-toggle[aria-checked="true"] .mode-presentation svg{color:#17130F;}
+.mode-toggle[aria-checked="true"] .mode-knob{transform:translateX(18px);}
+.mode-toggle:hover,.mode-toggle:focus-visible{border-color:#E2C476;outline:none;}
+.brochure-top-meta{display:flex;flex-direction:column;align-items:stretch;gap:7px;min-width:210px;}
+.brochure-top-meta label{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#CBB88D;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border:1px solid rgba(201,162,74,.55);padding:4px 7px;}
+.brochure-top-meta select{height:30px;background:#151109;color:#F6EFE2;border:0;font-family:Arial,sans-serif;font-size:11px;font-weight:700;min-width:122px;}
+.brochure-saved-link{border:1px solid rgba(201,162,74,.55);background:transparent;color:#F6EFE2;padding:8px 11px;text-align:center;text-decoration:none;font-family:Arial,sans-serif;font-size:11px;font-weight:800;}
+.brochure-saved-link:hover,.brochure-saved-link:focus-visible{background:rgba(201,162,74,.12);border-color:#D4AD58;outline:none;}
+.brochure-editor-status{display:none;}
+#saveFinishBrochureBtn{position:fixed;right:24px;bottom:24px;z-index:10001;border:1px solid #D4AD58;background:#D4AD58;color:#17130F;padding:12px 16px;font-family:Arial,sans-serif;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(23,19,15,.28);}
+#saveFinishBrochureBtn[hidden]{display:none!important;}
+.presentation-controls{display:none;position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:10000;align-items:center;gap:10px;background:#151109;color:#F6EFE2;border:1px solid rgba(201,162,74,.65);padding:7px 9px;font-family:Arial,sans-serif;box-shadow:0 10px 34px rgba(0,0,0,.35);}
+.presentation-controls button{width:42px;height:36px;border:1px solid rgba(201,162,74,.55);background:transparent;color:#F6EFE2;font-size:20px;cursor:pointer;}
+.presentation-controls button:disabled{opacity:.35;cursor:default;}
+.presentation-controls .deck-indicator{min-width:108px;text-align:center;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+.presentation-controls .expand-presentation,.presentation-controls .download-pdf{width:auto;min-width:108px;padding:0 12px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+.presentation-controls .expand-presentation svg,.presentation-controls .download-pdf svg{width:17px;height:17px;}
+.presentation-controls .download-pdf{background:#D4AD58;color:#17130F;border-color:#D4AD58;}
+.presentation-controls .download-pdf:hover,.presentation-controls .download-pdf:focus-visible{background:#E7C979;outline:none;}
+.presentation-close{display:none;position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:12000;width:46px;height:46px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(21,17,9,.72);color:#fff;font:300 30px/1 Arial,sans-serif;cursor:pointer;backdrop-filter:blur(7px);box-shadow:0 8px 30px rgba(0,0,0,.28);opacity:.78;}
+.presentation-close:hover,.presentation-close:focus-visible{opacity:1;background:rgba(21,17,9,.92);outline:none;}
+body.presentation-deck{padding-top:76px;background:#0D0A06;overflow:hidden;}
+body.presentation-deck .page{display:none;position:fixed;left:50%;top:var(--deck-top,82px);margin:0;transform:translateX(-50%) scale(var(--deck-scale,.7));transform-origin:top center;box-shadow:0 18px 70px rgba(0,0,0,.48);}
+body.presentation-deck .page.presentation-active{display:block;}
+body.presentation-deck .presentation-controls{display:flex;}
+body.presentation-deck .pagetag,body.presentation-deck .page-no-dark{display:none;}
+body.presentation-expanded{padding-top:0;}
+body.presentation-expanded .brochure-editor-bar,body.presentation-expanded .presentation-controls{display:none!important;}
+body.presentation-expanded .presentation-close{display:block;}
+body.presentation-expanded .page{top:var(--deck-top,8px);}
+.calculator-presentation-page{display:none;background:#F6F0E6!important;}
+.calculator-presentation-page iframe{display:block;width:100%;height:100%;border:0;background:#F6F0E6;}
+body.brochure-editing [contenteditable="true"]{outline:1.5px dashed #C9A24A;outline-offset:2px;background:rgba(255,234,184,.2);cursor:text;}
+body.localized-template .page,body.localized-template .page *{font-family:'Nirmala UI','Kartika','Segoe UI',Arial,sans-serif;}
+.template-dialog{border:0;padding:0;width:min(470px,calc(100vw - 28px));background:#FBF8F3;color:#17130F;box-shadow:0 24px 80px rgba(0,0,0,.38);font-family:Arial,sans-serif;}
+.template-dialog::backdrop{background:rgba(12,9,5,.72);}
+.template-dialog .dh{background:#151109;color:#F6EFE2;padding:20px 22px;border-bottom:2px solid #C9A24A;}
+.template-dialog .dh h3{font-family:Georgia,serif;font-size:24px;margin-top:5px;}
+.template-dialog .db{padding:20px 22px;}
+.template-dialog p{font-size:13px;line-height:1.5;color:#665B4C;margin-bottom:14px;}
+.template-dialog label{display:block;font-size:12px;font-weight:700;margin-bottom:6px;}
+.template-dialog input{width:100%;height:44px;border:1px solid #D8CFBF;background:#fff;padding:0 12px;font-size:16px;}
+.template-dialog .da{display:flex;justify-content:flex-end;gap:8px;margin-top:17px;}
+.template-dialog button{border:1px solid #CDBFA8;background:#fff;color:#17130F;padding:10px 13px;font-size:12px;font-weight:700;cursor:pointer;}
+.template-dialog button.primary{background:#D4AD58;border-color:#D4AD58;}
+@media(max-width:900px){body{padding-top:146px}.brochure-editor-bar{grid-template-columns:1fr 1fr}.brochure-brand{grid-column:1}.brochure-top-meta{grid-column:2;grid-row:1}.brochure-view-switcher{grid-column:1/-1;grid-row:2}}
+@media(max-width:560px){body{padding-top:235px}.brochure-editor-bar{grid-template-columns:1fr;padding:10px 12px;gap:8px}.brochure-brand,.brochure-top-meta,.brochure-view-switcher{grid-column:1;grid-row:auto;width:100%}.mode-toggle{width:100%;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr)}.mode-option{padding:7px 4px;font-size:10px}.mode-option svg{width:17px;height:17px}.mode-switch{width:34px}.mode-toggle[aria-checked="true"] .mode-knob{transform:translateX(12px)}.brochure-top-meta{min-width:0}#saveFinishBrochureBtn{right:12px;bottom:12px}}
+@media print{body{padding-top:0}.brochure-editor-bar,.template-dialog,.presentation-controls{display:none!important;}body.brochure-editing [contenteditable="true"]{outline:0!important;background:transparent!important;}body.presentation-deck{overflow:visible;background:#fff}body.presentation-deck .page{display:block;position:relative;left:auto;top:auto;transform:none;box-shadow:none}.calculator-presentation-page{display:none!important}}
+
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:#FBF8F3;page-break-after:always;}
+.page:last-child{page-break-after:auto;}
+.pad{padding:0 16mm;}
+
+/* ---------- shared type ---------- */
+.eyebrow{font-family:'Jost';font-weight:500;font-size:8.2pt;letter-spacing:.34em;text-transform:uppercase;color:#A8813A;}
+.eyebrow.on-dark{color:#D9B978;}
+h1.display{font-family:'Cormorant';font-weight:700;font-size:33pt;line-height:1.03;letter-spacing:-.005em;}
+h2.section{font-family:'Cormorant';font-weight:700;font-size:25pt;line-height:1.05;}
+.lead{font-family:'Jost';font-weight:300;font-size:10pt;line-height:1.6;color:#3A332B;}
+.small{font-family:'Jost';font-weight:300;font-size:8.4pt;line-height:1.5;color:#4A4239;}
+.rule{height:1px;background:linear-gradient(90deg,#C9A24A,#E8D3A0 40%,rgba(200,162,74,0));}
+.rule-c{width:46px;height:2px;background:#B08D3A;}
+.gold{color:#A8813A;}
+
+/* ---------- page 1 ---------- */
+.hero{height:104mm;background:#151109;position:relative;color:#F4EDE1;}
+.hero .frame{position:absolute;top:7mm;left:7mm;right:7mm;bottom:7mm;border:.6pt solid rgba(214,177,106,.34);}
+.hero .inner{position:absolute;top:0;left:0;right:0;bottom:0;padding:9mm 20mm 9mm;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.logo-wrap{display:flex;flex-direction:column;align-items:center;}
+.mark{width:50px;height:50px;position:relative;}
+.mark .dia{position:absolute;top:6px;left:6px;width:38px;height:38px;border:1.1pt solid #D6B16A;transform:rotate(45deg);}
+.mark .dia2{position:absolute;top:12px;left:12px;width:26px;height:26px;border:.5pt solid rgba(214,177,106,.5);transform:rotate(45deg);}
+.mark .ltr{position:absolute;top:0;left:0;width:50px;height:50px;line-height:50px;text-align:center;font-family:'Marcellus';font-size:16pt;color:#E8CE97;}
+.brand{font-family:'Marcellus';font-size:27pt;letter-spacing:.32em;margin-top:6mm;color:#F6EFE2;text-transform:uppercase;text-indent:.32em;}
+.brand-sub{font-family:'Jost';font-weight:300;font-size:7.4pt;letter-spacing:.3em;text-transform:uppercase;color:#B99F6F;margin-top:3.4mm;text-indent:.3em;}
+.hero-art{margin-top:2mm;}
+.tagline{font-family:'Cormorant';font-weight:700;font-size:23pt;letter-spacing:.05em;color:#EBD6A6;margin-top:4mm;}
+.hero-strip{position:absolute;left:0;right:0;bottom:0;height:9mm;background:#0E0B06;display:flex;align-items:center;justify-content:center;}
+.hero-strip span{font-family:'Jost';font-weight:400;font-size:7.4pt;letter-spacing:.3em;text-transform:uppercase;color:#9C875E;}
+
+.p1body{padding:9mm 16mm 0;}
+.kicker-row{display:flex;align-items:center;}
+.kicker-row .rule{flex:1;margin-left:5mm;}
+.p1body h1{margin-top:4mm;}
+.p1body .sub{font-family:'Cormorant';font-style:italic;font-size:13pt;color:#8A7A5F;margin-top:2.5mm;}
+.cols{display:flex;margin-top:6mm;}
+.cols .c{width:50%;}
+.cols .c:first-child{padding-right:6mm;}
+.cols .c:last-child{padding-left:6mm;border-left:.5pt solid #E3DACA;}
+.statement{margin-top:7mm;background:#151109;color:#F1E6D2;padding:6.5mm 8mm;position:relative;}
+.statement .q{font-family:'Cormorant';font-weight:600;font-size:13.6pt;line-height:1.38;}
+.statement .note{font-family:'Jost';font-weight:400;font-size:7.4pt;line-height:1.45;letter-spacing:.18em;text-transform:uppercase;color:#C9A96C;margin-top:2.5mm;}
+.statement .b{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#E3C286,#9C7628);}
+.vs{display:flex;margin-top:5.5mm;border-top:.5pt solid #E3DACA;}
+.vs .col{width:50%;padding:3.4mm 6mm 2mm;}
+.vs .col.elite{background:rgba(176,141,58,.07);border-left:.5pt solid #E3DACA;}
+.vs h4{font-family:'Jost';font-weight:600;font-size:8pt;letter-spacing:.26em;text-transform:uppercase;color:#7C7161;}
+.vs .col.elite h4{color:#A8813A;}
+.vs ul{list-style:none;margin-top:3.5mm;}
+.vs li{font-family:'Cormorant';font-weight:600;font-size:12pt;color:#2A241C;padding:1.2mm 0;border-bottom:.4pt dotted #DCD2C0;}
+.vs .col.elite li{color:#17130F;}
+
+/* ---------- section head (pages 2-4) ---------- */
+.sechead{padding-top:14mm;}
+.sechead .rule{margin-top:5mm;}
+.pagetag{position:absolute;bottom:8mm;left:16mm;right:16mm;display:flex;justify-content:flex-end;font-family:'Jost';font-weight:400;font-size:7pt;letter-spacing:.28em;color:#A79C89;border-top:.5pt solid #E6DDCC;padding-top:3mm;}
+.page-no-dark{position:absolute;right:16mm;bottom:4mm;z-index:3;font-family:'Jost';font-weight:400;font-size:7pt;letter-spacing:.28em;color:#9C875E;}
+
+/* ---------- benefit cards ---------- */
+.cards{display:flex;flex-wrap:wrap;margin-top:8mm;}
+.card{width:50%;padding:0 4mm 8mm 0;}
+.card:nth-child(even){padding:0 0 8mm 4mm;}
+.card .box{border:.5pt solid #E3DACA;background:#fff;padding:6.5mm 6.5mm 7mm;height:100%;position:relative;}
+.card .box:before{content:"";position:absolute;top:0;left:0;width:34px;height:2px;background:linear-gradient(90deg,#C9A24A,#EBDAB0);}
+.card .num{font-family:'Cormorant';font-weight:700;font-size:23pt;color:#DCCFB2;line-height:1;position:absolute;top:5mm;right:6mm;}
+.card .ico{width:30px;height:30px;color:#A8813A;}
+.card h3{font-family:'Cormorant';font-weight:700;font-size:15.8pt;line-height:1.16;margin-top:4mm;padding-right:10mm;}
+.card p{font-family:'Jost';font-weight:300;font-size:9pt;line-height:1.56;color:#4A4239;margin-top:3mm;}
+
+/* ---------- infographic: one design ---------- */
+.info{margin-top:2mm;background:#151109;padding:7mm 9mm 8mm;color:#EFE4D0;}
+.info .t{text-align:center;}
+.info .t .e{font-family:'Jost';font-weight:500;font-size:7.6pt;letter-spacing:.32em;text-transform:uppercase;color:#C0A56F;}
+.pill{display:inline-block;margin-top:3mm;border:.8pt solid #D6B16A;color:#F3E7CE;font-family:'Cormorant';font-weight:700;font-size:14pt;padding:2mm 9mm;letter-spacing:.04em;}
+.stem{width:1px;height:6mm;background:rgba(214,177,106,.6);margin:0 auto;}
+.bracket{height:1px;background:rgba(214,177,106,.55);margin:0 9%;}
+.chips{display:flex;}
+.chip{width:20%;text-align:center;}
+.chip .st{width:1px;height:5mm;background:rgba(214,177,106,.55);margin:0 auto;}
+.chip .dot{width:15px;height:15px;border-radius:50%;margin:2mm auto 0;border:.5pt solid rgba(255,255,255,.35);}
+.chip .nm{font-family:'Jost';font-weight:500;font-size:8pt;letter-spacing:.12em;margin-top:2.4mm;color:#F1E6D2;}
+.chip .px{font-family:'Jost';font-weight:300;font-size:6.6pt;letter-spacing:.14em;text-transform:uppercase;color:#A08D66;margin-top:.8mm;}
+.arrowd{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #B08D3A;margin:4mm auto 0;}
+.outcome{margin-top:4mm;border:.6pt solid rgba(214,177,106,.45);background:rgba(214,177,106,.09);padding:3.6mm;text-align:center;}
+.outcome .a{font-family:'Cormorant';font-weight:700;font-size:13.4pt;color:#F0E3C9;}
+.outcome .b{font-family:'Jost';font-weight:300;font-size:7.6pt;letter-spacing:.3em;text-transform:uppercase;color:#B29A6B;margin-top:1.6mm;}
+/* ---------- page 4 ---------- */
+.p4{padding:10mm 16mm 0;}
+.s-title{display:flex;align-items:center;margin-top:4.2mm;}
+.s-title .n{font-family:'Cormorant';font-weight:700;font-size:15pt;color:#C6AC73;width:9mm;line-height:1;}
+.s-title h3{font-family:'Cormorant';font-weight:700;font-size:16.6pt;line-height:1;}
+.s-title .ln{flex:1;height:1px;background:#E3DACA;margin-left:5mm;align-self:center;}
+.icorow{display:flex;margin-top:4mm;}
+.icorow .i{width:14.28%;text-align:center;}
+.icorow .i svg{width:21px;height:21px;color:#A8813A;}
+.icorow .i span{display:block;font-family:'Jost';font-weight:400;font-size:6.5pt;letter-spacing:.06em;color:#4A4239;margin-top:1.6mm;line-height:1.25;}
+table.spec{width:100%;border-collapse:collapse;margin-top:4mm;}
+table.spec th{font-family:'Jost';font-weight:600;font-size:6.9pt;letter-spacing:.22em;text-transform:uppercase;color:#8A7A5F;text-align:left;padding:0 3mm 1.6mm 0;border-bottom:.7pt solid #C9A24A;}
+table.spec td{font-family:'Jost';font-weight:300;font-size:8pt;color:#3A332B;padding:1.35mm 3mm 1.35mm 0;border-bottom:.4pt solid #EAE2D3;line-height:1.35;}
+table.spec td.k{font-weight:500;color:#17130F;width:36%;}
+.tlrow{display:flex;margin-top:4mm;}
+.tl{width:33.33%;padding-right:3mm;}
+.tl:last-child{padding-right:0;}
+.tl .b{border:.5pt solid #E3DACA;background:#fff;padding:4mm 4.5mm;position:relative;}
+.tl .b:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2.5px;background:linear-gradient(180deg,#E3C286,#B08D3A);}
+.tl .c{font-family:'Jost';font-weight:500;font-size:7.4pt;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5F;}
+.tl .d{font-family:'Cormorant';font-weight:700;font-size:17pt;margin-top:1.5mm;}
+.tl .e{font-family:'Jost';font-weight:300;font-size:7pt;color:#6A604F;margin-top:1mm;}
+.flow{display:flex;align-items:stretch;margin-top:4mm;}
+.step{flex:1;text-align:center;}
+.step .sb{border:.5pt solid #E3DACA;background:#fff;padding:3.2mm 1mm;height:100%;}
+.step svg{width:18px;height:18px;color:#A8813A;}
+.step .t{font-family:'Jost';font-weight:500;font-size:7pt;letter-spacing:.08em;margin-top:1.6mm;color:#17130F;}
+.step .no{font-family:'Jost';font-weight:400;font-size:5.8pt;letter-spacing:.2em;color:#B9AC93;margin-top:.6mm;}
+.chev{width:6mm;display:flex;align-items:center;justify-content:center;}
+.chev i{display:block;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid #C9A24A;}
+.why{display:flex;flex-wrap:wrap;margin-top:4mm;}
+.why .w{width:50%;display:flex;align-items:flex-start;padding:1.15mm 4mm 1.15mm 0;}
+.why .w svg{width:13px;height:13px;color:#A8813A;margin-right:2.6mm;margin-top:.5mm;}
+.why .w span{font-family:'Jost';font-weight:400;font-size:8.2pt;color:#2A241C;line-height:1.3;}
+.cred{margin-top:4.5mm;background:rgba(176,141,58,.09);border-top:.7pt solid #C9A24A;border-bottom:.5pt solid #E3DACA;padding:3.4mm 6mm;display:flex;}
+.cred .ct{width:20%;text-align:center;padding:0 2mm;}
+.cred .ct .v{font-family:'Cormorant';font-weight:700;font-size:13pt;color:#8A6B22;line-height:1.05;}
+.cred .ct .l{font-family:'Jost';font-weight:400;font-size:6.4pt;letter-spacing:.12em;text-transform:uppercase;color:#6A604F;margin-top:1.2mm;line-height:1.3;}
+.footer{position:absolute;left:0;right:0;bottom:0;height:60mm;background:#151109;color:#EFE4D0;padding:6.5mm 16mm 5mm;}
+.footer .fx{display:flex;}
+.footer .fl{width:56%;padding-right:8mm;}
+.footer .fr{width:44%;padding-left:8mm;border-left:.5pt solid rgba(214,177,106,.28);}
+.footer h4{font-family:'Jost';font-weight:500;font-size:7.2pt;letter-spacing:.3em;text-transform:uppercase;color:#C0A56F;}
+.cta-h{font-family:'Cormorant';font-weight:700;font-size:19pt;line-height:1.08;margin-top:3mm;color:#F6EFE2;}
+.cta-s{font-family:'Cormorant';font-style:italic;font-size:12.6pt;color:#E3C286;margin-top:2.5mm;}
+.cta-p{font-family:'Jost';font-weight:300;font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:#A08D66;margin-top:3mm;}
+.ct-list{margin-top:2.8mm;}
+.ct-list .r{display:flex;align-items:flex-start;padding:.8mm 0;}
+.ct-list .r svg{width:12px;height:12px;color:#C0A56F;margin-right:3mm;margin-top:.4mm;}
+.ct-list .r span{font-family:'Jost';font-weight:300;font-size:7.8pt;color:#E6DAC4;line-height:1.35;}
+.qr{display:flex;align-items:center;margin-top:3mm;}
+.qr .box{width:15.5mm;height:15.5mm;border:.8pt dashed rgba(214,177,106,.6);display:flex;align-items:center;justify-content:center;}
+.qr .box span{font-family:'Jost';font-weight:400;font-size:5.6pt;letter-spacing:.14em;text-transform:uppercase;color:#9C875E;text-align:center;line-height:1.35;}
+.qrside{margin-left:4mm;}
+.qr .lbl{font-family:'Jost';font-weight:300;font-size:7.2pt;color:#A08D66;letter-spacing:.1em;line-height:1.4;}
+.socials{display:flex;margin-top:2.5mm;}
+.socials .s{width:22px;height:22px;border:.5pt solid rgba(214,177,106,.45);margin-right:2.5mm;display:flex;align-items:center;justify-content:center;}
+.socials .s svg{width:11px;height:11px;color:#C0A56F;}
+
+
+/* ---------- elite cycle flow (page 2) ---------- */
+.cycle{margin-top:2mm;border-top:.7pt solid #C9A24A;padding-top:6mm;}
+.cycle .ct{font-family:'Cormorant';font-weight:700;font-size:16.5pt;}
+.cycle .cs{font-family:'Jost';font-weight:300;font-size:8.4pt;color:#6A604F;margin-top:1.5mm;}
+.cycrow{display:flex;margin-top:7mm;position:relative;}
+.cycrow:before{content:"";position:absolute;top:7.6mm;left:11%;right:11%;height:1px;background:#DECFAC;}
+.cyc{width:20%;text-align:center;padding:0 2.5mm;position:relative;}
+.cyc .cir{width:15.2mm;height:15.2mm;border-radius:50%;border:.7pt solid #C9A24A;background:#FBF8F3;margin:0 auto;position:relative;}
+.cyc .cir svg{width:21px;height:21px;color:#A8813A;position:absolute;top:50%;left:50%;margin-top:-10.5px;margin-left:-10.5px;}
+.cyc .n{font-family:'Jost';font-weight:500;font-size:6.4pt;letter-spacing:.24em;color:#B9AC93;margin-top:3mm;}
+.cyc .l{font-family:'Cormorant';font-weight:700;font-size:12pt;line-height:1.14;margin-top:1.4mm;}
+.cyc .d{font-family:'Jost';font-weight:300;font-size:7.2pt;color:#6A604F;margin-top:1.6mm;line-height:1.45;}
+
+
+/* ---------- problem / compact boxes ---------- */
+.p1prob{padding:8mm 16mm 0;}
+.p1prob h1{font-family:'Cormorant';font-weight:700;font-size:23.5pt;line-height:1.07;margin-top:3.5mm;}
+.p1prob .intro{font-family:'Jost';font-weight:300;font-size:8.6pt;line-height:1.45;color:#4A4239;margin-top:2.4mm;max-width:158mm;}
+.subh{font-family:'Jost';font-weight:500;font-size:7.6pt;letter-spacing:.18em;text-transform:uppercase;color:#A8813A;margin-top:4mm;padding-bottom:2mm;border-bottom:.7pt solid #C9A24A;}
+.probs{margin-top:3.6mm;}
+.prow{display:flex;align-items:stretch;}
+.prob{width:50%;padding:0 2.4mm 2.6mm 0;}
+.prob:nth-child(even){padding:0 0 2.6mm 2.4mm;}
+.prob .pb{border:.5pt solid #E3DACA;border-left:2.2pt solid #C9A24A;background:#fff;padding:3.2mm 4mm 3.4mm;height:100%;}
+.prob .h{display:flex;align-items:flex-start;}
+.prob .h .i{font-family:'Jost';font-weight:600;font-size:7pt;letter-spacing:.12em;color:#B08D3A;width:7mm;padding-top:1.1mm;}
+.prob .h h4{font-family:'Cormorant';font-weight:700;font-size:11.6pt;line-height:1.12;flex:1;}
+.prob p{font-family:'Jost';font-weight:300;font-size:7.2pt;line-height:1.42;color:#4A4239;margin-top:1.4mm;padding-left:7mm;}
+.prob.ben .pb{background:rgba(176,141,58,.06);}
+.prob .h .ic{width:7mm;padding-top:.4mm;}
+.prob .h .ic svg.bi{width:15px;height:15px;color:#A8813A;}
+.bn{font-family:'Jost';font-weight:600;font-size:7pt;letter-spacing:.12em;color:#B08D3A;margin-right:2.4mm;}
+
+
+.bridge{margin-top:4mm;border-top:.7pt solid #C9A24A;padding-top:3mm;text-align:center;}
+.bridge .q{font-family:'Cormorant';font-weight:600;font-style:italic;font-size:14pt;color:#2A241C;}
+.bridge .decision{display:inline-block;margin-top:2.2mm;padding:1.4mm 4mm;background:#ffeab8;color:#17120B;font-family:Arial,sans-serif;font-weight:700;font-size:9pt;line-height:1;letter-spacing:.16em;text-transform:uppercase;}
+.bridge .s{font-family:'Jost';font-weight:400;font-size:9pt;letter-spacing:.26em;text-transform:uppercase;color:#A8813A;margin-top:2.4mm;}
+
+
+.clab{font-family:'Jost';font-weight:600;font-size:7.4pt;letter-spacing:.2em;text-transform:uppercase;color:#8A7A5F;padding-bottom:2mm;margin-bottom:3mm;border-bottom:.6pt solid #E3DACA;}
+.clab.elite{color:#A8813A;border-bottom-color:#C9A24A;}
+
+
+/* ---------- vertical model flows (page 2) ---------- */
+.flab{font-family:'Jost';font-weight:500;font-size:7.2pt;letter-spacing:.24em;text-transform:uppercase;color:#A8813A;margin-top:7mm;}
+.flab.trad{color:#8A7A5F;}
+.vflow{margin-top:4mm;}
+.vstep{display:flex;align-items:flex-start;position:relative;padding-bottom:4.4mm;}
+.vstep:last-child{padding-bottom:0;}
+.vflow .vstep:before{content:"";position:absolute;left:4.55mm;top:9.4mm;bottom:0;width:.6pt;background:#DECFAC;}
+.vflow .vstep:last-child:before{display:none;}
+.vflow.trad .vstep:before{background:#E0D8C8;}
+.vstep .cir{width:9.2mm;height:9.2mm;border-radius:50%;border:.6pt solid #C9A24A;background:#FBF8F3;position:relative;}
+.vstep .cir svg{width:14px;height:14px;color:#A8813A;position:absolute;top:50%;left:50%;margin-top:-7px;margin-left:-7px;}
+.vflow.trad .vstep .cir{border-color:#D9D0BE;}
+.vflow.trad .vstep .cir svg{color:#8A7A5F;}
+.vstep .tx{margin-left:3.4mm;padding-top:1.1mm;flex:1;}
+.vstep .tx .t{font-family:'Cormorant';font-weight:700;font-size:12pt;line-height:1.1;}
+.vflow.trad .vstep .tx .t{color:#4A4239;}
+.vstep .tx .d{font-family:'Jost';font-weight:300;font-size:7.6pt;line-height:1.45;color:#6A604F;margin-top:1mm;}
+.strategy-page .lead{font-size:9.3pt;line-height:1.58;}
+.strategy-page .cols .lead,.strategy-page .vstep .tx .d{text-align:justify;text-align-last:left;text-justify:inter-word;}
+.strategy-page .p1body{padding-top:7mm;}
+.strategy-intro{font-family:'Cormorant';font-weight:600;font-size:18pt;line-height:1.15;color:#8A6B22;text-align:center;margin-bottom:2.5mm;}
+.strategy-answer{font-family:'Jost';font-weight:700;font-size:11pt;line-height:1.15;letter-spacing:.22em;text-transform:uppercase;color:#17130F;text-align:center;}
+.strategy-page h1.strategy-display{font-size:30pt;text-align:center;margin-top:2.5mm;}
+.strategy-page .cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto auto;column-gap:12mm;position:relative;margin-top:5mm;}
+.strategy-page .cols:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:.5pt;background:#E3DACA;transform:translateX(-50%);}
+.strategy-page .cols .c{display:contents;}
+.strategy-page .cols .c:first-child .clab{grid-column:1;grid-row:1;}
+.strategy-page .cols .c:last-child .clab{grid-column:2;grid-row:1;}
+.strategy-page .cols .c:first-child .lead{grid-column:1;grid-row:2;}
+.strategy-page .cols .c:last-child .lead{grid-column:2;grid-row:2;}
+.strategy-page .cols .c:first-child .flab{grid-column:1;grid-row:3;}
+.strategy-page .cols .c:last-child .flab{grid-column:2;grid-row:3;}
+.strategy-page .cols .c:first-child .vflow{grid-column:1;grid-row:4;}
+.strategy-page .cols .c:last-child .vflow{grid-column:2;grid-row:4;}
+.strategy-page .vstep{padding-bottom:4mm;}
+.strategy-page .vstep .tx .d{font-size:7.7pt;line-height:1.42;margin-top:1mm;}
+.strategy-page .vflow{display:flex;flex-direction:column;align-self:stretch;}
+.strategy-page .vflow .vstep{flex:1 1 0;}
+.benefits-page .sechead{padding-top:10mm;}
+.benefits-page .probs{margin-top:4mm;}
+.benefits-page .prob{padding-bottom:1.8mm;}
+.benefits-page .prob:nth-child(even){padding-bottom:1.8mm;}
+.benefits-page .prob .pb{padding:2.6mm 3.5mm 2.8mm;}
+.benefits-page .prob p{font-size:7.2pt;line-height:1.35;margin-top:1.2mm;}
+.benefits-page .answer-map .map-label{font-size:7.5pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9A7425;}
+.benefits-page .answer-map .map-label.how{color:#6A604F;}
+.benefits-page .answer-map .map-label.benefit{color:#8A681E;}
+.benefits-page .info{margin-top:1.5mm;padding-top:5mm;padding-bottom:5.5mm;}
+.benefits-page .info .stem{height:4mm;}
+.benefits-page .info .chip .st{height:3.5mm;}
+.benefits-page .info .arrowd{margin-top:2.5mm;}
+.benefits-page .info .outcome{margin-top:2.5mm;padding:2.8mm;}
+
+/* ---------- page 3: capital efficiency ---------- */
+.capital-page .sechead{padding-top:13mm;}
+.capital-page h2{font-size:31pt;line-height:1.02;margin-top:4mm;}
+.capital-page .capital-intro{font-family:'Jost';font-weight:300;font-size:9.4pt;line-height:1.55;color:#4A4239;margin-top:3mm;max-width:166mm;}
+.capital-page .capital-cards{display:grid;grid-template-columns:1fr 1fr;gap:6mm;margin-top:6mm;}
+.capital-card{min-height:0;border:.6pt solid #E3DACA;background:#fff;padding:3.5mm 5.5mm 3.8mm;position:relative;overflow:hidden;}
+.capital-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#A99B82;}
+.capital-card.smart{background:#151109;color:#F3E8D3;border-color:#151109;}
+.capital-card.smart:before{background:linear-gradient(180deg,#E3C286,#A47B28);}
+.capital-card .model{font-family:'Jost';font-weight:600;font-size:6.3pt;line-height:1.15;letter-spacing:.19em;text-transform:uppercase;color:#8A7A5F;}
+.capital-card.smart .model{color:#D8B56E;}
+.capital-card h3{font-family:'Cormorant';font-weight:700;font-size:15.5pt;line-height:1.02;margin-top:1mm;}
+.capital-card .metric{font-family:'Jost';font-weight:400;font-size:7.2pt;line-height:1.3;color:#5B5144;margin-top:2mm;}
+.capital-card.smart .metric{color:#CBBEA8;}
+.capital-card .formula{font-family:'Cormorant';font-weight:700;font-size:18pt;line-height:1;color:#17130F;margin-top:1.5mm;padding:1.7mm 0;border-top:.5pt solid #E3DACA;border-bottom:.5pt solid #E3DACA;}
+.capital-card.smart .formula{color:#F5E8CD;border-color:rgba(214,177,106,.34);}
+.capital-card .formula strong{color:#9A7425;}
+.capital-card.smart .formula strong{color:#E2C177;}
+.capital-card .takeaway{font-family:'Cormorant';font-weight:600;font-size:10.8pt;line-height:1.16;margin-top:2mm;color:#3A332B;}
+.capital-card.smart .takeaway{color:#F0E3C9;}
+.eff-strip{display:grid;grid-template-columns:1fr 1fr;margin-top:5mm;border-top:.7pt solid #C9A24A;border-bottom:.5pt solid #E3DACA;background:rgba(176,141,58,.06);}
+.eff-stat{padding:3.2mm 6mm;text-align:center;}
+.eff-stat+ .eff-stat{border-left:.5pt solid #DCCFB8;}
+.eff-stat .v{font-family:'Cormorant';font-weight:700;font-size:21pt;line-height:1;color:#8A681E;}
+.eff-stat .l{font-family:'Jost';font-weight:500;font-size:7pt;letter-spacing:.16em;text-transform:uppercase;color:#6A604F;margin-top:1.7mm;}
+.compare-title{display:flex;align-items:center;margin-top:4.5mm;}
+.compare-title h3{font-family:'Cormorant';font-weight:700;font-size:17pt;line-height:1;}
+.compare-title .rule{flex:1;margin-left:5mm;}
+.capital-table{width:100%;border-collapse:collapse;margin-top:2mm;}
+.capital-table th{font-family:'Jost';font-weight:600;font-size:7pt;letter-spacing:.16em;text-transform:uppercase;color:#8A7A5F;text-align:left;padding:1.5mm 4mm;border-bottom:.7pt solid #C9A24A;}
+.capital-table th:first-child{padding-left:0;}
+.capital-table th.smart{color:#9A7425;background:rgba(176,141,58,.07);}
+.capital-table td{font-family:'Jost';font-weight:400;font-size:8.4pt;color:#332C24;padding:1.8mm 4mm;border-bottom:.5pt solid #E7DFD0;}
+.capital-table td:first-child{padding-left:0;color:#6A604F;width:42%;}
+.capital-table td.smart{font-weight:600;color:#8A681E;background:rgba(176,141,58,.07);}
+.same-capital{margin-top:4.5mm;background:#151109;color:#F1E6D2;padding:4.5mm 7mm 4mm;position:relative;}
+.same-capital:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#E3C286,#9C7628);}
+.same-capital .ey{font-family:'Jost';font-weight:500;font-size:7.3pt;letter-spacing:.26em;text-transform:uppercase;color:#C0A56F;}
+.same-capital h3{font-family:'Cormorant';font-weight:700;font-size:18pt;line-height:1.03;margin-top:1.5mm;}
+.same-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:6mm;margin-top:3mm;align-items:stretch;}
+.same-box{border:.5pt solid rgba(214,177,106,.28);padding:3mm 4mm;}
+.same-box .lab{font-family:'Jost';font-weight:500;font-size:6.8pt;letter-spacing:.18em;text-transform:uppercase;color:#A8936A;}
+.same-box .big{font-family:'Cormorant';font-weight:700;font-size:19pt;line-height:1;color:#F5E8CD;margin-top:1.5mm;}
+.same-box.smart .big{color:#E2C177;}
+.same-box .calc{font-family:'Jost';font-weight:300;font-size:7.2pt;line-height:1.35;color:#CBBEA8;margin-top:1.5mm;}
+.same-box .calc strong{font-weight:600;color:#F1E6D2;}
+.capital-note{font-family:'Jost';font-weight:300;font-size:6.4pt;line-height:1.35;color:#7C7161;margin-top:2.5mm;padding-left:3.5mm;border-left:1.5pt solid #C9A24A;}
+
+
+.vflow .vstep.last:before{display:none;}
+.fork{position:relative;margin-top:0;}
+.fork .rail{position:absolute;left:4.55mm;top:0;width:.6pt;height:24.2mm;background:#E0D8C8;}
+.farm{display:flex;align-items:center;padding-left:4.55mm;padding-top:2.2mm;}
+.farm .conn{width:6mm;height:.6pt;background:#E0D8C8;}
+.bbox{flex:1;border:.5pt solid #E3DACA;border-left:2pt solid #D9D0BE;background:#fff;padding:2.4mm 3mm 2.6mm;}
+.bbox.alt{border-left-color:#C9A24A;}
+.bt{font-family:'Cormorant';font-weight:700;font-size:11.4pt;line-height:1.12;color:#4A4239;}
+.bt .tg{font-family:'Jost';font-weight:600;font-size:6.8pt;letter-spacing:.12em;color:#B08D3A;margin-right:2.2mm;}
+.bd{font-family:'Jost';font-weight:300;font-size:7pt;line-height:1.4;color:#6A604F;margin-top:1mm;}
+
+/* Landscape presentation layout */
+body.presentation-expanded .brochure-slide-1{grid-template-columns:38% 62%;background:#FBF8F3;}
+body.presentation-expanded .brochure-slide-1.presentation-active{display:grid;}
+body.presentation-expanded .brochure-slide-1 .hero{height:900px;}
+body.presentation-expanded .brochure-slide-1 .hero .inner{padding:52px 60px;}
+body.presentation-expanded .brochure-slide-1 .hero-art{width:470px;height:auto;margin-top:22px;}
+body.presentation-expanded .brochure-slide-1 .brand{font-size:54px;}
+body.presentation-expanded .brochure-slide-1 .brand-sub{font-size:12px;}
+body.presentation-expanded .brochure-slide-1 .tagline{font-size:34px;margin-top:22px;}
+body.presentation-expanded .brochure-slide-1 .p1prob{padding:42px 48px 28px;overflow:hidden;}
+body.presentation-expanded .brochure-slide-1 .p1prob h1{font-size:41px;margin-top:15px;}
+body.presentation-expanded .brochure-slide-1 .p1prob .intro{font-size:13px;max-width:none;margin-top:10px;}
+body.presentation-expanded .brochure-slide-1 .subh{margin-top:18px;font-size:11px;}
+body.presentation-expanded .brochure-slide-1 .probs{margin-top:13px;}
+body.presentation-expanded .brochure-slide-1 .prob{padding:0 6px 8px 0;}
+body.presentation-expanded .brochure-slide-1 .prob:nth-child(even){padding:0 0 8px 6px;}
+body.presentation-expanded .brochure-slide-1 .prob .pb{padding:10px 13px;}
+body.presentation-expanded .brochure-slide-1 .prob .h h4{font-size:16px;}
+body.presentation-expanded .brochure-slide-1 .prob p{font-size:10px;line-height:1.3;margin-top:5px;padding-left:26px;}
+body.presentation-expanded .brochure-slide-1 .bridge{margin-top:9px;padding-top:10px;}
+body.presentation-expanded .brochure-slide-1 .bridge .q{font-size:18px;}
+
+body.presentation-expanded .brochure-slide-2 .p1body{padding:28px 54px 20px;height:900px;overflow:hidden;}
+body.presentation-expanded .brochure-slide-2 .strategy-intro{font-size:30px;margin-bottom:8px;}
+body.presentation-expanded .brochure-slide-2 .strategy-answer{font-size:13px;}
+body.presentation-expanded .brochure-slide-2 h1.strategy-display{font-size:46px;margin-top:8px;line-height:.92;}
+body.presentation-expanded .brochure-slide-2 .cols{column-gap:54px;margin-top:18px;}
+body.presentation-expanded .brochure-slide-2 .strategy-page .lead,body.presentation-expanded .brochure-slide-2 .lead{font-size:12px;line-height:1.35;}
+body.presentation-expanded .brochure-slide-2 .clab,body.presentation-expanded .brochure-slide-2 .flab{font-size:10px;}
+body.presentation-expanded .brochure-slide-2 .vstep{padding-bottom:10px;}
+body.presentation-expanded .brochure-slide-2 .vstep .cir{width:34px;height:34px;}
+body.presentation-expanded .brochure-slide-2 .vstep .tx{padding-left:12px;}
+body.presentation-expanded .brochure-slide-2 .vstep .tx .t{font-size:14px;}
+body.presentation-expanded .brochure-slide-2 .vstep .tx .d{font-size:10px;line-height:1.3;margin-top:3px;}
+
+body.presentation-expanded .brochure-slide-3 .sechead,body.presentation-expanded .brochure-slide-4 .sechead{padding:38px 64px 24px;max-width:none;}
+body.presentation-expanded .brochure-slide-3 h2{font-size:47px;margin-top:14px;}
+body.presentation-expanded .brochure-slide-3 .capital-intro{font-size:13px;max-width:1150px;margin-top:10px;}
+body.presentation-expanded .brochure-slide-3 .capital-cards{gap:24px;margin-top:22px;}
+body.presentation-expanded .brochure-slide-3 .capital-card{padding:17px 24px;}
+body.presentation-expanded .brochure-slide-3 .capital-card h3{font-size:24px;}
+body.presentation-expanded .brochure-slide-3 .capital-card .formula{font-size:29px;padding:8px 0;}
+body.presentation-expanded .brochure-slide-3 .capital-card .takeaway{font-size:17px;}
+body.presentation-expanded .brochure-slide-3 .capital-table{margin-top:10px;}
+body.presentation-expanded .brochure-slide-3 .capital-table th{font-size:10px;padding:7px 14px;}
+body.presentation-expanded .brochure-slide-3 .capital-table td{font-size:12px;padding:8px 14px;}
+body.presentation-expanded .brochure-slide-3 .same-capital{margin-top:16px;padding:16px 24px;}
+body.presentation-expanded .brochure-slide-3 .same-capital h3{font-size:25px;}
+body.presentation-expanded .brochure-slide-3 .capital-note{font-size:9px;margin-top:8px;}
+
+body.presentation-expanded .brochure-slide-4 .sechead{padding-top:30px;}
+body.presentation-expanded .brochure-slide-4 h2.section{font-size:39px;margin-top:10px!important;}
+body.presentation-expanded .brochure-slide-4 .subh{margin-top:12px;font-size:11px;}
+body.presentation-expanded .brochure-slide-4 .probs{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;}
+body.presentation-expanded .brochure-slide-4 .prow{display:contents;}
+body.presentation-expanded .brochure-slide-4 .prob,body.presentation-expanded .brochure-slide-4 .prob:nth-child(even){width:auto;padding:0;}
+body.presentation-expanded .brochure-slide-4 .prob .pb{padding:9px 13px;}
+body.presentation-expanded .brochure-slide-4 .prob .h h4{font-size:15px;}
+body.presentation-expanded .brochure-slide-4 .prob p{font-size:9px;line-height:1.28;margin-top:4px;padding-left:26px;}
+body.presentation-expanded .brochure-slide-4 .info{margin-top:13px;padding:15px 24px 16px;}
+body.presentation-expanded .brochure-slide-4 .info .stem,body.presentation-expanded .brochure-slide-4 .info .bracket,body.presentation-expanded .brochure-slide-4 .info .chip .st,body.presentation-expanded .brochure-slide-4 .info .arrowd{display:none;}
+body.presentation-expanded .brochure-slide-4 .info .chips{margin-top:10px;}
+body.presentation-expanded .brochure-slide-4 .info .outcome{margin-top:10px;padding:8px;}
+
+body.presentation-expanded .brochure-slide-5 .p4{padding:28px 54px 0;height:710px;overflow:hidden;}
+body.presentation-expanded .brochure-slide-5 .s-title{margin-top:18px;}
+body.presentation-expanded .brochure-slide-5 .icorow{margin-top:12px;}
+body.presentation-expanded .brochure-slide-5 table.spec{margin-top:12px;}
+body.presentation-expanded .brochure-slide-5 table.spec th,body.presentation-expanded .brochure-slide-5 table.spec td{padding:5px 12px;font-size:10px;}
+body.presentation-expanded .brochure-slide-5 .tlrow{margin-top:10px;}
+body.presentation-expanded .brochure-slide-5 .flow{margin-top:12px;}
+body.presentation-expanded .brochure-slide-5 .why{margin-top:10px;}
+body.presentation-expanded .brochure-slide-5 .cred{margin-top:12px;}
+body.presentation-expanded .brochure-slide-5 .footer{height:190px;padding:22px 54px 18px;}
+
+</style>
+<link rel="stylesheet" href="app/page-shell.css">
+</head>
+<body>
+
+<div class="brochure-editor-bar" aria-label="Brochure navigation">
+  <a class="brochure-brand" href="#presentation"><strong>KARATS</strong><small>SMART Brochure Template</small></a>
+  <div class="brochure-view-switcher" aria-hidden="true"></div>
+  <div class="brochure-top-meta">
+    <label>Language <select id="brochureLanguage"><option value="en">English</option><option value="ml">മലയാളം</option><option value="__add__">＋ Add New Template…</option></select></label>
+    <a class="brochure-saved-link" href="Karats-Smart-Capital-Calculator.html#portfolio">Saved Jewelleries</a>
+  </div>
+  <button id="saveFinishBrochureBtn" type="button" hidden>Save &amp; Finish Editing</button>
+  <span class="brochure-editor-status" id="brochureEditorStatus">English brochure</span>
+</div>
+
+<div class="presentation-controls" id="presentationControls" hidden aria-label="Presentation page navigation">
+  <button id="previousSlide" type="button" aria-label="Previous page">&#8592;</button>
+  <div class="deck-indicator" id="deckIndicator">Page 1 of 7</div>
+  <button id="nextSlide" type="button" aria-label="Next page">&#8594;</button>
+  <button class="expand-presentation" id="expandPresentation" type="button" aria-label="Expand presentation to full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg><span>Expand</span></button>
+  <button class="download-pdf" id="downloadPdf" type="button" aria-label="Download the brochure as PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 18v3h16v-3"/></svg><span id="downloadPdfLabel">Download PDF</span></button>
+</div>
+<button class="presentation-close" id="collapsePresentation" type="button" aria-label="Collapse full-screen presentation">&times;</button>
+
+<dialog class="template-dialog" id="newTemplateDialog">
+  <form id="newTemplateForm" method="dialog">
+    <div class="dh"><div class="eyebrow">New Language Version</div><h3>Add a brochure template</h3></div>
+    <div class="db"><p>The current brochure will be copied. Every text field will become editable so you can paste the new language and save it separately.</p><label for="newTemplateName">Language or template name</label><input id="newTemplateName" type="text" required placeholder="Example: Hindi"><div class="da"><button id="cancelTemplateBtn" type="button">Cancel</button><button class="primary" type="submit">Create &amp; Edit</button></div></div>
+  </form>
+</dialog>
+
+<!-- ================= PAGE 1 : cover + the problem ================= -->
+<div class="page">
+  <div class="hero">
+    <div class="frame"></div>
+    <div class="inner">
+      <div class="logo-wrap">
+        <div class="mark"><div class="dia"></div><div class="dia2"></div><div class="ltr">K</div></div>
+        <div class="brand">Karats</div>
+        <div class="brand-sub">By Alookaran Jewellers &amp; Manufacturers</div>
+      </div>
+
+      <svg class="hero-art" width="360" height="130" viewBox="0 0 760 290" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#8C6B22"/><stop offset=".35" stop-color="#E8CE97"/>
+            <stop offset=".6" stop-color="#C39E45"/><stop offset="1" stop-color="#7E5F1C"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F0DDB0"/><stop offset=".5" stop-color="#C6A051"/><stop offset="1" stop-color="#8A6A22"/>
+          </linearGradient>
+          <radialGradient id="glow" cx=".5" cy=".55" r=".5">
+            <stop offset="0" stop-color="#D6B16A" stop-opacity=".22"/><stop offset="1" stop-color="#D6B16A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="380" cy="175" rx="330" ry="140" fill="url(#glow)"/>
+        <g fill="none" stroke="#D6B16A" stroke-opacity=".14">
+          <circle cx="380" cy="175" r="150"/><circle cx="380" cy="175" r="178"/><circle cx="380" cy="175" r="206"/>
+        </g>
+        <!-- necklace chain -->
+        <path d="M140 46 C 190 210 570 210 620 46" fill="none" stroke="url(#g2)" stroke-width="2.6"/>
+        <path d="M140 46 C 190 210 570 210 620 46" fill="none" stroke="#F3E3BD" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 17" stroke-opacity=".85"/>
+        <!-- bail + pendant -->
+        <circle cx="380" cy="178" r="7.5" fill="none" stroke="url(#g2)" stroke-width="2.2"/>
+        <path d="M380 188 C 408 210 408 240 380 254 C 352 240 352 210 380 188 Z" fill="url(#g2)" stroke="#6E5116" stroke-width="1"/>
+        <path d="M380 188 L 380 254 M 356 218 L 404 218" stroke="#7A5C1C" stroke-width=".8" stroke-opacity=".7"/>
+        <circle cx="380" cy="218" r="6" fill="#FFF7E4" fill-opacity=".9"/>
+        <!-- side accents -->
+        <circle cx="300" cy="196" r="4.5" fill="url(#g2)"/><circle cx="460" cy="196" r="4.5" fill="url(#g2)"/>
+        <!-- earrings -->
+        <g stroke="url(#g2)" stroke-width="2.2" fill="none">
+          <path d="M120 60 a 11 11 0 1 1 22 0"/><path d="M618 60 a 11 11 0 1 1 22 0"/>
+        </g>
+        <path d="M131 76 C 147 92 147 116 131 128 C 115 116 115 92 131 76 Z" fill="url(#g2)"/>
+        <path d="M629 76 C 645 92 645 116 629 128 C 613 116 613 92 629 76 Z" fill="url(#g2)"/>
+      </svg>
+
+      <div class="tagline">#DesignYourDesire</div>
+    </div>
+  </div>
+
+
+  <div class="p1prob">
+    <div class="kicker-row"><div class="eyebrow">The Retailer's Reality</div><div class="rule"></div></div>
+    <h1>Is Your Gold Working for You&hellip;<br>or Against You?</h1>
+    <p class="intro">In today's retail jewellery scenario, the stock standing in your showcase is either earning for you or quietly costing you. These are the pressures every jewellery retailer is carrying right now.</p>
+    <div class="subh">The 8 Core Operational Challenges Facing Today's Jewellery Retailers</div>
+    <div class="probs">
+      <div class="prow">
+      <div class="prob"><div class="pb">
+        <div class="h"><div class="i">01</div><h4>Capital Blockage &amp; Dead Inventory</h4></div>
+        <p>Large amounts of capital remain locked in unsold gold inventory, restricting liquidity and slowing business growth.</p>
+      </div></div>
+      <div class="prob"><div class="pb">
+        <div class="h"><div class="i">02</div><h4>Gold Price Volatility</h4></div>
+        <p>Fluctuating gold prices can reduce profit margins when inventory is purchased at higher prices and sold after market corrections.</p>
+      </div></div>
+      </div>
+      <div class="prow">
+      <div class="prob"><div class="pb">
+        <div class="h"><div class="i">03</div><h4>Burglary, Theft &amp; Security Risk</h4></div>
+        <p>High-value gold inventory increases exposure to burglary, theft, employee pilferage and operational risk.</p>
+      </div></div>
+      <div class="prob"><div class="pb">
+        <div class="h"><div class="i">04</div><h4>High Inventory Holding Costs</h4></div>
+        <p>Insurance, vault facilities, security systems, storage and inventory maintenance significantly increase operating expenses.</p>
+      </div></div>
+      </div>
+      <div class="prow">
+      <div class="prob"><div class="pb">
+        <div class="h"><div class="i">05</div><h4>High Making Charges</h4></div>
+        <p>Smaller manufacturing volumes often result in higher making charges, reducing profitability and price competitiveness.</p>
+      </div></div>
+      <div class="prob"><div class="pb">
+        <div class="h"><div class="i">06</div><h4>Limited Product Range &amp; Price Options</h4></div>
+        <p>Stocking designs at multiple price points ties up capital, limiting variety across customer tastes and budgets.</p>
+      </div></div>
+      </div>
+      <div class="prow">
+      <div class="prob"><div class="pb">
+        <div class="h"><div class="i">07</div><h4>Rapidly Changing Market Trends</h4></div>
+        <p>Fast-changing consumer preferences make existing inventory outdated, increasing the risk of slow-moving or unsold stock.</p>
+      </div></div>
+      <div class="prob"><div class="pb">
+        <div class="h"><div class="i">08</div><h4>Limited Customisation Flexibility</h4></div>
+        <p>Ready-made stock restricts changes to size, purity, weight and finish, limiting personalisation to customer preferences.</p>
+      </div></div>
+      </div>
+    </div>
+    <div class="bridge">
+      <div class="q">All 8 operational challenges begin with one decision</div>
+      <div class="decision">BUY&nbsp;&nbsp;FIRST&nbsp;&nbsp;SELL&nbsp;&nbsp;LATER.</div>
+    </div>
+  </div>
+  <div class="pagetag"><span>01</span></div>
+</div>
+
+<!-- ================= PAGE 2 : the core strategy ================= -->
+<div class="page strategy-page">
+  <div class="p1body">
+    <h2 class="strategy-intro">There Is a Better Way to Sell Jewellery.</h2>
+    <div class="strategy-answer">KARATS SMART MODEL</div>
+    <h1 class="display strategy-display">Sell First.<br>Buy Later.</h1>
+
+    <div class="cols">
+      <div class="c">
+        <div class="clab">The Traditional Model &mdash; Buy First</div>
+        <p class="lead">In the traditional model, retailers purchase finished gold ornaments, pay making charges and hold them as inventory before customer demand is confirmed. Every showcased design locks capital into a specific style, purity, weight and size while waiting for a customer whose taste and budget match it. Until it sells, the retailer bears finance, insurance, security and storage costs, along with the risks of changing trends and gold prices. The displayed range is limited by available capital, while replacing sold or outdated pieces requires further investment and keeps working capital tied to inventory.</p>
+        <div class="flab trad">The Traditional Retail Cycle</div>
+        <div class="vflow trad">
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="16" cy="8" rx="9" ry="3.5"/><path d="M7 8v7c0 2 4 3.5 9 3.5s9-1.5 9-3.5V8"/><path d="M7 15v7c0 2 4 3.5 9 3.5s9-1.5 9-3.5v-7"/></svg></div><div class="tx"><div class="t">1. Purchasing Gold Ornaments</div><div class="d">Gold ornaments are purchased according to estimated future demand before any customer or confirmed order exists. Cash leaves the business immediately, locking working capital in finished stock and exposing the retailer to changes in the gold price.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="8" width="24" height="15" rx="1.5"/><path d="M4 14h24M16 8v15M7 27v-4M25 27v-4"/></svg></div><div class="tx"><div class="t">2. Display Gold Jewellery</div><div class="d">Every displayed ornament occupies showcase space and continues to attract  insurance, security and storage costs, . While it remains unsold, the retailer carries both the holding cost and gold-price exposure that may erode the expected margin.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="16" cy="16" r="12"/><path d="M16 8v8l6 3"/></svg></div><div class="tx"><div class="t">3. Wait for Right Customer</div><div class="d">Each ornament must wait for a customer whose taste, size, budget, design, weight and purity match it. During this period, preferences may change, the design may age and the piece may remain idle for months, delaying recovery of the invested capital.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="16" cy="16" r="12"/><path d="M10.5 16.2l3.6 3.6 7.4-7.6"/></svg></div><div class="tx"><div class="t">4. Sale Completed</div><div class="d">Capital returns only when the ornament is finally sold. Any gain from a higher gold price is only an illusionary profit. The same gold must be repurchased at the new higher rate for restocking. After holding costs and negotiations, the actual margin may be much smaller.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M27 16a11 11 0 0 1-18.9 7.6M5 16A11 11 0 0 1 23.9 8.4"/><path d="M23.5 4v5h-5M8.5 28v-5h5"/></svg></div><div class="tx"><div class="t">5. Discount / Remelt Unsold Stock</div><div class="d">Pieces that still do not sell must be discounted, exchanged or returned for melting. The retailer absorbs lost making charges, wastage, handling and time. Fresh capital must then be committed to replace outdated stock, restarting the same inventory cycle.</div></div></div>
+        </div>
+      </div>
+      <div class="c">
+        <div class="clab elite">The Karats Smart Model &mdash; Sell First</div>
+        <p class="lead">In the KARATS SMART model, you sell before investing in gold inventory. The counter displays precision-crafted 925 gold-plated silver ornaments. They reproduce the form, detail and finish of the final gold ornament. At roughly 30 times cheaper the cost of gold ornaments, they require far less display investment. Customers can see, touch and try each design before placing an order. They select their preferred purity, weight, stones, size, colour and finish. Production begins only after the order and advance are confirmed. Every gold purchase is therefore linked to a real sale, avoiding unsold gold inventory.</p>
+        <div class="flab">The Karats Smart Cycle</div>
+        <div class="vflow elite">
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M6 12h20l-3 15H9z"/><path d="M11 12V8a5 5 0 0 1 10 0v4"/></svg></div><div class="tx"><div class="t">1. Purchase &amp; Display of Gold-Plated Silver Ornaments</div><div class="d">The showcase carries precisely finished, gold-plated 925 silver prototypes at a fraction of the cost of gold stock. Lower display investment allows the retailer to present a broader collection and refresh designs more frequently.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="13" cy="10" r="5"/><path d="M4 27c0-5 4-8 9-8s9 3 9 8"/><path d="M22 11l2.5 2.5L29 8"/></svg></div><div class="tx"><div class="t">2. Customer Selects &amp; Customises</div><div class="d">The customer handles and tries the physical sample, then personalises purity, weight, stones, size, colour and finish. The same design can be quoted across five price ranges, making it easier to match individual tastes and budgets.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M7 3h13l5 5v21H7z"/><path d="M19 3v6h6"/><path d="M12 19l3 3 6-7"/></svg></div><div class="tx"><div class="t">3. Order Confirmed</div><div class="d">A final specification and transparent price are approved at the prevailing rate. The customer pays an advance and the order is booked, giving the retailer confirmed demand before committing capital to gold.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 22l11-11"/><path d="M12 9l5-5 11 11-5 5z"/><path d="M2 28h12"/></svg></div><div class="tx"><div class="t">4. Manufacture the Ornament</div><div class="d">Only the required quantity of gold is procured for the confirmed order. Skilled production then recreates the selected prototype to the customer's exact specifications, keeping material, labour and working capital tied to a sale.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="16" cy="13" r="9"/><path d="M11 27l5-3 5 3V20h-10z"/><path d="M12.5 13l2.5 2.5 5-5"/></svg></div><div class="tx"><div class="t">5. Delivered &amp; Sale Completed</div><div class="d">The finished ornament is hallmarked, quality checked and delivered against the confirmed order. The balance is collected and the transaction closes without leaving an unsold gold piece, ageing design or blocked investment behind.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="pagetag"><span>02</span></div>
+</div>
+
+<!-- ================= PAGE 3 : capital efficiency ================= -->
+<div class="page capital-page">
+  <div class="pad sechead">
+    <div class="kicker-row"><div class="eyebrow">The Business Case</div><div class="rule"></div></div>
+    <h2 class="section">Capital at Risk.<br>Capital at Work.</h2>
+    <p class="capital-intro">An illustrative comparison of how much display capital is committed in each model, the return it produces, and the financial capacity the same investment can create.</p>
+
+    <div class="capital-cards">
+      <div class="capital-card">
+        <div class="model">Traditional Cycle &mdash; Capital at Risk</div>
+        <h3>Hold Gold First.<br>Wait for the Sale.</h3>
+        <div class="metric">Gold inventory held: <strong data-calc-value="tradCapital">&#8377;15,000</strong><br>Expected margin: <strong data-calc-value="margin">6%</strong></div>
+        <div class="formula"><span data-calc-value="tradCapital">&#8377;15,000</span> &times; <span data-calc-value="margin">6%</span> = <strong data-calc-value="profitPerSale">&#8377;900</strong></div>
+        <div class="takeaway"><span data-calc-value="tradCapital">&#8377;15,000</span> remains exposed to earn an illustrative <span data-calc-value="profitPerSale">&#8377;900</span>.</div>
+      </div>
+      <div class="capital-card smart">
+        <div class="model">KARATS SMART Cycle &mdash; Capital at Work</div>
+        <h3>Display in Silver.<br>Produce After the Sale.</h3>
+        <div class="metric">Silver prototype investment: <strong data-calc-value="prototypeCapital">&#8377;500</strong><br>Profit from one confirmed sale: <strong data-calc-value="profitPerSale">&#8377;900</strong></div>
+        <div class="formula"><span data-calc-value="profitPerSale">&#8377;900</span> &divide; <span data-calc-value="prototypeCapital">&#8377;500</span> = <strong data-calc-value="smartRoi">180%</strong></div>
+        <div class="takeaway">Only <span data-calc-value="prototypeCapital">&#8377;500</span> is committed to generate an illustrative <span data-calc-value="profitPerSale">&#8377;900</span>.</div>
+      </div>
+    </div>
+
+    <div class="eff-strip">
+      <div class="eff-stat"><div class="v" data-calc-value="capitalRatio">30&times;</div><div class="l">Lower Display Investment</div></div>
+      <div class="eff-stat"><div class="v" data-calc-value="efficiencyRatio">30&times;</div><div class="l">Greater Capital Efficiency</div></div>
+    </div>
+
+    <div class="compare-title"><h3>Direct Comparison</h3><div class="rule"></div></div>
+    <table class="capital-table">
+      <tr><th>Metric</th><th>Traditional</th><th class="smart">KARATS SMART</th></tr>
+      <tr><td>Display capital</td><td data-calc-value="tradCapital">&#8377;15,000</td><td class="smart" data-calc-value="prototypeCapital">&#8377;500</td></tr>
+      <tr><td>Illustrative profit</td><td data-calc-value="profitPerSale">&#8377;900</td><td class="smart" data-calc-value="profitPerSale">&#8377;900</td></tr>
+      <tr><td>Return on display capital</td><td data-calc-value="tradRoi">6%</td><td class="smart" data-calc-value="smartRoi">180%</td></tr>
+      <tr><td>Capital exposure</td><td><span data-calc-value="capitalRatio">30&times;</span> higher</td><td class="smart"><span data-calc-value="capitalRatio">30&times;</span> lower</td></tr>
+    </table>
+
+    <div class="same-capital">
+      <div class="ey">Same <span data-calc-value="tradCapital">&#8377;15,000</span> &nbsp;&middot;&nbsp; A Different Outcome</div>
+      <h3>Put the Same Display Capital to Work</h3>
+      <div class="same-grid">
+        <div class="same-box">
+          <div class="lab">Traditional Model</div>
+          <div class="big" data-calc-value="profitPerSale">&#8377;900</div>
+          <div class="calc">One <span data-calc-value="tradCapital">&#8377;15,000</span> gold ornament<br>at a <span data-calc-value="margin">6%</span> illustrative margin.</div>
+        </div>
+        <div class="same-box smart">
+          <div class="lab">KARATS SMART Model</div>
+          <div class="big" data-calc-value="sameCapitalProfit">&#8377;27,000</div>
+          <div class="calc"><strong><span data-calc-value="tradCapital">&#8377;15,000</span> &divide; <span data-calc-value="prototypeCapital">&#8377;500</span> = <span data-calc-value="prototypeCount">30</span> prototypes</strong><br><span data-calc-value="prototypeCount">30</span> prototypes &times; <span data-calc-value="profitPerSale">&#8377;900</span> = <span data-calc-value="sameCapitalProfit">&#8377;27,000</span> potential profit.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="capital-note">Illustrative figures for explaining capital efficiency. The SMART calculation assumes each prototype generates one confirmed sale. A reusable prototype may support further orders without repeating the <span data-calc-value="prototypeCapital">&#8377;500</span> display investment.</p>
+  </div>
+  <div class="pagetag"><span>03</span></div>
+</div>
+
+<!-- ================= PAGE 4 : the 8 benefits ================= -->
+<div class="page benefits-page">
+  <div class="pad sechead">
+    <div class="kicker-row"><div class="eyebrow">The Answer</div><div class="rule"></div></div>
+    <h2 class="section" style="margin-top:4mm;">8 Challenges.<br>8 SMART Answers.</h2>
+    <div class="subh">How the KARATS SMART model overcomes each challenge &mdash; and the benefit it creates</div>
+    <div class="probs">
+      <div class="prow">
+      <div class="prob ben"><div class="pb">
+        <div class="h"><div class="ic"><svg class="bi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="9" width="26" height="16" rx="2"/><circle cx="16" cy="17" r="4"/><path d="M8 3v4M24 3v4M3 14h3M26 14h3"/></svg></div><h4><span class="bn">01</span>Reduced Capital Blockage &amp; Dead Inventory</h4></div>
+        <p class="answer-map"><span class="map-label">Challenge:</span> Capital remains locked in unsold gold.<br><span class="map-label how">How:</span> Gold is purchased only after a customer confirms the order.<br><span class="map-label benefit">Benefit:</span> Working capital stays liquid and no unsold gold becomes dead inventory.</p>
+      </div></div>
+      <div class="prob ben"><div class="pb">
+        <div class="h"><div class="ic"><svg class="bi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 24l7-8 5 4 7-9 7 6"/><path d="M3 29h26"/><path d="M22 7h7v7"/></svg></div><h4><span class="bn">02</span>Reduced Gold Price Volatility Risk</h4></div>
+        <p class="answer-map"><span class="map-label">Challenge:</span> Price changes can erode the margin on held inventory.<br><span class="map-label how">How:</span> Gold is quoted and procured against the same confirmed order at the prevailing rate.<br><span class="map-label benefit">Benefit:</span> The exposure window narrows and margins become more predictable.</p>
+      </div></div>
+      </div>
+      <div class="prow">
+      <div class="prob ben"><div class="pb">
+        <div class="h"><div class="ic"><svg class="bi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 3l11 4v9c0 7-4.6 11.4-11 13-6.4-1.6-11-6-11-13V7z"/><path d="M11.5 16.2l3.2 3.2 6-6.4"/></svg></div><h4><span class="bn">03</span>Reduced Burglary &amp; Theft Risk</h4></div>
+        <p class="answer-map"><span class="map-label">Challenge:</span> High-value gold stock increases theft and security exposure.<br><span class="map-label how">How:</span> The counter displays silver prototypes while gold is held only for confirmed orders.<br><span class="map-label benefit">Benefit:</span> Far less bullion value remains exposed at the retail counter.</p>
+      </div></div>
+      <div class="prob ben"><div class="pb">
+        <div class="h"><div class="ic"><svg class="bi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 23c3.5-3 6-8 6-12M27 23c-3.5-3-6-8-6-12"/><path d="M11 11h10"/><path d="M16 11v16"/><path d="M9 27h14"/><circle cx="16" cy="7" r="2.4"/></svg></div><h4><span class="bn">04</span>Lower Inventory Holding Costs</h4></div>
+        <p class="answer-map"><span class="map-label">Challenge:</span> Gold inventory creates high insurance, security and storage costs.<br><span class="map-label how">How:</span> High-value finished stock is replaced with low-cost silver prototypes.<br><span class="map-label benefit">Benefit:</span> Insurance, vault, security, storage and maintenance expenses fall.</p>
+      </div></div>
+      </div>
+      <div class="prow">
+      <div class="prob ben"><div class="pb">
+        <div class="h"><div class="ic"><svg class="bi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 3H7a4 4 0 0 0-4 4v10l12 12 14-14z"/><circle cx="10" cy="10" r="2.2"/></svg></div><h4><span class="bn">05</span>Lower Making Charges &amp; Stronger Customer Goodwill</h4></div>
+        <p class="answer-map"><span class="map-label">Challenge:</span> Small production runs increase making charges and reduce competitiveness.<br><span class="map-label how">How:</span> Confirmed-order manufacturing reduces speculative production, remakes and wastage.<br><span class="map-label benefit">Benefit:</span> Lower costs support stronger margins and fairer customer pricing.</p>
+      </div></div>
+      <div class="prob ben"><div class="pb">
+        <div class="h"><div class="ic"><svg class="bi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="16" r="11"/><path d="M16 5v22M5 16h22M9 9l14 14M23 9L9 23"/></svg></div><h4><span class="bn">06</span>Wider Collections &amp; Five Price Options</h4></div>
+        <p class="answer-map"><span class="map-label">Challenge:</span> Gold stock limits design variety and affordable price choices.<br><span class="map-label how">How:</span> Low-cost prototypes offer each design in 22KT, 18KT, 9KT, silver and plated silver.<br><span class="map-label benefit">Benefit:</span> A wider collection serves more budgets without blocking capital.</p>
+      </div></div>
+      </div>
+      <div class="prow">
+      <div class="prob ben"><div class="pb">
+        <div class="h"><div class="ic"><svg class="bi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M28 16a12 12 0 0 1-20.6 8.3M4 16A12 12 0 0 1 24.6 7.7"/><path d="M24.5 3v5h-5M7.5 29v-5h5"/></svg></div><h4><span class="bn">07</span>Faster Rotation &amp; Trend Adaptability</h4></div>
+        <p class="answer-map"><span class="map-label">Challenge:</span> Fast-changing trends can leave gold designs outdated and unsold.<br><span class="map-label how">How:</span> Silver prototypes are refreshed quickly while gold is produced only after sale.<br><span class="map-label benefit">Benefit:</span> The collection follows current demand without obsolete gold inventory.</p>
+      </div></div>
+      <div class="prob ben"><div class="pb">
+        <div class="h"><div class="ic"><svg class="bi" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 3l13 7-13 7-13-7z"/><path d="M3 16l13 7 13-7"/><path d="M3 23l13 6 13-6"/></svg></div><h4><span class="bn">08</span>360&deg; Jewellery Customisation</h4></div>
+        <p class="answer-map"><span class="map-label">Challenge:</span> Ready-made stock restricts personalisation to customer preferences.<br><span class="map-label how">How:</span> Purity, weight, size, stones, colour and finish are finalised before production.<br><span class="map-label benefit">Benefit:</span> Customers receive a personalised piece, improving satisfaction and conversion.</p>
+      </div></div>
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="t">
+        <div class="e">One Design &nbsp;&middot;&nbsp; Five Price Ranges &nbsp;&middot;&nbsp; One Happy Customer</div>
+        <div class="pill">ONE DESIGN</div>
+      </div>
+      <div class="stem"></div>
+      <div class="bracket"></div>
+      <div class="chips">
+        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#F0D79B,#B48C2E)"></div><div class="nm">22KT</div><div class="px">Gold</div></div>
+        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#EBD6AC,#B99A52)"></div><div class="nm">18KT</div><div class="px">Gold</div></div>
+        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#E5D8BE,#BFAE84)"></div><div class="nm">9KT</div><div class="px">Gold</div></div>
+        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#F2F4F6,#AFB6BD)"></div><div class="nm">925</div><div class="px">Silver</div></div>
+        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#F6E6BE,#C9C2B4)"></div><div class="nm">Plated</div><div class="px">Gold on Silver</div></div>
+      </div>
+      <div class="arrowd"></div>
+      <div class="outcome">
+        <div class="a">Five Different Price Ranges &nbsp;&middot;&nbsp; One Happy Customer</div>
+        <div class="b">Same design &nbsp;&middot;&nbsp; Same finish &nbsp;&middot;&nbsp; Every budget</div>
+      </div>
+    </div>
+  </div>
+  <div class="pagetag"><span>04</span></div>
+</div>
+
+<!-- ================= PAGE 5 ================= -->
+<div class="page">
+  <div class="p4">
+    <div class="kicker-row"><div class="eyebrow">How It Works</div><div class="rule"></div></div>
+
+    <!-- 1. customisation -->
+    <div class="s-title"><div class="n">01</div><h3>360&deg; Jewellery Customisation</h3><div class="ln"></div></div>
+    <div class="icorow">
+      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M9 4h14l6 8-13 16L3 12z"/><path d="M3 12h26M9 4l7 8 7-8M16 12v16"/></svg><span>Stone<br>Customisation</span></div>
+      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M17 3H7a4 4 0 0 0-4 4v10l12 12 14-14z"/><circle cx="10" cy="10" r="2"/></svg><span>Purity<br>&amp; Price</span></div>
+      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M16 4v24M6 28h20"/><path d="M4 12h24"/><path d="M4 12l-2 7h8zM28 12l2 7h-8z"/></svg><span>Weight</span></div>
+      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="3" y="11" width="26" height="10" rx="1.5"/><path d="M9 11v4M15 11v6M21 11v4"/></svg><span>Size</span></div>
+      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="16" cy="16" r="12"/><circle cx="11" cy="12" r="1.8"/><circle cx="20" cy="11" r="1.8"/><circle cx="22" cy="19" r="1.8"/></svg><span>Colour<br>Tone</span></div>
+      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M16 3l3.2 8.8L28 15l-8.8 3.2L16 27l-3.2-8.8L4 15l8.8-3.2z"/></svg><span>Surface<br>Finish</span></div>
+      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M22 3l7 7-16 16-9 2 2-9z"/><path d="M19 6l7 7"/></svg><span>Personalisation</span></div>
+    </div>
+    <table class="spec">
+      <tr><th>Parameter</th><th>Options Available to Your Customer</th></tr>
+      <tr><td class="k">Stone Customisation</td><td>Natural diamond, lab-grown diamond, precious &amp; semi-precious stones, CZ, or plain gold</td></tr>
+      <tr><td class="k">Purity &amp; Price</td><td>22KT &middot; 18KT &middot; 9KT &middot; 925 Silver &middot; Gold-Plated Silver</td></tr>
+      <tr><td class="k">Weight</td><td>Light, medium or heavy variant of the very same design</td></tr>
+      <tr><td class="k">Size</td><td>Ring size, bangle size, chain and necklace length</td></tr>
+      <tr><td class="k">Colour Tone</td><td>Yellow, rose or white &mdash; single tone or dual tone</td></tr>
+      <tr><td class="k">Surface Finish</td><td>High polish, matte, satin, antique or textured finish</td></tr>
+      <tr><td class="k">Personalisation</td><td>Names, initials, dates and custom engraving</td></tr>
+    </table>
+
+    <!-- 2. delivery -->
+    <div class="s-title"><div class="n">02</div><h3>Delivery Timeline</h3><div class="ln"></div></div>
+    <div class="tlrow">
+      <div class="tl"><div class="b"><div class="c">Standard Collection</div><div class="d">2 &ndash; 3 Days</div><div class="e">Working days from order confirmation</div></div></div>
+      <div class="tl"><div class="b"><div class="c">Classic Collection</div><div class="d">3 &ndash; 5 Days</div><div class="e">Working days from order confirmation</div></div></div>
+      <div class="tl"><div class="b"><div class="c">Signature Collection</div><div class="d">5 &ndash; 7 Days</div><div class="e">Working days from order confirmation</div></div></div>
+    </div>
+    <div class="flow">
+      <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 5h4l3.5 15h14L28 9H9"/><circle cx="12" cy="26" r="2"/><circle cx="23" cy="26" r="2"/></svg><div class="t">Order</div><div class="no">01</div></div></div>
+      <div class="chev"><i></i></div>
+      <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M16 3l12 6.5v13L16 29 4 22.5v-13z"/><path d="M4 9.5l12 6.5 12-6.5M16 16v13"/></svg><div class="t">CAD</div><div class="no">02</div></div></div>
+      <div class="chev"><i></i></div>
+      <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 22l11-11"/><path d="M12 9l5-5 11 11-5 5z"/><path d="M2 28h12"/></svg><div class="t">Production</div><div class="no">03</div></div></div>
+      <div class="chev"><i></i></div>
+      <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="14" cy="14" r="9"/><path d="M21 21l7 7"/><path d="M10 14l3 3 5-6"/></svg><div class="t">Quality</div><div class="no">04</div></div></div>
+      <div class="chev"><i></i></div>
+      <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><circle cx="16" cy="13" r="9"/><path d="M11 27l5-3 5 3V20h-10z"/><path d="M12.5 13l2.5 2.5 5-5"/></svg><div class="t">Hallmark</div><div class="no">05</div></div></div>
+      <div class="chev"><i></i></div>
+      <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 10l12-5 12 5v12l-12 5-12-5z"/><path d="M4 10l12 5 12-5M16 15v12"/></svg><div class="t">Dispatch</div><div class="no">06</div></div></div>
+    </div>
+
+    <!-- 3. why choose -->
+    <div class="s-title"><div class="n">03</div><h3>Why Choose Alookaran?</h3><div class="ln"></div></div>
+    <div class="why">
+      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>State-of-the-Art Manufacturing Facility</span></div>
+      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Precision CAD / CAM Technology</span></div>
+      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Hallmark Certified Jewellery</span></div>
+      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Skilled Artisan Craftsmanship</span></div>
+      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Fast, Committed Turnaround Time</span></div>
+      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Dedicated Retailer Support</span></div>
+      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Consistent Quality Standards</span></div>
+      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Ethical &amp; Transparent Manufacturing</span></div>
+    </div>
+
+    <!-- credibility strip -->
+    <div class="cred">
+      <div class="ct"><div class="v">35+ Years</div><div class="l">Jewellery Expertise</div></div>
+      <div class="ct"><div class="v">Legacy</div><div class="l">Established Retail Heritage</div></div>
+      <div class="ct"><div class="v">CAD / CAM</div><div class="l">Advanced Manufacturing Technology</div></div>
+      <div class="ct"><div class="v">B2B</div><div class="l">Retailer-Focused Business Model</div></div>
+      <div class="ct"><div class="v">Made in India</div><div class="l">Crafted &amp; Hallmarked Locally</div></div>
+    </div>
+  </div>
+
+  <!-- footer: contact + CTA -->
+  <div class="footer">
+    <div class="fx">
+      <div class="fl">
+        <h4>Join the Network</h4>
+        <div class="cta-h">Join the Alookaran<br>Elite Network</div>
+        <div class="cta-s">Sell First. Buy Later. &nbsp;&middot;&nbsp; Prototype in Silver. Profit in Gold.</div>
+        <div class="cta-p">Empowering jewellery retailers through smart manufacturing</div>
+      </div>
+      <div class="fr">
+        <h4>Get in Touch</h4>
+        <div class="ct-list">
+          <div class="r"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M8 1.5c2.5 0 4.5 2 4.5 4.5 0 3.2-4.5 8.5-4.5 8.5S3.5 9.2 3.5 6c0-2.5 2-4.5 4.5-4.5z"/><circle cx="8" cy="6" r="1.6"/></svg><span>[ Company Address, City, State &ndash; PIN ]</span></div>
+          <div class="r"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 2.5h3l1.3 3.2-1.8 1.4a9 9 0 0 0 3.4 3.4l1.4-1.8 3.2 1.3v3a1.5 1.5 0 0 1-1.6 1.5C6.6 14 2 9.4 1.5 4.1A1.5 1.5 0 0 1 3 2.5z"/></svg><span>[ +91 00000 00000 &nbsp;&middot;&nbsp; +91 00000 00000 ]</span></div>
+          <div class="r"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><path d="M1.5 4.5L8 9l6.5-4.5"/></svg><span>[ elite@yourcompany.com ]</span></div>
+          <div class="r"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c1.8 2 2.6 4.2 2.6 6.5S9.8 12.5 8 14.5C6.2 12.5 5.4 10.3 5.4 8S6.2 3.5 8 1.5z"/></svg><span>[ www.yourcompany.com ]</span></div>
+        </div>
+        <div class="qr">
+          <div class="box"><span>Place<br>QR Code</span></div>
+          <div class="qrside">
+          <div class="lbl">Scan to view the<br>Elite Plan catalogue</div>
+        <div class="socials">
+          <div class="s"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="2" y="2" width="12" height="12" rx="3.5"/><circle cx="8" cy="8" r="3"/><circle cx="11.7" cy="4.3" r=".7" fill="currentColor"/></svg></div>
+          <div class="s"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M9.5 5.5h2V2.6h-2c-1.9 0-3 1.3-3 3.2v1.1H4.8V10h1.7v4h2.6v-4h2l.4-3.1H9.1V6.2c0-.5.2-.7.4-.7z"/></svg></div>
+          <div class="s"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M2.4 14l1-3.4A5.6 5.6 0 1 1 5.6 12.7z"/></svg></div>
+          <div class="s"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="2" y="2" width="12" height="12" rx="1.5"/><path d="M5 6.8V12M5 4.6v.1M8.2 12V6.8M8.2 9c0-1.2.8-1.8 1.7-1.8s1.6.7 1.6 1.9V12"/></svg></div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-no-dark">05</div>
+</div>
+<script src="karats-pdf-libs/html2canvas.min.js"></script>
+<script src="karats-pdf-libs/jspdf.umd.min.js"></script>
+<script>
+(function(){
+  try{if(window.name.startsWith('karats-project-migration:')){const migrated=JSON.parse(window.name.slice('karats-project-migration:'.length));Object.entries(migrated).forEach(([key,value])=>localStorage.setItem(key,value));window.name=''}}catch(e){}
+  const languageSelect=document.getElementById('brochureLanguage');
+  const saveFinishButton=document.getElementById('saveFinishBrochureBtn');
+  const status=document.getElementById('brochureEditorStatus');
+  const newTemplateDialog=document.getElementById('newTemplateDialog');
+  const newTemplateForm=document.getElementById('newTemplateForm');
+  const newTemplateName=document.getElementById('newTemplateName');
+  const presentationControls=document.getElementById('presentationControls');
+  const previousSlide=document.getElementById('previousSlide');
+  const nextSlide=document.getElementById('nextSlide');
+  const deckIndicator=document.getElementById('deckIndicator');
+  const expandPresentation=document.getElementById('expandPresentation');
+  const collapsePresentation=document.getElementById('collapsePresentation');
+  const downloadPdf=document.getElementById('downloadPdf');
+  const downloadPdfLabel=document.getElementById('downloadPdfLabel');
+  const templatesKey='karatsBrochureTemplates';
+  const selectors=[
+    '.page .brand','.page .brand-sub','.page .tagline','.page .hero-strip span',
+    '.page .eyebrow','.page h1','.page h2','.page h3','.page h4','.page p',
+    '.page .subh','.page .bridge .q','.page .bridge .decision','.page .strategy-intro','.page .strategy-answer',
+    '.page .clab','.page .flab','.page .vstep .tx .t','.page .vstep .tx .d',
+    '.page .info .t .e','.page .pill','.page .chip .nm','.page .chip .px','.page .outcome .a','.page .outcome .b',
+    '.page table th','.page table td','.page .tl .c','.page .tl .d','.page .tl .e',
+    '.page .step .t','.page .step .no','.page .why .w span','.page .cred .v','.page .cred .l',
+    '.page .footer h4','.page .cta-h','.page .cta-s','.page .cta-p','.page .ct-list .r span','.page .qr .lbl'
+  ];
+  const directTextElements=Array.from(document.querySelectorAll('.page *')).filter(el=>!el.closest('svg')&&Array.from(el.childNodes).some(node=>node.nodeType===Node.TEXT_NODE&&node.textContent.trim()));
+  const candidates=Array.from(new Set([...document.querySelectorAll(selectors.join(',')),...directTextElements]));
+  const editables=candidates.filter((el,index,array)=>!array.some(other=>other!==el&&other.contains(el)));
+  editables.forEach((el,index)=>{el.dataset.editKey=`brochure-text-${index}`;el.dataset.defaultHtml=el.innerHTML;el.addEventListener('paste',event=>{if(!document.body.classList.contains('brochure-editing'))return;event.preventDefault();const text=(event.clipboardData||window.clipboardData).getData('text/plain');document.execCommand('insertText',false,text)})});
+  const storageKey=lang=>`karatsBrochureTemplate:${lang}`;
+  const readSaved=lang=>{try{return JSON.parse(localStorage.getItem(storageKey(lang)))||{}}catch(e){return {}}};
+  const writeSaved=(lang,data)=>{try{localStorage.setItem(storageKey(lang),JSON.stringify(data));return true}catch(e){return false}};
+  function readTemplates(){
+    let items=[];try{items=JSON.parse(localStorage.getItem(templatesKey))||[]}catch(e){}
+    if(!items.some(item=>item.id==='en'))items.unshift({id:'en',name:'English'});
+    if(!items.some(item=>item.id==='ml'))items.splice(1,0,{id:'ml',name:'Malayalam'});
+    return items;
+  }
+  function writeTemplates(items){try{localStorage.setItem(templatesKey,JSON.stringify(items))}catch(e){}}
+  let templates=readTemplates();
+  let activeLanguage='en';
+  const templateName=id=>templates.find(item=>item.id===id)?.name||id;
+  function renderTemplateOptions(){
+    languageSelect.innerHTML='';
+    templates.forEach(template=>{const option=document.createElement('option');option.value=template.id;option.textContent=template.name;languageSelect.appendChild(option)});
+    const add=document.createElement('option');add.value='__add__';add.textContent='＋ Add New Template…';languageSelect.appendChild(add);languageSelect.value=activeLanguage;
+  }
+  function setStatus(message){status.textContent=message}
+  function saveCurrent(silent){
+    const data={};editables.forEach(el=>data[el.dataset.editKey]=el.innerHTML);
+    const ok=writeSaved(activeLanguage,data);
+    if(!silent)setStatus(ok?`${templateName(activeLanguage)} template saved`:'Unable to save in this browser');
+    return ok;
+  }
+  function loadLanguage(lang){
+    if(!templates.some(template=>template.id===lang))lang='en';activeLanguage=lang;languageSelect.value=lang;document.body.dataset.language=lang;document.body.classList.toggle('localized-template',lang!=='en');
+    const saved=readSaved(lang);editables.forEach(el=>{el.innerHTML=Object.prototype.hasOwnProperty.call(saved,el.dataset.editKey)?saved[el.dataset.editKey]:el.dataset.defaultHtml});
+    setStatus(lang==='en'?'English brochure':`${templateName(lang)} template`);
+    try{localStorage.setItem('karatsBrochureLanguage',lang)}catch(e){}
+    applyCalculatorValues(latestCalculatorValues);
+    refreshCalculatorFrames();
+  }
+
+  const originalPages=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page'));
+  originalPages.forEach((page,index)=>page.classList.add(`brochure-slide-${index+1}`));
+  let deckSlides=[];
+  let currentSlide=0;
+  const calculatorDefaults={goldPrice:15000,margin:6,goldDisplayWeight:1,silverCost:500,silverWeight:1,confirmedOrders:1,totalGoldWeight:1,reuseCount:10};
+  const currency=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
+  const decimal=new Intl.NumberFormat('en-IN',{maximumFractionDigits:2});
+  function readStoredCalculatorValues(){try{return {...calculatorDefaults,...JSON.parse(localStorage.getItem('karatsBrochureCalculatorValues'))}}catch(e){return {...calculatorDefaults}}}
+  let latestCalculatorValues=readStoredCalculatorValues();
+  function applyCalculatorValues(input){
+    const v={...calculatorDefaults,...(input||{})};latestCalculatorValues=v;
+    const safe=(a,b)=>b?a/b:0;const profitPerGram=v.goldPrice*(v.margin/100);const averageSaleWeight=v.totalGoldWeight/Math.max(1,v.confirmedOrders);const profitPerSale=profitPerGram*averageSaleWeight;
+    const tradCapital=v.goldPrice*v.goldDisplayWeight;const prototypeCapital=v.silverCost*v.silverWeight;const tradRoi=safe(profitPerSale,tradCapital)*100;const smartRoi=safe(profitPerSale,prototypeCapital)*100;
+    const capitalRatio=safe(tradCapital,prototypeCapital);const efficiencyRatio=safe(smartRoi,tradRoi);const prototypeCount=Math.max(0,Math.floor(safe(tradCapital,prototypeCapital)));const sameCapitalProfit=prototypeCount*profitPerSale;
+    const values={tradCapital:currency.format(tradCapital),prototypeCapital:currency.format(prototypeCapital),profitPerSale:currency.format(profitPerSale),margin:`${decimal.format(v.margin)}%`,tradRoi:`${decimal.format(tradRoi)}%`,smartRoi:`${decimal.format(smartRoi)}%`,capitalRatio:`${decimal.format(capitalRatio)}×`,efficiencyRatio:`${decimal.format(efficiencyRatio)}×`,prototypeCount:decimal.format(prototypeCount),sameCapitalProfit:currency.format(sameCapitalProfit)};
+    Object.entries(values).forEach(([key,value])=>document.querySelectorAll(`[data-calc-value="${key}"]`).forEach(el=>el.textContent=value));
+    try{localStorage.setItem('karatsBrochureCalculatorValues',JSON.stringify(v))}catch(e){}
+  }
+  async function downloadBrochurePdf(){
+    if(typeof html2canvas!=='function'||!window.jspdf||!window.jspdf.jsPDF){alert('The local PDF exporter could not be loaded. Please refresh the page and try again.');return}
+    applyCalculatorValues(latestCalculatorValues);downloadPdf.disabled=true;const originalLabel=downloadPdfLabel.textContent;
+    const staging=document.createElement('div');staging.style.cssText='position:fixed;left:-12000px;top:0;width:210mm;background:#fff;z-index:-1;';
+    if(document.body.classList.contains('localized-template'))staging.style.fontFamily="'Nirmala UI','Kartika','Segoe UI',Arial,sans-serif";
+    document.body.appendChild(staging);
+    try{
+      if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+      const pdf=new window.jspdf.jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});
+      for(let index=0;index<originalPages.length;index++){
+        downloadPdfLabel.textContent=`Preparing ${index+1}/${originalPages.length}`;
+        const clone=originalPages[index].cloneNode(true);clone.classList.remove('presentation-active');clone.removeAttribute('contenteditable');
+        clone.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
+        clone.style.setProperty('display','block','important');clone.style.setProperty('position','relative','important');clone.style.setProperty('left','auto','important');clone.style.setProperty('top','auto','important');clone.style.setProperty('transform','none','important');clone.style.setProperty('box-shadow','none','important');clone.style.setProperty('width','210mm','important');clone.style.setProperty('height','297mm','important');
+        clone.querySelectorAll('.pagetag,.page-no-dark').forEach(el=>el.style.setProperty('display','block','important'));
+        staging.appendChild(clone);await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+        const canvas=await html2canvas(clone,{scale:2,backgroundColor:'#FBF8F3',logging:false,useCORS:true,allowTaint:true,width:clone.offsetWidth,height:clone.offsetHeight,windowWidth:clone.offsetWidth,windowHeight:clone.offsetHeight});
+        const image=canvas.toDataURL('image/jpeg',.94);if(index>0)pdf.addPage('a4','portrait');pdf.addImage(image,'JPEG',0,0,210,297,undefined,'FAST');clone.remove();
+      }
+      const safeName=(templateName(activeLanguage)||'English').replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-|-$/g,'');pdf.save(`KARATS-SMART-Brochure-${safeName||'Language'}.pdf`);
+    }catch(error){console.error(error);alert('The PDF could not be generated. Please refresh the page and try again.')}finally{staging.remove();downloadPdf.disabled=false;downloadPdfLabel.textContent=originalLabel}
+  }
+  function calculatorLanguage(){return activeLanguage==='ml'?'ml':'en'}
+  function ensureCalculatorSlides(){
+    if(document.querySelector('.calculator-presentation-page')){deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page'));return}
+    const anchor=originalPages[2]||null;
+    ['summary','reuse'].forEach((mode,index)=>{
+      const page=document.createElement('div');page.className='page calculator-presentation-page';page.dataset.calculatorPage=mode;
+      const frame=document.createElement('iframe');frame.title=index===0?'KARATS SMART live capital comparison':'KARATS SMART reuse and break-even calculator';frame.dataset.mode=mode;frame.loading='eager';
+      frame.addEventListener('load',()=>{frame.dataset.seeded='true';frame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*')});
+      page.appendChild(frame);document.body.insertBefore(page,anchor);
+    });
+    deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page'));
+    refreshCalculatorFrames();
+  }
+  function refreshCalculatorFrames(){
+    document.querySelectorAll('.calculator-presentation-page iframe').forEach(frame=>{
+      const wanted=`Karats-Smart-Capital-Calculator.html?embed=${frame.dataset.mode}&lang=${calculatorLanguage()}`;
+      if(!frame.src||!frame.src.includes(`embed=${frame.dataset.mode}&lang=${calculatorLanguage()}`)){frame.dataset.seeded='false';frame.src=wanted}
+    });
+  }
+  function fitPresentationPage(){
+    if(!document.body.classList.contains('presentation-deck'))return;
+    const active=deckSlides[currentSlide];if(!active)return;
+    const expanded=document.body.classList.contains('presentation-expanded');const header=document.querySelector('.brochure-editor-bar');const top=expanded?8:Math.ceil(header.getBoundingClientRect().bottom+8);
+    const naturalWidth=active.offsetWidth||794,naturalHeight=active.offsetHeight||1123;
+    const laneWidth=expanded?0:parseFloat(getComputedStyle(document.body).getPropertyValue('--karats-lane'))||0;
+    const availableWidth=Math.max(240,window.innerWidth-laneWidth-(expanded?16:26));
+    const bottomSpace=expanded?8:62;const scale=Math.max(.2,Math.min(availableWidth/naturalWidth,(window.innerHeight-top-bottomSpace)/naturalHeight,expanded?2:1.15));
+    document.body.style.setProperty('--deck-top',`${top}px`);document.body.style.setProperty('--deck-scale',String(scale));
+  }
+  function showSlide(index){
+    if(!deckSlides.length)return;currentSlide=Math.max(0,Math.min(index,deckSlides.length-1));
+    deckSlides.forEach((slide,i)=>slide.classList.toggle('presentation-active',i===currentSlide));
+    deckIndicator.textContent=`Page ${currentSlide+1} of ${deckSlides.length}`;previousSlide.disabled=currentSlide===0;nextSlide.disabled=currentSlide===deckSlides.length-1;
+    const activeFrame=deckSlides[currentSlide].querySelector('iframe');if(activeFrame&&latestCalculatorValues)activeFrame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*');
+    requestAnimationFrame(fitPresentationPage);
+  }
+  function enterPresentationDeck(){
+    if(document.body.classList.contains('brochure-editing')){saveCurrent(true);setEditing(false)}
+    ensureCalculatorSlides();document.body.classList.add('presentation-deck');presentationControls.hidden=false;
+    if(location.hash!=='#presentation')history.pushState(null,'','#presentation');showSlide(currentSlide);
+  }
+  function expandPresentationDeck(){
+    if(!document.body.classList.contains('presentation-deck'))enterPresentationDeck();document.body.classList.add('presentation-expanded');
+    const fullscreenRequest=document.documentElement.requestFullscreen?document.documentElement.requestFullscreen():null;
+    if(fullscreenRequest&&fullscreenRequest.then)fullscreenRequest.then(()=>{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{})}).catch(()=>{});
+    else if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});
+    requestAnimationFrame(fitPresentationPage);
+  }
+  function collapsePresentationDeck(){
+    document.body.classList.remove('presentation-expanded');
+    if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(()=>{});
+    if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock();
+    requestAnimationFrame(fitPresentationPage);
+  }
+  function exitPresentationDeck(){
+    if(document.body.classList.contains('presentation-expanded'))collapsePresentationDeck();
+    document.body.classList.remove('presentation-deck');presentationControls.hidden=true;deckSlides.forEach(slide=>slide.classList.remove('presentation-active'));
+    document.body.style.removeProperty('--deck-scale');document.body.style.removeProperty('--deck-top');
+    if(location.hash==='#presentation')history.replaceState(null,'',`${location.pathname}${location.search}`);
+  }
+  function setEditing(on){
+    document.body.classList.toggle('brochure-editing',on);editables.forEach(el=>el.contentEditable=on?'true':'false');
+    saveFinishButton.hidden=!on;
+    saveFinishButton.textContent=activeLanguage==='ml'?'സേവ് ചെയ്ത് എഡിറ്റിംഗ് പൂർത്തിയാക്കുക':'Save & Finish Editing';
+    if(on){setStatus(`Editing ${templateName(activeLanguage)} — click any text to replace it`)}
+    else{setStatus(`${templateName(activeLanguage)} template saved`)}
+  }
+  saveFinishButton.addEventListener('click',()=>{if(saveCurrent(true)){setEditing(false);loadLanguage(activeLanguage)}});
+  languageSelect.addEventListener('change',()=>{
+    if(languageSelect.value==='__add__'){languageSelect.value=activeLanguage;newTemplateDialog.showModal();newTemplateName.focus();return}
+    if(document.body.classList.contains('brochure-editing')){saveCurrent(true);setEditing(false)}loadLanguage(languageSelect.value);
+  });
+  document.getElementById('cancelTemplateBtn').addEventListener('click',()=>{newTemplateDialog.close();newTemplateForm.reset()});
+  newTemplateForm.addEventListener('submit',event=>{
+    event.preventDefault();if(!newTemplateForm.reportValidity())return;
+    if(document.body.classList.contains('brochure-editing'))saveCurrent(true);
+    const name=newTemplateName.value.trim();const id=`custom-${Date.now()}`;const startingCopy={};editables.forEach(el=>startingCopy[el.dataset.editKey]=el.innerHTML);
+    templates.push({id,name});writeTemplates(templates);writeSaved(id,startingCopy);renderTemplateOptions();loadLanguage(id);newTemplateDialog.close();newTemplateForm.reset();setEditing(true);
+  });
+  document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='s'&&document.body.classList.contains('brochure-editing')){event.preventDefault();saveCurrent(false)}});
+  previousSlide.addEventListener('click',()=>showSlide(currentSlide-1));nextSlide.addEventListener('click',()=>showSlide(currentSlide+1));
+  expandPresentation.addEventListener('click',expandPresentationDeck);collapsePresentation.addEventListener('click',collapsePresentationDeck);
+  downloadPdf.addEventListener('click',downloadBrochurePdf);
+  window.addEventListener('resize',fitPresentationPage);
+  document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&document.body.classList.contains('presentation-expanded')){document.body.classList.remove('presentation-expanded');requestAnimationFrame(fitPresentationPage)}});
+  window.addEventListener('hashchange',()=>{
+    if(location.hash==='#presentation'){if(!document.body.classList.contains('presentation-deck'))enterPresentationDeck()}
+    else if(document.body.classList.contains('presentation-deck'))exitPresentationDeck();
+  });
+  window.addEventListener('message',event=>{
+    if(!event.data)return;
+    if(event.data.type==='karats-deck-key'){if(event.data.key==='ArrowRight'||event.data.key==='PageDown')showSlide(currentSlide+1);if(event.data.key==='ArrowLeft'||event.data.key==='PageUp')showSlide(currentSlide-1);if(event.data.key==='Escape'&&document.body.classList.contains('presentation-expanded'))collapsePresentationDeck();return}
+    if(event.data.type!=='karats-calculator-values')return;
+    const sourceFrame=Array.from(document.querySelectorAll('.calculator-presentation-page iframe')).find(frame=>frame.contentWindow===event.source);
+    if(sourceFrame&&sourceFrame.dataset.seeded!=='true'){sourceFrame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*');return}
+    applyCalculatorValues(event.data.values);
+    document.querySelectorAll('.calculator-presentation-page iframe').forEach(frame=>{if(frame.contentWindow!==event.source)frame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*')});
+  });
+  document.addEventListener('keydown',event=>{
+    if(!document.body.classList.contains('presentation-deck')||event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
+    if(event.key==='ArrowRight'||event.key==='PageDown'){event.preventDefault();showSlide(currentSlide+1)}
+    if(event.key==='ArrowLeft'||event.key==='PageUp'){event.preventDefault();showSlide(currentSlide-1)}
+    if(event.key==='Escape'&&document.body.classList.contains('presentation-expanded')){event.preventDefault();collapsePresentationDeck()}
+  });
+  const params=new URLSearchParams(location.search);const requested=params.get('lang');let initial=requested||'en';if(!requested){try{initial=localStorage.getItem('karatsBrochureLanguage')||'en'}catch(e){}}
+  renderTemplateOptions();loadLanguage(initial);
+  if(params.get('action')==='new')setTimeout(()=>{newTemplateDialog.showModal();newTemplateName.focus()},100);
+  if(location.hash==='#presentation'){
+    setTimeout(()=>{enterPresentationDeck();requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.remove('presentation-boot')))},60);
+  }else{
+    document.documentElement.classList.remove('presentation-boot');
+    setTimeout(enterPresentationDeck,60);
+  }
+})();
+</script>
+<script src="app/page-shell.js"></script>
+</body>
+</html>
+

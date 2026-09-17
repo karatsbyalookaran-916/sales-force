@@ -1,0 +1,13 @@
+# Local-only server and its SQLite database. The hosted app uses api/ + Prisma.
+data/
+server/
+*.bat
+Dockerfile
+.dockerignore
+
+# Tests and their artifacts
+tests/
+test-results/
+
+# Never upload local secrets
+.env

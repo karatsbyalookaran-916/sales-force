@@ -1,0 +1,10 @@
+*.pdf
+*.png
+!app/icon-192.png
+!app/icon-512.png
+Thumbs.db
+.DS_Store
+data/
+.env
+node_modules/
+test-results/

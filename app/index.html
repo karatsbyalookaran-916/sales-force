@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171611"><meta name="description" content="KARATS team presentations, leads and follow-ups.">
+  <title>KARATS · Team workspace</title>
+  <link rel="icon" href="/app/icon.svg" type="image/svg+xml"><link rel="manifest" href="/manifest.webmanifest"><link rel="stylesheet" href="/app/styles.css">
+  <script src="/app/app.js" type="module"></script>
+</head>
+<body class="auth-view">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><button id="sidebar-toggle" class="brand-mark sidebar-toggle" type="button" aria-controls="sidebar" aria-expanded="true" aria-label="Collapse navigation">K</button><a class="brand-copy" href="/" aria-label="KARATS home">KARATS<small>TEAM WORKSPACE</small></a></div>
+    <div class="nav-label">WORKSPACE</div>
+    <nav aria-label="Workspace">
+      <a id="pipeline-link" href="#pipeline" class="active"><span class="nav-icon" aria-hidden="true">▣</span><span class="nav-text">Lead pipeline</span></a>
+      <a href="/Karats-Elite-Plan-Brochure-source.html#presentation"><span class="nav-icon" aria-hidden="true">◇</span><span class="nav-text">Presentation</span></a>
+      <a href="/Karats-Smart-Capital-Calculator.html"><span class="nav-icon" aria-hidden="true">▦</span><span class="nav-text">Capital calculator</span></a>
+      <button id="team-button" type="button" aria-label="Employee management" hidden><span class="nav-icon" aria-hidden="true">♧</span><span class="nav-text">Employee management</span></button>
+    </nav>
+    <div class="sidebar-bottom"><div id="identity">Sign in to your workspace</div></div>
+  </aside>
+  <button id="sidebar-backdrop" class="sidebar-backdrop" type="button" aria-label="Close navigation" hidden></button>
+  <main>
+    <header class="topbar">
+      <div class="topbar-leading"><span>Business development <span class="separator">/</span> <strong id="page-label">Lead pipeline</strong></span></div>
+      <div class="connection">
+        <span id="sync-status" role="status">Connecting…</span>
+        <button id="sync" class="icon-action" type="button" title="Sync now" aria-label="Sync now" hidden><span aria-hidden="true">↻</span></button>
+        <button id="install" class="icon-action" type="button" title="Install app" aria-label="Install app" hidden><span aria-hidden="true">⇩</span></button>
+        <div id="topbar-identity" class="profile-menu" hidden>
+          <button id="profile-button" class="profile-button" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="profile-popover">
+            <span class="user-copy"><strong id="profile-name"></strong><small id="profile-role"></small></span><span id="profile-initial" class="user-avatar" aria-hidden="true"></span>
+          </button>
+          <div id="profile-popover" class="profile-popover" role="menu" hidden>
+            <button id="logout" type="button" role="menuitem"><span class="menu-symbol power-symbol" aria-hidden="true">⏻</span><span>Sign out</span></button>
+            <button id="settings-button" type="button" role="menuitem"><span class="menu-symbol" aria-hidden="true">⚙</span><span>Settings</span></button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section id="login-view" class="login-view" hidden>
+      <div class="eyebrow">YOUR NEXT CONVERSATION STARTS HERE</div><h1>Welcome to KARATS.</h1><p>Present the plan. Build relationships.<br>Keep every opportunity moving.</p>
+      <form id="login-form" class="login-card"><h2 id="login-title">Team sign in</h2><label id="setup-name" hidden>Your name<input name="name" maxlength="100" autocomplete="name"></label><label>Email<input name="email" type="email" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required maxlength="256"></label><button id="login-submit" class="primary" type="submit">Sign in</button><p id="login-hint" class="hint">Use the account provided by your administrator. Your first sign-in needs a connection.</p></form>
+    </section>
+    <section id="workspace" hidden>
+      <div class="heading"><div><div class="eyebrow">RELATIONSHIPS INTO OPPORTUNITIES</div><h1>Your lead pipeline</h1><p>Every conversation, with a clear next step.</p></div><button id="add" class="primary">+ Add lead</button></div>
+      <div class="stats" id="stats"></div>
+      <div class="toolbar"><label class="search"><span class="sr-only">Search leads</span><input id="search" type="search" placeholder="Search business, contact or phone…"></label><label><span class="sr-only">Filter owner</span><select id="owner-filter"><option value="">All team members</option></select></label><label><span class="sr-only">Follow-up filter</span><select id="due-filter"><option value="all">All follow-ups</option><option value="due">Due & overdue</option><option value="none">No follow-up set</option></select></label><button id="export" class="secondary">Export leads</button></div>
+      <div id="conflicts" hidden></div>
+      <div id="empty" class="empty" hidden><span class="empty-symbol">◇</span><h2>A new relationship starts here.</h2><p>Add your first lead, then use the presentation to start the conversation.</p><button id="first-lead" class="primary">+ Add your first lead</button></div>
+      <p class="board-hint">Scroll across the board to see all seven sales stages. Select a lead to update its stage.</p><div id="board" class="board" aria-label="Sales pipeline" tabindex="0"></div>
+      <footer>Shared team pipeline <span>Changes save on this device, then sync when connected.</span></footer>
+    </section>
+    <section id="employee-management" class="employee-management" hidden>
+      <div class="heading"><div><div class="eyebrow">TEAM ADMINISTRATION</div><h1>Employee management</h1><p>View your team and securely onboard new staff members.</p></div></div>
+      <div class="employee-tabs" role="tablist" aria-label="Employee management sections">
+        <button id="directory-tab" class="employee-tab active" type="button" role="tab" aria-selected="true" aria-controls="directory-panel">Employee directory</button>
+        <button id="onboard-tab" class="employee-tab" type="button" role="tab" aria-selected="false" aria-controls="onboard-panel">Onboard staff</button>
+      </div>
+      <div id="directory-panel" class="employee-panel" role="tabpanel" aria-labelledby="directory-tab">
+        <div class="employee-card"><h2>Employee directory</h2><p>Administrator and staff accounts with access to this workspace.</p><div id="team-list" class="employee-list"></div></div>
+      </div>
+      <div id="onboard-panel" class="employee-panel" role="tabpanel" aria-labelledby="onboard-tab" hidden>
+        <div class="employee-card employee-form-card"><div><h2>Onboard staff</h2><p>Create a separate workspace login for a new employee.</p></div><form id="team-form"><label>Name<input name="name" required maxlength="100"></label><label>Email<input name="email" type="email" required maxlength="200" autocomplete="off"></label><label>Temporary password<input name="password" type="password" required minlength="6" maxlength="256" autocomplete="new-password"><small>At least 6 characters. Share it with the employee securely.</small></label><button class="primary" type="submit">Create staff login</button></form></div>
+      </div>
+    </section>
+    <p id="message" class="message" role="status" hidden></p>
+  </main>
+  <dialog id="lead-dialog"><form id="lead-form"><div class="dialog-heading"><div><div class="eyebrow">LEAD DETAILS</div><h2 id="lead-title">New lead</h2></div><button type="button" class="close" data-close="lead-dialog" aria-label="Close lead">×</button></div>
+    <input name="id" type="hidden"><label>Business / jewellery name<input name="name" required maxlength="150" autocomplete="organization"></label>
+    <div class="form-grid"><label>Contact person<input name="contact" maxlength="150" autocomplete="name"></label><label>Phone<input name="phone" type="tel" maxlength="60" autocomplete="tel"></label><label>Email<input name="email" type="email" maxlength="200" autocomplete="email"></label><label>Location<input name="location" maxlength="300"></label><label>Sales stage<select name="stage" id="lead-stage"></select></label><label>Assigned to<select name="ownerId" id="lead-owner"></select></label><label>Next follow-up<input name="followUp" type="date"></label></div>
+    <label>Meeting notes & next steps<textarea name="notes" rows="4" maxlength="10000" placeholder="What matters to this lead? What happens next?"></textarea></label>
+    <div id="lead-history" class="history"></div><div class="dialog-actions"><button type="button" class="secondary" data-close="lead-dialog">Cancel</button><button class="primary" type="submit">Save lead</button></div></form></dialog>
+  <dialog id="conflict-dialog"><div class="dialog-heading"><h2>Review a shared update</h2><button class="close" data-close="conflict-dialog" aria-label="Close review">×</button></div><p>A teammate changed this lead while your update was waiting. Choose the version to keep, or close this window to decide later.</p><div id="conflict-versions" class="form-grid"></div><div class="dialog-actions"><button id="keep-team" class="secondary">Keep team version</button><button id="keep-mine" class="primary">Use my version</button></div></dialog>
+  <dialog id="settings-dialog"><div class="dialog-heading"><div><div class="eyebrow">ACCOUNT SETTINGS</div><h2>Your profile</h2></div><button class="close" data-close="settings-dialog" aria-label="Close settings">×</button></div><div class="settings-account"><span id="settings-initial" class="user-avatar" aria-hidden="true"></span><div><strong id="settings-name"></strong><p id="settings-role"></p></div></div><dl class="settings-list"><div><dt>Email</dt><dd id="settings-email"></dd></div><div><dt>Offline access</dt><dd>Available for seven days after sign-in</dd></div><div><dt>Lead access</dt><dd>Shared team pipeline</dd></div></dl><div class="dialog-actions"><button class="primary" type="button" data-close="settings-dialog">Done</button></div></dialog>
+</body>
+</html>
