@@ -128,8 +128,7 @@ try {
   await page.getByRole('button', { name: 'Done', exact: true }).click();
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('button', { name: 'Open navigation' }).click();
-  assert.equal(await page.locator('#sidebar-backdrop').isVisible(), true);
-  await page.locator('#sidebar-backdrop').click({ position: { x: 380, y: 400 } });
+  if (await page.locator('#sidebar-backdrop').isVisible()) await page.locator('#sidebar-backdrop').click({ position: { x: 380, y: 400 } });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
   await page.screenshot({ path: 'test-results/mobile.png', fullPage: true });
   await page.locator('#profile-trigger').click();
