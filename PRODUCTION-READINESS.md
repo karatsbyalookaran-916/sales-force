@@ -49,18 +49,30 @@ Production only.
 
 ---
 
-### - [ ] 3. Login throttling is ineffective when hosted
+### - [x] 3. Login throttling is ineffective when hosted
 
-`makeRateLimiter` in `lib/core.mjs` keeps attempt counts in an in-process `Map`.
-That works for the single long-running local server. On Vercel, requests spread
-across instances, so an attacker gets roughly the limit *per instance*. The
-limitation is noted in a comment at the function.
+`makeRateLimiter` kept attempt counts in an in-process `Map`. That worked for the
+single long-running local server, but on Vercel requests spread across instances, so
+an attacker got roughly the full allowance against each instance separately.
 
-**Fix:** Vercel WAF rate limiting on `/api/login` (no code change), or move the
-counter into Postgres so it is shared. The WAF route is preferable — it rejects
-before the function runs and so also protects against cost abuse.
+**Done.** The counter moved into the database — `login_attempts`, migration
+`20260917130000_login_attempts`, applied to Supabase. Both stores implement
+`recordLoginAttempt()` as a single atomic upsert, so two simultaneous attempts cannot
+both read the old count. The in-memory limiter is gone entirely rather than left as a
+second code path. Limits live in `lib/core.mjs`: 30 attempts per 15 minutes.
 
-**Effort:** ~15 minutes for the WAF rule.
+Stale counters are pruned by the same maintenance job as item 1.
+
+Verified against live Postgres: increments, blocks past the limit, resets once the
+window passes, and ten concurrent attempts produced counts 1–10 with no lost updates.
+The SQLite equivalent is covered in `tests/routes.test.mjs`.
+
+**Known limit:** the counter keys on client IP, matching the previous behaviour. That
+does not stop credential stuffing spread across many IPs against one account. Keying
+additionally on the submitted email would close that, and is worth doing if the app
+ever faces the open internet with more than a handful of accounts. Vercel WAF rate
+limiting in front of `/api/login` would also reject before the function runs, which
+protects against cost abuse as well.
 
 ---
 

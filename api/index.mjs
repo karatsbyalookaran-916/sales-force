@@ -2,13 +2,11 @@
 import { PrismaClient, Prisma } from '@prisma/client';
 import { prismaStore } from '../lib/store-prisma.mjs';
 import { handle } from '../lib/routes.mjs';
-import { makeRateLimiter, fail } from '../lib/core.mjs';
+import { fail } from '../lib/core.mjs';
 
 // Reused across invocations on a warm instance so each request does not open a new pool.
 const prisma = globalThis.karatsPrisma || new PrismaClient();
 if (process.env.NODE_ENV !== 'production') globalThis.karatsPrisma = prisma;
-const limiter = globalThis.karatsLimiter || makeRateLimiter();
-globalThis.karatsLimiter = limiter;
 
 const store = prismaStore(prisma, Prisma);
 
@@ -47,7 +45,7 @@ export default async function handler(req, res) {
       clientId: String(req.headers['x-forwarded-for'] || '').split(',')[0].trim(),
       authorization: req.headers.authorization || ''
     }, {
-      store, limiter,
+      store,
       setupAvailable: () => store.hasAdminLock().then(locked => !locked),
       cronSecret: process.env.CRON_SECRET
     });

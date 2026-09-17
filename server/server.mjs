@@ -5,7 +5,7 @@ import { resolve, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { openDatabase, sqliteStore } from '../lib/store-sqlite.mjs';
 import { handle } from '../lib/routes.mjs';
-import { makeRateLimiter, MAX_BODY_BYTES, MUTATION_RETENTION_MS, ACTIVITY_RETENTION_MS, fail } from '../lib/core.mjs';
+import { MAX_BODY_BYTES, MUTATION_RETENTION_MS, ACTIVITY_RETENTION_MS, fail } from '../lib/core.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const STATIC = /^(app\/[a-zA-Z0-9.-]+|fonts\/[a-zA-Z0-9.-]+\.woff2|karats-pdf-libs\/[a-zA-Z0-9.-]+\.js|Karats-Elite-Plan-Brochure-source\.html|Karats-Smart-Capital-Calculator\.html|sw\.js|manifest\.webmanifest)$/;
@@ -13,11 +13,9 @@ const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '
 
 export function makeServer(db = openDatabase()) {
   const store = sqliteStore(db);
-  const limiter = makeRateLimiter();
   // The local server is long-running, so it does its own upkeep. The hosted app has no
   // background loop and relies on the scheduled /api/maintenance route instead.
   const sweep = setInterval(() => {
-    limiter.sweep();
     const now = new Date();
     Promise.resolve(store.maintenance({
       now,
@@ -72,7 +70,7 @@ export function makeServer(db = openDatabase()) {
         clientId: req.socket.remoteAddress || '',
         authorization: req.headers.authorization || ''
       }, {
-        store, limiter,
+        store,
         setupAvailable: async () => localSetup && !(await store.hasAnyUser()),
         cronSecret: process.env.CRON_SECRET
       });

@@ -3,18 +3,21 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { handle } from '../lib/routes.mjs';
-import { passwordHash, makeRateLimiter } from '../lib/core.mjs';
-import { sqliteStore } from '../lib/store-sqlite.mjs';
+import { passwordHash, LOGIN_MAX_ATTEMPTS } from '../lib/core.mjs';
+import { sqliteStore, openDatabase } from '../lib/store-sqlite.mjs';
 import { prismaStore } from '../lib/store-prisma.mjs';
 
 // Every store method the route table calls. Both stores must implement all of them.
 const REQUIRED = ['createAdmin', 'createMember', 'userByEmail', 'userById', 'listUsers', 'createSession',
   'userBySession', 'deleteSession', 'listLeads', 'leadById', 'mutationById', 'listActivity', 'commitLead',
-  'maintenance'];
+  'maintenance', 'recordLoginAttempt'];
 
 function memoryStore() {
-  const users = [], sessions = new Map(), leads = new Map(), mutations = new Map(), activity = [];
+  const users = [], sessions = new Map(), attempts = new Map(), leads = new Map(), mutations = new Map(), activity = [];
   const add = account => {
     const user = { id: randomUUID(), name: account.name, email: account.email, password: passwordHash(account.password), role: account.role };
     users.push(user);
@@ -33,6 +36,12 @@ function memoryStore() {
       return session && session.expires > now ? users.find(u => u.id === session.userId) : null;
     },
     async deleteSession(token) { sessions.delete(token); },
+    async recordLoginAttempt(key, { now, windowMs, max }) {
+      const hit = attempts.get(key);
+      if (!hit || hit.until < now) { attempts.set(key, { count: 1, until: now + windowMs }); return { allowed: 1 <= max, count: 1 }; }
+      hit.count += 1;
+      return { allowed: hit.count <= max, count: hit.count };
+    },
     async listLeads() { return [...leads.values()].map(entry => entry.data); },
     async leadById(id) { return leads.get(id) || null; },
     async mutationById(id) { return mutations.get(id) || null; },
@@ -46,14 +55,16 @@ function memoryStore() {
       return 'ok';
     },
     async maintenance({ now, mutationsBefore, activityBefore }) {
-      const before = { sessions: sessions.size, mutations: mutations.size, activity: activity.length };
+      const before = { sessions: sessions.size, mutations: mutations.size, activity: activity.length, attempts: attempts.size };
       for (const [token, session] of sessions) if (session.expires < now) sessions.delete(token);
       for (const [id, mutation] of mutations) if (mutation.createdAt < mutationsBefore) mutations.delete(id);
       for (let i = activity.length - 1; i >= 0; i--) if (activity[i].created_at < activityBefore) activity.splice(i, 1);
+      for (const [key, hit] of attempts) if (hit.until < now.getTime()) attempts.delete(key);
       return {
         sessions: before.sessions - sessions.size,
         mutations: before.mutations - mutations.size,
-        activity: before.activity - activity.length
+        activity: before.activity - activity.length,
+        loginAttempts: before.attempts - attempts.size
       };
     }
   };
@@ -67,7 +78,7 @@ const run = async (ctx, deps) => {
 test('shared route table: auth, setup, leads, conflicts and replay', async () => {
   const store = memoryStore();
   let open = true;
-  const deps = { store, limiter: makeRateLimiter(), setupAvailable: async () => open };
+  const deps = { store, setupAvailable: async () => open };
   const call = (method, path, extra = {}) => run({ method, path, body: {}, query: {}, token: '', clientId: 'test', ...extra }, deps);
 
   assert.equal((await call('GET', '/setup-status')).body.setupAvailable, true);
@@ -117,17 +128,28 @@ test('shared route table: auth, setup, leads, conflicts and replay', async () =>
   assert.equal((await call('GET', '/me', { token })).status, 401);
 });
 
-test('login throttling rejects a flood of attempts', async () => {
-  const deps = { store: memoryStore(), limiter: makeRateLimiter({ max: 2 }), setupAvailable: async () => false };
-  const attempt = () => run({ method: 'POST', path: '/login', body: { email: 'nobody@example.test', password: 'x' }, query: {}, token: '', clientId: 'flooder' }, deps);
-  assert.equal((await attempt()).status, 401);
-  assert.equal((await attempt()).status, 401);
-  assert.equal((await attempt()).status, 429, 'third attempt is throttled');
+test('login throttling counts through the store, not process memory', async () => {
+  const store = memoryStore();
+  const deps = { store, setupAvailable: async () => false };
+  const attempt = client => run({ method: 'POST', path: '/login', body: { email: 'nobody@example.test', password: 'x' }, query: {}, token: '', clientId: client }, deps);
+
+  for (let i = 1; i <= LOGIN_MAX_ATTEMPTS; i++)
+    assert.equal((await attempt('flooder')).status, 401, `attempt ${i} of ${LOGIN_MAX_ATTEMPTS} should still be allowed through`);
+  assert.equal((await attempt('flooder')).status, 429, 'the attempt past the limit is throttled');
+
+  // The counter is per client, so one flooder must not lock everyone else out.
+  assert.equal((await attempt('someone-else')).status, 401);
+
+  // Two route tables sharing one store must share the count. This is the whole point:
+  // separate serverless instances previously each got a full allowance.
+  const secondInstance = { store, setupAvailable: async () => false };
+  const viaSecond = await run({ method: 'POST', path: '/login', body: { email: 'nobody@example.test', password: 'x' }, query: {}, token: '', clientId: 'flooder' }, secondInstance);
+  assert.equal(viaSecond.status, 429, 'a second instance sees the same exhausted counter');
 });
 
 test('maintenance route requires the cron secret and prunes by age', async () => {
   const store = memoryStore();
-  const deps = { store, limiter: makeRateLimiter(), setupAvailable: async () => false, cronSecret: 'a-long-test-secret' };
+  const deps = { store, setupAvailable: async () => false, cronSecret: 'a-long-test-secret' };
   const call = (authorization = '') => run({ method: 'GET', path: '/maintenance', body: {}, query: {}, token: '', clientId: 'cron', authorization }, deps);
 
   assert.equal((await call()).status, 401, 'no header is rejected');
@@ -154,6 +176,31 @@ test('maintenance route requires the cron secret and prunes by age', async () =>
   assert.equal(result.body.deleted.activity, 1, 'only the activity past the retention window is removed');
 
   assert.equal((await store.userBySession('live', new Date()))?.id, user.id, 'live session survives');
+});
+
+test('sqlite throttle counter increments, blocks and resets', async () => {
+  const folder = mkdtempSync(join(tmpdir(), 'karats-throttle-'));
+  const db = openDatabase(join(folder, 'throttle.sqlite'));
+  try {
+    const store = sqliteStore(db);
+    const now = Date.now();
+    const opts = { now, windowMs: 60000, max: 2 };
+    assert.deepEqual(await store.recordLoginAttempt('ip', opts), { allowed: true, count: 1 });
+    assert.deepEqual(await store.recordLoginAttempt('ip', opts), { allowed: true, count: 2 });
+    assert.deepEqual(await store.recordLoginAttempt('ip', opts), { allowed: false, count: 3 });
+    assert.deepEqual(await store.recordLoginAttempt('other', opts), { allowed: true, count: 1 }, 'counters are per key');
+
+    // Past the window the counter restarts rather than staying blocked forever.
+    assert.deepEqual(await store.recordLoginAttempt('ip', { now: now + 120000, windowMs: 60000, max: 2 }), { allowed: true, count: 1 });
+
+    const deleted = await store.maintenance({
+      now: new Date(now + 999000000), mutationsBefore: new Date(0), activityBefore: new Date(0)
+    });
+    assert.equal(deleted.loginAttempts, 2, 'stale counters are pruned');
+  } finally {
+    db.close();
+    try { rmSync(folder, { recursive: true, force: true }); } catch { /* Windows may hold the handle */ }
+  }
 });
 
 test('both stores implement the full route-table interface', () => {

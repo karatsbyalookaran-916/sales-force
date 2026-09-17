@@ -46,6 +46,17 @@ model Session {
   @@map("sessions")
 }
 
+// Login throttling counter. Lives in the database because serverless instances do not
+// share memory: an in-process counter gives an attacker the full allowance per instance.
+model LoginAttempt {
+  key   String   @id @db.VarChar(120)
+  count Int
+  until DateTime
+
+  @@index([until])
+  @@map("login_attempts")
+}
+
 model Lead {
   id      String @id @db.Uuid
   data    Json
