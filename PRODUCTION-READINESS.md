@@ -177,6 +177,10 @@ request, in two jobs:
 Each step was run locally first and its real exit code confirmed. A newer push cancels
 the older run for the same branch.
 
+The browser job sets `PLAYWRIGHT_CHANNEL` empty so Playwright's bundled Chromium is used
+instead of Edge, which the README expects locally but the runner does not have. Verified
+locally against that same bundled Chromium before being enabled.
+
 It paid for itself immediately: adding the linter surfaced a live cookie-parsing bug in
 the hosted adapter (see item 11).
 
