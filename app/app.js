@@ -28,15 +28,14 @@ async function locked(action) {
   if (!navigator.locks) throw new Error('Use a current browser on localhost or HTTPS to save leads safely.');
   return navigator.locks.request('karats-workspace', async () => { state = (await read()) || null; return action(); });
 }
-function showLogin() { document.body.classList.add('auth-view'); document.body.classList.remove('sidebar-collapsed'); $('page-label').textContent = 'Sign in'; $('workspace').hidden = true; $('employee-management').hidden = true; $('login-view').hidden = false; $('logout').hidden = true; $('team-button').hidden = true; $('sync').hidden = true; $('topbar-identity').hidden = true; $('identity').textContent = 'Sign in to your workspace'; }
+function showLogin() { document.body.classList.add('auth-view'); document.body.classList.remove('sidebar-collapsed'); $('workspace').hidden = true; $('employee-management').hidden = true; $('login-view').hidden = false; $('logout').hidden = true; $('team-button').hidden = true; $('topbar-identity').hidden = true; $('identity').textContent = 'Sign in to your workspace'; }
 function showWorkspace() {
   document.body.classList.remove('auth-view');
   localStorage.setItem('karatsUserRole', state.user.role);
   const mobile = matchMedia('(max-width: 700px)').matches;
   const saved = localStorage.getItem('karatsSidebarCollapsed');
   setSidebar(saved == null ? mobile : saved === '1', false);
-  $('page-label').textContent = 'Lead pipeline';
-  $('login-view').hidden = true; $('employee-management').hidden = true; $('workspace').hidden = false; $('logout').hidden = false; $('sync').hidden = false; $('team-button').hidden = state.user.role !== 'admin';
+  $('login-view').hidden = true; $('employee-management').hidden = true; $('workspace').hidden = false; $('logout').hidden = false; $('team-button').hidden = state.user.role !== 'admin';
   $('pipeline-link').classList.add('active'); $('team-button').classList.remove('active');
   $('identity').innerHTML = `${esc(state.user.name)}<br><span class="hint">${esc(state.user.role === 'admin' ? 'Administrator' : 'Team member')}</span>`;
   $('topbar-identity').hidden = false;
@@ -53,7 +52,7 @@ function showWorkspace() {
     setTimeout(showTeam, 0);
   }
 }
-function status(text) { $('sync-status').textContent = text; }
+function status() { /* Background sync is intentionally silent. */ }
 function render() {
   if (!state) return;
   const leads = state.leads;
@@ -202,14 +201,14 @@ async function logout() {
 }
 function exportLeads() {
   const columns = ['name', 'contact', 'phone', 'email', 'location', 'stage', 'ownerId', 'followUp', 'notes'];
-  const cell = value => '"' + String(value || '').replace(/^(?:\s*[=+@\-]|[\t\r])/, match => "'" + match).replaceAll('"', '""') + '"';
+  const cell = value => '"' + String(value || '').replace(/^(?:\s*[=+@-]|[\t\r])/, match => "'" + match).replaceAll('"', '""') + '"';
   const csv = [columns.join(','), ...state.leads.map(lead => columns.map(key => cell(key === 'ownerId' ? state.users.find(user => user.id === lead[key])?.name : lead[key])).join(','))].join('\r\n');
   const url = URL.createObjectURL(new Blob(['\ufeff', csv], { type: 'text/csv;charset=utf-8' }));
   const link = document.createElement('a'); link.href = url; link.download = `karats-leads-${today()}.csv`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 async function showTeam() {
   if (!state || state.user.role !== 'admin') return;
-  location.hash = 'team'; $('workspace').hidden = true; $('employee-management').hidden = false; $('page-label').textContent = 'Employee management';
+  location.hash = 'team'; $('workspace').hidden = true; $('employee-management').hidden = false;
   $('pipeline-link').classList.remove('active'); $('team-button').classList.add('active');
   try { state.users = await api('users'); $('team-list').innerHTML = state.users.map(user => `<article class="employee-row"><span class="employee-avatar">${esc(user.name.trim().charAt(0).toUpperCase())}</span><div><strong>${esc(user.name)}</strong><p>${esc(user.email)}</p></div><span class="employee-role">${esc(user.role === 'admin' ? 'Administrator' : 'Staff')}</span></article>`).join(''); } catch (error) { message(error.status ? error.message : 'Connect to manage employees.'); }
 }
@@ -254,7 +253,7 @@ async function start() {
   $('sidebar-toggle').onclick = () => setSidebar(!document.body.classList.contains('sidebar-collapsed'));
   $('sidebar-backdrop').onclick = () => setSidebar(true);
   mobileNavigation.addEventListener('change', event => setSidebar(event.matches, false));
-  $('add').onclick = $('first-lead').onclick = () => editLead(); $('sync').onclick = sync; $('logout').onclick = logout; $('export').onclick = exportLeads; $('team-button').onclick = showTeam; $('pipeline-link').onclick = event => { event.preventDefault(); showPipeline(); };
+  $('add').onclick = $('first-lead').onclick = () => editLead(); $('logout').onclick = logout; $('export').onclick = exportLeads; $('team-button').onclick = showTeam; $('pipeline-link').onclick = event => { event.preventDefault(); showPipeline(); };
   $('directory-tab').onclick = () => setEmployeeTab('directory'); $('onboard-tab').onclick = () => setEmployeeTab('onboard');
   $('keep-mine').onclick = () => resolveConflict(true); $('keep-team').onclick = () => resolveConflict(false);
   $('profile-button').onclick = event => { event.stopPropagation(); setProfileMenu($('profile-popover').hidden); };

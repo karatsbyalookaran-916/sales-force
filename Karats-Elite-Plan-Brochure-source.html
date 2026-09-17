@@ -17,8 +17,7 @@
 @font-face{font-family:'Jost';src:url('fonts/jost-latin-700-normal.woff2');font-weight:700;}
 
 @page{size:A4;margin:0;}
-@view-transition{navigation:auto}
-html.presentation-boot{background:#0D0A06}html.presentation-boot body{opacity:0}body{transition:opacity .2s ease}
+html.presentation-boot{background:#0D0A06}html.presentation-boot body{visibility:hidden}
 *{margin:0;padding:0;box-sizing:border-box;caret-color:transparent;}
 input,textarea,body.brochure-editing [contenteditable="true"]{caret-color:auto;}
 html{-weasy-hyphens:none;}
@@ -45,27 +44,32 @@ body{font-family:'Jost',sans-serif;color:#17130F;background:#fff;padding-top:88p
 .brochure-editor-status{display:none;}
 #saveFinishBrochureBtn{position:fixed;right:24px;bottom:24px;z-index:10001;border:1px solid #D4AD58;background:#D4AD58;color:#17130F;padding:12px 16px;font-family:Arial,sans-serif;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(23,19,15,.28);}
 #saveFinishBrochureBtn[hidden]{display:none!important;}
-.presentation-controls{display:none;position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:10000;align-items:center;gap:10px;background:#151109;color:#F6EFE2;border:1px solid rgba(201,162,74,.65);padding:7px 9px;font-family:Arial,sans-serif;box-shadow:0 10px 34px rgba(0,0,0,.35);}
-.presentation-controls button{width:42px;height:36px;border:1px solid rgba(201,162,74,.55);background:transparent;color:#F6EFE2;font-size:20px;cursor:pointer;}
+.presentation-controls{display:none;position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:10000;grid-template-columns:34px minmax(80px,auto) 34px minmax(120px,1fr) minmax(175px,1.35fr) minmax(120px,1fr);align-items:center;gap:8px;width:min(800px,var(--deck-rendered-width,800px),calc(100vw - 24px));max-width:calc(100vw - 24px);background:#151109;color:#F6EFE2;border:1px solid rgba(201,162,74,.65);padding:6px 8px;font-family:Arial,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.3);}
+.presentation-controls button{width:34px;height:32px;border:1px solid rgba(201,162,74,.55);background:transparent;color:#F6EFE2;font-size:16px;cursor:pointer;}
 .presentation-controls button:disabled{opacity:.35;cursor:default;}
-.presentation-controls .deck-indicator{min-width:108px;text-align:center;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
-.presentation-controls .expand-presentation,.presentation-controls .download-pdf{width:auto;min-width:108px;padding:0 12px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
-.presentation-controls .expand-presentation svg,.presentation-controls .download-pdf svg{width:17px;height:17px;}
+.presentation-controls .deck-indicator{min-width:80px;text-align:center;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+.presentation-controls .expand-presentation,.presentation-controls .download-pdf{width:100%;min-width:0;padding:0 9px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;}
+.presentation-controls .expand-presentation svg,.presentation-controls .download-pdf svg{width:14px;height:14px;}
 .presentation-controls .download-pdf{background:#D4AD58;color:#17130F;border-color:#D4AD58;}
+.presentation-controls .deck-language{width:100%;min-width:0;height:32px;margin:0;padding:0 7px;border:1px solid rgba(201,162,74,.55);display:flex;align-items:center;gap:5px;overflow:hidden;color:#CBB88D;font-size:8px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;}
+.presentation-controls .deck-language>span{flex:0 0 auto;white-space:nowrap;}
+.presentation-controls .deck-language select{width:0;min-width:0;max-width:100%;height:28px;flex:1 1 0;padding:0 20px 0 4px;border:0;background:#151109;color:#F6EFE2;font:700 9px 'Nirmala UI',Arial,sans-serif;outline:none;box-sizing:border-box;}
 .presentation-controls .download-pdf:hover,.presentation-controls .download-pdf:focus-visible{background:#E7C979;outline:none;}
-.presentation-close{display:none;position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:12000;width:46px;height:46px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(21,17,9,.72);color:#fff;font:300 30px/1 Arial,sans-serif;cursor:pointer;backdrop-filter:blur(7px);box-shadow:0 8px 30px rgba(0,0,0,.28);opacity:.78;}
+.presentation-close{display:none!important;position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:12000;width:46px;height:46px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(21,17,9,.72);color:#fff;font:300 30px/1 Arial,sans-serif;cursor:pointer;backdrop-filter:blur(7px);box-shadow:0 8px 30px rgba(0,0,0,.28);opacity:.78;}
 .presentation-close:hover,.presentation-close:focus-visible{opacity:1;background:rgba(21,17,9,.92);outline:none;}
-body.presentation-deck{padding-top:76px;background:#0D0A06;overflow:hidden;}
+body.presentation-deck{padding-top:0;background:#0D0A06;overflow:hidden;}
+body.presentation-deck .brochure-editor-bar{display:none!important;}
 body.presentation-deck .page{display:none;position:fixed;left:50%;top:var(--deck-top,82px);margin:0;transform:translateX(-50%) scale(var(--deck-scale,.7));transform-origin:top center;box-shadow:0 18px 70px rgba(0,0,0,.48);}
 body.presentation-deck .page.presentation-active{display:block;}
-body.presentation-deck .presentation-controls{display:flex;}
+body.presentation-deck .presentation-controls{display:grid;}
 body.presentation-deck .pagetag,body.presentation-deck .page-no-dark{display:none;}
 body.presentation-expanded{padding-top:0;}
 body.presentation-expanded .brochure-editor-bar,body.presentation-expanded .presentation-controls{display:none!important;}
 body.presentation-expanded .presentation-close{display:block;}
-body.presentation-expanded .page{top:var(--deck-top,8px);}
+body.presentation-expanded .page{width:1600px;height:900px;top:var(--deck-top,8px);}
 .calculator-presentation-page{display:none;background:#F6F0E6!important;}
 .calculator-presentation-page iframe{display:block;width:100%;height:100%;border:0;background:#F6F0E6;}
+@media(max-width:760px){.presentation-controls{grid-template-columns:34px 1fr 34px;gap:4px;bottom:5px}.presentation-controls .expand-presentation{grid-column:1/2;min-width:0}.presentation-controls .deck-language{grid-column:2/4;min-width:0}.presentation-controls .deck-language select{min-width:0;flex:1}.presentation-controls .download-pdf{grid-column:1/4;min-width:0}.presentation-controls .deck-indicator{min-width:0}}
 body.brochure-editing [contenteditable="true"]{outline:1.5px dashed #C9A24A;outline-offset:2px;background:rgba(255,234,184,.2);cursor:text;}
 body.localized-template .page,body.localized-template .page *{font-family:'Nirmala UI','Kartika','Segoe UI',Arial,sans-serif;}
 .template-dialog{border:0;padding:0;width:min(470px,calc(100vw - 28px));background:#FBF8F3;color:#17130F;box-shadow:0 24px 80px rgba(0,0,0,.38);font-family:Arial,sans-serif;}
@@ -470,10 +474,7 @@ body.presentation-expanded .brochure-slide-5 .footer{height:190px;padding:22px 5
 <div class="brochure-editor-bar" aria-label="Brochure navigation">
   <a class="brochure-brand" href="#presentation"><strong>KARATS</strong><small>SMART Brochure Template</small></a>
   <div class="brochure-view-switcher" aria-hidden="true"></div>
-  <div class="brochure-top-meta">
-    <label>Language <select id="brochureLanguage"><option value="en">English</option><option value="ml">മലയാളം</option><option value="__add__">＋ Add New Template…</option></select></label>
-    <a class="brochure-saved-link" href="Karats-Smart-Capital-Calculator.html#portfolio">Saved Jewelleries</a>
-  </div>
+  <div class="brochure-top-meta"></div>
   <button id="saveFinishBrochureBtn" type="button" hidden>Save &amp; Finish Editing</button>
   <span class="brochure-editor-status" id="brochureEditorStatus">English brochure</span>
 </div>
@@ -482,7 +483,8 @@ body.presentation-expanded .brochure-slide-5 .footer{height:190px;padding:22px 5
   <button id="previousSlide" type="button" aria-label="Previous page">&#8592;</button>
   <div class="deck-indicator" id="deckIndicator">Page 1 of 7</div>
   <button id="nextSlide" type="button" aria-label="Next page">&#8594;</button>
-  <button class="expand-presentation" id="expandPresentation" type="button" aria-label="Expand presentation to full screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg><span>Expand</span></button>
+  <button class="expand-presentation" id="expandPresentation" type="button" aria-label="Open full-screen presentation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg><span>Presentation</span></button>
+  <label class="deck-language"><span>Language</span><select id="brochureLanguage"><option value="en">English</option><option value="ml">മലയാളം</option><option value="__add__">＋ Add New Template…</option></select></label>
   <button class="download-pdf" id="downloadPdf" type="button" aria-label="Download the brochure as PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 18v3h16v-3"/></svg><span id="downloadPdfLabel">Download PDF</span></button>
 </div>
 <button class="presentation-close" id="collapsePresentation" type="button" aria-label="Collapse full-screen presentation">&times;</button>
@@ -1018,15 +1020,15 @@ body.presentation-expanded .brochure-slide-5 .footer{height:190px;padding:22px 5
     const naturalWidth=active.offsetWidth||794,naturalHeight=active.offsetHeight||1123;
     const laneWidth=expanded?0:parseFloat(getComputedStyle(document.body).getPropertyValue('--karats-lane'))||0;
     const availableWidth=Math.max(240,window.innerWidth-laneWidth-(expanded?16:26));
-    const bottomSpace=expanded?8:62;const scale=Math.max(.2,Math.min(availableWidth/naturalWidth,(window.innerHeight-top-bottomSpace)/naturalHeight,expanded?2:1.15));
-    document.body.style.setProperty('--deck-top',`${top}px`);document.body.style.setProperty('--deck-scale',String(scale));
+    const bottomSpace=expanded?8:(presentationControls.offsetHeight||52)+20;const scale=Math.max(.2,Math.min(availableWidth/naturalWidth,(window.innerHeight-top-bottomSpace)/naturalHeight,expanded?2:1.15));
+    document.body.style.setProperty('--deck-top',`${top}px`);document.body.style.setProperty('--deck-scale',String(scale));document.body.style.setProperty('--deck-rendered-width',`${naturalWidth*scale}px`);
   }
   function showSlide(index){
     if(!deckSlides.length)return;currentSlide=Math.max(0,Math.min(index,deckSlides.length-1));
     deckSlides.forEach((slide,i)=>slide.classList.toggle('presentation-active',i===currentSlide));
     deckIndicator.textContent=`Page ${currentSlide+1} of ${deckSlides.length}`;previousSlide.disabled=currentSlide===0;nextSlide.disabled=currentSlide===deckSlides.length-1;
     const activeFrame=deckSlides[currentSlide].querySelector('iframe');if(activeFrame&&latestCalculatorValues)activeFrame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*');
-    requestAnimationFrame(fitPresentationPage);
+    fitPresentationPage();
   }
   function enterPresentationDeck(){
     if(document.body.classList.contains('brochure-editing')){saveCurrent(true);setEditing(false)}
@@ -1050,6 +1052,7 @@ body.presentation-expanded .brochure-slide-5 .footer{height:190px;padding:22px 5
     if(document.body.classList.contains('presentation-expanded'))collapsePresentationDeck();
     document.body.classList.remove('presentation-deck');presentationControls.hidden=true;deckSlides.forEach(slide=>slide.classList.remove('presentation-active'));
     document.body.style.removeProperty('--deck-scale');document.body.style.removeProperty('--deck-top');
+    document.body.style.removeProperty('--deck-rendered-width');
     if(location.hash==='#presentation')history.replaceState(null,'',`${location.pathname}${location.search}`);
   }
   function setEditing(on){
@@ -1099,12 +1102,9 @@ body.presentation-expanded .brochure-slide-5 .footer{height:190px;padding:22px 5
   const params=new URLSearchParams(location.search);const requested=params.get('lang');let initial=requested||'en';if(!requested){try{initial=localStorage.getItem('karatsBrochureLanguage')||'en'}catch(e){}}
   renderTemplateOptions();loadLanguage(initial);
   if(params.get('action')==='new')setTimeout(()=>{newTemplateDialog.showModal();newTemplateName.focus()},100);
-  if(location.hash==='#presentation'){
-    setTimeout(()=>{enterPresentationDeck();requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.remove('presentation-boot')))},60);
-  }else{
-    document.documentElement.classList.remove('presentation-boot');
-    setTimeout(enterPresentationDeck,60);
-  }
+  enterPresentationDeck();
+  fitPresentationPage();
+  setTimeout(()=>document.documentElement.classList.remove('presentation-boot'),0);
 })();
 </script>
 <script src="app/page-shell.js"></script>

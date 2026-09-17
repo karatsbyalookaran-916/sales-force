@@ -8,11 +8,26 @@ import { makeServer } from '../server/server.mjs';
 const folder = mkdtempSync(join(tmpdir(), 'karats-browser-test-'));
 const db = database(join(folder, 'test.sqlite'));
 const server = makeServer(db);
-await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-const baseURL = `http://localhost:${server.address().port}`;
+await new Promise(resolve => server.listen(0, '127.0.0.1', () => resolve(undefined)));
+const address = /** @type {import('node:net').AddressInfo} */ (server.address());
+const baseURL = `http://localhost:${address.port}`;
+
+// Waits for a server-side condition. Used where the UI gives no completion signal.
+async function until(check, description, { timeout = 15000, interval = 100 } = {}) {
+  const deadline = Date.now() + timeout;
+  for (;;) {
+    const result = await check();
+    if (result) return result;
+    if (Date.now() > deadline) throw new Error(`Timed out after ${timeout}ms waiting for ${description}`);
+    await new Promise(resolve => setTimeout(resolve, interval));
+  }
+}
 let browser;
 try {
-  browser = await chromium.launch({ channel: 'msedge', headless: true });
+  // Edge locally, as the README describes. CI sets PLAYWRIGHT_CHANNEL empty to use
+  // Playwright's bundled Chromium, which is the same engine and always available.
+  const channel = process.env.PLAYWRIGHT_CHANNEL ?? 'msedge';
+  browser = await chromium.launch({ ...(channel ? { channel } : {}), headless: true });
   const context = await browser.newContext({ baseURL, viewport: { width: 1440, height: 1000 } });
   const page = await context.newPage(); const errors = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -25,7 +40,6 @@ try {
   await page.getByRole('button', { name: 'Create administrator account', exact: true }).click();
   await page.locator('#workspace').waitFor({ state: 'visible' });
   assert.equal(await page.locator('.sidebar').isVisible(), true);
-  await page.getByText('All changes synced', { exact: true }).waitFor();
   assert.equal(await page.locator('.topbar').evaluate(element => getComputedStyle(element).position), 'fixed');
   await page.getByRole('button', { name: 'Collapse navigation' }).click();
   assert.equal(await page.locator('body').evaluate(element => element.classList.contains('sidebar-collapsed')), true);
@@ -37,7 +51,7 @@ try {
   await page.getByLabel('Location', { exact: true }).fill('Kochi');
   await page.getByLabel('Next follow-up').fill('2026-09-16');
   await page.getByRole('button', { name: 'Save lead', exact: true }).click();
-  await page.getByText('All changes synced', { exact: true }).waitFor();
+  await page.locator('.pending').waitFor({ state: 'hidden' });
   await page.getByRole('button', { name: 'Malabar Test Jewellers', exact: true }).waitFor();
   mkdirSync('test-results', { recursive: true });
   await page.screenshot({ path: 'test-results/desktop.png', fullPage: true });
@@ -59,6 +73,7 @@ try {
   assert.equal(await presentation.locator('.karats-page-lane').isVisible(), true);
   await presentation.locator('.karats-manage-team').waitFor();
   await presentation.locator('#deckIndicator').getByText('Page 1 of 7', { exact: true }).waitFor();
+  assert.equal(await presentation.locator('#presentationControls').evaluate(element => { const box=element.getBoundingClientRect(); return box.left >= 0 && box.right <= window.innerWidth + 1; }), true);
   for (let index = 0; index < 5; index++) await presentation.getByRole('button', { name: 'Next page' }).click();
   assert.equal(await presentation.locator('.page.presentation-active').isVisible(), true);
   assert.equal(await presentation.locator('.page.presentation-active').evaluate(element => element.getBoundingClientRect().right <= window.innerWidth + 1), true);
@@ -82,12 +97,17 @@ try {
   const remoteUpdate = await apiContext.request.post('/api/leads', { headers: { Origin: baseURL, 'X-Karats-Request': '1' }, data: { mutationId: crypto.randomUUID(), baseVersion: 1, lead: { ...leads[0], stage: 'Presented' } } });
   assert.equal(remoteUpdate.status(), 200);
   await context.setOffline(false);
-  await page.getByRole('button', { name: 'Sync now', exact: true }).click();
   await page.getByRole('button', { name: 'Review Malabar Test Jewellers' }).waitFor();
   await page.getByRole('button', { name: 'Review Malabar Test Jewellers' }).click();
   await page.getByRole('button', { name: 'Use my version', exact: true }).click();
-  await page.getByText('All changes synced', { exact: true }).waitFor();
-  const final = await (await apiContext.request.get('/api/leads')).json();
+  await page.getByRole('button', { name: 'Review Malabar Test Jewellers' }).waitFor({ state: 'hidden' });
+  // The banner hides as soon as the choice is applied locally, which is before the queued
+  // update reaches the server. Background sync is deliberately silent, so there is no UI
+  // signal for completion: poll the server rather than race it.
+  const final = await until(async () => {
+    const rows = await (await apiContext.request.get('/api/leads')).json();
+    return rows[0]?.version === 3 ? rows : null;
+  }, 'the resolved lead to reach the server');
   assert.equal(final[0].stage, 'Interested'); assert.equal(final[0].version, 3);
   // Team provisioning and responsive layout.
   await page.getByRole('button', { name: 'Employee management' }).click();

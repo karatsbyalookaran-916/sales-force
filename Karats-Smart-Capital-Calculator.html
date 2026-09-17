@@ -24,7 +24,6 @@
 }
 *{box-sizing:border-box;caret-color:transparent}
 input,textarea,[contenteditable="true"]{caret-color:auto}
-@view-transition{navigation:auto}
 html{scroll-behavior:smooth;max-width:100%;overflow-x:hidden}
 body{margin:0;background:linear-gradient(145deg,#f6f0e6 0,#fbf8f3 42%,#f1e7d6 100%);color:var(--ink);font-family:Arial,sans-serif;min-height:100vh;max-width:100%;overflow-x:hidden}
 button,input{font:inherit}
@@ -389,7 +388,6 @@ body.embed-reuse .scale-result-value{font-size:27px}
     <div class="view-switcher" aria-hidden="true"></div>
     <div class="top-meta">
       <label class="lang-control" for="languageSelect"><span>Language</span><select id="languageSelect"><option value="en">English</option><option value="ml">മലയാളം</option><option value="__add__">＋ Add New Template…</option></select></label>
-      <button class="portfolio-top" id="portfolioBtn" type="button"><span id="portfolioBtnLabel">Saved Jewelleries</span></button>
     </div>
   </header>
 
@@ -676,7 +674,7 @@ const languageLabels={
 function currentLanguage(){return $('languageSelect').value||'en'}
 function applyLanguage(lang){
   lang=lang==='ml'?'ml':'en';$('languageSelect').value=lang;document.documentElement.lang=lang;const l=languageLabels[lang];
-  $('portfolioBtnLabel').textContent=l.portfolio;$('copyBtn').textContent=l.copy;$('slideBtn').textContent=l.slide;$('printBtn').textContent=l.print;
+  $('copyBtn').textContent=l.copy;$('slideBtn').textContent=l.slide;$('printBtn').textContent=l.print;
   try{localStorage.setItem('karatsLanguage',lang)}catch(e){}
 }
 
@@ -711,7 +709,7 @@ ids.forEach(id=>$(id).addEventListener('input',()=>{document.querySelectorAll('.
 document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{const w=Number(btn.dataset.weight);$('goldDisplayWeight').value=w;$('silverWeight').value=w;$('totalGoldWeight').value=w;$('confirmedOrders').value=1;document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b===btn));update()}));
 $('resetBtn').addEventListener('click',()=>{ids.forEach(id=>$(id).value=defaults[id]);document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b.dataset.weight==='1'));update();showToast('Defaults restored')});
 $('copyBtn').addEventListener('click',copyResults);$('slideBtn').addEventListener('click',exportSlide);$('printBtn').addEventListener('click',()=>{update();window.print()});
-$('portfolioBtn').addEventListener('click',openPortfolio);$('closePortfolioBtn').addEventListener('click',()=>$('portfolioDialog').close());
+$('closePortfolioBtn').addEventListener('click',()=>$('portfolioDialog').close());
 $('languageSelect').addEventListener('change',()=>{
   if($('languageSelect').value==='__add__'){
     let previous='en';try{previous=localStorage.getItem('karatsLanguage')||'en'}catch(e){}

@@ -89,4 +89,14 @@ body.sidebar-collapsed{--sidebar-width:76px}
 
 /* Do not show a browsing caret on headings or other read-only page copy. */
 *{caret-color:transparent}input,textarea,[contenteditable="true"]{caret-color:auto}
-@view-transition{navigation:auto}
+
+@media(min-width:701px){
+  body:not(.auth-view) .sidebar{padding:0 24px 38px}
+  body:not(.auth-view) .sidebar .brand{height:85px;min-height:85px;margin:0 -24px;padding:0 24px;border-bottom:1px solid #35362d;align-items:center}
+  body:not(.auth-view) .sidebar>.nav-label{margin-top:38px}
+  body:not(.auth-view).sidebar-collapsed .sidebar{padding:0 17px 38px}
+  body:not(.auth-view).sidebar-collapsed .sidebar .brand{margin:0 -17px;padding:0 17px;justify-content:center}
+  body:not(.auth-view).sidebar-collapsed .brand-copy{display:none}
+  body:not(.auth-view).sidebar-collapsed nav{margin-top:28px}
+}
+.topbar{justify-content:flex-end}
