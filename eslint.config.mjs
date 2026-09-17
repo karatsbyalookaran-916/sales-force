@@ -11,7 +11,7 @@ const browserGlobals = {
   Response: 'readonly', Request: 'readonly', URL: 'readonly', Blob: 'readonly',
   FormData: 'readonly', Event: 'readonly', CustomEvent: 'readonly', matchMedia: 'readonly',
   requestAnimationFrame: 'readonly', getComputedStyle: 'readonly', alert: 'readonly',
-  confirm: 'readonly', HTMLElement: 'readonly', Image: 'readonly',
+  confirm: 'readonly', prompt: 'readonly', HTMLElement: 'readonly', Image: 'readonly',
   BroadcastChannel: 'readonly', history: 'readonly', URLSearchParams: 'readonly'
 };
 
