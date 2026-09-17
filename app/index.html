@@ -10,31 +10,32 @@
 <body class="auth-view">
   <aside class="sidebar" id="sidebar">
     <div class="brand"><button id="sidebar-toggle" class="brand-mark sidebar-toggle" type="button" aria-controls="sidebar" aria-expanded="true" aria-label="Collapse navigation">K</button><a class="brand-copy" href="/" aria-label="KARATS home">KARATS<small>TEAM WORKSPACE</small></a></div>
-    <div class="nav-label">WORKSPACE</div>
     <nav aria-label="Workspace">
+      <div class="nav-group-label">LEAD MANAGEMENT</div>
+      <a id="dashboard-link" href="#dashboard"><span class="nav-icon" aria-hidden="true">◈</span><span class="nav-text">Lead dashboard</span></a>
+      <a id="lead-directory-link" href="#directory"><span class="nav-icon" aria-hidden="true">☷</span><span class="nav-text">Lead directory</span></a>
       <a id="pipeline-link" href="#pipeline" class="active"><span class="nav-icon" aria-hidden="true">▣</span><span class="nav-text">Lead pipeline</span></a>
+      <a id="scoreboard-link" href="#scoreboard"><span class="nav-icon" aria-hidden="true">★</span><span class="nav-text">Scoreboard</span></a>
+      <div class="nav-group-label">PRESENTATION TOOLS</div>
       <a href="/Karats-Elite-Plan-Brochure-source.html#presentation"><span class="nav-icon" aria-hidden="true">◇</span><span class="nav-text">Presentation</span></a>
       <a href="/Karats-Smart-Capital-Calculator.html"><span class="nav-icon" aria-hidden="true">▦</span><span class="nav-text">Capital calculator</span></a>
+      <div class="nav-group-label admin-nav-label" hidden>ADMINISTRATION</div>
       <button id="team-button" type="button" aria-label="Employee management" hidden><span class="nav-icon" aria-hidden="true">♧</span><span class="nav-text">Employee management</span></button>
     </nav>
-    <div class="sidebar-bottom"><div id="identity">Sign in to your workspace</div></div>
+    <div class="sidebar-bottom">
+      <div class="sidebar-account">
+        <div id="identity">Sign in to your workspace</div>
+        <div class="sidebar-account-actions">
+          <button id="settings-button" class="sidebar-icon-action" type="button" title="Settings" aria-label="Settings"><span aria-hidden="true">⚙</span></button>
+          <button id="logout" class="sidebar-icon-action" type="button" title="Sign out" aria-label="Sign out" hidden><span aria-hidden="true">⏻</span></button>
+          <button id="install" class="sidebar-icon-action" type="button" title="Install as app" aria-label="Install as app" hidden><span aria-hidden="true">⇩</span></button>
+        </div>
+      </div>
+    </div>
   </aside>
   <button id="sidebar-backdrop" class="sidebar-backdrop" type="button" aria-label="Close navigation" hidden></button>
   <main>
-    <header class="topbar">
-      <div class="connection">
-        <button id="install" class="icon-action" type="button" title="Install app" aria-label="Install app" hidden><span aria-hidden="true">⇩</span></button>
-        <div id="topbar-identity" class="profile-menu" hidden>
-          <button id="profile-button" class="profile-button" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="profile-popover">
-            <span class="user-copy"><strong id="profile-name"></strong><small id="profile-role"></small></span><span id="profile-initial" class="user-avatar" aria-hidden="true"></span>
-          </button>
-          <div id="profile-popover" class="profile-popover" role="menu" hidden>
-            <button id="logout" type="button" role="menuitem"><span class="menu-symbol power-symbol" aria-hidden="true">⏻</span><span>Sign out</span></button>
-            <button id="settings-button" type="button" role="menuitem"><span class="menu-symbol" aria-hidden="true">⚙</span><span>Settings</span></button>
-          </div>
-        </div>
-      </div>
-    </header>
+    <header class="topbar" aria-hidden="true"></header>
     <section id="login-view" class="login-view" hidden>
       <div class="eyebrow">YOUR NEXT CONVERSATION STARTS HERE</div><h1>Welcome to KARATS.</h1><p>Present the plan. Build relationships.<br>Keep every opportunity moving.</p>
       <form id="login-form" class="login-card"><h2 id="login-title">Team sign in</h2><label id="setup-name" hidden>Your name<input name="name" maxlength="100" autocomplete="name"></label><label>Email<input name="email" type="email" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required maxlength="256"></label><button id="login-submit" class="primary" type="submit">Sign in</button><p id="login-hint" class="hint">Use the account provided by your administrator. Your first sign-in needs a connection.</p></form>
@@ -47,6 +48,20 @@
       <div id="empty" class="empty" hidden><span class="empty-symbol">◇</span><h2>A new relationship starts here.</h2><p>Add your first lead, then use the presentation to start the conversation.</p><button id="first-lead" class="primary">+ Add your first lead</button></div>
       <p class="board-hint">Scroll across the board to see all seven sales stages. Select a lead to update its stage.</p><div id="board" class="board" aria-label="Sales pipeline" tabindex="0"></div>
       <footer>Shared team pipeline <span>Changes save on this device, then sync when connected.</span></footer>
+    </section>
+    <section id="lead-dashboard" class="management-view" hidden>
+      <div class="heading"><div><div class="eyebrow">LEAD MANAGEMENT</div><h1>Lead dashboard</h1><p>A clear view of team activity, opportunities and follow-ups.</p></div><button class="primary add-lead-action" type="button">+ Add new lead</button></div>
+      <div class="stats" id="dashboard-stats"></div>
+      <div class="management-grid"><section class="management-card"><h2>Pipeline status</h2><div id="dashboard-stages"></div></section><section class="management-card"><h2>Recent leads</h2><div id="dashboard-recent"></div></section></div>
+    </section>
+    <section id="lead-directory" class="management-view" hidden>
+      <div class="heading"><div><div class="eyebrow">LEAD MANAGEMENT</div><h1>Lead directory</h1><p>Review lead history by employee, period and current status.</p></div><button class="primary add-lead-action" type="button">+ Add new lead</button></div>
+      <div class="directory-filters"><label>Employee<select id="directory-owner"><option value="">All employees</option></select></label><label>Period<select id="directory-period"><option value="all">All time</option><option value="month">This month</option><option value="today">Today</option></select></label><label>Status<select id="directory-status"><option value="">All statuses</option></select></label></div>
+      <div class="management-card"><div id="lead-directory-list" class="lead-directory-list"></div></div>
+    </section>
+    <section id="scoreboard" class="management-view" hidden>
+      <div class="heading"><div><div class="eyebrow">LEAD MANAGEMENT</div><h1>Scoreboard</h1><p>Compare employee activity and progress across the pipeline.</p></div></div>
+      <div id="scoreboard-list" class="scoreboard-list"></div>
     </section>
     <section id="employee-management" class="employee-management" hidden>
       <div class="heading"><div><div class="eyebrow">TEAM ADMINISTRATION</div><h1>Employee management</h1><p>View your team and securely onboard new staff members.</p></div></div>

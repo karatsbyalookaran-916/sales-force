@@ -38,6 +38,8 @@ try {
   await page.locator('#login-form input[name=email]').fill('admin@example.test');
   await page.locator('#login-form input[name=password]').fill('browser-test-12345');
   await page.getByRole('button', { name: 'Create administrator account', exact: true }).click();
+  await page.locator('#lead-dashboard').waitFor({ state: 'visible' });
+  await page.locator('#pipeline-link').click();
   await page.locator('#workspace').waitFor({ state: 'visible' });
   assert.equal(await page.locator('.sidebar').isVisible(), true);
   assert.equal(await page.locator('.topbar').evaluate(element => getComputedStyle(element).position), 'fixed');
@@ -120,8 +122,8 @@ try {
   await page.locator('.employee-row').filter({ hasText: 'member@example.test' }).waitFor();
   assert.equal(await page.locator('#team-form select[name=role]').count(), 0);
   await page.locator('#pipeline-link').click();
-  await page.getByRole('button', { name: 'Account menu for Test Administrator, Administrator', exact: true }).click();
-  await page.getByRole('menuitem', { name: 'Settings', exact: true }).click();
+  if (await page.locator('body').evaluate(element => element.classList.contains('sidebar-collapsed'))) await page.getByRole('button', { name: 'Open navigation' }).click();
+  await page.getByRole('button', { name: 'Settings', exact: true }).click();
   await page.getByRole('heading', { name: 'Your profile', exact: true }).waitFor();
   await page.getByRole('button', { name: 'Done', exact: true }).click();
   await page.setViewportSize({ width: 390, height: 844 });
@@ -130,8 +132,8 @@ try {
   await page.locator('#sidebar-backdrop').click({ position: { x: 380, y: 400 } });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
   await page.screenshot({ path: 'test-results/mobile.png', fullPage: true });
-  await page.getByRole('button', { name: 'Account menu for Test Administrator, Administrator', exact: true }).click();
-  await page.getByRole('menuitem', { name: 'Sign out', exact: true }).click();
+  await page.getByRole('button', { name: 'Open navigation' }).click();
+  await page.getByRole('button', { name: 'Sign out', exact: true }).click();
   await page.locator('#login-view').waitFor({ state: 'visible' });
   assert.equal(await page.evaluate(() => new Promise(resolve => { const request = indexedDB.open('karats-team'); request.onsuccess = () => { const read = request.result.transaction('workspace').objectStore('workspace').get('active'); read.onsuccess = () => resolve(read.result == null); }; })), true);
   assert.deepEqual(errors, []);

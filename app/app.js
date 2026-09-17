@@ -28,21 +28,19 @@ async function locked(action) {
   if (!navigator.locks) throw new Error('Use a current browser on localhost or HTTPS to save leads safely.');
   return navigator.locks.request('karats-workspace', async () => { state = (await read()) || null; return action(); });
 }
-function showLogin() { document.body.classList.add('auth-view'); document.body.classList.remove('sidebar-collapsed'); $('workspace').hidden = true; $('employee-management').hidden = true; $('login-view').hidden = false; $('logout').hidden = true; $('team-button').hidden = true; $('topbar-identity').hidden = true; $('identity').textContent = 'Sign in to your workspace'; }
+const leadViews = { dashboard: 'lead-dashboard', directory: 'lead-directory', pipeline: 'workspace', scoreboard: 'scoreboard' };
+function hideWorkspaceViews() { Object.values(leadViews).forEach(id => $(id).hidden = true); $('employee-management').hidden = true; }
+function showLogin() { document.body.classList.add('auth-view'); document.body.classList.remove('sidebar-collapsed'); hideWorkspaceViews(); $('login-view').hidden = false; $('logout').hidden = true; $('settings-button').hidden = true; $('team-button').hidden = true; $('identity').textContent = 'Sign in to your workspace'; }
 function showWorkspace() {
   document.body.classList.remove('auth-view');
   localStorage.setItem('karatsUserRole', state.user.role);
   const mobile = matchMedia('(max-width: 700px)').matches;
   const saved = localStorage.getItem('karatsSidebarCollapsed');
   setSidebar(saved == null ? mobile : saved === '1', false);
-  $('login-view').hidden = true; $('employee-management').hidden = true; $('workspace').hidden = false; $('logout').hidden = false; $('team-button').hidden = state.user.role !== 'admin';
-  $('pipeline-link').classList.add('active'); $('team-button').classList.remove('active');
+  $('login-view').hidden = true; $('logout').hidden = false; $('settings-button').hidden = false; $('team-button').hidden = state.user.role !== 'admin'; document.querySelector('.admin-nav-label').hidden = state.user.role !== 'admin';
   $('identity').innerHTML = `${esc(state.user.name)}<br><span class="hint">${esc(state.user.role === 'admin' ? 'Administrator' : 'Team member')}</span>`;
-  $('topbar-identity').hidden = false;
   const accountRole = state.user.role === 'admin' ? 'Administrator' : 'Staff';
   const initial = state.user.name.trim().charAt(0).toUpperCase();
-  $('profile-button').setAttribute('aria-label', `Account menu for ${state.user.name}, ${accountRole}`);
-  $('profile-name').textContent = state.user.name; $('profile-role').textContent = accountRole; $('profile-initial').textContent = initial;
   $('settings-name').textContent = state.user.name; $('settings-role').textContent = accountRole; $('settings-email').textContent = state.user.email; $('settings-initial').textContent = initial;
   const selection = $('owner-filter').value;
   $('owner-filter').innerHTML = '<option value="">All team members</option>' + state.users.map(user => `<option value="${esc(user.id)}">${esc(user.name)}</option>`).join('');
@@ -50,7 +48,7 @@ function showWorkspace() {
   render();
   if (location.hash === '#team' && state.user.role === 'admin') {
     setTimeout(showTeam, 0);
-  }
+  } else navigateLeadView(location.hash.slice(1) in leadViews ? location.hash.slice(1) : 'dashboard', false);
 }
 function status() { /* Background sync is intentionally silent. */ }
 function render() {
@@ -72,6 +70,30 @@ function render() {
   const conflictIds = Object.keys(state.conflicts);
   $('conflicts').hidden = !conflictIds.length;
   $('conflicts').innerHTML = '<strong>Updates to review</strong> · Your edits are safe on this device.<br>' + conflictIds.map(id => `<button data-conflict="${esc(id)}">Review ${esc(leads.find(lead => lead.id === id)?.name || 'lead')}</button>`).join('');
+  renderManagementViews();
+}
+function renderManagementViews() {
+  if (!state) return;
+  const leads = state.leads, statData = [['Total leads', leads.length, 'All recorded opportunities'], ['Active', leads.filter(active).length, 'Currently in progress'], ['Due', leads.filter(due).length, 'Follow-ups requiring attention'], ['Joined', leads.filter(lead => lead.stage === 'Joined').length, 'Converted relationships']];
+  $('dashboard-stats').innerHTML = statData.map(([label,value,caption]) => `<article class="stat"><span class="stat-label">${label}</span><strong>${value}</strong><small>${caption}</small></article>`).join('');
+  $('dashboard-stages').innerHTML = stages.map(stage => `<div class="stage-summary"><span>${stage}</span><strong>${leads.filter(lead => lead.stage === stage).length}</strong></div>`).join('');
+  const recent = [...leads].sort((a,b) => String(b.updatedAt||'').localeCompare(String(a.updatedAt||''))).slice(0,6);
+  $('dashboard-recent').innerHTML = recent.length ? recent.map(lead => `<button class="directory-row" data-lead="${esc(lead.id)}"><span><strong>${esc(lead.name)}</strong><small>${esc(state.users.find(user=>user.id===lead.ownerId)?.name||'Unassigned')}</small></span><span class="status-chip">${esc(lead.stage)}</span></button>`).join('') : '<p class="directory-empty">No leads yet.</p>';
+  const ownerValue=$('directory-owner').value;
+  $('directory-owner').innerHTML='<option value="">All employees</option>'+state.users.map(user=>`<option value="${esc(user.id)}">${esc(user.name)}</option>`).join(''); $('directory-owner').value=ownerValue;
+  if (!$('directory-status').options.length || $('directory-status').options.length===1) $('directory-status').innerHTML='<option value="">All statuses</option>'+stages.map(stage=>`<option>${stage}</option>`).join('');
+  renderLeadDirectory();
+  $('scoreboard-list').innerHTML=state.users.map((user,index)=>{const owned=leads.filter(lead=>lead.ownerId===user.id);return `<article class="score-card"><span class="score-rank">${index+1}</span><div><h2>${esc(user.name)}</h2><p>${esc(user.role==='admin'?'Administrator':'Staff')}</p></div><div><strong>${owned.length}</strong><small>Total leads</small></div><div><strong>${owned.filter(active).length}</strong><small>Active</small></div><div><strong>${owned.filter(lead=>lead.stage==='Joined').length}</strong><small>Joined</small></div></article>`}).join('');
+}
+function renderLeadDirectory(){
+  if(!state)return; const owner=$('directory-owner').value,statusValue=$('directory-status').value,period=$('directory-period').value,now=today(),month=now.slice(0,7);
+  const items=state.leads.filter(lead=>{const changed=String(lead.updatedAt||'').slice(0,10);return(!owner||lead.ownerId===owner)&&(!statusValue||lead.stage===statusValue)&&(period==='all'||(period==='month'?changed.startsWith(month):changed===now))}).sort((a,b)=>String(b.updatedAt||'').localeCompare(String(a.updatedAt||'')));
+  $('lead-directory-list').innerHTML=items.length?items.map(lead=>`<button class="directory-row" data-lead="${esc(lead.id)}"><span><strong>${esc(lead.name)}</strong><small>${esc(state.users.find(user=>user.id===lead.ownerId)?.name||'Unassigned')} · ${esc(lead.contact||lead.location||'No contact details')}</small></span><span><span class="status-chip">${esc(lead.stage)}</span><small>${lead.updatedAt?esc(new Date(lead.updatedAt).toLocaleDateString()):'—'}</small></span></button>`).join(''):'<p class="directory-empty">No leads match these filters.</p>';
+}
+function navigateLeadView(view, updateHash=true){
+  if(!(view in leadViews))view='dashboard'; hideWorkspaceViews(); $(leadViews[view]).hidden=false;
+  for(const key of Object.keys(leadViews)) $(`${key==='directory'?'lead-directory':key}-link`)?.classList.toggle('active',key===view);
+  $('team-button').classList.remove('active'); if(updateHash)history.replaceState(null,'',`#${view}`); if(view!=='pipeline')renderManagementViews();
 }
 async function sync() {
   if (syncing || !state || !$('login-view').hidden) return;
@@ -208,11 +230,10 @@ function exportLeads() {
 }
 async function showTeam() {
   if (!state || state.user.role !== 'admin') return;
-  location.hash = 'team'; $('workspace').hidden = true; $('employee-management').hidden = false;
-  $('pipeline-link').classList.remove('active'); $('team-button').classList.add('active');
+  location.hash = 'team'; hideWorkspaceViews(); $('employee-management').hidden = false;
+  Object.keys(leadViews).forEach(key=>$(`${key==='directory'?'lead-directory':key}-link`)?.classList.remove('active')); $('team-button').classList.add('active');
   try { state.users = await api('users'); $('team-list').innerHTML = state.users.map(user => `<article class="employee-row"><span class="employee-avatar">${esc(user.name.trim().charAt(0).toUpperCase())}</span><div><strong>${esc(user.name)}</strong><p>${esc(user.email)}</p></div><span class="employee-role">${esc(user.role === 'admin' ? 'Administrator' : 'Staff')}</span></article>`).join(''); } catch (error) { message(error.status ? error.message : 'Connect to manage employees.'); }
 }
-function showPipeline() { history.replaceState(null, '', '#pipeline'); showWorkspace(); }
 function setEmployeeTab(tab) {
   const directory = tab === 'directory'; $('directory-panel').hidden = !directory; $('onboard-panel').hidden = directory;
   $('directory-tab').classList.toggle('active', directory); $('onboard-tab').classList.toggle('active', !directory);
@@ -224,10 +245,6 @@ async function createMember(event) {
     await api('users', Object.fromEntries(new FormData(event.target))); event.target.reset(); await showTeam(); setEmployeeTab('directory'); message('Employee account created.');
   } catch (error) { message(error.status ? error.message : 'Unable to create the account. Check the connection.'); }
   finally { event.submitter.disabled = false; }
-}
-function setProfileMenu(open) {
-  $('profile-popover').hidden = !open;
-  $('profile-button').setAttribute('aria-expanded', String(open));
 }
 function configureLogin() {
   $('setup-name').hidden = !setupAvailable;
@@ -253,16 +270,16 @@ async function start() {
   $('sidebar-toggle').onclick = () => setSidebar(!document.body.classList.contains('sidebar-collapsed'));
   $('sidebar-backdrop').onclick = () => setSidebar(true);
   mobileNavigation.addEventListener('change', event => setSidebar(event.matches, false));
-  $('add').onclick = $('first-lead').onclick = () => editLead(); $('logout').onclick = logout; $('export').onclick = exportLeads; $('team-button').onclick = showTeam; $('pipeline-link').onclick = event => { event.preventDefault(); showPipeline(); };
+  $('add').onclick = $('first-lead').onclick = () => editLead(); document.querySelectorAll('.add-lead-action').forEach(button=>button.onclick=()=>editLead()); $('logout').onclick = logout; $('export').onclick = exportLeads; $('team-button').onclick = showTeam;
+  for(const view of Object.keys(leadViews)){const id=view==='directory'?'lead-directory-link':`${view}-link`;$ (id).onclick=event=>{event.preventDefault();navigateLeadView(view)}}
+  for(const id of ['directory-owner','directory-period','directory-status'])$(id).addEventListener('change',renderLeadDirectory);
   $('directory-tab').onclick = () => setEmployeeTab('directory'); $('onboard-tab').onclick = () => setEmployeeTab('onboard');
   $('keep-mine').onclick = () => resolveConflict(true); $('keep-team').onclick = () => resolveConflict(false);
-  $('profile-button').onclick = event => { event.stopPropagation(); setProfileMenu($('profile-popover').hidden); };
-  $('settings-button').onclick = () => { setProfileMenu(false); $('settings-dialog').showModal(); };
+  $('settings-button').onclick = () => $('settings-dialog').showModal();
   for (const id of ['search', 'owner-filter', 'due-filter']) $(id).addEventListener('input', render);
-  document.addEventListener('click', event => { const close = event.target.closest('[data-close]'), lead = event.target.closest('[data-lead]'), conflict = event.target.closest('[data-conflict]'); if (close) $(close.dataset.close).close(); if (lead) void editLead(lead.dataset.lead); if (conflict) reviewConflict(conflict.dataset.conflict); if (!event.target.closest('.profile-menu')) setProfileMenu(false); });
-  document.addEventListener('keydown', event => { if (event.key === 'Escape' && !$('profile-popover').hidden) setProfileMenu(false); });
+  document.addEventListener('click', event => { const close = event.target.closest('[data-close]'), lead = event.target.closest('[data-lead]'), conflict = event.target.closest('[data-conflict]'); if (close) $(close.dataset.close).close(); if (lead) void editLead(lead.dataset.lead); if (conflict) reviewConflict(conflict.dataset.conflict); });
   window.addEventListener('online', sync); window.addEventListener('offline', () => status(`Offline · ${state?.queue.length || 0} pending`));
-  channel?.addEventListener('message', async event => { await locked(async () => {}); if (!state || event.data === 'signed-out') { for (const dialog of document.querySelectorAll('dialog[open]')) dialog.close(); showLogin(); } else if (!$('workspace').hidden) showWorkspace(); });
+  channel?.addEventListener('message', async event => { await locked(async () => {}); if (!state || event.data === 'signed-out') { for (const dialog of document.querySelectorAll('dialog[open]')) dialog.close(); showLogin(); } else if ($('login-view').hidden) showWorkspace(); });
   setInterval(() => { if (document.visibilityState === 'visible') void sync(); }, 30000);
   window.addEventListener('beforeinstallprompt', event => { event.preventDefault(); installEvent = event; $('install').hidden = false; });
   $('install').onclick = async () => { await installEvent?.prompt(); installEvent = null; $('install').hidden = true; };
