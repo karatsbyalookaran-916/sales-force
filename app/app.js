@@ -1,12 +1,16 @@
 const $ = id => document.getElementById(id);
 const stages = ['New', 'Contacted', 'Presented', 'Interested', 'Negotiating', 'Joined', 'Closed'];
-const colors = ['#a6ad98', '#8fadc0', '#aea0bf', '#c6ac64', '#c18b62', '#829b60', '#a2a49d'];
+// Stage colours run pale to deep across the pipeline, so the column accents read as
+// progress rather than as seven unrelated labels. Values are the Alookaran ramp.
+// Starts at Primary 200 rather than 100: the column accent is a 2px rule on a near-white
+// board, and Primary 100 is invisible there.
+const colors = ['#d9c9ff', '#c3a9ff', '#a98ae8', '#8f68d8', '#7a4fc0', '#4c2394', '#35166e'];
 const fields = ['name', 'contact', 'phone', 'email', 'location', 'stage', 'ownerId', 'followUp', 'notes'];
 const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 const today = () => { const date = new Date(); return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`; };
 const active = lead => !['Joined', 'Closed'].includes(lead.stage);
 const due = lead => active(lead) && lead.followUp && lead.followUp <= today();
-let state = null, db, syncing = false, installEvent, selectedConflict, editingVersion, setupAvailable = false;
+let state = null, db, syncing = false, selectedConflict, editingVersion, setupAvailable = false;
 const channel = 'BroadcastChannel' in window ? new BroadcastChannel('karats-workspace') : null;
 function message(text) { (document.querySelector('dialog[open]') || document.querySelector('main')).append($('message')); $('message').textContent = text; $('message').hidden = false; clearTimeout(message.timer); message.timer = setTimeout(() => $('message').hidden = true, 8000); }
 async function api(path, data) {
@@ -30,17 +34,18 @@ async function locked(action) {
 }
 const leadViews = { dashboard: 'lead-dashboard', directory: 'lead-directory', pipeline: 'workspace', scoreboard: 'scoreboard' };
 function hideWorkspaceViews() { Object.values(leadViews).forEach(id => $(id).hidden = true); $('employee-management').hidden = true; }
-function showLogin() { document.body.classList.add('auth-view'); document.body.classList.remove('sidebar-collapsed'); hideWorkspaceViews(); $('login-view').hidden = false; $('logout').hidden = true; $('settings-button').hidden = true; $('team-button').hidden = true; $('identity').textContent = 'Sign in to your workspace'; }
+function showLogin() { document.body.classList.add('auth-view'); document.body.classList.remove('sidebar-collapsed'); hideWorkspaceViews(); $('login-view').hidden = false; $('topbar-account').hidden = true; $('profile-menu').hidden = true; $('settings-button').hidden = true; $('team-button').hidden = true; $('identity').textContent = 'Sign in to your workspace'; }
 function showWorkspace() {
   document.body.classList.remove('auth-view');
   localStorage.setItem('karatsUserRole', state.user.role);
   const mobile = matchMedia('(max-width: 700px)').matches;
   const saved = localStorage.getItem('karatsSidebarCollapsed');
   setSidebar(saved == null ? mobile : saved === '1', false);
-  $('login-view').hidden = true; $('logout').hidden = false; $('settings-button').hidden = false; $('team-button').hidden = state.user.role !== 'admin'; document.querySelector('.admin-nav-label').hidden = state.user.role !== 'admin';
+  $('login-view').hidden = true; $('topbar-account').hidden = false; $('settings-button').hidden = false; $('team-button').hidden = state.user.role !== 'admin'; document.querySelector('.admin-nav-label').hidden = state.user.role !== 'admin';
   $('identity').innerHTML = `${esc(state.user.name)}<br><span class="hint">${esc(state.user.role === 'admin' ? 'Administrator' : 'Team member')}</span>`;
   const accountRole = state.user.role === 'admin' ? 'Administrator' : 'Staff';
   const initial = state.user.name.trim().charAt(0).toUpperCase();
+  $('topbar-profile-name').textContent = state.user.name; $('topbar-profile-role').textContent = accountRole; $('topbar-avatar').textContent = initial;
   $('settings-name').textContent = state.user.name; $('settings-role').textContent = accountRole; $('settings-email').textContent = state.user.email; $('settings-initial').textContent = initial;
   const selection = $('owner-filter').value;
   $('owner-filter').innerHTML = '<option value="">All team members</option>' + state.users.map(user => `<option value="${esc(user.id)}">${esc(user.name)}</option>`).join('');
@@ -239,6 +244,7 @@ function setEmployeeTab(tab) {
   $('directory-tab').classList.toggle('active', directory); $('onboard-tab').classList.toggle('active', !directory);
   $('directory-tab').setAttribute('aria-selected', String(directory)); $('onboard-tab').setAttribute('aria-selected', String(!directory));
 }
+function setTopbarProfileMenu(open){$('profile-menu').hidden=!open;$('profile-trigger').setAttribute('aria-expanded',String(open))}
 async function createMember(event) {
   event.preventDefault(); event.submitter.disabled = true;
   try {
@@ -276,13 +282,13 @@ async function start() {
   $('directory-tab').onclick = () => setEmployeeTab('directory'); $('onboard-tab').onclick = () => setEmployeeTab('onboard');
   $('keep-mine').onclick = () => resolveConflict(true); $('keep-team').onclick = () => resolveConflict(false);
   $('settings-button').onclick = () => $('settings-dialog').showModal();
+  $('profile-trigger').onclick = event => { event.stopPropagation(); setTopbarProfileMenu($('profile-menu').hidden); };
   for (const id of ['search', 'owner-filter', 'due-filter']) $(id).addEventListener('input', render);
-  document.addEventListener('click', event => { const close = event.target.closest('[data-close]'), lead = event.target.closest('[data-lead]'), conflict = event.target.closest('[data-conflict]'); if (close) $(close.dataset.close).close(); if (lead) void editLead(lead.dataset.lead); if (conflict) reviewConflict(conflict.dataset.conflict); });
+  document.addEventListener('click', event => { const close = event.target.closest('[data-close]'), lead = event.target.closest('[data-lead]'), conflict = event.target.closest('[data-conflict]'); if (close) $(close.dataset.close).close(); if (lead) void editLead(lead.dataset.lead); if (conflict) reviewConflict(conflict.dataset.conflict); if(!event.target.closest('.topbar-profile'))setTopbarProfileMenu(false); });
+  document.addEventListener('keydown',event=>{if(event.key==='Escape')setTopbarProfileMenu(false)});
   window.addEventListener('online', sync); window.addEventListener('offline', () => status(`Offline · ${state?.queue.length || 0} pending`));
   channel?.addEventListener('message', async event => { await locked(async () => {}); if (!state || event.data === 'signed-out') { for (const dialog of document.querySelectorAll('dialog[open]')) dialog.close(); showLogin(); } else if ($('login-view').hidden) showWorkspace(); });
   setInterval(() => { if (document.visibilityState === 'visible') void sync(); }, 30000);
-  window.addEventListener('beforeinstallprompt', event => { event.preventDefault(); installEvent = event; $('install').hidden = false; });
-  $('install').onclick = async () => { await installEvent?.prompt(); installEvent = null; $('install').hidden = true; };
   state = (await read()) || null;
   try { setupAvailable = (await api('setup-status')).setupAvailable; configureLogin(); } catch { /* Cached accounts can still work offline. */ }
   try {

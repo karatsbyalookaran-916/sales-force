@@ -132,8 +132,8 @@ try {
   await page.locator('#sidebar-backdrop').click({ position: { x: 380, y: 400 } });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
   await page.screenshot({ path: 'test-results/mobile.png', fullPage: true });
-  await page.getByRole('button', { name: 'Open navigation' }).click();
-  await page.getByRole('button', { name: 'Sign out', exact: true }).click();
+  await page.locator('#profile-trigger').click();
+  await page.getByRole('menuitem', { name: 'Sign out', exact: true }).click();
   await page.locator('#login-view').waitFor({ state: 'visible' });
   assert.equal(await page.evaluate(() => new Promise(resolve => { const request = indexedDB.open('karats-team'); request.onsuccess = () => { const read = request.result.transaction('workspace').objectStore('workspace').get('active'); read.onsuccess = () => resolve(read.result == null); }; })), true);
   assert.deepEqual(errors, []);
