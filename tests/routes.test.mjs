@@ -10,7 +10,8 @@ import { prismaStore } from '../lib/store-prisma.mjs';
 
 // Every store method the route table calls. Both stores must implement all of them.
 const REQUIRED = ['createAdmin', 'createMember', 'userByEmail', 'userById', 'listUsers', 'createSession',
-  'userBySession', 'deleteSession', 'listLeads', 'leadById', 'mutationById', 'listActivity', 'commitLead'];
+  'userBySession', 'deleteSession', 'listLeads', 'leadById', 'mutationById', 'listActivity', 'commitLead',
+  'maintenance'];
 
 function memoryStore() {
   const users = [], sessions = new Map(), leads = new Map(), mutations = new Map(), activity = [];
@@ -36,13 +37,24 @@ function memoryStore() {
     async leadById(id) { return leads.get(id) || null; },
     async mutationById(id) { return mutations.get(id) || null; },
     async listActivity(leadId) { return activity.filter(row => row.lead_id === leadId).reverse(); },
-    async commitLead({ lead, mutationId, userId, baseVersion, isNew, text }) {
+    async commitLead({ lead, mutationId, userId, baseVersion, isNew, text, now = new Date() }) {
       const current = leads.get(lead.id);
       if (!isNew && (!current || current.version !== baseVersion)) return 'conflict';
       leads.set(lead.id, { data: lead, version: lead.version });
-      mutations.set(mutationId, { userId, result: lead });
-      activity.push({ lead_id: lead.id, user_id: userId, text, user_name: users.find(u => u.id === userId)?.name });
+      mutations.set(mutationId, { userId, result: lead, createdAt: now });
+      activity.push({ lead_id: lead.id, user_id: userId, text, created_at: now, user_name: users.find(u => u.id === userId)?.name });
       return 'ok';
+    },
+    async maintenance({ now, mutationsBefore, activityBefore }) {
+      const before = { sessions: sessions.size, mutations: mutations.size, activity: activity.length };
+      for (const [token, session] of sessions) if (session.expires < now) sessions.delete(token);
+      for (const [id, mutation] of mutations) if (mutation.createdAt < mutationsBefore) mutations.delete(id);
+      for (let i = activity.length - 1; i >= 0; i--) if (activity[i].created_at < activityBefore) activity.splice(i, 1);
+      return {
+        sessions: before.sessions - sessions.size,
+        mutations: before.mutations - mutations.size,
+        activity: before.activity - activity.length
+      };
     }
   };
 }
@@ -111,6 +123,37 @@ test('login throttling rejects a flood of attempts', async () => {
   assert.equal((await attempt()).status, 401);
   assert.equal((await attempt()).status, 401);
   assert.equal((await attempt()).status, 429, 'third attempt is throttled');
+});
+
+test('maintenance route requires the cron secret and prunes by age', async () => {
+  const store = memoryStore();
+  const deps = { store, limiter: makeRateLimiter(), setupAvailable: async () => false, cronSecret: 'a-long-test-secret' };
+  const call = (authorization = '') => run({ method: 'GET', path: '/maintenance', body: {}, query: {}, token: '', clientId: 'cron', authorization }, deps);
+
+  assert.equal((await call()).status, 401, 'no header is rejected');
+  assert.equal((await call('Bearer wrong-secret')).status, 401, 'wrong secret is rejected');
+  assert.equal((await call('a-long-test-secret')).status, 200, 'bare secret without the Bearer prefix is accepted');
+
+  // Fails closed: with no configured secret the route must never run.
+  const unset = { ...deps, cronSecret: undefined };
+  assert.equal((await run({ method: 'GET', path: '/maintenance', body: {}, query: {}, token: '', clientId: 'cron', authorization: 'Bearer ' }, unset)).status, 401);
+
+  const user = await store.createAdmin({ name: 'A', email: 'a@example.test', password: 'a-password-123', role: 'admin' });
+  const old = new Date(Date.now() - 400 * 86400000);
+  const recent = new Date();
+  await store.createSession('expired', user.id, new Date(Date.now() - 1000));
+  await store.createSession('live', user.id, new Date(Date.now() + 60000));
+  const lead = { id: randomUUID(), version: 1, stage: 'New', updatedAt: old.toISOString() };
+  await store.commitLead({ lead, mutationId: randomUUID(), userId: user.id, baseVersion: 0, isNew: true, text: 'old', now: old });
+  await store.commitLead({ lead: { ...lead, version: 2 }, mutationId: randomUUID(), userId: user.id, baseVersion: 1, isNew: false, text: 'new', now: recent });
+
+  const result = await call('Bearer a-long-test-secret');
+  assert.equal(result.status, 200);
+  assert.equal(result.body.deleted.sessions, 1, 'only the expired session is removed');
+  assert.equal(result.body.deleted.mutations, 1, 'only the receipt past the retention window is removed');
+  assert.equal(result.body.deleted.activity, 1, 'only the activity past the retention window is removed');
+
+  assert.equal((await store.userBySession('live', new Date()))?.id, user.id, 'live session survives');
 });
 
 test('both stores implement the full route-table interface', () => {

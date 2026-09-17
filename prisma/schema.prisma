@@ -55,11 +55,13 @@ model Lead {
 }
 
 model Mutation {
-  id     String @id @db.Uuid
-  userId String @map("user_id") @db.Uuid
-  result Json
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String   @id @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  result    Json
+  createdAt DateTime @default(now()) @map("created_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([createdAt])
   @@map("mutations")
 }
 

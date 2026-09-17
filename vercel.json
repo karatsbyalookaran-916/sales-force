@@ -6,6 +6,12 @@
       "maxDuration": 15
     }
   },
+  "crons": [
+    {
+      "path": "/api/maintenance",
+      "schedule": "0 3 * * *"
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/:route*",

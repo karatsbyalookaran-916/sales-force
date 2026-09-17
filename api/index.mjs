@@ -44,8 +44,13 @@ export default async function handler(req, res) {
       query: req.query || {},
       body,
       token: cookie(req, 'karats_session'),
-      clientId: String(req.headers['x-forwarded-for'] || '').split(',')[0].trim()
-    }, { store, limiter, setupAvailable: () => store.hasAdminLock().then(locked => !locked) });
+      clientId: String(req.headers['x-forwarded-for'] || '').split(',')[0].trim(),
+      authorization: req.headers.authorization || ''
+    }, {
+      store, limiter,
+      setupAvailable: () => store.hasAdminLock().then(locked => !locked),
+      cronSecret: process.env.CRON_SECRET
+    });
 
     if (result.cookie) {
       res.setHeader('Set-Cookie', `karats_session=${result.cookie.value}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${result.cookie.maxAge}`);

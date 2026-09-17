@@ -14,18 +14,24 @@ is, so the reasoning survives after the details are forgotten.
 
 ## P0 — will cause real problems soon
 
-### - [ ] 1. Expired sessions are never cleaned up on the hosted app
+### - [x] 1. Expired sessions are never cleaned up on the hosted app
 
-`sweepSessions` exists in both stores but is only ever called from a `setInterval`
-in the local server (`server/server.mjs:17`). Vercel functions have no background
-loop, so the hosted app never calls it. The `sessions` table grows without limit.
+`sweepSessions` existed in both stores but was only ever called from a `setInterval`
+in the local server. Vercel functions have no background loop, so the hosted app
+never called it and the `sessions` table grew without limit.
 
-**Fix:** a scheduled job calling `sweepSessions`. Either a Vercel Cron hitting a
-protected route, or a Supabase `pg_cron` job running
-`DELETE FROM sessions WHERE expires < now()`. The Supabase route is simpler and
-does not need an authenticated endpoint.
+**Done.** Both stores now implement `maintenance()`, reached through a
+`GET /api/maintenance` route authenticated by `CRON_SECRET` rather than a session.
+`vercel.json` schedules it daily at 03:00 UTC. The local server keeps its own
+interval and calls the same function, so the two hosts cannot drift.
 
-**Effort:** under an hour.
+Deleting by age is idempotent, which matters because Vercel documents cron delivery
+as best-effort — a run may be missed or repeated.
+
+**Remaining manual step:** set `CRON_SECRET` in Vercel (Settings → Environment
+Variables), a random string of 16+ characters. Vercel sends it automatically as
+`Authorization: Bearer <value>`. **Without it the route returns 401 and cleanup
+never runs** — it fails closed by design, so this step is not optional.
 
 ---
 
@@ -58,18 +64,22 @@ before the function runs and so also protects against cost abuse.
 
 ---
 
-### - [ ] 4. `mutations` and `activity` grow unbounded
+### - [x] 4. `mutations` and `activity` grow unbounded
 
-Nothing prunes either table. `mutations` stores an idempotency receipt per lead
-save, forever; `activity` stores one row per edit, forever. Only `sessions` has a
-sweep, and per item 1 that sweep does not run when hosted.
+Nothing pruned either table. `mutations` stored an idempotency receipt per lead
+save, forever; `activity` stored one row per edit, forever.
 
-**Fix:** decide a retention window and enforce it in the same scheduled job as
-item 1. Suggested starting point: `mutations` older than 30 days (they only guard
-against retried requests, which resolve in minutes), `activity` older than 12
-months. Confirm the activity window against how far back the team actually looks.
+**Done.** Pruned by the same scheduled job as item 1, with windows declared in
+`lib/core.mjs`: `MUTATION_RETENTION_MS` 30 days, `ACTIVITY_RETENTION_MS` 365 days.
 
-**Effort:** ~1 hour including the retention decision.
+`Mutation` had no timestamp at all, so there was nothing to prune by. Added
+`created_at` with an index — migration `20260917120000_mutation_created_at`, applied
+to Supabase on 17 September 2026. Local SQLite databases upgrade themselves on next
+open; rows predating the column are treated as ancient and pruned on the first run,
+which is correct because they only ever guarded against a retried request.
+
+**Review the 365-day activity window** against how far back the team actually looks.
+It is a guess, and it is the one number here worth a human decision.
 
 ---
 
