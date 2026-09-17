@@ -21,6 +21,11 @@
   /* Numbers only. Body text stays Jost. System UI faces carry true tabular figures,
      so counts and money line up in columns instead of jittering. */
   --font-numeric:Inter,ui-sans-serif,system-ui,'Segoe UI',Roboto,sans-serif;
+  /* Alookaran gold, from the original brochure. Split in two because it has to be:
+     #c9a24a measures 2.40:1 on white, which fails as text, so it is only ever a rule,
+     an edge or a wash. Gold that carries meaning uses --gold-ink at 5.02:1. */
+  --gold-line:#c9a24a; --gold-ink:#8a6a2e; --gold-soft:#faf5ea; --gold-edge:#e6d5ae;
+  --gold-label:#6b5526;
   /* Kept: older rules still reference --gold */
   --gold:var(--p300);
   font-family:Jost,Arial,sans-serif;color:var(--ink);background:var(--canvas);font-synthesis:none;
@@ -154,7 +159,7 @@ body:not(.auth-view) .sidebar-account #identity{display:none}
    font-family and would otherwise win on source order. */
 .num,.stat strong,.count,.card-meta span,.metric strong,.metric-value,.score-value,
 .stat-number,.kpi-value,.stage-summary strong,.score-rank,.score-card strong,
-.scoreboard-list strong,.directory-row small,td.numeric,
+.scoreboard-list strong,.directory-row small,.directory-summary strong,td.numeric,
 input[type=number],input[type=date],.version pre,time{
   font-family:var(--font-numeric)!important;font-variant-numeric:tabular-nums lining-nums;
   font-feature-settings:'tnum' 1,'lnum' 1;letter-spacing:0;
@@ -168,3 +173,48 @@ input[type=number],input[type=date],.version pre,time{
 .lead-profile{position:fixed;z-index:110;top:0;right:0;width:min(520px,94vw);height:100vh;padding:28px;background:#fff;box-shadow:-18px 0 55px #24163f33;overflow:auto;transform:translateX(105%);transition:transform .18s ease}.lead-profile.open{transform:none}.lead-profile-backdrop{position:fixed;z-index:109;inset:0;width:100%;height:100%;background:#1d123366}.lead-profile-head{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding-bottom:18px}.lead-profile-head h2{margin:0;font-size:1.8rem}.lead-profile-head p{margin:7px 0 0}.profile-quick-actions{display:flex;flex-wrap:wrap;gap:7px;padding:16px 0}.profile-quick-actions a,.profile-quick-actions button{padding:8px 10px;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--ink);text-decoration:none;font-size:.76rem}.profile-details{display:grid;grid-template-columns:1fr 1fr;margin:0;border:1px solid var(--line);border-radius:6px}.profile-details>div{padding:12px;border-bottom:1px solid var(--line)}.profile-details dt{font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}.profile-details dd{margin:5px 0 0;overflow-wrap:anywhere}.profile-history{padding-top:22px}.profile-history h3{font-family:Marcellus,serif;font-size:1.2rem}.profile-history article{display:flex;gap:12px;padding:10px 0}.profile-history article i{width:9px;height:9px;margin-top:5px;border-radius:50%;background:var(--p400)}.profile-history article div{display:grid;gap:4px}.profile-history article strong{font-size:.8rem}.profile-history article small{font-size:.68rem;color:var(--muted)}.profile-footer{position:sticky;bottom:-28px;display:flex;justify-content:flex-end;gap:9px;margin:24px -28px -28px;padding:16px 28px;background:#fff;border-top:1px solid var(--line)}.duplicate-warning{margin:0 0 16px;padding:11px 13px;background:#fff2cc;border:1px solid #e3c56c;border-radius:5px;color:#765400;font-size:.8rem}
 @media(max-width:1200px){.directory-summary{grid-template-columns:repeat(3,1fr)}.directory-commandbar{flex-wrap:wrap}.directory-commandbar .directory-search{flex-basis:100%}.directory-filters.professional{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.directory-summary{grid-template-columns:1fr 1fr}.directory-commandbar>*{flex:1}.directory-commandbar .directory-search{flex-basis:100%}.directory-filters.professional{grid-template-columns:1fr 1fr}.directory-table-wrap{max-height:none}.directory-table thead{display:none}.directory-table,.directory-table tbody,.directory-table tr,.directory-table td{display:block;white-space:normal}.directory-table tr{padding:12px;border-bottom:1px solid var(--line)}.directory-table td{display:grid;grid-template-columns:100px 1fr;padding:7px;border:0}.directory-table td:before{content:attr(data-label);font-size:.65rem;text-transform:uppercase;color:var(--muted)}.directory-table td:first-child{display:block}.directory-table td:last-child{display:block}.row-actions{opacity:1}.directory-pagination{flex-wrap:wrap}.directory-bulk{align-items:stretch;flex-direction:column}.directory-bulk label{justify-content:space-between}.directory-bulk input,.directory-bulk select{width:60%}.profile-details{grid-template-columns:1fr}}
+
+/* ---------------------------------------------------------------------------
+   Gold accents — Lead dashboard and Lead directory only.
+
+   Trial scope. If it holds up, delete the two id prefixes on each rule and the
+   treatment applies everywhere; nothing else needs changing.
+
+   Gold is deliberately rationed. It marks two things and nothing else: where a
+   section begins, and the one figure that represents converted business. It is
+   never a button, a border in general, or a hover state — scarcity is what
+   makes it read as precious rather than as decoration.
+   --------------------------------------------------------------------------- */
+
+/* Eyebrow: small, uppercase, and gold-ink rather than grey. Legible at 5.02:1. */
+#lead-dashboard .eyebrow,
+#lead-directory .eyebrow{color:var(--gold-ink)}
+
+/* A short rule under the page title. Purely decorative, so the bright gold is
+   free to be used here without a contrast obligation. */
+#lead-dashboard .heading h1,
+#lead-directory .heading h1{position:relative;padding-bottom:16px}
+#lead-dashboard .heading h1::after,
+#lead-directory .heading h1::after{content:'';position:absolute;left:0;bottom:0;width:36px;height:2px;background:var(--gold-line);border-radius:1px}
+
+/* Card headings get the same signal at a smaller scale: a full hairline in the
+   cool line colour, with a short gold segment where the text starts. */
+#lead-dashboard .management-card h2,
+#lead-directory .management-card h2{position:relative;padding-bottom:13px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+#lead-dashboard .management-card h2::after,
+#lead-directory .management-card h2::after{content:'';position:absolute;left:0;bottom:-1px;width:26px;height:1px;background:var(--gold-line)}
+
+/* The converted figure is the one number that earns gold: it is the money.
+   Parchment wash, warm edge, and the legible gold for the figure itself. */
+#lead-dashboard .stat:last-child{background:var(--gold-soft);border-color:var(--gold-edge)}
+#lead-dashboard .stat:last-child strong{color:var(--gold-ink)}
+#lead-dashboard .stat:last-child .stat-label{color:var(--gold-label)}
+#lead-dashboard .stat:last-child small{color:var(--gold-label)}
+
+/* Everything below is the purple side of the same pass: lighter hairlines and a
+   softer shadow, so white stays dominant and the gold has room to register. */
+#lead-dashboard .management-card,
+#lead-directory .management-card{border-color:var(--line);box-shadow:0 1px 2px rgba(53,22,110,.04)}
+#lead-dashboard .stat,
+#lead-directory .stat{box-shadow:0 1px 2px rgba(53,22,110,.04)}
+#lead-directory .directory-summary button{box-shadow:0 1px 2px rgba(53,22,110,.04)}
