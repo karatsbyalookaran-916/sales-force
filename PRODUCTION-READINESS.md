@@ -35,17 +35,31 @@ never runs** — it fails closed by design, so this step is not optional.
 
 ---
 
-### - [ ] 2. Preview deployments write to the production database
+### - [ ] 2. Preview deployments write to the production database — deferred, not yet a risk
 
-Both `DATABASE_URL` and `DIRECT_URL` are set for Production *and* Preview, so any
-preview branch reads and writes real lead data. A migration tested on a preview
-would alter production.
+Both `DATABASE_URL` and `DIRECT_URL` are scoped to Production *and* Preview, so a
+preview branch would read and write the same data as production, and a migration
+tested on a preview would alter it.
 
-**Fix:** create a second Supabase project, point the Preview environment at it, and
-run `npm run db:migrate` against it. Keep Production variables scoped to
-Production only.
+**Deliberately deferred on 17 September 2026.** The risk is currently zero, not
+merely small: the database is empty (no users, no leads, no administrator yet), and
+Vercel only builds Preview deployments for non-production branches. Work is pushed
+straight to `main`, which builds Production, so no preview deployment exists.
 
-**Effort:** ~30 minutes, mostly waiting for the project to provision.
+**Trigger — act when both become true:**
+
+1. Real lead data exists that would matter if overwritten, and
+2. Anyone pushes a branch or opens a pull request, which is what creates a preview
+
+**Do this first, because it is free.** When the team starts entering real leads, untick
+**Preview** on both variables in Vercel so only Production keeps them. A preview deploy
+then has no database and fails loudly, instead of silently writing to live data. That
+removes the whole class of problem in about thirty seconds.
+
+**Only then, if wanted:** create a second Supabase project so previews have a database
+of their own to develop against, and run `npm run db:migrate` against it. Use the
+transaction pooler (6543) and session pooler (5432) — the direct `db.*.supabase.co`
+host is IPv6-only and unreachable from this network.
 
 ---
 
