@@ -7,7 +7,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { handle } from '../lib/routes.mjs';
-import { passwordHash, LOGIN_MAX_ATTEMPTS } from '../lib/core.mjs';
+import { passwordHash, LOGIN_MAX_ATTEMPTS, readCookie } from '../lib/core.mjs';
 import { sqliteStore, openDatabase } from '../lib/store-sqlite.mjs';
 import { prismaStore } from '../lib/store-prisma.mjs';
 
@@ -201,6 +201,26 @@ test('sqlite throttle counter increments, blocks and resets', async () => {
     db.close();
     try { rmSync(folder, { recursive: true, force: true }); } catch { /* Windows may hold the handle */ }
   }
+});
+
+test('readCookie finds the session wherever it sits in the header', () => {
+  // Regression: the hosted adapter built this pattern from a template literal, where \s
+  // is not a valid escape and collapsed to a literal "s". Browsers separate cookies with
+  // "; ", so the session was unreadable unless it happened to come first.
+  const cases = [
+    ['karats_session=abc123', 'abc123'],
+    ['other=1; karats_session=abc123', 'abc123'],
+    ['a=1;karats_session=abc123', 'abc123'],
+    ['_vercel_jwt=xyz; karats_session=abc123; theme=dark', 'abc123'],
+    ['   karats_session=abc123', 'abc123'],
+    ['nothing=here', ''],
+    ['', ''],
+    [undefined, ''],
+    // Must not match a different cookie whose name merely ends with ours.
+    ['not_karats_session=nope', '']
+  ];
+  for (const [header, expected] of cases)
+    assert.equal(readCookie(header, 'karats_session'), expected, `header ${JSON.stringify(header)}`);
 });
 
 test('both stores implement the full route-table interface', () => {

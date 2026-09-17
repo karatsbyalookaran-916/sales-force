@@ -4,7 +4,7 @@ An online/offline team sales workspace around the existing KARATS presentation a
 
 ## Start locally
 
-Requires Node.js 22.17 or newer (Node 24 LTS recommended). No runtime packages or build step are required.
+Requires Node.js 22.x — see `.nvmrc`. The version is pinned rather than left open so local, CI and Vercel all run the same runtime; `node:sqlite` is still experimental and its behaviour can change between majors. No runtime packages or build step are required.
 
 1. Double-click **Start KARATS App.bat**, or run `npm start` in this folder. While editing files in `server/`, run `npm run dev` instead — it restarts the server on change. Front-end edits under `app/` never need a restart, only a browser refresh.
 2. Open **http://localhost:4173**. Keep the server terminal running.

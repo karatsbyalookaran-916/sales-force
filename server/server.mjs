@@ -5,7 +5,7 @@ import { resolve, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { openDatabase, sqliteStore } from '../lib/store-sqlite.mjs';
 import { handle } from '../lib/routes.mjs';
-import { MAX_BODY_BYTES, MUTATION_RETENTION_MS, ACTIVITY_RETENTION_MS, fail } from '../lib/core.mjs';
+import { MAX_BODY_BYTES, readCookie, MUTATION_RETENTION_MS, ACTIVITY_RETENTION_MS, fail } from '../lib/core.mjs';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const STATIC = /^(app\/[a-zA-Z0-9.-]+|fonts\/[a-zA-Z0-9.-]+\.woff2|karats-pdf-libs\/[a-zA-Z0-9.-]+\.js|Karats-Elite-Plan-Brochure-source\.html|Karats-Smart-Capital-Calculator\.html|sw\.js|manifest\.webmanifest)$/;
@@ -66,7 +66,7 @@ export function makeServer(db = openDatabase()) {
         path: url.pathname.replace(/^\/api/, ''),
         query: Object.fromEntries(url.searchParams),
         body,
-        token: /(?:^|;\s*)karats_session=([a-f0-9]{64})(?:;|$)/.exec(req.headers.cookie || '')?.[1] || '',
+        token: readCookie(req.headers.cookie, 'karats_session'),
         clientId: req.socket.remoteAddress || '',
         authorization: req.headers.authorization || ''
       }, {

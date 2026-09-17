@@ -1,0 +1,38 @@
+# Held back: this job needs the PLAYWRIGHT_CHANNEL support in tests/browser.mjs,
+# which is currently uncommitted along with the app/ UI changes it pairs with.
+# Paste this block into ci.yml under `jobs:` once those land. Verified locally
+# against Playwright's bundled Chromium: the full suite passes.
+  browser:
+    name: Browser tests
+    runs-on: ubuntu-latest
+
+    # Empty channel selects Playwright's bundled Chromium instead of Edge, which is
+    # what the README expects locally but is not present on the runner.
+    env:
+      PLAYWRIGHT_CHANNEL: ''
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Offline, conflict and layout tests
+        run: npm run test:browser
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7

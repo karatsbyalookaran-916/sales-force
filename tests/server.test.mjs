@@ -12,8 +12,9 @@ test('accounts, authorization, durable leads, conflict handling and retry safety
   const db = database(join(folder, 'test.sqlite'));
   const admin = createUser(db, { name: 'Test Admin', email: 'admin@example.test', password: 'test-password-123', role: 'admin' });
   const server = makeServer(db);
-  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-  const origin = `http://127.0.0.1:${server.address().port}`;
+  await new Promise(resolve => server.listen(0, '127.0.0.1', () => resolve(undefined)));
+  const address = /** @type {import('node:net').AddressInfo} */ (server.address());
+  const origin = `http://127.0.0.1:${address.port}`;
   t.after(async () => { await new Promise(resolve => server.close(resolve)); db.close(); rmSync(folder, { recursive: true }); });
   async function call(path, body, cookie, headers = {}) {
     const response = await fetch(origin + path, { method: body === undefined ? 'GET' : 'POST', headers: { Origin: origin, 'Content-Type': 'application/json', 'X-Karats-Request': '1', ...(cookie ? { Cookie: cookie } : {}), ...headers }, ...(body === undefined ? {} : { body: JSON.stringify(body) }) });

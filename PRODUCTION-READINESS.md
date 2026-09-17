@@ -160,39 +160,61 @@ matter in practice — staff turnover is routine.
 
 ## P2 — engineering practice
 
-### - [ ] 9. No CI
+### - [x] 9. No CI
 
 Three test suites exist and nothing runs them automatically. **This is the highest
 value-per-effort item on the list.** The drift between the two API implementations
 (which had produced three real defects, see the initial commit message) would have
 been caught earlier by a workflow running `npm test` on every push.
 
-**Fix:** a GitHub Actions workflow on push and pull request running `npm ci`,
-`npm run build`, `npm test`.
+**Done.** `.github/workflows/ci.yml` runs on every push to `main` and every pull
+request, in two jobs:
 
-**Effort:** ~30 minutes.
+- **check** — `npm ci`, lint, type check, `prisma migrate deploy` against a throwaway
+  Postgres service container, the unit and route suites, then the Postgres store suite
+- **browser** — the Playwright suite, with screenshots uploaded as an artifact
 
----
+Each step was run locally first and its real exit code confirmed. A newer push cancels
+the older run for the same branch.
 
-### - [ ] 10. No linter, formatter, or `.editorconfig`
-
-Nothing enforces consistency. Low urgency while the codebase has one author;
-it becomes a real cost the moment it has two.
-
----
-
-### - [ ] 11. No type checking
-
-No TypeScript and no JSDoc types. The store interface is currently enforced only
-by the parity test in `tests/routes.test.mjs`, which checks that both stores
-implement every method the route table calls — but not that the signatures agree.
-
-**Fix:** JSDoc plus `checkJs` gives most of the benefit without a build step,
-which suits a project that deliberately has no bundler.
+It paid for itself immediately: adding the linter surfaced a live cookie-parsing bug in
+the hosted adapter (see item 11).
 
 ---
 
-### - [ ] 12. The Prisma store's SQL is not covered by automated tests
+### - [x] 10. No linter, formatter, or `.editorconfig`
+
+**Done.** ESLint 9 flat config in `eslint.config.mjs`, deliberately small — rules that
+catch real mistakes, nothing stylistic that `.editorconfig` and review already handle.
+Separate global sets for Node and browser code, because the two halves of this project
+genuinely differ. `npm run lint`, clean at zero problems.
+
+Also added `.editorconfig` and `.gitattributes`. The latter normalises line endings,
+which were producing noisy CRLF warnings on every Windows commit.
+
+---
+
+### - [x] 11. No type checking
+
+**Done.** `tsconfig.json` with `checkJs` and `noEmit` — it type-checks the JavaScript
+in place and never emits, so the no-build-step design is preserved. `npm run typecheck`,
+clean at zero errors. Started permissive (`strict: false`); tightening it is a reasonable
+follow-up once the existing surface is annotated.
+
+**This is where the linter earned its keep.** It flagged `\s` inside a template literal in
+the hosted adapter's cookie parser. Inside a template literal `\s` is not a valid escape,
+so it collapsed to a literal `s` and the pattern became `(?:^|;s*)` — zero-or-more letter
+"s", not whitespace. Browsers separate cookies with `"; "`, so **the hosted app could not
+read the session cookie whenever it was not the first cookie in the header**, which would
+have shown up as users being randomly signed out.
+
+Root cause was the familiar one: both adapters parsed cookies separately. It is now
+`readCookie()` in `lib/core.mjs`, shared, with a regression test covering nine header
+shapes.
+
+---
+
+### - [x] 12. The Prisma store's SQL is not covered by automated tests
 
 `tests/routes.test.mjs` covers the shared route logic through a fake store, so the
 code path the hosted app runs *is* tested. The Prisma queries themselves were
@@ -200,18 +222,29 @@ verified manually against the live database on 17 September 2026 — every store
 method, including the version-conflict guard and BigInt serialisation — but
 nothing re-checks them.
 
-**Fix:** a disposable Postgres database in CI, running the same scenarios against
-`prismaStore`.
+**Done.** `tests/store-postgres.test.mjs` exercises the real SQL — accounts, duplicate
+email handling, session expiry, lead versioning and conflict, idempotent replay, activity
+joins and BigInt serialisation, the atomic throttle counter, and maintenance pruning.
+
+It skips unless `TEST_DATABASE_URL` names a throwaway database, so a normal `npm test`
+is unaffected; CI supplies one as a service container. It tracks every row it creates and
+removes them in an `after` hook that runs even when an assertion fails.
+
+Verified by running it against a live database and confirming every table was back to
+zero rows afterwards.
 
 ---
 
-### - [ ] 13. Open `engines` range and no `.nvmrc`
+### - [x] 13. Open `engines` range and no `.nvmrc`
 
 `package.json` declares `>=22.17.0`. Vercel resolves open ranges to the newest
 available major, so the runtime can shift without any change on your side.
 
-**Fix:** pin the Node version explicitly in Vercel project settings, and add an
-`.nvmrc` so local and CI agree.
+**Done.** `engines.node` pinned to `22.x`, `.nvmrc` added, and CI reads the version from
+`.nvmrc` so all three environments agree. Previously `>=22.17.0` resolved to whatever the
+newest major on Vercel happened to be — 24.x today, silently something else later. That
+matters more than usual here because `node:sqlite` is still experimental and its behaviour
+can change between majors.
 
 ---
 
