@@ -126,11 +126,72 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .kpi:last-child{border-right:0}
 .kpi-value{font-family:Georgia,serif;font-size:30px;font-weight:700;color:#5d2fb0;line-height:1}
 .kpi-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.35;margin-top:8px}
-.business-impact{margin-top:20px;border:1px solid var(--line);background:#f7f4ff;padding:22px 24px;position:relative;z-index:1}
-.business-impact-title{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#4c2394;margin-bottom:12px}
-.business-examples{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 34px}
-.business-example{border-left:3px solid #7a4fc0;padding-left:14px;color:#3a2d55;font-size:14px;line-height:1.55}
-.business-example strong{display:block;color:#35166e;font-size:17px;line-height:1.25;margin-bottom:4px;font-variant-numeric:tabular-nums lining-nums}
+.business-impact{margin-top:18px;border:1px solid var(--line);background:#faf8ff;padding:20px 22px 22px;border-radius:8px;position:relative;z-index:1}
+.business-impact-title{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#4c2394;margin-bottom:15px}
+.business-examples{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:repeat(3,1fr);gap:15px 18px;align-items:stretch}
+.business-example{background:#fff;border:1px solid #e4dcf5;border-left:4px solid #7a4fc0;border-radius:6px;padding:17px 19px;color:#4a3c6b;font-size:15px;line-height:1.55}
+.design-count{grid-column:2;grid-row:1/4;background:#f1ebff;border-color:#d4c4f5;border-left:6px solid #6f3fc3;color:#352653;padding:25px 28px;display:flex;flex-direction:column;justify-content:center}
+.design-weight{display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;margin-top:14px;padding-top:13px;border-top:1px solid #ece7f7}
+.dw-row{display:flex;align-items:baseline;gap:10px;flex:0 0 auto;font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#6f6490;white-space:nowrap}
+.dw-row b{font-size:19px;font-weight:700;letter-spacing:0;text-transform:none;color:#4c2394;font-variant-numeric:tabular-nums lining-nums}
+.design-weight input[type=range]{flex:1 1 150px;min-width:120px;margin:0;accent-color:#4c2394;cursor:pointer}
+.business-example strong{display:block;color:#35166e;font-size:19px;line-height:1.25;margin-bottom:7px;font-variant-numeric:tabular-nums lining-nums}
+.design-count>strong{color:#35166e;font-size:31px;line-height:1.08;margin-bottom:8px}
+.design-count .design-weight{border-color:#cfc0ee}
+.design-count .dw-row{color:#675781}.design-count .dw-row b{color:#35166e}
+.design-intro{color:#4c2394;font-size:20px;font-weight:700;line-height:1.4;text-align:center}
+.design-breakdown{display:grid;grid-template-columns:1fr .78fr 1fr;gap:14px;width:100%;margin:22px 0 4px;align-items:stretch}
+.material-card,.design-math{border:1px solid #d8caf3;border-radius:6px;padding:18px;text-align:left;background:#fff}
+.material-card{display:flex;flex-direction:column;justify-content:center}
+.material-card .material-label,.material-card .material-meta{text-align:center}
+.material-card.smart-material{background:#e9defd;border-color:#cbb5f1}
+.material-label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#6b5595;margin-bottom:9px}
+.material-value{font-family:Arial,sans-serif;font-size:23px;font-weight:700;line-height:1.18;color:#35166e;font-variant-numeric:tabular-nums lining-nums}
+.material-number{font-family:Arial,sans-serif;font-size:52px;font-weight:800;line-height:1;color:#4c2394;text-align:center;font-variant-numeric:tabular-nums lining-nums}
+.material-result-label{font-size:14px;font-weight:700;line-height:1.25;color:#35166e;text-align:center;margin-top:7px}
+.material-meta{font-size:13px;line-height:1.45;color:#655777;margin-top:8px}
+.design-math{display:flex;flex-direction:column;justify-content:center;text-align:center;background:#faf8ff}
+.math-label{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#725aa0}
+.math-equation{font-family:Arial,sans-serif;font-size:21px;font-weight:700;line-height:1.25;color:#4c2394;margin-top:8px;font-variant-numeric:tabular-nums lining-nums}
+.support-impact{margin-top:18px;border:1px solid var(--line);background:#faf8ff;padding:18px;border-radius:8px}
+.support-impact .business-examples{display:grid;grid-template-columns:1fr;grid-template-rows:none;gap:14px}
+.support-impact .business-example{font-size:15px;padding:16px 18px}
+.break-even-illustration{margin-top:18px;border:1px solid #d9c9ff;border-left:5px solid #6f3fc3;background:#f1ebff;padding:18px 20px;border-radius:7px;color:#35166e}
+.break-even-heading{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:13px}
+.break-even-heading h3{font-family:Arial,sans-serif;font-size:19px}
+.break-even-heading p{font-size:12px;color:#6a5d85;text-align:right}
+.break-even-steps{display:grid;grid-template-columns:1fr 1fr 1.2fr 1.35fr;gap:10px}
+.break-even-step{background:#fff;border:1px solid #d8caf3;border-radius:5px;padding:12px 13px;min-width:0}
+.break-even-step.result{background:#e5d8fb;border-color:#c6aff0}
+.break-even-label{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#725aa0;line-height:1.25}
+.break-even-value{font-size:20px;font-weight:800;line-height:1.15;margin-top:6px;font-variant-numeric:tabular-nums lining-nums}
+.break-even-step.result .break-even-value{font-size:18px}
+.break-even-detail{font-size:11px;line-height:1.35;color:#5c4c78;margin-top:6px}
+.break-even-slider{display:flex;align-items:center;gap:14px;margin-top:11px;padding-top:10px;border-top:1px solid #cfc0ee}
+.break-even-slider span{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#675781;white-space:nowrap}
+.break-even-slider b{font-size:16px;color:#35166e;letter-spacing:0;text-transform:none}
+.break-even-slider input{flex:1;min-width:120px;accent-color:#5d2fb0;cursor:pointer}
+.break-even-foot{font-size:11px;line-height:1.4;color:#4a3c6b;margin-top:10px;padding-left:11px;border-left:3px solid #8b4bd1}
+.business-impact.feature-impact{width:100%;margin-left:0;padding:0;border:0;background:transparent}
+.business-impact.feature-impact .business-examples{display:block}
+.business-impact.feature-impact .design-count{min-height:420px;padding:44px 64px;align-items:center;text-align:center}
+.business-impact.feature-impact .design-count{contain:layout paint}
+.business-impact.feature-impact .design-count>strong{font-size:38px;max-width:760px;min-height:2.16em;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums lining-nums}
+.business-impact.feature-impact .design-count>.design-intro{max-width:760px;font-size:18px;line-height:1.55;min-height:1.55em}
+.business-impact.feature-impact .design-weight{width:min(100%,720px);justify-content:center}
+.feature-capital-bars{width:min(100%,900px);margin:12px auto 0;padding-top:10px;border-top:1px solid #cfc0ee;text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.feature-capital-bars .capital-profit-row{margin-bottom:0;background:rgba(255,255,255,.55);border:1px solid #d8caf3;border-radius:5px;padding:10px 12px}
+.feature-capital-bars .capital-profit-row:last-child{margin-bottom:0}
+.capital-profit-meta{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;font-size:11px;color:#4a3c6b;margin-bottom:7px}
+.capital-profit-meta span:last-child{text-align:right}
+.capital-profit-meta strong{display:block;font-size:16px;color:#35166e;margin-top:2px;font-variant-numeric:tabular-nums lining-nums}
+.capital-profit-meta span:last-child{color:#6f3fc3}
+.split-capital-bar{height:12px;display:flex;gap:6px;background:transparent}
+.split-capital-bar .capital-segment{height:100%;background:#6a5d85;min-width:4px}
+.split-capital-bar .profit-segment{height:100%;background:#8b4bd1;min-width:4px}
+.business-impact.feature-impact .material-value{min-height:2.36em;display:flex;align-items:center}
+.business-impact.feature-impact .material-meta{min-height:2.9em}
+.business-impact.feature-impact .math-equation{min-height:2.5em;display:flex;align-items:center;justify-content:center}
 .section-panel{padding:24px 30px;margin-top:14px}
 .section-head{display:flex;align-items:center;gap:18px;margin-bottom:18px}
 .section-head:after{content:"";height:1px;background:linear-gradient(90deg,var(--gold-2),transparent);flex:1}
@@ -233,8 +294,13 @@ body.presentation .break-grid{grid-template-columns:1fr 1.4fr}
 body.embed-calculator{background:#f7f4ff;overflow:hidden}
 body.embed-calculator .app-shell{padding:7mm;min-height:297mm}
 body.embed-calculator .topbar,body.embed-calculator .print-report,body.embed-calculator .toast{display:none!important}
-body.embed-calculator .workspace{max-width:none;margin:0;display:grid;grid-template-columns:60mm minmax(0,1fr);gap:5mm;align-items:stretch;height:283mm}
-body.embed-calculator .controls-card{position:static;top:auto;max-height:none;height:283mm;overflow:hidden;padding:4.5mm;box-shadow:none}
+body.embed-calculator .workspace{max-width:none;margin:0;display:grid;grid-template-columns:62mm minmax(0,1fr);gap:2.4mm 5mm;align-items:start;grid-template-rows:max-content max-content;height:283mm}
+body.embed-calculator .controls-card{grid-row:1;grid-column:1;position:static;top:auto;max-height:none;height:auto;overflow:visible;padding:4.5mm;box-shadow:none}
+body.embed-calculator .support-impact{grid-column:1;grid-row:2;margin-top:0;padding:3mm;align-self:stretch}
+body.embed-calculator .support-impact .business-impact-title{font-size:9px;margin-bottom:2mm}
+body.embed-calculator .support-impact .business-examples{display:flex!important;flex-direction:column;gap:2mm}
+body.embed-calculator .support-impact .business-example{font-size:9.5px;line-height:1.4;padding:2.2mm 2.5mm;flex:1 1 0}
+body.embed-calculator .support-impact .business-example strong{font-size:12.5px}
 body.embed-calculator .control-title{margin-bottom:3mm}
 body.embed-calculator .control-title h2{font-size:18px}
 body.embed-calculator .preset-label{font-size:9px;margin-bottom:1.5mm}
@@ -249,28 +315,53 @@ body.embed-calculator .field label small{font-size:8px}
 body.embed-calculator .field input{height:8mm;font-size:12px;padding-left:24px;padding-right:32px}
 body.embed-calculator .input-prefix{left:8px}.embed-calculator .input-suffix{right:8px;font-size:10px}
 body.embed-calculator .output-tools,body.embed-calculator .assumption{display:none}
-body.embed-calculator .results-area{min-width:0;height:283mm;overflow:hidden}
+body.embed-calculator .results-area{min-width:0;grid-column:2;grid-row:1/span 2;height:283mm;overflow:hidden}
 body.embed-calculator .hero-panel{height:283mm;padding:7mm;box-shadow:none}
 body.embed-calculator .hero-copy .eyebrow{margin-bottom:2mm}
-body.embed-calculator .hero-copy h1{font-size:31px}
-body.embed-calculator .hero-copy p{font-size:12px;line-height:1.4;margin-top:2mm}
-body.embed-calculator .comparison{gap:3mm;margin-top:5mm}
-body.embed-calculator .model-card{padding:5mm}
+body.embed-calculator .hero-copy h1{font-size:28px}
+body.embed-calculator .hero-copy p{font-size:11px;line-height:1.35;margin-top:1.5mm}
+body.embed-calculator .comparison{gap:3mm;margin-top:3mm}
+body.embed-calculator .model-card{padding:4mm}
 body.embed-calculator .model-card h2{font-size:19px}
-body.embed-calculator .formula{font-size:21px;margin-top:4mm;padding:4mm 0}
+body.embed-calculator .formula{font-size:21px;margin-top:2.5mm;padding:2.5mm 0}
 body.embed-calculator .mini-value{font-size:17px}
-body.embed-calculator .model-message{font-size:13px;margin-top:3mm}
-body.embed-calculator .kpis{margin-top:3mm}
-body.embed-calculator .kpi{padding:4mm 2mm}
+body.embed-calculator .model-message{font-size:12px;margin-top:2mm}
+body.embed-calculator .kpis{margin-top:2mm}
+body.embed-calculator .kpi{padding:3mm 2mm}
 body.embed-calculator .kpi-value{font-size:22px}
 body.embed-calculator .kpi-label{font-size:8px;margin-top:1.5mm}
-body.embed-calculator .business-impact{margin-top:3mm;padding:3.5mm 4mm}
+body.embed-calculator .business-impact{margin-top:3mm;padding:3mm 3.3mm;border-radius:5px}
 body.embed-calculator .business-impact-title{font-size:9px;margin-bottom:2mm}
-body.embed-calculator .business-examples{grid-template-columns:repeat(2,1fr);gap:4.5mm 6mm}
-body.embed-calculator .business-example{font-size:10px;padding-left:2.5mm}
-body.embed-calculator .business-example strong{font-size:12px}
-body.embed-summary .section-panel,body.embed-summary .detail-grid,body.embed-summary .method-note{display:none}
+body.embed-calculator .business-examples{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:repeat(3,1fr);gap:2mm 2.5mm}
+body.embed-calculator .business-example{font-size:9.5px;line-height:1.4;padding:2.2mm 2.5mm;border-radius:4px}
+body.embed-calculator .business-example strong{font-size:12.5px;line-height:1.2;margin-bottom:3px}
+body.embed-calculator .design-count{grid-column:2;grid-row:1/4;padding:4mm 4.5mm}
+body.embed-calculator .business-impact.feature-impact{width:100%;margin-left:0;padding:0}
+body.embed-calculator .business-impact.feature-impact .design-count{min-height:105mm;padding:9mm 14mm;align-items:center;text-align:center}
+body.embed-calculator .business-impact.feature-impact .design-count>strong{font-size:27px;max-width:145mm}
+body.embed-calculator .business-impact.feature-impact .design-count>.design-intro{max-width:155mm;font-size:16px;font-weight:700;line-height:1.4;color:#4c2394}
+body.embed-calculator .design-breakdown{gap:2.5mm;margin:4mm 0 1mm}
+body.embed-calculator .material-card,body.embed-calculator .design-math{padding:3mm}
+body.embed-calculator .material-label,body.embed-calculator .math-label{font-size:8px}
+body.embed-calculator .material-value{font-size:15px}
+body.embed-calculator .material-number{font-size:31px}
+body.embed-calculator .material-result-label{font-size:10px;margin-top:1mm}
+body.embed-calculator .material-meta{font-size:9px;line-height:1.35;margin-top:1.5mm}
+body.embed-calculator .math-equation{font-size:15px;margin-top:1.5mm}
+body.embed-calculator .business-impact.feature-impact .design-weight{width:min(100%,145mm);justify-content:center}
+body.embed-calculator .feature-capital-bars{width:min(100%,170mm);margin-top:2mm;padding-top:2mm;gap:3mm}
+body.embed-calculator .feature-capital-bars .capital-profit-row{margin-bottom:0;padding:2mm 2.5mm}
+body.embed-calculator .capital-profit-meta{font-size:8px;margin-bottom:1mm}
+body.embed-calculator .capital-profit-meta strong{font-size:10px}
+body.embed-calculator .split-capital-bar{height:3mm;gap:1.5mm}
+body.embed-calculator .design-count>strong{font-size:19px;line-height:1.08;margin-bottom:2mm}
+body.embed-calculator .design-weight{margin-top:1.5mm;padding-top:1.5mm;gap:3px 9px}
+body.embed-calculator .dw-row{font-size:8px;letter-spacing:.08em}
+body.embed-calculator .dw-row b{font-size:13px}
+body.embed-summary .section-panel,body.embed-summary .support-impact,body.embed-summary .detail-grid,body.embed-summary .method-note{display:none!important}
+body.embed-summary .break-even-illustration{display:none!important}
 body.embed-reuse .hero-panel,body.embed-reuse .method-note{display:none}
+body.embed-reuse .detail-grid{display:none!important}
 body.embed-reuse .section-panel{margin-top:0;padding:6mm;height:112mm;box-shadow:none}
 body.embed-reuse .section-head{margin-bottom:4mm}
 body.embed-reuse .section-head h2{font-size:22px}
@@ -279,6 +370,57 @@ body.embed-reuse .break-card,body.embed-reuse .reuse-card{padding:5mm}
 body.embed-reuse .break-main{font-size:30px}
 body.embed-reuse .reuse-table th,body.embed-reuse .reuse-table td{padding:5px 4px;font-size:10px}
 body.embed-reuse .repeat-message{font-size:12px;margin-top:3mm}
+body.embed-reuse .break-even-illustration{display:block;margin:4mm 0 0;padding:4mm 5mm}
+body.embed-reuse .break-even-heading{margin-bottom:3mm}
+body.embed-reuse .break-even-heading h3{font-size:15px}
+body.embed-reuse .break-even-heading p{font-size:9px}
+body.embed-reuse .break-even-steps{gap:2mm}
+body.embed-reuse .break-even-step{padding:3mm}
+body.embed-reuse .break-even-label{font-size:7px}
+body.embed-reuse .break-even-value{font-size:14px}
+body.embed-reuse .break-even-step.result .break-even-value{font-size:13px}
+body.embed-reuse .break-even-detail,body.embed-reuse .break-even-foot{font-size:8px}
+body.embed-reuse .break-even-slider{margin-top:2mm;padding-top:2mm;gap:3mm}
+body.embed-reuse .break-even-slider span{font-size:7px}
+body.embed-reuse .break-even-slider b{font-size:12px}
+body.embed-reuse .support-impact{display:flex!important;flex-direction:column;margin:4mm 0 0;padding:5mm 6mm;height:auto;min-height:0;box-shadow:none}
+body.embed-reuse .support-impact .business-impact-title{font-size:10px;margin-bottom:3mm}
+body.embed-reuse .support-impact .business-examples{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none;gap:3mm;height:auto}
+body.embed-reuse .support-impact .business-example{padding:4mm;font-size:10px;line-height:1.35;min-height:34mm}
+body.embed-reuse .support-impact .business-example strong{font-size:13px;line-height:1.2;margin-bottom:2mm}
+
+/* Keep the complete reuse story inside the portrait presentation slide. */
+body.embed-reuse .section-panel{height:88mm;padding:4mm 5mm}
+body.embed-reuse .section-head{margin-bottom:2.5mm}
+body.embed-reuse .section-head h2{font-size:18px;line-height:1.02}
+body.embed-reuse .break-grid{grid-template-columns:.78fr 1.22fr;gap:3mm}
+body.embed-reuse .break-card,body.embed-reuse .reuse-card{padding:3.5mm;overflow:hidden}
+body.embed-reuse .break-title{font-size:8px}
+body.embed-reuse .break-main{font-size:20px;line-height:.98;margin-top:2mm;overflow-wrap:anywhere}
+body.embed-reuse .break-equation{font-size:9px;line-height:1.3;margin-top:2mm}
+body.embed-reuse .break-status{font-size:8px;line-height:1.2;margin-top:2.5mm;padding:2mm}
+body.embed-reuse .reuse-card h3{font-size:17px;line-height:1.02;margin-bottom:2mm}
+body.embed-reuse .reuse-table th,body.embed-reuse .reuse-table td{padding:3px 2px;font-size:8px}
+body.embed-reuse .repeat-message{font-size:8px;line-height:1.3;margin-top:2mm;padding-left:2mm}
+body.embed-reuse .break-even-illustration{margin-top:3mm;padding:3mm 4mm}
+body.embed-reuse .break-even-heading{align-items:center;margin-bottom:2mm}
+body.embed-reuse .break-even-heading h3{font-size:13px;line-height:1.05}
+body.embed-reuse .break-even-heading p{font-size:7px;max-width:43mm}
+body.embed-reuse .break-even-steps{gap:1.5mm}
+body.embed-reuse .break-even-step{padding:2mm}
+body.embed-reuse .break-even-label{font-size:6px}
+body.embed-reuse .break-even-value{font-size:11px;margin-top:1mm}
+body.embed-reuse .break-even-step.result .break-even-value{font-size:10px}
+body.embed-reuse .break-even-detail{font-size:6.5px;margin-top:1mm}
+body.embed-reuse .break-even-slider{margin-top:1.5mm;padding-top:1.5mm}
+body.embed-reuse .break-even-slider span{font-size:6.5px}
+body.embed-reuse .break-even-slider b{font-size:10px}
+body.embed-reuse .break-even-foot{font-size:6.5px;line-height:1.25;margin-top:1.5mm;padding-left:2mm}
+body.embed-reuse .support-impact{margin-top:3mm;padding:3mm 4mm}
+body.embed-reuse .support-impact .business-impact-title{font-size:8px;margin-bottom:2mm}
+body.embed-reuse .support-impact .business-examples{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:2mm;height:auto}
+body.embed-reuse .support-impact .business-example{padding:2.5mm;font-size:7.5px;line-height:1.25;min-height:31mm;display:block;overflow:hidden}
+body.embed-reuse .support-impact .business-example strong{font-size:9px;line-height:1.15;margin-bottom:1mm}
 body.embed-reuse .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-top:4mm;height:167mm}
 body.embed-reuse .detail-card{padding:5mm;box-shadow:none;overflow:hidden}
 body.embed-reuse .detail-card h2,body.embed-reuse .scale-card h2{font-size:21px}
@@ -286,25 +428,75 @@ body.embed-reuse .compare-table th,body.embed-reuse .compare-table td{padding:6p
 body.embed-reuse .scale-result-value{font-size:27px}
 @media(min-aspect-ratio:4/3){
   body.embed-calculator{overflow:hidden}
-  body.embed-calculator .app-shell{padding:20px;min-height:100vh}
-  body.embed-calculator .workspace{grid-template-columns:300px minmax(0,1fr);gap:18px;height:calc(100vh - 40px)}
-  body.embed-calculator .controls-card{height:calc(100vh - 40px);padding:18px;overflow:auto}
-  body.embed-calculator .results-area{height:calc(100vh - 40px)}
-  body.embed-calculator .hero-panel{height:calc(100vh - 40px);padding:28px 34px}
-  body.embed-calculator .hero-copy h1{font-size:clamp(38px,4vw,62px)}
-  body.embed-calculator .hero-copy p{font-size:15px}
-  body.embed-calculator .comparison{width:min(100%,1120px);margin:18px auto 0;gap:16px}
-  body.embed-calculator .model-card{padding:18px 20px}
+  body.embed-calculator .app-shell{padding:12px 20px;min-height:100vh}
+  body.embed-calculator .workspace{grid-template-columns:300px minmax(0,1fr);grid-template-rows:auto 1fr;gap:10px 18px;height:calc(100vh - 24px)}
+  body.embed-calculator .controls-card{height:auto;padding:12px 16px;overflow:visible}
+  body.embed-calculator .control-title{margin-bottom:8px}
+  body.embed-calculator .preset-label{margin-bottom:5px}
+  body.embed-calculator .presets{margin-bottom:7px}
+  body.embed-calculator .field-group{padding-top:7px;margin-top:7px}
+  body.embed-calculator .field-group-title{margin-bottom:6px}
+  body.embed-calculator .field{margin-bottom:6px}
+  body.embed-calculator .field label{margin-bottom:3px}
+  body.embed-calculator .field input{height:28px}
+  body.embed-calculator .support-impact{height:100%;min-height:0;padding:10px 12px;overflow:hidden;display:flex;flex-direction:column}
+  body.embed-calculator .support-impact .business-impact-title{font-size:9.5px;margin-bottom:6px;flex:0 0 auto}
+  body.embed-calculator .support-impact .business-examples{gap:6px;height:calc(100% - 20px);min-height:0}
+  body.embed-calculator .support-impact .business-example{font-size:9.7px;line-height:1.2;padding:9px 11px;min-height:0;overflow:hidden;flex:1 1 0;display:flex;flex-direction:column;justify-content:center}
+  body.embed-calculator .support-impact .business-example strong{font-size:13px;line-height:1.15;margin-bottom:2px}
+  body.embed-calculator .results-area{height:calc(100vh - 24px)}
+  body.embed-calculator .hero-panel{height:calc(100vh - 24px);padding:20px 34px;display:flex;flex-direction:column;overflow:hidden}
+  body.embed-reuse .hero-panel{display:none}
+  body.embed-calculator .hero-copy h1{font-size:clamp(34px,3.2vw,50px);line-height:.98}
+  body.embed-calculator .hero-copy p{font-size:13px;line-height:1.35;margin-top:7px}
+  body.embed-calculator .comparison{width:min(100%,1120px);margin:11px auto 0;gap:16px}
+  body.embed-calculator .model-card{padding:14px 18px}
   body.embed-calculator .model-label{min-height:1.3em}
-  body.embed-calculator .model-card h2{font-size:24px;min-height:1.45em;margin-top:5px}
-  body.embed-calculator .formula{font-size:clamp(25px,2.1vw,34px);margin-top:9px;padding:11px 0}
-  body.embed-calculator .model-detail{margin-top:10px}
-  body.embed-calculator .model-message{margin-top:9px}
-  body.embed-calculator .kpis{width:min(100%,1120px);margin:10px auto 0}
-  body.embed-calculator .kpi{padding:12px 9px}
+  body.embed-calculator .model-card h2{font-size:21px;min-height:1.3em;margin-top:3px}
+  body.embed-calculator .formula{font-size:clamp(23px,1.9vw,30px);margin-top:6px;padding:8px 0}
+  body.embed-calculator .model-detail{margin-top:6px}
+  body.embed-calculator .model-message{margin-top:6px}
+  body.embed-calculator .kpis{width:min(100%,1120px);margin:6px auto 0}
+  body.embed-calculator .kpi{padding:8px 9px}
   body.embed-calculator .business-impact{width:min(100%,1120px);margin-left:auto;margin-right:auto}
-  body.embed-reuse .results-area{display:grid;grid-template-rows:minmax(0,.92fr) minmax(0,1.08fr);gap:14px}
+  body.embed-calculator .business-impact.feature-impact{width:100%;margin-left:0;margin-right:0;padding:0;flex:1 1 auto;min-height:0;overflow:hidden}
+  body.embed-calculator .business-impact.feature-impact .business-examples{height:100%;min-height:0;display:flex}
+  body.embed-calculator .business-impact-title{font-size:12px}
+  body.embed-calculator .business-examples{gap:14px 16px}
+  body.embed-calculator .business-example{font-size:14px;line-height:1.5;padding:15px 17px}
+  body.embed-calculator .business-example strong{font-size:18px}
+  body.embed-calculator .design-count{padding:22px 25px}
+  body.embed-calculator .business-impact.feature-impact .design-count{height:auto;min-height:0;padding:20px 54px;flex:1 1 auto}
+  body.embed-calculator .business-impact.feature-impact .design-count>.design-intro{min-height:48px;display:flex;align-items:center;justify-content:center;margin-bottom:3px}
+  body.embed-calculator .feature-capital-bars{margin-top:6px;padding-top:5px}
+  body.embed-calculator .design-count>strong{font-size:29px}
+  body.embed-calculator .design-breakdown{gap:12px;margin:15px 0 2px}
+  body.embed-calculator .material-card,body.embed-calculator .design-math{padding:13px 15px}
+  body.embed-calculator .material-value{font-size:19px}
+  body.embed-calculator .material-number{font-size:42px}
+  body.embed-calculator .material-result-label{font-size:12px}
+  body.embed-calculator .material-meta{font-size:11px}
+  body.embed-calculator .math-equation{font-size:18px}
+  body.embed-reuse .results-area{display:flex;flex-direction:column;gap:14px;height:calc(100vh - 24px);overflow:hidden}
   body.embed-reuse .section-panel{height:auto;margin:0;padding:24px 28px;overflow:hidden}
+  body.embed-reuse .break-even-illustration{height:auto;margin:0;padding:16px 20px;overflow:hidden;flex:0 0 auto}
+  body.embed-reuse .break-even-heading{margin-bottom:10px}
+  body.embed-reuse .break-even-heading h3{font-size:18px}
+  body.embed-reuse .break-even-heading p{font-size:11px}
+  body.embed-reuse .break-even-steps{gap:9px}
+  body.embed-reuse .break-even-step{padding:10px 11px}
+  body.embed-reuse .break-even-label{font-size:8px}
+  body.embed-reuse .break-even-value{font-size:18px}
+  body.embed-reuse .break-even-step.result .break-even-value{font-size:16px}
+  body.embed-reuse .break-even-detail,body.embed-reuse .break-even-foot{font-size:10px}
+  body.embed-reuse .break-even-slider{margin-top:8px;padding-top:8px}
+  body.embed-reuse .break-even-slider span{font-size:9px}
+  body.embed-reuse .break-even-slider b{font-size:14px}
+  body.embed-reuse .support-impact{height:auto;min-height:0;margin:0;padding:18px 22px;overflow:hidden;flex:0 0 auto}
+  body.embed-reuse .support-impact .business-impact-title{font-size:12px;margin-bottom:10px}
+  body.embed-reuse .support-impact .business-examples{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none;gap:12px;height:auto}
+  body.embed-reuse .support-impact .business-example{padding:13px 15px;font-size:12px;line-height:1.35;min-height:108px;justify-content:flex-start}
+  body.embed-reuse .support-impact .business-example strong{font-size:15px;line-height:1.2;margin-bottom:6px}
   body.embed-reuse .detail-grid{height:auto;margin:0;gap:14px;overflow:hidden}
   body.embed-reuse .detail-card{padding:22px 25px}
 }
@@ -335,6 +527,10 @@ body.embed-reuse .scale-result-value{font-size:27px}
   .presets{grid-template-columns:1fr 1fr}
   .comparison,.break-grid{grid-template-columns:1fr}
   .business-examples{grid-template-columns:1fr}
+  .design-count{grid-column:1;grid-row:auto}
+  .design-breakdown{grid-template-columns:1fr}
+  .feature-capital-bars{grid-template-columns:1fr}
+  .business-impact.feature-impact{width:100%;margin-left:0}
   .kpis{grid-template-columns:1fr 1fr}
   .kpi:nth-child(2){border-right:0}.kpi:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .model-detail{grid-template-columns:1fr 1fr}
@@ -351,7 +547,7 @@ body.embed-reuse .scale-result-value{font-size:27px}
 }
 
 @page{size:A4 portrait;margin:0}
-@media print{
+@media print{.design-weight{display:none!important}
   html,body{width:210mm;height:297mm;background:#ffffff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .app-shell,.toast{display:none!important}
   .print-report{display:block;width:210mm;height:297mm;overflow:hidden;background:#faf8ff;color:#3a1a75;padding:12mm 14mm 10mm;position:relative}
@@ -366,12 +562,12 @@ body.embed-reuse .scale-result-value{font-size:27px}
   .print-assumption .v{font-family:Georgia,serif;font-size:11pt;font-weight:700;margin-top:1mm}
   .print-models{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:5mm}
   .print-model{border:.5pt solid #ece5fb;background:#ffffff;padding:4.5mm;display:flex;flex-direction:column}
-  .print-model.smart{background:#35166e;color:#f3eeff;border-color:#35166e}
+  .print-model.smart{background:#f1ebff;color:#35166e;border-color:#cbb5f1}
   .print-model .lab{font-size:6.2pt;line-height:1.2;letter-spacing:.15em;text-transform:uppercase;color:#9b86c9;font-weight:700;min-height:2.4em}
-  .print-model.smart .lab{color:#d9c9ff}
+  .print-model.smart .lab{color:#6b5595}
   .print-model h2{font-size:15pt;margin-top:2mm;min-height:2.3em}
   .print-formula{font-family:Georgia,serif;font-size:19pt;font-weight:700;padding:3mm 0;margin-top:3mm;border-top:.5pt solid #ece5fb;border-bottom:.5pt solid #ece5fb}
-  .print-model.smart .print-formula{border-color:rgba(214,177,106,.35)}
+  .print-model.smart .print-formula{border-color:#cbb5f1}
   .print-model p{font-family:Arial,sans-serif;font-size:9pt;font-weight:600;line-height:1.4;margin-top:3mm;font-variant-numeric:tabular-nums lining-nums}
   .print-kpis{display:grid;grid-template-columns:repeat(4,1fr);margin-top:4mm;border-top:.6pt solid #c3a9ff;border-bottom:.5pt solid #ece5fb}
   .print-kpi{text-align:center;padding:3mm 2mm;border-right:.5pt solid #ece5fb}
@@ -389,6 +585,7 @@ body.embed-reuse .scale-result-value{font-size:27px}
   .print-table th:first-child,.print-table td:first-child{text-align:left;padding-left:0}
   .print-table td{font-size:7.2pt;text-align:right;padding:1.8mm;border-bottom:.4pt solid #ece5fb}
   .print-table td:last-child{font-weight:700;color:var(--success)}
+  .cost-cleared{color:#9b86c9}
   .print-scale{margin-top:4mm;background:#35166e;color:#f3eeff;padding:4mm 5mm;display:grid;grid-template-columns:1.3fr 1fr;gap:6mm;align-items:center}
   .print-scale .ey{font-size:6pt;text-transform:uppercase;letter-spacing:.16em;color:#d9c9ff}
   .print-scale h2{font-size:14pt;margin-top:1.5mm}
@@ -567,15 +764,15 @@ body.embed-calculator .assumption{background:#f7f4ff;border-color:#7a4fc0}
 
 body.embed-calculator .comparison{gap:28px}
 body.embed-calculator .model-card{background:#ffffff;color:#3a2d55;border:2px solid #d9c9ff;box-shadow:0 12px 28px rgba(53,22,110,.08)}
-body.embed-calculator .model-card.smart{background:#35166e;color:#f7f4ff;border:2px solid #35166e;box-shadow:0 14px 32px rgba(53,22,110,.22)}
+body.embed-calculator .model-card.smart{background:#f1ebff;color:#35166e;border:2px solid #cbb5f1;border-left:6px solid #6f3fc3;box-shadow:0 12px 26px rgba(91,55,154,.12)}
 body.embed-calculator .smart .model-label,
-body.embed-calculator .smart .mini-label{color:#d9c9ff}
+body.embed-calculator .smart .mini-label{color:#6b5595}
 body.embed-calculator .smart .formula,
 body.embed-calculator .smart .formula strong,
-body.embed-calculator .smart .model-message{color:#f7f4ff;border-color:#7a4fc0}
+body.embed-calculator .smart .model-message{color:#35166e;border-color:#cbb5f1}
 body.embed-calculator .model-card.smart h2,
-body.embed-calculator .model-card.smart .mini-value{color:#f7f4ff}
-body.embed-calculator .model-card.smart .accent{color:#d9c9ff}
+body.embed-calculator .model-card.smart .mini-value{color:#35166e}
+body.embed-calculator .model-card.smart .accent{color:#5d2fb0}
 body.embed-calculator .formula{color:#35166e;border-color:#d9c9ff}
 body.embed-calculator .accent,
 body.embed-calculator .kpi-value{color:#4c2394}
@@ -593,6 +790,19 @@ body.embed-calculator .reuse-table th,
 body.embed-calculator .reuse-table td{border-color:#d9c9ff}
 body.embed-calculator .reuse-table th{color:#6a5d85}
 body.embed-calculator .reuse-table td:last-child{color:#4c2394}
+
+/* Page 5: match the SMART calculator's light lavender treatment. */
+body.embed-reuse .break-card{
+  background:#f1ebff;
+  color:#35166e;
+  border:1px solid #cbb5f1;
+  box-shadow:0 12px 26px rgba(91,55,154,.10);
+}
+body.embed-reuse .break-card:before{background:#6f3fc3}
+body.embed-reuse .break-title,
+body.embed-reuse .break-equation,
+body.embed-reuse .break-main{color:#35166e}
+body.embed-reuse .break-status{background:#ffffff;color:#35166e;border:1px solid #d8caf3}
 body.embed-calculator .repeat-message{border-color:#7a4fc0}
 
 body.embed-calculator .compare-table th,
@@ -664,7 +874,7 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
       <p class="assumption">The SMART model uses the Traditional profit margin and display weight for the gold order. Return is calculated against each model’s display investment.</p>
     </aside>
 
-    <div class="results-area" aria-live="polite">
+      <div class="results-area" aria-live="polite">
       <section class="panel hero-panel">
         <div class="hero-copy">
           <div class="eyebrow">The SMART Capital Advantage</div>
@@ -693,13 +903,40 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
           <div class="kpi"><div class="kpi-value" id="efficiencyKpi">30×</div><div class="kpi-label">Greater capital efficiency</div></div>
           <div class="kpi"><div class="kpi-value" id="breakEvenKpi">1st</div><div class="kpi-label">Order recovers prototype cost</div></div>
         </div>
-        <div class="business-impact">
-          <div class="business-impact-title">Real-world business impact</div>
+        <div class="business-impact feature-impact">
           <div class="business-examples">
-            <div class="business-example"><strong id="businessRatio">About 30 SMART displays</strong>Showcase many ornament designs for roughly the capital normally tied up in one finished-gold display.</div>
-            <div class="business-example"><strong id="businessReleased">₹14,500 capital stays free</strong>Keep working capital available for confirmed orders, marketing, and daily operations.</div>
-            
-            <div class="business-example"><strong id="businessHundredValue">₹104 Traditional vs ₹224 SMART</strong><span id="businessHundredText">For every ₹100 committed, Traditional generates a 4% return and ₹104 total value. SMART generates a 124% return and ₹224 total economic value while its display asset remains reusable.</span></div><div class="business-example"><strong id="businessRecovery">1st order recovers display cost</strong><span id="businessRecoveryNote">The first sale recovers the display cost and the ornament stays available for later orders.</span></div>
+            <div class="business-example design-count">
+              <span class="design-intro" id="businessRatioNote">Same budget: 1 gold design or 30 gold-plated silver designs.</span>
+              <div class="design-breakdown">
+                <div class="material-card">
+                  <div class="material-label">Gold ornament</div>
+                  <div class="material-number" id="goldDesignNumber">1</div>
+                  <div class="material-result-label" id="goldDesignLabel">gold design</div>
+                  <div class="material-meta" id="goldDesignMeta">1g each at ₹15,475 per piece.</div>
+                </div>
+                <div class="design-math">
+                  <div class="math-label">Same-capital calculation</div>
+                  <div class="math-equation" id="designCalculation">₹15,475 ÷ ₹500 = 30 designs</div>
+                </div>
+                <div class="material-card smart-material">
+                  <div class="material-label">Gold-plated silver ornament</div>
+                  <div class="material-number" id="smartDesignNumber">30</div>
+                  <div class="material-result-label" id="smartDesignLabel">gold-plated silver designs</div>
+                  <div class="material-meta" id="smartDesignMeta">1g each at ₹500 per design.</div>
+                </div>
+              </div>
+              <label class="design-weight"><span class="dw-row">Weight of each design<b id="designWeightLabel">1g</b></span><input id="designWeight" type="range" min="0.5" max="20" step="0.5" value="1" aria-label="Weight of each design in grams"></label>
+              <div class="bar-set feature-capital-bars" aria-label="Display capital comparison">
+                <div class="capital-profit-row">
+                  <div class="capital-profit-meta"><span>Traditional display capital<strong id="featureTradBarLabel">₹15,475</strong></span><span><b id="featureTradProfitRate">4%</b> profit<strong id="featureTradProfit">₹619</strong></span></div>
+                  <div class="split-capital-bar"><div class="capital-segment" id="featureTradCapitalSegment" style="flex:96 1 0"></div><div class="profit-segment" id="featureTradProfitSegment" style="flex:4 1 0"></div></div>
+                </div>
+                <div class="capital-profit-row">
+                  <div class="capital-profit-meta"><span>SMART display capital<strong id="featureSmartBarLabel">₹500</strong></span><span><b id="featureSmartProfitRate">124%</b> profit<strong id="featureSmartProfit">₹619</strong></span></div>
+                  <div class="split-capital-bar"><div class="capital-segment" id="featureSmartCapitalSegment" style="flex:45 1 0"></div><div class="profit-segment" id="featureSmartProfitSegment" style="flex:55 1 0"></div></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -718,6 +955,44 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
             <table class="reuse-table"><thead><tr><th>Uses</th><th>Total profit</th><th>One-time prototype</th><th>Surplus after cost</th></tr></thead><tbody id="reuseRows"></tbody></table>
             <p class="repeat-message" id="repeatMessage">The first order pays for the prototype. Every repeat order builds the return.</p>
           </div>
+        </div>
+      </section>
+
+      <section class="break-even-illustration" aria-label="SMART display investment break-even illustration">
+        <div class="break-even-heading">
+          <h3>When does the SMART display pay for itself?</h3>
+          <p>One-time display investment recovered through confirmed-order profit.</p>
+        </div>
+        <div class="break-even-steps">
+          <div class="break-even-step">
+            <div class="break-even-label">SMART display investment</div>
+            <div class="break-even-value" id="breakEvenInvestment">₹500</div>
+          </div>
+          <div class="break-even-step">
+            <div class="break-even-label" id="breakEvenProfitLabel">Profit per 1g confirmed order</div>
+            <div class="break-even-value" id="breakEvenProfit">₹619</div>
+          </div>
+          <div class="break-even-step">
+            <div class="break-even-label">Break-even calculation</div>
+            <div class="break-even-value" id="breakEvenCalculation">₹500 ÷ ₹619 = 0.81</div>
+            <div class="break-even-detail" id="breakEvenRounding">Rounded up to 1 order</div>
+          </div>
+          <div class="break-even-step result">
+            <div class="break-even-label">Recovery point</div>
+            <div class="break-even-value" id="breakEvenResult">Recovered by the 1st order</div>
+            <div class="break-even-detail" id="breakEvenSurplus">₹119 surplus after recovery</div>
+          </div>
+        </div>
+        <label class="break-even-slider"><span>Confirmed order weight&nbsp; <b id="recoveryOrderWeightLabel">1g</b></span><input id="recoveryOrderWeight" type="range" min="0.5" max="100" step="0.5" value="1" aria-label="Confirmed order weight in grams"></label>
+        <p class="break-even-foot" id="breakEvenFoot">From the 2nd order onward, each reuse can generate the full ₹619 profit without additional display investment.</p>
+      </section>
+
+      <section class="support-impact" aria-label="Supporting real-world business impact">
+        <div class="business-impact-title">Real-world business impact</div>
+        <div class="business-examples">
+          <div class="business-example"><strong id="businessReleased">₹14,500 capital stays free</strong>Keep working capital available for confirmed orders, marketing, and daily operations.</div>
+          <div class="business-example"><strong id="businessHundredValue">Traditional ROI – 4% · SMART ROI – 124%</strong><span id="businessHundredText">For every ₹100 committed, Traditional generates a 4% return and ₹104 total value. SMART generates a 124% return and ₹224 total economic value while its display asset remains reusable.</span></div>
+          <div class="business-example"><strong id="businessRecovery">1st order recovers display cost</strong><span id="businessRecoveryNote">The first sale recovers the display cost and the ornament stays available for later orders.</span></div>
         </div>
       </section>
 
@@ -814,6 +1089,7 @@ const roundDisplay=n=>{n=Number.isFinite(n)?n:0;const sign=n<0?-1:1,a=Math.abs(n
 const fmtInr=n=>inr.format(roundDisplay(n)).replace(/\.00$/,"");
 const fmtNum=n=>num.format(roundDisplay(n));
 const fmtPct=n=>`${fmtNum(n)}%`;
+const fmtW=n=>new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(Number.isFinite(n)?Math.max(0,n):0);
 const ordinal=n=>{n=Math.max(1,Math.ceil(n));const m=n%100;if(m>=11&&m<=13)return `${n}th`;return `${n}${n%10===1?'st':n%10===2?'nd':n%10===3?'rd':'th'}`};
 const safe=(a,b)=>b? a/b:0;
 
@@ -822,8 +1098,10 @@ function readValues(){
   ids.forEach(id=>v[id]=Math.max(Number($(id).value)||0,['makingCharges','margin','silverMakingCharges','smartMargin'].includes(id)?0:0.01));
   v.smartMargin=v.margin;
   v.silverWeight=v.goldDisplayWeight;
-  $('smartMargin').value=v.margin;
-  $('silverWeight').value=v.goldDisplayWeight;
+  // Mirror what was typed, not the clamped value. Clearing the source field left the
+  // 0.01 floor showing in the mirrored field, which read as a figure nobody entered.
+  $('smartMargin').value=$('margin').value;
+  $('silverWeight').value=$('goldDisplayWeight').value;
   return v;
 }
 
@@ -848,10 +1126,16 @@ function calculate(v){
   return {tradProfitPerGram,smartProfitPerGram,tradProfitPerSale,smartProfitPerSale,tradGoldValue,tradCapital,prototypeCapital,tradRoi,smartRoi,capitalRatio,efficiencyRatio,firstSurplus,breakEvenOrders,breakEvenWhole,scalePrototype,scaleProfit,scaleSurplus:scaleProfit-scalePrototype};
 }
 
-function setText(id,value){const el=$(id);if(el)el.textContent=value}
+function setText(id,value){const el=$(id);if(el&&el.textContent!==String(value))el.textContent=value}
 function projectionRows(v,c){
   const uses=[1,2,5,10];
-  return uses.map(use=>({use,total:c.smartProfitPerSale*use,cost:c.prototypeCapital,surplus:c.smartProfitPerSale*use-c.prototypeCapital}));
+  const orderWeight=Math.max(.5,Number($('recoveryOrderWeight')?.value)||1);
+  return uses.map(use=>{
+    const total=c.smartProfitPerGram*orderWeight*use;
+    // Keep the one-time prototype value visible as a reference in every row. It is
+    // subtracted once—not multiplied by the number of uses—to calculate surplus.
+    return {use,total,cost:c.prototypeCapital,surplus:total-c.prototypeCapital};
+  });
 }
 function rowMarkup(rows){return rows.map(r=>`<tr><td>${r.use}</td><td>${fmtInr(r.total)}</td><td>${fmtInr(r.cost)}</td><td>${fmtInr(r.surplus)}</td></tr>`).join('')}
 
@@ -864,16 +1148,71 @@ function update(){
   setText('tradMessage',`${fmtInr(c.tradCapital)} remains exposed to generate ${tradProfit}.`);
   setText('smartMessage',`${fmtInr(c.prototypeCapital)} is committed to generate ${smartProfit} profit.`);
   setText('sameProfitKpi',smartProfit);setText('lowerInvestmentKpi',`${fmtNum(c.capitalRatio)}×`);setText('efficiencyKpi',`${fmtNum(c.efficiencyRatio)}×`);setText('breakEvenKpi',ordinal(c.breakEvenWhole));
-  setText('businessRatio',`About ${fmtNum(c.capitalRatio)} SMART displays`);setText('businessReleased',`${fmtInr(Math.max(0,c.tradCapital-c.prototypeCapital))} capital stays free`);
-  setText('businessHundredValue',`${fmtInr(100+c.tradRoi)} Traditional vs ${fmtInr(100+c.smartRoi)} SMART`);setText('businessRecovery',c.firstSurplus>=0?`${ordinal(c.breakEvenWhole)} order recovers ${fmtInr(c.prototypeCapital)} display cost`:`Display cost recovered by the ${ordinal(c.breakEvenWhole)} order`);setText('businessRecoveryNote',c.firstSurplus>=0?`${fmtInr(c.smartProfitPerSale)} first-sale profit recovers the display cost and leaves ${fmtInr(c.firstSurplus)} surplus. From the second order onward the reusable ornament can generate the full ${fmtInr(c.smartProfitPerSale)} profit without additional display investment.`:`${fmtInr(c.smartProfitPerSale)} per sale does not cover the ${fmtInr(c.prototypeCapital)} display cost on its own. It is fully recovered by the ${ordinal(c.breakEvenWhole)} order, and from the ${ordinal(c.breakEvenWhole+1)} onward each sale returns the full ${fmtInr(c.smartProfitPerSale)} without additional display investment.`);
+  {
+    // How many separate designs the same capital puts in the showcase. The 31x ratio
+    // never moves, because weight cancels on both sides; the counts do, which is what a
+    // retailer is actually asking.
+    const dw=Math.max(0.1,Number($('designWeight')?.value)||1);
+    setText('designWeightLabel',`${fmtW(dw)}g`);
+    const protoEach=(v.silverCost+v.silverMakingCharges)*dw;
+    const goldEach=c.tradCapital/Math.max(v.goldDisplayWeight,0.0001)*dw;
+    const tradDesigns=Math.floor(safe(v.goldDisplayWeight,dw));
+    const smartDesigns=Math.floor(safe(c.tradCapital,protoEach));
+    setText('businessRatioNote',tradDesigns>=1
+      ?`Same budget: ${fmtNum(tradDesigns)} gold ${tradDesigns===1?'design':'designs'} or ${fmtNum(smartDesigns)} gold-plated silver ${smartDesigns===1?'design':'designs'}.`
+      :`Not enough for 1 gold design. Enough for ${fmtNum(smartDesigns)} gold-plated silver ${smartDesigns===1?'design':'designs'}.`);
+    setText('goldDesignNumber',fmtNum(tradDesigns));
+    setText('goldDesignLabel',`gold ${tradDesigns===1?'design':'designs'}`);
+    setText('goldDesignMeta',`${fmtW(dw)}g each at ${fmtInr(goldEach)} per gold piece.`);
+    setText('designCalculation',`${fmtInr(c.tradCapital)} ÷ ${fmtInr(protoEach)} = ${fmtNum(smartDesigns)} designs`);
+    setText('smartDesignNumber',fmtNum(smartDesigns));
+    setText('smartDesignLabel',`gold-plated silver ${smartDesigns===1?'design':'designs'}`);
+    setText('smartDesignMeta',`${fmtW(dw)}g each at ${fmtInr(protoEach)} per gold-plated silver design.`);
+  }
+  const recoveryOrderWeight=Math.max(.5,Number($('recoveryOrderWeight')?.value)||1);
+  const recoveryProfitPerOrder=c.smartProfitPerGram*recoveryOrderWeight;
+  const recoveryOrders=safe(c.prototypeCapital,recoveryProfitPerOrder);
+  const recoveryWhole=Math.max(1,Math.ceil(recoveryOrders));
+  const recoveryProfitText=fmtInr(recoveryProfitPerOrder);
+  setText('recoveryOrderWeightLabel',`${fmtW(recoveryOrderWeight)}g`);
+  setText('breakEvenProfitLabel',`Profit per ${fmtW(recoveryOrderWeight)}g confirmed order`);
+  setText('breakEvenInvestment',fmtInr(c.prototypeCapital));
+  setText('breakEvenProfit',recoveryProfitText);
+  if(recoveryProfitPerOrder>0){
+    const recoveredBefore=recoveryProfitPerOrder*Math.max(0,recoveryWhole-1);
+    const remainingBefore=Math.max(0,c.prototypeCapital-recoveredBefore);
+    const surplusAtRecovery=Math.max(0,recoveryProfitPerOrder*recoveryWhole-c.prototypeCapital);
+    const ratioText=new Intl.NumberFormat('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2}).format(recoveryOrders);
+    setText('breakEvenCalculation',`${fmtInr(c.prototypeCapital)} ÷ ${recoveryProfitText} = ${ratioText}`);
+    setText('breakEvenRounding',`Rounded up to ${fmtNum(recoveryWhole)} ${recoveryWhole===1?'order':'orders'}`);
+    setText('breakEvenResult',`Recovered by the ${ordinal(recoveryWhole)} order`);
+    setText('breakEvenSurplus',recoveryWhole===1
+      ?`${fmtInr(surplusAtRecovery)} surplus after recovery`
+      :`${fmtInr(remainingBefore)} remains before the ${ordinal(recoveryWhole)} order; ${fmtInr(surplusAtRecovery)} surplus after it`);
+    setText('breakEvenFoot',`Assuming ${fmtW(recoveryOrderWeight)}g per confirmed order, from the ${ordinal(recoveryWhole+1)} order onward each reuse can generate the full ${recoveryProfitText} profit without additional display investment.`);
+  }else{
+    setText('breakEvenCalculation',`${fmtInr(c.prototypeCapital)} ÷ ₹0`);
+    setText('breakEvenRounding','A positive profit per order is required');
+    setText('breakEvenResult','No break-even at ₹0 profit');
+    setText('breakEvenSurplus','Increase the profit margin to calculate recovery');
+    setText('breakEvenFoot','Break-even updates automatically when the profit per confirmed order is greater than zero.');
+  }
+  setText('businessReleased',`${fmtInr(Math.max(0,c.tradCapital-c.prototypeCapital))} capital stays free`);
+  setText('businessHundredValue',`Traditional ROI – ${fmtPct(c.tradRoi)} · SMART ROI – ${fmtPct(c.smartRoi)}`);setText('businessRecovery',`Display cost recovered by the ${ordinal(recoveryWhole)} order`);setText('businessRecoveryNote',`${recoveryProfitText} profit per ${fmtW(recoveryOrderWeight)}g confirmed order recovers the ${fmtInr(c.prototypeCapital)} display cost by the ${ordinal(recoveryWhole)} order. From the ${ordinal(recoveryWhole+1)} order onward, each reuse can generate the full ${recoveryProfitText} profit without additional display investment.`);
   setText('businessHundredText',`For every ₹100 committed, Traditional generates a ${fmtPct(c.tradRoi)} return and ${fmtInr(100+c.tradRoi)} total value. SMART generates a ${fmtPct(c.smartRoi)} return and ${fmtInr(100+c.smartRoi)} total economic value while its display asset remains reusable.`);
-  const surplusLabel=c.firstSurplus>=0?`${fmtInr(c.firstSurplus)} surplus`:`${fmtInr(Math.abs(c.firstSurplus))} to break even`;
-  setText('firstSurplus',surplusLabel);setText('firstSurplusEquation',`${smartProfit} profit − ${fmtInr(c.prototypeCapital)} display investment`);
-  setText('breakStatus',c.breakEvenOrders<=1?'Prototype cost recovered':`Break-even after ${ordinal(c.breakEvenWhole)} order`);
+  const firstOrderBalance=recoveryProfitPerOrder-c.prototypeCapital;
+  const surplusLabel=firstOrderBalance>=0?`${fmtInr(firstOrderBalance)} surplus`:`${fmtInr(Math.abs(firstOrderBalance))} to break even`;
+  setText('firstSurplus',surplusLabel);setText('firstSurplusEquation',`${recoveryProfitText} profit − ${fmtInr(c.prototypeCapital)} display investment`);
+  setText('breakStatus',recoveryOrders<=1?'Prototype cost recovered':`Break-even after ${ordinal(recoveryWhole)} order`);
   $('reuseRows').innerHTML=rowMarkup(rows);
-  setText('repeatMessage',c.breakEvenOrders<=1?'The first order pays for the prototype. Every repeat order builds the return.':`The prototype cost is recovered by the ${ordinal(c.breakEvenWhole)} comparable order. Later orders build the return without repeating the display investment.`);
+  setText('repeatMessage',recoveryOrders<=1?'The first order pays for the prototype. Every repeat order builds the return.':`At ${fmtW(recoveryOrderWeight)}g per confirmed order, the display cost is recovered by the ${ordinal(recoveryWhole)} order. Later orders build the return without repeating the display investment.`);
   setText('tableTradCapital',fmtInr(c.tradCapital));setText('tableSmartCapital',fmtInr(c.prototypeCapital));setText('tableTradProfit',tradProfit);setText('tableSmartProfit',smartProfit);setText('tableTradRoi',fmtPct(c.tradRoi));setText('tableSmartRoi',fmtPct(c.smartRoi));
-  setText('barTradLabel',fmtInr(c.tradCapital));setText('barSmartLabel',fmtInr(c.prototypeCapital));$('smartBar').style.width=`${Math.max(1,Math.min(100,safe(c.prototypeCapital,c.tradCapital)*100))}%`;
+  const smartCapitalWidth=`${Math.max(1,Math.min(100,safe(c.prototypeCapital,c.tradCapital)*100))}%`;
+  setText('barTradLabel',fmtInr(c.tradCapital));setText('barSmartLabel',fmtInr(c.prototypeCapital));$('smartBar').style.width=smartCapitalWidth;
+  setText('featureTradBarLabel',fmtInr(c.tradCapital));setText('featureTradProfitRate',fmtPct(c.tradRoi));setText('featureTradProfit',tradProfit);
+  setText('featureSmartBarLabel',fmtInr(c.prototypeCapital));setText('featureSmartProfitRate',fmtPct(c.smartRoi));setText('featureSmartProfit',smartProfit);
+  $('featureTradCapitalSegment').style.flexGrow=String(Math.max(c.tradCapital,0));$('featureTradProfitSegment').style.flexGrow=String(Math.max(c.tradProfitPerSale,0));
+  $('featureSmartCapitalSegment').style.flexGrow=String(Math.max(c.prototypeCapital,0));$('featureSmartProfitSegment').style.flexGrow=String(Math.max(c.smartProfitPerSale,0));
   setText('scalePrototype',`1,000g × (${fmtInr(v.silverCost)} + ${fmtInr(v.silverMakingCharges)}) = ${fmtInr(c.scalePrototype)}`);setText('scaleProfit',`1,000g × ${fmtInr(c.smartProfitPerGram)} = ${fmtInr(c.scaleProfit)}`);setText('scaleSurplus',fmtInr(c.scaleSurplus));
   updatePrint(v,c,rows);
   try{localStorage.setItem('karatsSmartCalculator',JSON.stringify(v))}catch(e){}
@@ -959,12 +1298,21 @@ function exitPresentation(promptToSave=true){document.body.classList.remove('pre
 function togglePresentation(){document.body.classList.contains('presentation')?exitPresentation(true):enterPresentation()}
 function openBrochurePresentation(){location.href=`Karats-Elite-Plan-Brochure-source.html?lang=${currentLanguage()}#presentation`}
 
+let designUpdateFrame=0;
+$('designWeight')?.addEventListener('input',()=>{
+  cancelAnimationFrame(designUpdateFrame);
+  designUpdateFrame=requestAnimationFrame(update);
+});
+$('recoveryOrderWeight')?.addEventListener('input',()=>{
+  cancelAnimationFrame(designUpdateFrame);
+  designUpdateFrame=requestAnimationFrame(update);
+});
 ids.forEach(id=>{
   $(id).addEventListener('input',()=>{document.querySelectorAll('.preset').forEach(b=>b.classList.remove('active'));update()});
   $(id).addEventListener('keydown',event=>{if(event.key==='ArrowUp'||event.key==='ArrowDown')event.preventDefault()});
 });
 document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{const w=Number(btn.dataset.weight);$('goldDisplayWeight').value=w;$('silverWeight').value=w;document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b===btn));update()}));
-$('resetBtn').addEventListener('click',()=>{ids.forEach(id=>$(id).value=defaults[id]);document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b.dataset.weight==='1'));update();showToast('Defaults restored')});
+$('resetBtn').addEventListener('click',()=>{ids.forEach(id=>$(id).value=defaults[id]);if($('recoveryOrderWeight'))$('recoveryOrderWeight').value=1;document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b.dataset.weight==='1'));update();showToast('Defaults restored')});
 $('copyBtn').addEventListener('click',copyResults);$('slideBtn').addEventListener('click',exportSlide);$('printBtn').addEventListener('click',()=>{update();window.print()});
 $('closePortfolioBtn').addEventListener('click',()=>$('portfolioDialog').close());
 $('languageSelect').addEventListener('change',()=>{

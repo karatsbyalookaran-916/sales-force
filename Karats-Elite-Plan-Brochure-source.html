@@ -357,6 +357,7 @@ table.spec td.k{font-weight:500;color:#35166e;width:36%;}
 .benefits-page .info .outcome{margin-top:2.5mm;padding:2.8mm;}
 
 /* ---------- page 3: capital efficiency ---------- */
+.deleted-page{display:none!important;}
 .capital-page .sechead{padding-top:13mm;}
 .capital-page h2{font-size:31pt;line-height:1.02;margin-top:4mm;}
 .capital-page .capital-intro{font-family:'Jost';font-weight:300;font-size:9.4pt;line-height:1.55;color:#6a5d85;margin-top:3mm;max-width:166mm;}
@@ -742,7 +743,7 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
 </div>
 
 <!-- ================= PAGE 3 : capital efficiency ================= -->
-<div class="page capital-page">
+<div class="page capital-page deleted-page" aria-hidden="true">
   <div class="pad sechead">
     <div class="kicker-row"><div class="eyebrow">The Business Case</div><div class="rule"></div></div>
     <h2 class="section">Capital at Risk.<br>Capital at Work.</h2>
@@ -1063,8 +1064,9 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
     refreshCalculatorFrames();
   }
 
-  const originalPages=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page'));
-  originalPages.forEach((page,index)=>page.classList.add(`brochure-slide-${index+1}`));
+  const allBrochurePages=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page'));
+  allBrochurePages.forEach((page,index)=>page.classList.add(`brochure-slide-${index+1}`));
+  const originalPages=allBrochurePages.filter(page=>!page.classList.contains('deleted-page'));
   let deckSlides=[];
   let currentSlide=0;
   const calculatorDefaults={goldPrice:15000,makingCharges:0,margin:6,goldDisplayWeight:1,silverCost:500,silverMakingCharges:0,smartMargin:6,silverWeight:1};
@@ -1110,15 +1112,15 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
   }
   function calculatorLanguage(){return activeLanguage==='ml'?'ml':'en'}
   function ensureCalculatorSlides(){
-    if(document.querySelector('.calculator-presentation-page')){deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page'));return}
-    const anchor=document.querySelector('.capital-page')||originalPages[3]||null;
+    if(document.querySelector('.calculator-presentation-page')){deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page')&&!el.classList.contains('deleted-page'));return}
+    const anchor=document.querySelector('.benefits-page')||originalPages[3]||null;
     ['summary','reuse'].forEach((mode,index)=>{
       const page=document.createElement('div');page.className='page calculator-presentation-page';page.dataset.calculatorPage=mode;
       const frame=document.createElement('iframe');frame.title=index===0?'KARATS SMART live capital comparison':'KARATS SMART reuse and break-even calculator';frame.dataset.mode=mode;frame.loading='eager';
       frame.addEventListener('load',()=>{frame.dataset.seeded='true';frame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*')});
       page.appendChild(frame);document.body.insertBefore(page,anchor);
     });
-    deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page'));
+    deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page')&&!el.classList.contains('deleted-page'));
     refreshCalculatorFrames();
   }
   function refreshCalculatorFrames(){
