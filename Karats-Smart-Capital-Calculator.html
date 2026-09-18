@@ -128,7 +128,7 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .kpi-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.35;margin-top:8px}
 .business-impact{margin-top:20px;border:1px solid var(--line);background:#f7f4ff;padding:22px 24px;position:relative;z-index:1}
 .business-impact-title{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#4c2394;margin-bottom:12px}
-.business-examples{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 26px}
+.business-examples{display:grid;grid-template-columns:repeat(2,1fr);gap:24px 34px}
 .business-example{border-left:3px solid #7a4fc0;padding-left:14px;color:#3a2d55;font-size:14px;line-height:1.55}
 .business-example strong{display:block;color:#35166e;font-size:17px;line-height:1.25;margin-bottom:4px;font-variant-numeric:tabular-nums lining-nums}
 .section-panel{padding:24px 30px;margin-top:14px}
@@ -266,7 +266,7 @@ body.embed-calculator .kpi-value{font-size:22px}
 body.embed-calculator .kpi-label{font-size:8px;margin-top:1.5mm}
 body.embed-calculator .business-impact{margin-top:3mm;padding:3.5mm 4mm}
 body.embed-calculator .business-impact-title{font-size:9px;margin-bottom:2mm}
-body.embed-calculator .business-examples{grid-template-columns:repeat(3,1fr);gap:4mm}
+body.embed-calculator .business-examples{grid-template-columns:repeat(2,1fr);gap:4.5mm 6mm}
 body.embed-calculator .business-example{font-size:10px;padding-left:2.5mm}
 body.embed-calculator .business-example strong{font-size:12px}
 body.embed-summary .section-panel,body.embed-summary .detail-grid,body.embed-summary .method-note{display:none}
@@ -699,7 +699,7 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
             <div class="business-example"><strong id="businessRatio">About 30 SMART displays</strong>Showcase many ornament designs for roughly the capital normally tied up in one finished-gold display.</div>
             <div class="business-example"><strong id="businessReleased">₹14,500 capital stays free</strong>Keep working capital available for confirmed orders, marketing, and daily operations.</div>
             
-            <div class="business-example"><strong id="businessHundredValue">₹104 Traditional vs ₹224 SMART</strong><span id="businessHundredText">For every ₹100 committed, Traditional generates a 4% return and ₹104 total value. SMART generates a 124% return and ₹224 total economic value while its display asset remains reusable.</span></div>
+            <div class="business-example"><strong id="businessHundredValue">₹104 Traditional vs ₹224 SMART</strong><span id="businessHundredText">For every ₹100 committed, Traditional generates a 4% return and ₹104 total value. SMART generates a 124% return and ₹224 total economic value while its display asset remains reusable.</span></div><div class="business-example"><strong id="businessRecovery">1st order recovers display cost</strong><span id="businessRecoveryNote">The first sale recovers the display cost and the ornament stays available for later orders.</span></div>
           </div>
         </div>
       </section>
@@ -865,7 +865,7 @@ function update(){
   setText('smartMessage',`${fmtInr(c.prototypeCapital)} is committed to generate ${smartProfit} profit.`);
   setText('sameProfitKpi',smartProfit);setText('lowerInvestmentKpi',`${fmtNum(c.capitalRatio)}×`);setText('efficiencyKpi',`${fmtNum(c.efficiencyRatio)}×`);setText('breakEvenKpi',ordinal(c.breakEvenWhole));
   setText('businessRatio',`About ${fmtNum(c.capitalRatio)} SMART displays`);setText('businessReleased',`${fmtInr(Math.max(0,c.tradCapital-c.prototypeCapital))} capital stays free`);
-  setText('businessHundredValue',`${fmtInr(100+c.tradRoi)} Traditional vs ${fmtInr(100+c.smartRoi)} SMART`);
+  setText('businessHundredValue',`${fmtInr(100+c.tradRoi)} Traditional vs ${fmtInr(100+c.smartRoi)} SMART`);setText('businessRecovery',c.firstSurplus>=0?`${ordinal(c.breakEvenWhole)} order recovers ${fmtInr(c.prototypeCapital)} display cost`:`Display cost recovered by the ${ordinal(c.breakEvenWhole)} order`);setText('businessRecoveryNote',c.firstSurplus>=0?`${fmtInr(c.smartProfitPerSale)} first-sale profit recovers the display cost and leaves ${fmtInr(c.firstSurplus)} surplus. From the second order onward the reusable ornament can generate the full ${fmtInr(c.smartProfitPerSale)} profit without additional display investment.`:`${fmtInr(c.smartProfitPerSale)} per sale does not cover the ${fmtInr(c.prototypeCapital)} display cost on its own. It is fully recovered by the ${ordinal(c.breakEvenWhole)} order, and from the ${ordinal(c.breakEvenWhole+1)} onward each sale returns the full ${fmtInr(c.smartProfitPerSale)} without additional display investment.`);
   setText('businessHundredText',`For every ₹100 committed, Traditional generates a ${fmtPct(c.tradRoi)} return and ${fmtInr(100+c.tradRoi)} total value. SMART generates a ${fmtPct(c.smartRoi)} return and ${fmtInr(100+c.smartRoi)} total economic value while its display asset remains reusable.`);
   const surplusLabel=c.firstSurplus>=0?`${fmtInr(c.firstSurplus)} surplus`:`${fmtInr(Math.abs(c.firstSurplus))} to break even`;
   setText('firstSurplus',surplusLabel);setText('firstSurplusEquation',`${smartProfit} profit − ${fmtInr(c.prototypeCapital)} display investment`);
