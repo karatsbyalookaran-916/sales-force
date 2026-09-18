@@ -753,8 +753,8 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
         <div class="model">Traditional Cycle &mdash; Capital at Risk</div>
         <h3>Hold Gold First.<br>Wait for the Sale.</h3>
         <div class="metric">Gold inventory held: <strong data-calc-value="tradCapital">&#8377;15,000</strong><br>Expected margin: <strong data-calc-value="margin">6%</strong></div>
-        <div class="formula"><span data-calc-value="tradCapital">&#8377;15,000</span> &times; <span data-calc-value="margin">6%</span> = <strong data-calc-value="profitPerSale">&#8377;900</strong></div>
-        <div class="takeaway"><span data-calc-value="tradCapital">&#8377;15,000</span> remains exposed to earn an illustrative <span data-calc-value="profitPerSale">&#8377;900</span>.</div>
+        <div class="formula">Profit from sale = <strong data-calc-value="tradProfitPerSale">&#8377;900</strong></div>
+        <div class="takeaway"><span data-calc-value="tradCapital">&#8377;15,000</span> remains exposed to earn an illustrative <span data-calc-value="tradProfitPerSale">&#8377;900</span>.</div>
       </div>
       <div class="capital-card smart">
         <div class="model">KARATS SMART Cycle &mdash; Capital at Work</div>
@@ -774,7 +774,7 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
     <table class="capital-table">
       <tr><th>Metric</th><th>Traditional</th><th class="smart">KARATS SMART</th></tr>
       <tr><td>Display capital</td><td data-calc-value="tradCapital">&#8377;15,000</td><td class="smart" data-calc-value="prototypeCapital">&#8377;500</td></tr>
-      <tr><td>Illustrative profit</td><td data-calc-value="profitPerSale">&#8377;900</td><td class="smart" data-calc-value="profitPerSale">&#8377;900</td></tr>
+      <tr><td>Illustrative profit</td><td data-calc-value="tradProfitPerSale">&#8377;900</td><td class="smart" data-calc-value="profitPerSale">&#8377;900</td></tr>
       <tr><td>Return on display capital</td><td data-calc-value="tradRoi">6%</td><td class="smart" data-calc-value="smartRoi">180%</td></tr>
       <tr><td>Capital exposure</td><td><span data-calc-value="capitalRatio">30&times;</span> higher</td><td class="smart"><span data-calc-value="capitalRatio">30&times;</span> lower</td></tr>
     </table>
@@ -785,7 +785,7 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
       <div class="same-grid">
         <div class="same-box">
           <div class="lab">Traditional Model</div>
-          <div class="big" data-calc-value="profitPerSale">&#8377;900</div>
+          <div class="big" data-calc-value="tradProfitPerSale">&#8377;900</div>
           <div class="calc">One <span data-calc-value="tradCapital">&#8377;15,000</span> gold ornament<br>at a <span data-calc-value="margin">6%</span> illustrative margin.</div>
         </div>
         <div class="same-box smart">
@@ -1067,17 +1067,22 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
   originalPages.forEach((page,index)=>page.classList.add(`brochure-slide-${index+1}`));
   let deckSlides=[];
   let currentSlide=0;
-  const calculatorDefaults={goldPrice:15000,margin:6,goldDisplayWeight:1,silverCost:500,silverWeight:1,confirmedOrders:1,totalGoldWeight:1,reuseCount:10};
+  const calculatorDefaults={goldPrice:15000,makingCharges:0,margin:6,goldDisplayWeight:1,silverCost:500,silverMakingCharges:0,smartMargin:6,silverWeight:1};
   const currency=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
-  const decimal=new Intl.NumberFormat('en-IN',{maximumFractionDigits:2});
+  const decimal=new Intl.NumberFormat('en-IN',{maximumFractionDigits:0});
+  const roundDisplay=n=>{n=Number.isFinite(n)?n:0;const sign=n<0?-1:1,a=Math.abs(n),whole=Math.floor(a);return sign*(whole+(a-whole>=0.4?1:0))};
+  const formatCurrency=n=>currency.format(roundDisplay(n));
+  const formatDecimal=n=>decimal.format(roundDisplay(n));
   function readStoredCalculatorValues(){try{return {...calculatorDefaults,...JSON.parse(localStorage.getItem('karatsBrochureCalculatorValues'))}}catch(e){return {...calculatorDefaults}}}
   let latestCalculatorValues=readStoredCalculatorValues();
   function applyCalculatorValues(input){
     const v={...calculatorDefaults,...(input||{})};latestCalculatorValues=v;
-    const safe=(a,b)=>b?a/b:0;const profitPerGram=v.goldPrice*(v.margin/100);const averageSaleWeight=v.totalGoldWeight/Math.max(1,v.confirmedOrders);const profitPerSale=profitPerGram*averageSaleWeight;
-    const tradCapital=v.goldPrice*v.goldDisplayWeight;const prototypeCapital=v.silverCost*v.silverWeight;const tradRoi=safe(profitPerSale,tradCapital)*100;const smartRoi=safe(profitPerSale,prototypeCapital)*100;
+    v.smartMargin=v.margin;
+    v.silverWeight=v.goldDisplayWeight;
+    const safe=(a,b)=>b?a/b:0;const tradCostPerGram=v.goldPrice*(1+v.makingCharges/100);const tradProfitPerSale=tradCostPerGram*(v.margin/100)*v.goldDisplayWeight;const smartProfitPerSale=tradCostPerGram*(v.margin/100)*v.silverWeight;const profitPerSale=smartProfitPerSale;
+    const tradGoldValue=v.goldPrice*v.goldDisplayWeight;const tradCapital=tradCostPerGram*v.goldDisplayWeight;const prototypeCapital=(v.silverCost+v.silverMakingCharges)*v.silverWeight;const tradRoi=safe(tradProfitPerSale,tradCapital)*100;const smartRoi=safe(smartProfitPerSale,prototypeCapital)*100;
     const capitalRatio=safe(tradCapital,prototypeCapital);const efficiencyRatio=safe(smartRoi,tradRoi);const prototypeCount=Math.max(0,Math.floor(safe(tradCapital,prototypeCapital)));const sameCapitalProfit=prototypeCount*profitPerSale;
-    const values={tradCapital:currency.format(tradCapital),prototypeCapital:currency.format(prototypeCapital),profitPerSale:currency.format(profitPerSale),margin:`${decimal.format(v.margin)}%`,tradRoi:`${decimal.format(tradRoi)}%`,smartRoi:`${decimal.format(smartRoi)}%`,capitalRatio:`${decimal.format(capitalRatio)}×`,efficiencyRatio:`${decimal.format(efficiencyRatio)}×`,prototypeCount:decimal.format(prototypeCount),sameCapitalProfit:currency.format(sameCapitalProfit)};
+    const values={tradCapital:formatCurrency(tradCapital),prototypeCapital:formatCurrency(prototypeCapital),tradProfitPerSale:formatCurrency(tradProfitPerSale),profitPerSale:formatCurrency(profitPerSale),margin:`${formatDecimal(v.margin)}%`,tradRoi:`${formatDecimal(tradRoi)}%`,smartRoi:`${formatDecimal(smartRoi)}%`,capitalRatio:`${formatDecimal(capitalRatio)}×`,efficiencyRatio:`${formatDecimal(efficiencyRatio)}×`,prototypeCount:formatDecimal(prototypeCount),sameCapitalProfit:formatCurrency(sameCapitalProfit)};
     Object.entries(values).forEach(([key,value])=>document.querySelectorAll(`[data-calc-value="${key}"]`).forEach(el=>el.textContent=value));
     try{localStorage.setItem('karatsBrochureCalculatorValues',JSON.stringify(v))}catch(e){}
   }

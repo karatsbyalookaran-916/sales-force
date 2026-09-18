@@ -78,7 +78,8 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .presets{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:18px}
 .preset{border:1px solid var(--line);background:#ffffff;color:var(--ink);padding:9px 4px;cursor:pointer;font-size:13px;font-weight:700}
 .preset:hover,.preset:focus-visible,.preset.active{border-color:var(--gold-2);background:#ffffff;outline:none}
-.field-group{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.field-group{border:1px solid var(--line);padding:14px 12px 3px;margin-top:16px;background:#ffffff}
+.field-group:nth-child(2){margin-top:20px;background:#f3eeff;border-color:#c3a9ff;box-shadow:inset 4px 0 0 #5d2fb0}
 .field-group-title{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:11px}
 .field{margin-bottom:12px}
 .field label{display:flex;justify-content:space-between;gap:10px;font-size:14px;font-weight:700;margin-bottom:6px;color:#1d1233}
@@ -87,6 +88,8 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .input-prefix,.input-suffix{position:absolute;top:50%;transform:translateY(-50%);color:#4a3c6b;font-size:14px;pointer-events:none}
 .input-prefix{left:12px}.input-suffix{right:12px}
 .field input{width:100%;height:44px;border:1px solid #e4dcf5;background:#ffffff;color:var(--ink);padding:0 42px 0 30px;font-size:16px;font-weight:700;border-radius:0}
+.field input[type="number"]{-moz-appearance:textfield;appearance:textfield}
+.field input[type="number"]::-webkit-outer-spin-button,.field input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .field input.no-prefix{padding-left:12px}
 .field input:focus{outline:2px solid rgba(201,162,74,.28);border-color:var(--gold)}
 .assumption{font-size:12px;line-height:1.45;color:var(--muted);background:#faf8ff;border-left:3px solid var(--gold-2);padding:10px 12px;margin-top:14px}
@@ -104,9 +107,9 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .comparison{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;position:relative;z-index:1}
 .model-card{border:1px solid var(--line);background:#ffffff;padding:22px;min-width:0}
 .model-card.smart{background:var(--black);border-color:var(--black);color:#f3eeff}
-.model-label{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.model-label{font-size:12px;font-weight:700;line-height:1.2;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);min-height:3.6em}
 .smart .model-label{color:#d9c9ff}
-.model-card h2{margin-top:8px}
+.model-card h2{margin-top:8px;min-height:3.3em}
 .formula{font-family:Georgia,serif;font-size:clamp(24px,2.2vw,34px);font-weight:700;line-height:1.12;margin-top:20px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:baseline;flex-wrap:wrap;gap:.14em .2em;min-width:0;letter-spacing:-.025em}
 .formula .equation-main{min-width:0;overflow-wrap:anywhere}
 .formula .equation-result{white-space:nowrap}
@@ -116,13 +119,18 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .mini-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);line-height:1.25}
 .smart .mini-label{color:#9b86c9}
 .mini-value{font-family:Georgia,serif;font-size:22px;font-weight:700;margin-top:5px}
-.model-message{font-family:Georgia,serif;font-size:17px;line-height:1.35;margin-top:17px;color:#2f2050}
+.model-message{font-family:Arial,sans-serif;font-size:16px;font-weight:600;line-height:1.45;margin-top:17px;color:#2f2050;font-variant-numeric:tabular-nums lining-nums}
 .smart .model-message{color:#ede5ff}
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--gold-2);margin-top:14px;background:#ffffff}
 .kpi{padding:18px 14px;text-align:center;border-right:1px solid var(--line)}
 .kpi:last-child{border-right:0}
 .kpi-value{font-family:Georgia,serif;font-size:30px;font-weight:700;color:#5d2fb0;line-height:1}
 .kpi-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.35;margin-top:8px}
+.business-impact{margin-top:20px;border:1px solid var(--line);background:#f7f4ff;padding:22px 24px;position:relative;z-index:1}
+.business-impact-title{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#4c2394;margin-bottom:12px}
+.business-examples{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 26px}
+.business-example{border-left:3px solid #7a4fc0;padding-left:14px;color:#3a2d55;font-size:14px;line-height:1.55}
+.business-example strong{display:block;color:#35166e;font-size:17px;line-height:1.25;margin-bottom:4px;font-variant-numeric:tabular-nums lining-nums}
 .section-panel{padding:24px 30px;margin-top:14px}
 .section-head{display:flex;align-items:center;gap:18px;margin-bottom:18px}
 .section-head:after{content:"";height:1px;background:linear-gradient(90deg,var(--gold-2),transparent);flex:1}
@@ -207,14 +215,18 @@ body.presentation .controls-card:before{content:"Live Calculator Page";display:b
 body.presentation .hero-panel{min-height:calc(100vh - 104px);display:grid;align-content:center;padding:clamp(28px,3.2vw,58px);background:#faf8ff}
 body.presentation h1{font-size:clamp(48px,5vw,82px)}
 body.presentation .hero-copy p{font-size:clamp(17px,1.3vw,24px)}
-body.presentation .comparison{gap:22px;margin-top:34px}
-body.presentation .model-card{padding:clamp(24px,3vw,48px)}
-body.presentation .formula{font-size:clamp(32px,3.15vw,52px)}
-body.presentation .mini-value{font-size:clamp(24px,2.2vw,38px)}
-body.presentation .model-message{font-size:clamp(18px,1.5vw,27px)}
-body.presentation .kpis{margin-top:22px}
-body.presentation .kpi{padding:24px 16px}
-body.presentation .kpi-value{font-size:clamp(34px,3.5vw,56px)}
+body.presentation .comparison{width:min(100%,1200px);gap:16px;margin:20px auto 0}
+body.presentation .model-card{padding:19px 22px}
+body.presentation .model-label{min-height:1.3em}
+body.presentation .model-card h2{font-size:clamp(24px,1.8vw,31px);min-height:1.35em;margin-top:5px}
+body.presentation .formula{font-size:clamp(25px,2vw,34px);margin-top:9px;padding:11px 0}
+body.presentation .model-detail{margin-top:10px}
+body.presentation .mini-value{font-size:clamp(20px,1.55vw,27px)}
+body.presentation .model-message{font-size:clamp(15px,1vw,18px);margin-top:9px}
+body.presentation .kpis{width:min(100%,1200px);margin:10px auto 0}
+body.presentation .kpi{padding:12px 10px}
+body.presentation .kpi-value{font-size:clamp(26px,2.25vw,36px)}
+body.presentation .business-impact{width:min(100%,1200px);margin-left:auto;margin-right:auto}
 body.presentation .section-panel{max-width:none;margin-top:12px;padding:32px clamp(28px,4vw,70px)}
 body.presentation .break-grid{grid-template-columns:1fr 1.4fr}
 
@@ -252,6 +264,11 @@ body.embed-calculator .kpis{margin-top:3mm}
 body.embed-calculator .kpi{padding:4mm 2mm}
 body.embed-calculator .kpi-value{font-size:22px}
 body.embed-calculator .kpi-label{font-size:8px;margin-top:1.5mm}
+body.embed-calculator .business-impact{margin-top:3mm;padding:3.5mm 4mm}
+body.embed-calculator .business-impact-title{font-size:9px;margin-bottom:2mm}
+body.embed-calculator .business-examples{grid-template-columns:repeat(3,1fr);gap:4mm}
+body.embed-calculator .business-example{font-size:10px;padding-left:2.5mm}
+body.embed-calculator .business-example strong{font-size:12px}
 body.embed-summary .section-panel,body.embed-summary .detail-grid,body.embed-summary .method-note{display:none}
 body.embed-reuse .hero-panel,body.embed-reuse .method-note{display:none}
 body.embed-reuse .section-panel{margin-top:0;padding:6mm;height:112mm;box-shadow:none}
@@ -276,11 +293,16 @@ body.embed-reuse .scale-result-value{font-size:27px}
   body.embed-calculator .hero-panel{height:calc(100vh - 40px);padding:28px 34px}
   body.embed-calculator .hero-copy h1{font-size:clamp(38px,4vw,62px)}
   body.embed-calculator .hero-copy p{font-size:15px}
-  body.embed-calculator .comparison{margin-top:22px;gap:16px}
-  body.embed-calculator .model-card{padding:22px}
-  body.embed-calculator .model-card h2{font-size:26px}
-  body.embed-calculator .formula{font-size:clamp(27px,2.5vw,42px)}
-  body.embed-calculator .kpi{padding:16px 10px}
+  body.embed-calculator .comparison{width:min(100%,1120px);margin:18px auto 0;gap:16px}
+  body.embed-calculator .model-card{padding:18px 20px}
+  body.embed-calculator .model-label{min-height:1.3em}
+  body.embed-calculator .model-card h2{font-size:24px;min-height:1.45em;margin-top:5px}
+  body.embed-calculator .formula{font-size:clamp(25px,2.1vw,34px);margin-top:9px;padding:11px 0}
+  body.embed-calculator .model-detail{margin-top:10px}
+  body.embed-calculator .model-message{margin-top:9px}
+  body.embed-calculator .kpis{width:min(100%,1120px);margin:10px auto 0}
+  body.embed-calculator .kpi{padding:12px 9px}
+  body.embed-calculator .business-impact{width:min(100%,1120px);margin-left:auto;margin-right:auto}
   body.embed-reuse .results-area{display:grid;grid-template-rows:minmax(0,.92fr) minmax(0,1.08fr);gap:14px}
   body.embed-reuse .section-panel{height:auto;margin:0;padding:24px 28px;overflow:hidden}
   body.embed-reuse .detail-grid{height:auto;margin:0;gap:14px;overflow:hidden}
@@ -312,6 +334,7 @@ body.embed-reuse .scale-result-value{font-size:27px}
   .field-groups{display:block}
   .presets{grid-template-columns:1fr 1fr}
   .comparison,.break-grid{grid-template-columns:1fr}
+  .business-examples{grid-template-columns:1fr}
   .kpis{grid-template-columns:1fr 1fr}
   .kpi:nth-child(2){border-right:0}.kpi:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .model-detail{grid-template-columns:1fr 1fr}
@@ -342,14 +365,14 @@ body.embed-reuse .scale-result-value{font-size:27px}
   .print-assumption .l{font-size:6pt;text-transform:uppercase;letter-spacing:.1em;color:#9b86c9}
   .print-assumption .v{font-family:Georgia,serif;font-size:11pt;font-weight:700;margin-top:1mm}
   .print-models{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:5mm}
-  .print-model{border:.5pt solid #ece5fb;background:#ffffff;padding:4.5mm}
+  .print-model{border:.5pt solid #ece5fb;background:#ffffff;padding:4.5mm;display:flex;flex-direction:column}
   .print-model.smart{background:#35166e;color:#f3eeff;border-color:#35166e}
-  .print-model .lab{font-size:6.2pt;letter-spacing:.15em;text-transform:uppercase;color:#9b86c9;font-weight:700}
+  .print-model .lab{font-size:6.2pt;line-height:1.2;letter-spacing:.15em;text-transform:uppercase;color:#9b86c9;font-weight:700;min-height:2.4em}
   .print-model.smart .lab{color:#d9c9ff}
-  .print-model h2{font-size:15pt;margin-top:2mm}
+  .print-model h2{font-size:15pt;margin-top:2mm;min-height:2.3em}
   .print-formula{font-family:Georgia,serif;font-size:19pt;font-weight:700;padding:3mm 0;margin-top:3mm;border-top:.5pt solid #ece5fb;border-bottom:.5pt solid #ece5fb}
   .print-model.smart .print-formula{border-color:rgba(214,177,106,.35)}
-  .print-model p{font-family:Georgia,serif;font-size:9.2pt;line-height:1.3;margin-top:3mm}
+  .print-model p{font-family:Arial,sans-serif;font-size:9pt;font-weight:600;line-height:1.4;margin-top:3mm;font-variant-numeric:tabular-nums lining-nums}
   .print-kpis{display:grid;grid-template-columns:repeat(4,1fr);margin-top:4mm;border-top:.6pt solid #c3a9ff;border-bottom:.5pt solid #ece5fb}
   .print-kpi{text-align:center;padding:3mm 2mm;border-right:.5pt solid #ece5fb}
   .print-kpi:last-child{border-right:0}
@@ -542,13 +565,17 @@ body.embed-calculator .input-prefix,
 body.embed-calculator .input-suffix{color:#3a2d55}
 body.embed-calculator .assumption{background:#f7f4ff;border-color:#7a4fc0}
 
-body.embed-calculator .model-card{background:#f7f4ff;color:#3a2d55;border-color:#d9c9ff}
-body.embed-calculator .model-card.smart{background:#ede5ff;color:#35166e;border-color:#c3a9ff}
+body.embed-calculator .comparison{gap:28px}
+body.embed-calculator .model-card{background:#ffffff;color:#3a2d55;border:2px solid #d9c9ff;box-shadow:0 12px 28px rgba(53,22,110,.08)}
+body.embed-calculator .model-card.smart{background:#35166e;color:#f7f4ff;border:2px solid #35166e;box-shadow:0 14px 32px rgba(53,22,110,.22)}
 body.embed-calculator .smart .model-label,
-body.embed-calculator .smart .mini-label{color:#4c2394}
+body.embed-calculator .smart .mini-label{color:#d9c9ff}
 body.embed-calculator .smart .formula,
 body.embed-calculator .smart .formula strong,
-body.embed-calculator .smart .model-message{color:#35166e;border-color:#c3a9ff}
+body.embed-calculator .smart .model-message{color:#f7f4ff;border-color:#7a4fc0}
+body.embed-calculator .model-card.smart h2,
+body.embed-calculator .model-card.smart .mini-value{color:#f7f4ff}
+body.embed-calculator .model-card.smart .accent{color:#d9c9ff}
 body.embed-calculator .formula{color:#35166e;border-color:#d9c9ff}
 body.embed-calculator .accent,
 body.embed-calculator .kpi-value{color:#4c2394}
@@ -614,16 +641,16 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
         <div class="field-group">
           <div class="field-group-title">Traditional model</div>
           <div class="field"><label for="goldPrice">Gold value per gram <small>₹/g</small></label><div class="input-wrap"><span class="input-prefix">₹</span><input id="goldPrice" type="number" value="15000" min="1" step="100" inputmode="decimal"><span class="input-suffix">/g</span></div></div>
+          <div class="field"><label for="makingCharges">Making charges <small>percentage</small></label><div class="input-wrap"><input class="no-prefix" id="makingCharges" type="number" value="0" min="0" step="1" inputmode="numeric"><span class="input-suffix">%</span></div></div>
           <div class="field"><label for="margin">Profit margin <small>percentage</small></label><div class="input-wrap"><input class="no-prefix" id="margin" type="number" value="6" min="0" step="0.1" inputmode="decimal"><span class="input-suffix">%</span></div></div>
-          <div class="field"><label for="goldDisplayWeight">Gold display weight <small>capital held</small></label><div class="input-wrap"><input class="no-prefix" id="goldDisplayWeight" type="number" value="1" min="0.01" step="0.1" inputmode="decimal"><span class="input-suffix">g</span></div></div>
+          <div class="field"><label for="goldDisplayWeight">Display weight <small>capital held</small></label><div class="input-wrap"><input class="no-prefix" id="goldDisplayWeight" type="number" value="1" min="0.01" step="0.1" inputmode="decimal"><span class="input-suffix">g</span></div></div>
         </div>
         <div class="field-group">
           <div class="field-group-title">KARATS SMART model</div>
-          <div class="field"><label for="silverCost">Silver prototype cost <small>₹/g</small></label><div class="input-wrap"><span class="input-prefix">₹</span><input id="silverCost" type="number" value="500" min="1" step="10" inputmode="decimal"><span class="input-suffix">/g</span></div></div>
-          <div class="field"><label for="silverWeight">Prototype weight <small>display asset</small></label><div class="input-wrap"><input class="no-prefix" id="silverWeight" type="number" value="1" min="0.01" step="0.1" inputmode="decimal"><span class="input-suffix">g</span></div></div>
-          <div class="field"><label for="confirmedOrders">Confirmed orders <small>current scenario</small></label><div class="input-wrap"><input class="no-prefix" id="confirmedOrders" type="number" value="1" min="1" step="1" inputmode="numeric"><span class="input-suffix">orders</span></div></div>
-          <div class="field"><label for="totalGoldWeight">Total gold order weight <small>across orders</small></label><div class="input-wrap"><input class="no-prefix" id="totalGoldWeight" type="number" value="1" min="0.01" step="0.1" inputmode="decimal"><span class="input-suffix">g</span></div></div>
-          <div class="field"><label for="reuseCount">Planned prototype uses <small>reuse projection</small></label><div class="input-wrap"><input class="no-prefix" id="reuseCount" type="number" value="10" min="1" step="1" inputmode="numeric"><span class="input-suffix">uses</span></div></div>
+          <div class="field"><label for="silverCost">Silver value per gram <small>₹/g</small></label><div class="input-wrap"><span class="input-prefix">₹</span><input id="silverCost" type="number" value="500" min="1" step="10" inputmode="decimal"><span class="input-suffix">/g</span></div></div>
+          <div class="field"><label for="silverMakingCharges">Making charges <small>fixed per gram</small></label><div class="input-wrap"><span class="input-prefix">₹</span><input id="silverMakingCharges" type="number" value="0" min="0" step="1" inputmode="numeric"><span class="input-suffix">/g</span></div></div>
+          <div class="field"><label for="smartMargin">Profit margin <small>from Traditional model</small></label><div class="input-wrap"><input class="no-prefix" id="smartMargin" type="number" value="6" min="0" step="0.1" inputmode="decimal" readonly disabled aria-readonly="true"><span class="input-suffix">%</span></div></div>
+          <div class="field"><label for="silverWeight">Display weight <small>from Traditional model</small></label><div class="input-wrap"><input class="no-prefix" id="silverWeight" type="number" value="1" min="0.01" step="0.1" inputmode="decimal" readonly disabled aria-readonly="true"><span class="input-suffix">g</span></div></div>
         </div>
       </div>
       <div class="output-tools">
@@ -634,37 +661,46 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
           <button class="btn" id="printBtn" type="button">Print A4 report</button>
         </div>
       </div>
-      <p class="assumption">The same profit-per-gram assumption is used for both models. Return is calculated against the display capital committed, not against the final ornament’s manufacturing cost.</p>
+      <p class="assumption">The SMART model uses the Traditional profit margin and display weight for the gold order. Return is calculated against each model’s display investment.</p>
     </aside>
 
     <div class="results-area" aria-live="polite">
       <section class="panel hero-panel">
         <div class="hero-copy">
           <div class="eyebrow">The SMART Capital Advantage</div>
-          <h1>Same profit.<br>Smarter display capital.</h1>
+          <h1>Compare profit.<br>Smarter display capital.</h1>
           <p>Compare the return from holding finished gold inventory with a reusable gold-plated silver prototype that can secure repeated confirmed orders.</p>
         </div>
         <div class="comparison">
           <article class="model-card">
             <div class="model-label">Traditional model — buy first</div>
-            <h2>Hold Gold. Wait for the Sale.</h2>
+            <h2>Gold First. Sales Later.</h2>
             <div class="formula"><span class="equation-main" id="tradProfitFormula">₹900 ÷ ₹15,000</span><span class="equation-result">= <span class="accent" id="tradRoi">6%</span></span></div>
-            <div class="model-detail"><div><div class="mini-label">Display investment</div><div class="mini-value" id="tradInvestment">₹15,000</div></div><div><div class="mini-label">Profit per sale</div><div class="mini-value" id="tradProfit">₹900</div></div></div>
+            <div class="model-detail"><div><div class="mini-label">Profit from sale</div><div class="mini-value" id="tradProfit">₹900</div></div><div><div class="mini-label">Display investment</div><div class="mini-value" id="tradInvestment">₹15,000</div></div></div>
             <p class="model-message" id="tradMessage">₹15,000 remains exposed to generate ₹900.</p>
           </article>
           <article class="model-card smart">
             <div class="model-label">KARATS SMART model — sell first</div>
-            <h2>Reuse Silver. Produce After the Sale.</h2>
+            <h2>Sales First. Gold Later.</h2>
             <div class="formula"><span class="equation-main" id="smartProfitFormula">₹900 ÷ ₹500</span><span class="equation-result">= <span class="accent" id="smartRoi">180%</span></span></div>
-            <div class="model-detail"><div><div class="mini-label">Prototype investment</div><div class="mini-value" id="smartInvestment">₹500</div></div><div><div class="mini-label">Profit per sale</div><div class="mini-value" id="smartProfit">₹900</div></div></div>
+            <div class="model-detail"><div><div class="mini-label">Profit from sale</div><div class="mini-value" id="smartProfit">₹900</div></div><div><div class="mini-label">Display investment</div><div class="mini-value" id="smartInvestment">₹500</div></div></div>
             <p class="model-message" id="smartMessage">Only ₹500 is committed to generate the same ₹900 profit.</p>
           </article>
         </div>
         <div class="kpis">
-          <div class="kpi"><div class="kpi-value" id="sameProfitKpi">₹900</div><div class="kpi-label">Profit per confirmed sale</div></div>
+          <div class="kpi"><div class="kpi-value" id="sameProfitKpi">₹900</div><div class="kpi-label">SMART profit from sale</div></div>
           <div class="kpi"><div class="kpi-value" id="lowerInvestmentKpi">30×</div><div class="kpi-label">Lower display investment</div></div>
           <div class="kpi"><div class="kpi-value" id="efficiencyKpi">30×</div><div class="kpi-label">Greater capital efficiency</div></div>
           <div class="kpi"><div class="kpi-value" id="breakEvenKpi">1st</div><div class="kpi-label">Order recovers prototype cost</div></div>
+        </div>
+        <div class="business-impact">
+          <div class="business-impact-title">Real-world business impact</div>
+          <div class="business-examples">
+            <div class="business-example"><strong id="businessRatio">About 30 SMART displays</strong>Showcase many ornament designs for roughly the capital normally tied up in one finished-gold display.</div>
+            <div class="business-example"><strong id="businessReleased">₹14,500 capital stays free</strong>Keep working capital available for confirmed orders, marketing, and daily operations.</div>
+            
+            <div class="business-example"><strong id="businessHundredValue">₹104 Traditional vs ₹224 SMART</strong><span id="businessHundredText">For every ₹100 committed, Traditional generates a 4% return and ₹104 total value. SMART generates a 124% return and ₹224 total economic value while its display asset remains reusable.</span></div>
+          </div>
         </div>
       </section>
 
@@ -674,7 +710,7 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
           <div class="break-card">
             <div class="break-title">First-order cost recovery</div>
             <div class="break-main" id="firstSurplus">₹400 surplus</div>
-            <div class="break-equation" id="firstSurplusEquation">₹900 profit − ₹500 prototype investment</div>
+            <div class="break-equation" id="firstSurplusEquation">₹900 profit − ₹500 display investment</div>
             <div class="break-status" id="breakStatus">Prototype cost recovered</div>
           </div>
           <div class="reuse-card">
@@ -691,7 +727,7 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
           <h2 style="margin-top:8px">Where the capital works harder</h2>
           <table class="compare-table"><thead><tr><th>Metric</th><th>Traditional</th><th>KARATS SMART</th></tr></thead><tbody>
             <tr><td>Display capital</td><td id="tableTradCapital">₹15,000</td><td id="tableSmartCapital">₹500</td></tr>
-            <tr><td>Profit per confirmed sale</td><td id="tableTradProfit">₹900</td><td id="tableSmartProfit">₹900</td></tr>
+            <tr><td>Profit from sale</td><td id="tableTradProfit">₹900</td><td id="tableSmartProfit">₹900</td></tr>
             <tr><td>Return on display capital</td><td id="tableTradRoi">6%</td><td id="tableSmartRoi">180%</td></tr>
             <tr><td>Repeat display purchase</td><td>Required for another design</td><td>Not required for repeat orders</td></tr>
           </tbody></table>
@@ -721,22 +757,22 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
   <div class="print-assumptions">
     <div class="print-assumption"><div class="l">Gold value</div><div class="v" id="printGoldPrice">₹15,000/g</div></div>
     <div class="print-assumption"><div class="l">Profit margin</div><div class="v" id="printMargin">6%</div></div>
-    <div class="print-assumption"><div class="l">Silver prototype</div><div class="v" id="printSilverCost">₹500/g</div></div>
+    <div class="print-assumption"><div class="l">SMART display cost</div><div class="v" id="printSilverCost">₹500/g</div></div>
     <div class="print-assumption"><div class="l">Profit per sale</div><div class="v" id="printProfit">₹900</div></div>
   </div>
   <div class="print-models">
-    <div class="print-model"><div class="lab">Traditional model — buy first</div><h2>Hold Gold. Wait for the Sale.</h2><div class="print-formula" id="printTradFormula">₹900 ÷ ₹15,000 = 6%</div><p id="printTradMessage">₹15,000 remains exposed to generate ₹900.</p></div>
-    <div class="print-model smart"><div class="lab">KARATS SMART model — sell first</div><h2>Reuse Silver. Produce After the Sale.</h2><div class="print-formula" id="printSmartFormula">₹900 ÷ ₹500 = 180%</div><p id="printSmartMessage">Only ₹500 is committed to generate the same ₹900 profit.</p></div>
+    <div class="print-model"><div class="lab">Traditional model — buy first</div><h2>Gold First. Sales Later.</h2><div class="print-formula" id="printTradFormula">₹900 ÷ ₹15,000 = 6%</div><p id="printTradMessage">₹15,000 remains exposed to generate ₹900.</p></div>
+    <div class="print-model smart"><div class="lab">KARATS SMART model — sell first</div><h2>Sales First. Gold Later.</h2><div class="print-formula" id="printSmartFormula">₹900 ÷ ₹500 = 180%</div><p id="printSmartMessage">Only ₹500 is committed to generate the same ₹900 profit.</p></div>
   </div>
   <div class="print-kpis">
-    <div class="print-kpi"><div class="v" id="printSameProfit">₹900</div><div class="l">Same profit per sale</div></div>
+    <div class="print-kpi"><div class="v" id="printSameProfit">₹900</div><div class="l">SMART profit from sale</div></div>
     <div class="print-kpi"><div class="v" id="printLowerInvestment">30×</div><div class="l">Lower display investment</div></div>
     <div class="print-kpi"><div class="v" id="printEfficiency">30×</div><div class="l">Greater capital efficiency</div></div>
     <div class="print-kpi"><div class="v" id="printBreakEven">1st</div><div class="l">Order recovers cost</div></div>
   </div>
   <div class="print-section-title">One Prototype. Multiple Confirmed Orders.</div>
   <div class="print-middle">
-    <div class="print-break"><div class="lab">First-order cost recovery</div><div class="big" id="printFirstSurplus">₹400 surplus</div><div class="eq" id="printFirstEquation">₹900 profit − ₹500 prototype investment. The prototype remains available for future orders.</div></div>
+    <div class="print-break"><div class="lab" id="printFirstLabel">First-order cost recovery</div><div class="big" id="printFirstSurplus">₹400 surplus</div><div class="eq" id="printFirstEquation">₹900 profit − ₹500 prototype investment. The prototype remains available for future orders.</div></div>
     <table class="print-table"><thead><tr><th>Uses</th><th>Total profit</th><th>Prototype</th><th>Surplus</th></tr></thead><tbody id="printReuseRows"></tbody></table>
   </div>
   <div class="print-scale"><div><div class="ey">1,000-Gram Illustration</div><h2>Recover once. Earn repeatedly.</h2><p id="printScaleText">1,000g of prototypes cost ₹5,00,000. The first 1,000g of confirmed orders produces an illustrative ₹9,00,000 profit.</p></div><div class="value" id="printScaleSurplus">₹4,00,000<small>First-cycle surplus</small></div></div>
@@ -765,7 +801,7 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
 </dialog>
 <script>
 try{if(window.name.startsWith('karats-project-migration:')){const migrated=JSON.parse(window.name.slice('karats-project-migration:'.length));Object.entries(migrated).forEach(([key,value])=>localStorage.setItem(key,value));window.name=''}}catch(e){}
-const defaults={goldPrice:15000,margin:6,goldDisplayWeight:1,silverCost:500,silverWeight:1,confirmedOrders:1,totalGoldWeight:1,reuseCount:10};
+const defaults={goldPrice:15000,makingCharges:0,margin:6,goldDisplayWeight:1,silverCost:500,silverMakingCharges:0,smartMargin:6,silverWeight:1};
 const ids=Object.keys(defaults);
 const $=id=>document.getElementById(id);
 const pageParams=new URLSearchParams(location.search);
@@ -773,63 +809,72 @@ const embedMode=pageParams.get('embed');
 let syncingFromParent=false;
 if(embedMode){document.body.classList.add('embed-calculator',embedMode==='reuse'?'embed-reuse':'embed-summary')}
 const inr=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
-const num=new Intl.NumberFormat('en-IN',{maximumFractionDigits:2});
-const fmtInr=n=>inr.format(Number.isFinite(n)?n:0).replace(/\.00$/,"");
-const fmtNum=n=>num.format(Number.isFinite(n)?n:0);
+const num=new Intl.NumberFormat('en-IN',{maximumFractionDigits:0});
+const roundDisplay=n=>{n=Number.isFinite(n)?n:0;const sign=n<0?-1:1,a=Math.abs(n),whole=Math.floor(a);return sign*(whole+(a-whole>=0.4?1:0))};
+const fmtInr=n=>inr.format(roundDisplay(n)).replace(/\.00$/,"");
+const fmtNum=n=>num.format(roundDisplay(n));
 const fmtPct=n=>`${fmtNum(n)}%`;
 const ordinal=n=>{n=Math.max(1,Math.ceil(n));const m=n%100;if(m>=11&&m<=13)return `${n}th`;return `${n}${n%10===1?'st':n%10===2?'nd':n%10===3?'rd':'th'}`};
 const safe=(a,b)=>b? a/b:0;
 
 function readValues(){
   const v={};
-  ids.forEach(id=>v[id]=Math.max(Number($(id).value)||0,id==='confirmedOrders'||id==='reuseCount'?1:0.01));
-  v.confirmedOrders=Math.max(1,Math.round(v.confirmedOrders));
-  v.reuseCount=Math.max(1,Math.round(v.reuseCount));
+  ids.forEach(id=>v[id]=Math.max(Number($(id).value)||0,['makingCharges','margin','silverMakingCharges','smartMargin'].includes(id)?0:0.01));
+  v.smartMargin=v.margin;
+  v.silverWeight=v.goldDisplayWeight;
+  $('smartMargin').value=v.margin;
+  $('silverWeight').value=v.goldDisplayWeight;
   return v;
 }
 
 function calculate(v){
-  const profitPerGram=v.goldPrice*(v.margin/100);
-  const averageSaleWeight=v.totalGoldWeight/v.confirmedOrders;
-  const profitPerSale=profitPerGram*averageSaleWeight;
-  const tradCapital=v.goldPrice*v.goldDisplayWeight;
-  const prototypeCapital=v.silverCost*v.silverWeight;
-  const tradRoi=safe(profitPerSale,tradCapital)*100;
-  const smartRoi=safe(profitPerSale,prototypeCapital)*100;
+  const tradCostPerGram=v.goldPrice*(1+v.makingCharges/100);
+  const tradProfitPerGram=tradCostPerGram*(v.margin/100);
+  const smartProfitPerGram=tradCostPerGram*(v.smartMargin/100);
+  const tradProfitPerSale=tradProfitPerGram*v.goldDisplayWeight;
+  const smartProfitPerSale=smartProfitPerGram*v.silverWeight;
+  const tradGoldValue=v.goldPrice*v.goldDisplayWeight;
+  const tradCapital=tradCostPerGram*v.goldDisplayWeight;
+  const prototypeCapital=(v.silverCost+v.silverMakingCharges)*v.silverWeight;
+  const tradRoi=safe(tradProfitPerSale,tradCapital)*100;
+  const smartRoi=safe(smartProfitPerSale,prototypeCapital)*100;
   const capitalRatio=safe(tradCapital,prototypeCapital);
   const efficiencyRatio=safe(smartRoi,tradRoi);
-  const firstSurplus=profitPerSale-prototypeCapital;
-  const breakEvenOrders=safe(prototypeCapital,profitPerSale);
+  const firstSurplus=smartProfitPerSale-prototypeCapital;
+  const breakEvenOrders=safe(prototypeCapital,smartProfitPerSale);
   const breakEvenWhole=Math.max(1,Math.ceil(breakEvenOrders));
-  const scalePrototype=v.silverCost*1000;
-  const scaleProfit=profitPerGram*1000;
-  return {profitPerGram,averageSaleWeight,profitPerSale,tradCapital,prototypeCapital,tradRoi,smartRoi,capitalRatio,efficiencyRatio,firstSurplus,breakEvenOrders,breakEvenWhole,scalePrototype,scaleProfit,scaleSurplus:scaleProfit-scalePrototype};
+  const scalePrototype=(v.silverCost+v.silverMakingCharges)*1000;
+  const scaleProfit=smartProfitPerGram*1000;
+  return {tradProfitPerGram,smartProfitPerGram,tradProfitPerSale,smartProfitPerSale,tradGoldValue,tradCapital,prototypeCapital,tradRoi,smartRoi,capitalRatio,efficiencyRatio,firstSurplus,breakEvenOrders,breakEvenWhole,scalePrototype,scaleProfit,scaleSurplus:scaleProfit-scalePrototype};
 }
 
 function setText(id,value){const el=$(id);if(el)el.textContent=value}
 function projectionRows(v,c){
-  const uses=[1,2,5,v.reuseCount].filter((x,i,a)=>a.indexOf(x)===i).sort((a,b)=>a-b);
-  return uses.map(use=>({use,total:c.profitPerSale*use,cost:c.prototypeCapital,surplus:c.profitPerSale*use-c.prototypeCapital}));
+  const uses=[1,2,5,10];
+  return uses.map(use=>({use,total:c.smartProfitPerSale*use,cost:c.prototypeCapital,surplus:c.smartProfitPerSale*use-c.prototypeCapital}));
 }
 function rowMarkup(rows){return rows.map(r=>`<tr><td>${r.use}</td><td>${fmtInr(r.total)}</td><td>${fmtInr(r.cost)}</td><td>${fmtInr(r.surplus)}</td></tr>`).join('')}
 
 function update(){
   const v=readValues(),c=calculate(v),rows=projectionRows(v,c);
-  const sameProfit=fmtInr(c.profitPerSale);
-  setText('tradProfitFormula',`${sameProfit} ÷ ${fmtInr(c.tradCapital)}`);setText('tradRoi',fmtPct(c.tradRoi));
-  setText('smartProfitFormula',`${sameProfit} ÷ ${fmtInr(c.prototypeCapital)}`);setText('smartRoi',fmtPct(c.smartRoi));
-  setText('tradInvestment',fmtInr(c.tradCapital));setText('tradProfit',sameProfit);setText('smartInvestment',fmtInr(c.prototypeCapital));setText('smartProfit',sameProfit);
-  setText('tradMessage',`${fmtInr(c.tradCapital)} remains exposed to generate ${sameProfit}.`);
-  setText('smartMessage',`Only ${fmtInr(c.prototypeCapital)} is committed to generate the same ${sameProfit} profit.`);
-  setText('sameProfitKpi',sameProfit);setText('lowerInvestmentKpi',`${fmtNum(c.capitalRatio)}×`);setText('efficiencyKpi',`${fmtNum(c.efficiencyRatio)}×`);setText('breakEvenKpi',ordinal(c.breakEvenWhole));
+  const tradProfit=fmtInr(c.tradProfitPerSale),smartProfit=fmtInr(c.smartProfitPerSale);
+  setText('tradProfitFormula',`${tradProfit} ÷ ${fmtInr(c.tradCapital)}`);setText('tradRoi',fmtPct(c.tradRoi));
+  setText('smartProfitFormula',`${smartProfit} ÷ ${fmtInr(c.prototypeCapital)}`);setText('smartRoi',fmtPct(c.smartRoi));
+  setText('tradInvestment',fmtInr(c.tradCapital));setText('tradProfit',tradProfit);setText('smartInvestment',fmtInr(c.prototypeCapital));setText('smartProfit',smartProfit);
+  setText('tradMessage',`${fmtInr(c.tradCapital)} remains exposed to generate ${tradProfit}.`);
+  setText('smartMessage',`${fmtInr(c.prototypeCapital)} is committed to generate ${smartProfit} profit.`);
+  setText('sameProfitKpi',smartProfit);setText('lowerInvestmentKpi',`${fmtNum(c.capitalRatio)}×`);setText('efficiencyKpi',`${fmtNum(c.efficiencyRatio)}×`);setText('breakEvenKpi',ordinal(c.breakEvenWhole));
+  setText('businessRatio',`About ${fmtNum(c.capitalRatio)} SMART displays`);setText('businessReleased',`${fmtInr(Math.max(0,c.tradCapital-c.prototypeCapital))} capital stays free`);
+  setText('businessHundredValue',`${fmtInr(100+c.tradRoi)} Traditional vs ${fmtInr(100+c.smartRoi)} SMART`);
+  setText('businessHundredText',`For every ₹100 committed, Traditional generates a ${fmtPct(c.tradRoi)} return and ${fmtInr(100+c.tradRoi)} total value. SMART generates a ${fmtPct(c.smartRoi)} return and ${fmtInr(100+c.smartRoi)} total economic value while its display asset remains reusable.`);
   const surplusLabel=c.firstSurplus>=0?`${fmtInr(c.firstSurplus)} surplus`:`${fmtInr(Math.abs(c.firstSurplus))} to break even`;
-  setText('firstSurplus',surplusLabel);setText('firstSurplusEquation',`${sameProfit} profit − ${fmtInr(c.prototypeCapital)} prototype investment`);
+  setText('firstSurplus',surplusLabel);setText('firstSurplusEquation',`${smartProfit} profit − ${fmtInr(c.prototypeCapital)} display investment`);
   setText('breakStatus',c.breakEvenOrders<=1?'Prototype cost recovered':`Break-even after ${ordinal(c.breakEvenWhole)} order`);
   $('reuseRows').innerHTML=rowMarkup(rows);
   setText('repeatMessage',c.breakEvenOrders<=1?'The first order pays for the prototype. Every repeat order builds the return.':`The prototype cost is recovered by the ${ordinal(c.breakEvenWhole)} comparable order. Later orders build the return without repeating the display investment.`);
-  setText('tableTradCapital',fmtInr(c.tradCapital));setText('tableSmartCapital',fmtInr(c.prototypeCapital));setText('tableTradProfit',sameProfit);setText('tableSmartProfit',sameProfit);setText('tableTradRoi',fmtPct(c.tradRoi));setText('tableSmartRoi',fmtPct(c.smartRoi));
+  setText('tableTradCapital',fmtInr(c.tradCapital));setText('tableSmartCapital',fmtInr(c.prototypeCapital));setText('tableTradProfit',tradProfit);setText('tableSmartProfit',smartProfit);setText('tableTradRoi',fmtPct(c.tradRoi));setText('tableSmartRoi',fmtPct(c.smartRoi));
   setText('barTradLabel',fmtInr(c.tradCapital));setText('barSmartLabel',fmtInr(c.prototypeCapital));$('smartBar').style.width=`${Math.max(1,Math.min(100,safe(c.prototypeCapital,c.tradCapital)*100))}%`;
-  setText('scalePrototype',`1,000g × ${fmtInr(v.silverCost)} = ${fmtInr(c.scalePrototype)}`);setText('scaleProfit',`1,000g × ${fmtInr(c.profitPerGram)} = ${fmtInr(c.scaleProfit)}`);setText('scaleSurplus',fmtInr(c.scaleSurplus));
+  setText('scalePrototype',`1,000g × (${fmtInr(v.silverCost)} + ${fmtInr(v.silverMakingCharges)}) = ${fmtInr(c.scalePrototype)}`);setText('scaleProfit',`1,000g × ${fmtInr(c.smartProfitPerGram)} = ${fmtInr(c.scaleProfit)}`);setText('scaleSurplus',fmtInr(c.scaleSurplus));
   updatePrint(v,c,rows);
   try{localStorage.setItem('karatsSmartCalculator',JSON.stringify(v))}catch(e){}
   if(embedMode&&!syncingFromParent&&window.parent!==window)window.parent.postMessage({type:'karats-calculator-values',values:v},'*');
@@ -837,11 +882,11 @@ function update(){
 
 function updatePrint(v,c,rows){
   setText('printDate',new Intl.DateTimeFormat('en-IN',{day:'2-digit',month:'short',year:'numeric'}).format(new Date()));
-  setText('printGoldPrice',`${fmtInr(v.goldPrice)}/g`);setText('printMargin',fmtPct(v.margin));setText('printSilverCost',`${fmtInr(v.silverCost)}/g`);setText('printProfit',fmtInr(c.profitPerSale));
-  setText('printTradFormula',`${fmtInr(c.profitPerSale)} ÷ ${fmtInr(c.tradCapital)} = ${fmtPct(c.tradRoi)}`);setText('printSmartFormula',`${fmtInr(c.profitPerSale)} ÷ ${fmtInr(c.prototypeCapital)} = ${fmtPct(c.smartRoi)}`);
-  setText('printTradMessage',`${fmtInr(c.tradCapital)} remains exposed to generate ${fmtInr(c.profitPerSale)}.`);setText('printSmartMessage',`Only ${fmtInr(c.prototypeCapital)} is committed to generate the same ${fmtInr(c.profitPerSale)} profit.`);
-  setText('printSameProfit',fmtInr(c.profitPerSale));setText('printLowerInvestment',`${fmtNum(c.capitalRatio)}×`);setText('printEfficiency',`${fmtNum(c.efficiencyRatio)}×`);setText('printBreakEven',ordinal(c.breakEvenWhole));
-  setText('printFirstSurplus',c.firstSurplus>=0?`${fmtInr(c.firstSurplus)} surplus`:`${fmtInr(Math.abs(c.firstSurplus))} to break even`);setText('printFirstEquation',`${fmtInr(c.profitPerSale)} profit − ${fmtInr(c.prototypeCapital)} prototype investment. The prototype remains available for future orders.`);
+  setText('printGoldPrice',`${fmtInr(v.goldPrice)}/g`);setText('printMargin',fmtPct(v.margin));setText('printSilverCost',`${fmtInr(v.silverCost+v.silverMakingCharges)}/g`);setText('printProfit',fmtInr(c.smartProfitPerSale));
+  setText('printTradFormula',`${fmtInr(c.tradProfitPerSale)} ÷ ${fmtInr(c.tradCapital)} = ${fmtPct(c.tradRoi)}`);setText('printSmartFormula',`${fmtInr(c.smartProfitPerSale)} ÷ ${fmtInr(c.prototypeCapital)} = ${fmtPct(c.smartRoi)}`);
+  setText('printTradMessage',`${fmtInr(c.tradCapital)} remains exposed to generate ${fmtInr(c.tradProfitPerSale)}.`);setText('printSmartMessage',`${fmtInr(c.prototypeCapital)} is committed to generate ${fmtInr(c.smartProfitPerSale)} profit.`);
+  setText('printSameProfit',fmtInr(c.smartProfitPerSale));setText('printLowerInvestment',`${fmtNum(c.capitalRatio)}×`);setText('printEfficiency',`${fmtNum(c.efficiencyRatio)}×`);setText('printBreakEven',ordinal(c.breakEvenWhole));
+  setText('printFirstSurplus',c.firstSurplus>=0?`${fmtInr(c.firstSurplus)} surplus`:`${fmtInr(Math.abs(c.firstSurplus))} to break even`);setText('printFirstLabel',c.firstSurplus>=0?`${ordinal(c.breakEvenWhole)} order recovers ${fmtInr(c.prototypeCapital)} display cost`:`Display cost recovered by the ${ordinal(c.breakEvenWhole)} order`);setText('printFirstEquation',c.firstSurplus>=0?`${fmtInr(c.smartProfitPerSale)} first-sale profit recovers the display cost and leaves ${fmtInr(c.firstSurplus)} surplus. From the second order onward, the reusable ornament can generate the full ${fmtInr(c.smartProfitPerSale)} profit without additional display investment.`:`${fmtInr(c.smartProfitPerSale)} per sale does not cover the ${fmtInr(c.prototypeCapital)} display cost on its own. The cost is fully recovered by the ${ordinal(c.breakEvenWhole)} order; from the ${ordinal(c.breakEvenWhole+1)} onward each sale returns the full ${fmtInr(c.smartProfitPerSale)} without additional display investment.`);
   $('printReuseRows').innerHTML=rowMarkup(rows.slice(0,4));
   setText('printScaleText',`1,000g of prototypes cost ${fmtInr(c.scalePrototype)}. The first 1,000g of confirmed orders produces an illustrative ${fmtInr(c.scaleProfit)} profit.`);$('printScaleSurplus').innerHTML=`${fmtInr(c.scaleSurplus)}<small>First-cycle surplus</small>`;
 }
@@ -849,7 +894,7 @@ function updatePrint(v,c,rows){
 function showToast(message){const t=$('toast');t.textContent=message;t.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove('show'),2200)}
 function summaryText(){
   const v=readValues(),c=calculate(v);
-  return `KARATS SMART Capital Calculator\n\nTraditional model\nDisplay investment: ${fmtInr(c.tradCapital)}\nProfit per confirmed sale: ${fmtInr(c.profitPerSale)}\nReturn on display capital: ${fmtPct(c.tradRoi)}\n\nKARATS SMART model\nReusable prototype investment: ${fmtInr(c.prototypeCapital)}\nProfit per confirmed sale: ${fmtInr(c.profitPerSale)}\nReturn on display capital: ${fmtPct(c.smartRoi)}\nFirst-order surplus after prototype cost: ${fmtInr(c.firstSurplus)}\nBreak-even: ${ordinal(c.breakEvenWhole)} comparable order\n\nCapital efficiency: ${fmtNum(c.efficiencyRatio)}× traditional model\nDisplay investment reduction: ${fmtNum(c.capitalRatio)}×\n\nIllustrative figures; actual results depend on weights, rates, pricing and commercial terms.`;
+  return `KARATS SMART Capital Calculator\n\nTraditional model\nDisplay investment: ${fmtInr(c.tradCapital)}\nProfit from sale: ${fmtInr(c.tradProfitPerSale)}\nReturn on display capital: ${fmtPct(c.tradRoi)}\n\nKARATS SMART model\nDisplay investment: ${fmtInr(c.prototypeCapital)}\nProfit from sale: ${fmtInr(c.smartProfitPerSale)}\nReturn on display capital: ${fmtPct(c.smartRoi)}\nFirst-order surplus after display cost: ${fmtInr(c.firstSurplus)}\nBreak-even: ${ordinal(c.breakEvenWhole)} comparable order\n\nCapital efficiency: ${fmtNum(c.efficiencyRatio)}× traditional model\nDisplay investment reduction: ${fmtNum(c.capitalRatio)}×\n\nIllustrative figures; actual results depend on weights, rates, pricing and commercial terms.`;
 }
 async function copyResults(){
   const text=summaryText();
@@ -862,15 +907,15 @@ function exportSlide(){
   const v=readValues(),c=calculate(v),canvas=document.createElement('canvas');canvas.width=1920;canvas.height=1080;const ctx=canvas.getContext('2d');
   ctx.fillStyle='#35166e';ctx.fillRect(0,0,1920,1080);ctx.fillStyle='#c3a9ff';ctx.fillRect(90,70,1740,3);
   ctx.fillStyle='#d9c9ff';ctx.font='700 22px Arial';ctx.letterSpacing='4px';ctx.fillText('KARATS SMART CAPITAL CALCULATOR',90,125);
-  ctx.fillStyle='#f7f4ff';ctx.font='700 72px Georgia';ctx.fillText('Same profit. Smarter display capital.',90,220);
-  ctx.fillStyle='#c3a9ff';ctx.font='28px Arial';ctx.fillText(`${fmtInr(v.goldPrice)}/g gold  •  ${fmtPct(v.margin)} margin  •  ${fmtInr(v.silverCost)}/g silver prototype`,90,270);
+  ctx.fillStyle='#f7f4ff';ctx.font='700 72px Georgia';ctx.fillText('Compare profit. Smarter display capital.',90,220);
+  ctx.fillStyle='#c3a9ff';ctx.font='28px Arial';ctx.fillText(`${fmtInr(v.goldPrice)}/g gold  •  ${fmtPct(v.margin)} traditional margin  •  ${fmtInr(v.silverCost)}/g silver  •  ${fmtPct(v.smartMargin)} SMART margin`,90,270);
   roundedRect(ctx,90,325,820,400,0,'#faf8ff','#e4dcf5');roundedRect(ctx,1010,325,820,400,0,'#35166e','#7a4fc0');
   ctx.fillStyle='#4a3c6b';ctx.font='700 20px Arial';ctx.fillText('TRADITIONAL MODEL — BUY FIRST',135,375);ctx.fillStyle='#d9c9ff';ctx.fillText('KARATS SMART MODEL — SELL FIRST',1055,375);
-  ctx.fillStyle='#3a1a75';ctx.font='700 42px Georgia';ctx.fillText('Hold Gold. Wait for the Sale.',135,435);ctx.fillStyle='#f7f4ff';ctx.fillText('Reuse Silver. Sell Before You Buy.',1055,435);
-  ctx.fillStyle='#3a1a75';ctx.font='700 62px Georgia';ctx.fillText(`${fmtInr(c.profitPerSale)} ÷ ${fmtInr(c.tradCapital)}`,135,545);ctx.fillStyle='#7a4fc0';ctx.fillText(`= ${fmtPct(c.tradRoi)}`,135,625);
-  ctx.fillStyle='#f7f4ff';ctx.fillText(`${fmtInr(c.profitPerSale)} ÷ ${fmtInr(c.prototypeCapital)}`,1055,545);ctx.fillStyle='#d9c9ff';ctx.fillText(`= ${fmtPct(c.smartRoi)}`,1055,625);
+  ctx.fillStyle='#3a1a75';ctx.font='700 42px Georgia';ctx.fillText('Gold First. Sales Later.',135,435);ctx.fillStyle='#f7f4ff';ctx.fillText('Sales First. Gold Later.',1055,435);
+  ctx.fillStyle='#3a1a75';ctx.font='700 62px Georgia';ctx.fillText(`${fmtInr(c.tradProfitPerSale)} ÷ ${fmtInr(c.tradCapital)}`,135,545);ctx.fillStyle='#7a4fc0';ctx.fillText(`= ${fmtPct(c.tradRoi)}`,135,625);
+  ctx.fillStyle='#f7f4ff';ctx.fillText(`${fmtInr(c.smartProfitPerSale)} ÷ ${fmtInr(c.prototypeCapital)}`,1055,545);ctx.fillStyle='#d9c9ff';ctx.fillText(`= ${fmtPct(c.smartRoi)}`,1055,625);
   ctx.fillStyle='#2f2050';ctx.font='26px Arial';ctx.fillText(`${fmtInr(c.tradCapital)} display capital`,135,680);ctx.fillStyle='#d9c9ff';ctx.fillText(`${fmtInr(c.prototypeCapital)} reusable display capital`,1055,680);
-  const stats=[['SAME PROFIT',fmtInr(c.profitPerSale)],['LOWER DISPLAY INVESTMENT',`${fmtNum(c.capitalRatio)}×`],['GREATER CAPITAL EFFICIENCY',`${fmtNum(c.efficiencyRatio)}×`],['BREAK-EVEN',ordinal(c.breakEvenWhole)+' order']];
+  const stats=[['SMART PROFIT FROM SALE',fmtInr(c.smartProfitPerSale)],['LOWER DISPLAY INVESTMENT',`${fmtNum(c.capitalRatio)}×`],['GREATER CAPITAL EFFICIENCY',`${fmtNum(c.efficiencyRatio)}×`],['BREAK-EVEN',ordinal(c.breakEvenWhole)+' order']];
   stats.forEach((s,i)=>{const x=90+i*435;roundedRect(ctx,x,770,410,175,0,i===3?'#d9c9ff':'#1d1233','#4a3c6b');ctx.fillStyle=i===3?'#3a1a75':'#9b86c9';ctx.font='700 18px Arial';ctx.fillText(s[0],x+28,815);ctx.fillStyle=i===3?'#3a1a75':'#f3eeff';ctx.font='700 50px Georgia';ctx.fillText(s[1],x+28,890)});
   ctx.fillStyle='#6a5d85';ctx.font='20px Arial';ctx.fillText('Illustrative return on display capital. Actual results depend on weight, rates, pricing and commercial terms.',90,1020);
   const link=document.createElement('a');link.download='KARATS-SMART-capital-comparison.png';link.href=canvas.toDataURL('image/png');link.click();showToast('Slide image exported');
@@ -905,7 +950,7 @@ function openPortfolio(){renderPortfolio();$('portfolioDialog').showModal()}
 function saveCurrentResult(){
   const form=$('saveForm');if(!form.reportValidity())return;
   const v=readValues(),c=calculate(v),records=readPortfolio();
-  records.push({id:`j-${Date.now()}`,savedAt:new Date().toISOString(),name:$('jewelleryName').value.trim(),contact:$('contactNumber').value.trim(),address:$('jewelleryAddress').value.trim(),language:currentLanguage(),values:v,results:{profit:fmtInr(c.profitPerSale),smartRoi:fmtPct(c.smartRoi),firstSurplus:fmtInr(c.firstSurplus)}});
+  records.push({id:`j-${Date.now()}`,savedAt:new Date().toISOString(),name:$('jewelleryName').value.trim(),contact:$('contactNumber').value.trim(),address:$('jewelleryAddress').value.trim(),language:currentLanguage(),values:v,results:{profit:fmtInr(c.smartProfitPerSale),smartRoi:fmtPct(c.smartRoi),firstSurplus:fmtInr(c.firstSurplus)}});
   writePortfolio(records);$('saveDialog').close();form.reset();showToast('Jewellery saved to portfolio');
 }
 function requestSaveAfterPresentation(){setTimeout(()=>{$('saveDialog').showModal();$('jewelleryName').focus()},120)}
@@ -914,8 +959,11 @@ function exitPresentation(promptToSave=true){document.body.classList.remove('pre
 function togglePresentation(){document.body.classList.contains('presentation')?exitPresentation(true):enterPresentation()}
 function openBrochurePresentation(){location.href=`Karats-Elite-Plan-Brochure-source.html?lang=${currentLanguage()}#presentation`}
 
-ids.forEach(id=>$(id).addEventListener('input',()=>{document.querySelectorAll('.preset').forEach(b=>b.classList.remove('active'));update()}));
-document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{const w=Number(btn.dataset.weight);$('goldDisplayWeight').value=w;$('silverWeight').value=w;$('totalGoldWeight').value=w;$('confirmedOrders').value=1;document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b===btn));update()}));
+ids.forEach(id=>{
+  $(id).addEventListener('input',()=>{document.querySelectorAll('.preset').forEach(b=>b.classList.remove('active'));update()});
+  $(id).addEventListener('keydown',event=>{if(event.key==='ArrowUp'||event.key==='ArrowDown')event.preventDefault()});
+});
+document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{const w=Number(btn.dataset.weight);$('goldDisplayWeight').value=w;$('silverWeight').value=w;document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b===btn));update()}));
 $('resetBtn').addEventListener('click',()=>{ids.forEach(id=>$(id).value=defaults[id]);document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b.dataset.weight==='1'));update();showToast('Defaults restored')});
 $('copyBtn').addEventListener('click',copyResults);$('slideBtn').addEventListener('click',exportSlide);$('printBtn').addEventListener('click',()=>{update();window.print()});
 $('closePortfolioBtn').addEventListener('click',()=>$('portfolioDialog').close());
