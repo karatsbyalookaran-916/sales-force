@@ -8,3 +8,6 @@ data/
 .env
 node_modules/
 test-results/
+
+# Scratch exports and rendered output
+tmp/

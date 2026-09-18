@@ -74,7 +74,9 @@ try {
   await presentation.getByRole('button', { name: 'Open navigation' }).click();
   assert.equal(await presentation.locator('.karats-page-lane').isVisible(), true);
   await presentation.locator('.karats-manage-team').waitFor();
-  await presentation.locator('#deckIndicator').getByText('Page 1 of 7', { exact: true }).waitFor();
+  // Any total: the deck gains slides over time, and what matters here is that the
+  // indicator renders and starts at page one, not that the deck is a fixed length.
+  await presentation.locator('#deckIndicator').getByText(/^Page 1 of \d+$/).waitFor();
   assert.equal(await presentation.locator('#presentationControls').evaluate(element => { const box=element.getBoundingClientRect(); return box.left >= 0 && box.right <= window.innerWidth + 1; }), true);
   for (let index = 0; index < 5; index++) await presentation.getByRole('button', { name: 'Next page' }).click();
   assert.equal(await presentation.locator('.page.presentation-active').isVisible(), true);

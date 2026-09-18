@@ -218,3 +218,336 @@ input[type=number],input[type=date],.version pre,time{
 #lead-dashboard .stat,
 #lead-directory .stat{box-shadow:0 1px 2px rgba(53,22,110,.04)}
 #lead-directory .directory-summary button{box-shadow:0 1px 2px rgba(53,22,110,.04)}
+
+/* Controlled purple-and-gold palette for the Lead Dashboard. */
+#lead-dashboard{background:#f7f4ff;color:#35166e}
+#lead-dashboard .heading h1,
+#lead-dashboard .management-card h2,
+#lead-dashboard .stat strong,
+#lead-dashboard .directory-row strong{color:#35166e}
+#lead-dashboard .heading p{color:#7a4fc0}
+#lead-dashboard .stat,
+#lead-dashboard .management-card{background:#f7f4ff;border-color:#d9c9ff;box-shadow:none}
+#lead-dashboard .stat-label,
+#lead-dashboard .stat small,
+#lead-dashboard .stage-summary,
+#lead-dashboard .directory-row small{color:#7a4fc0}
+#lead-dashboard .stage-summary,
+#lead-dashboard .directory-row{border-bottom-color:#d9c9ff}
+#lead-dashboard .directory-row:hover,
+#lead-dashboard .directory-row:focus-visible{background:#ede5ff;outline:2px solid #c3a9ff}
+#lead-dashboard .status-chip{background:#ede5ff;color:#4c2394}
+#lead-dashboard .management-card h2{border-bottom-color:#d9c9ff}
+
+/* Stage progression: purple builds toward conversion; Joined alone turns gold. */
+#lead-dashboard .stage-summary{position:relative;padding-left:16px}
+#lead-dashboard .stage-summary::before{content:'';position:absolute;left:0;top:50%;width:7px;height:7px;border-radius:50%;transform:translateY(-50%);background:#d9c9ff}
+#lead-dashboard .stage-summary:nth-child(2)::before{background:#c3a9ff}
+#lead-dashboard .stage-summary:nth-child(3)::before{background:#7a4fc0}
+#lead-dashboard .stage-summary:nth-child(4)::before{background:#5d2fb0}
+#lead-dashboard .stage-summary:nth-child(5)::before{background:#4c2394}
+#lead-dashboard .stage-summary:nth-child(6){margin:4px -10px;padding:12px 10px 12px 26px;border:1px solid #e6d5ae;border-radius:5px;background:#faf5ea;color:#6b5526}
+#lead-dashboard .stage-summary:nth-child(6)::before{left:10px;background:#8a6a2e}
+#lead-dashboard .stage-summary:nth-child(6) strong{color:#8a6a2e}
+#lead-dashboard .stage-summary:nth-child(7)::before{background:#35166e}
+
+/* The pipeline uses the same controlled progression through --stage-color. */
+#workspace .column{background:#f7f4ff;border-color:#d9c9ff}
+#workspace .count{background:#ede5ff;color:#35166e}
+#workspace .lead-card{border-color:#d9c9ff}
+#workspace .column:nth-child(6){background:#faf5ea;border-color:#e6d5ae}
+#workspace .column:nth-child(6) .count{background:#faf5ea;color:#8a6a2e;border:1px solid #e6d5ae}
+
+/* Lead Directory — restrained purple surface system, with no gold. */
+body[data-view="directory"] main{background:#f7f4ff}
+body[data-view="directory"] .topbar,
+body[data-view="directory"] .sidebar{background:#fcfbff;border-color:#ece7f7}
+body[data-view="directory"] main{color:#35166e}
+body[data-view="directory"] .sidebar{color:#3a2d55}
+body[data-view="directory"] .topbar{color:#6a5d85}
+body[data-view="directory"] .topbar-brand strong,
+body[data-view="directory"] .profile-trigger,
+body[data-view="directory"] .topbar-account-copy strong{color:#35166e}
+body[data-view="directory"] .topbar-brand small,
+body[data-view="directory"] .topbar-account-copy small{color:#6a5d85}
+body[data-view="directory"] .topbar-avatar{background:#35166e;color:#d9c9ff}
+body[data-view="directory"] .sidebar nav .active{background:#4c2394;color:#fcfbff;border-left-color:#35166e}
+body[data-view="directory"] .sidebar nav .active .nav-icon{color:#fcfbff}
+body[data-view="directory"] .sidebar nav a:hover,
+body[data-view="directory"] .sidebar nav button:hover{background:#ede5ff;color:#35166e}
+
+#lead-directory{min-height:calc(100vh - var(--topbar-height));background:#f7f4ff;color:#3a2d55}
+#lead-directory .eyebrow{color:#4c2394}
+#lead-directory .heading h1{color:#35166e}
+#lead-directory .heading h1::after{background:#7a4fc0}
+#lead-directory .heading p{color:#6a5d85}
+#lead-directory button.primary{background:#4c2394;color:#fcfbff}
+#lead-directory button.primary:hover,
+#lead-directory button.primary:focus-visible{background:#5d2fb0}
+#lead-directory button.secondary{background:#fcfbff;color:#3a2d55;border-color:#d9c9ff}
+#lead-directory button.secondary:hover,
+#lead-directory button.secondary:focus-visible{background:#ede5ff;border-color:#c3a9ff}
+
+#lead-directory .directory-summary button,
+#lead-directory .directory-table-card,
+#lead-directory input,
+#lead-directory select,
+#lead-directory .directory-column-menu,
+#lead-directory .lead-profile,
+#lead-directory .profile-quick-actions a,
+#lead-directory .profile-quick-actions button{background:#fcfbff;color:#3a2d55;border-color:#d9c9ff;box-shadow:none}
+#lead-directory .directory-summary button:hover,
+#lead-directory .directory-summary button:focus-visible{background:#ede5ff;border-color:#c3a9ff}
+#lead-directory .directory-summary span,
+#lead-directory .directory-table th,
+#lead-directory .directory-table td small,
+#lead-directory .directory-pagination,
+#lead-directory .profile-details dt,
+#lead-directory .profile-history article small{color:#6a5d85}
+#lead-directory .directory-summary strong,
+#lead-directory .directory-table td,
+#lead-directory .profile-details dd,
+#lead-directory .profile-history article strong{color:#35166e}
+
+#lead-directory .directory-filters.professional,
+#lead-directory .directory-table thead{background:#ede5ff;border-color:#d9c9ff}
+#lead-directory .directory-table th,
+#lead-directory .directory-table td,
+#lead-directory .directory-table tr,
+#lead-directory .directory-pagination,
+#lead-directory .profile-details,
+#lead-directory .profile-details>div,
+#lead-directory .lead-profile-head,
+#lead-directory .profile-footer{border-color:#d9c9ff}
+#lead-directory .directory-table tbody tr:hover{background:#f7f4ff}
+#lead-directory .directory-table tbody tr:focus-within{background:#ede5ff}
+#lead-directory input:focus,
+#lead-directory select:focus,
+#lead-directory button:focus-visible,
+#lead-directory a:focus-visible{border-color:#c3a9ff;outline:2px solid #c3a9ff}
+
+#lead-directory .status-chip,
+#lead-directory .priority-chip,
+#lead-directory .priority-chip.hot,
+#lead-directory .priority-chip.warm,
+#lead-directory .priority-chip.cold{background:#ede5ff;color:#4c2394}
+#lead-directory .priority-chip.hot{background:#4c2394;color:#fcfbff}
+#lead-directory .priority-chip.warm{background:#c3a9ff;color:#35166e}
+#lead-directory .priority-chip.cold{background:#ede5ff;color:#6a5d85}
+#lead-directory .followup,
+#lead-directory .followup.overdue,
+#lead-directory .followup.today,
+#lead-directory .followup.upcoming,
+#lead-directory .followup.none{color:#6a5d85}
+#lead-directory .completeness i{background:linear-gradient(90deg,#4c2394 var(--complete),#ede5ff var(--complete))}
+#lead-directory .row-actions a,
+#lead-directory .row-actions button,
+#lead-directory .directory-pagination button{background:#fcfbff;color:#4c2394;border-color:#d9c9ff}
+#lead-directory .directory-bulk{background:#35166e;color:#fcfbff}
+#lead-directory .lead-profile-backdrop{background:#35166e}
+
+body[data-view="directory"] .lead-profile,
+body[data-view="directory"] .profile-footer,
+body[data-view="directory"] .profile-quick-actions a,
+body[data-view="directory"] .profile-quick-actions button{background:#fcfbff;color:#3a2d55;border-color:#d9c9ff;box-shadow:none}
+body[data-view="directory"] .lead-profile{color:#35166e}
+body[data-view="directory"] .lead-profile-head,
+body[data-view="directory"] .profile-details,
+body[data-view="directory"] .profile-details>div,
+body[data-view="directory"] .profile-footer{border-color:#d9c9ff}
+body[data-view="directory"] .lead-profile .close,
+body[data-view="directory"] .profile-details dt,
+body[data-view="directory"] .profile-history article small{color:#6a5d85}
+body[data-view="directory"] .lead-profile button.primary{background:#4c2394;color:#fcfbff}
+body[data-view="directory"] .lead-profile button.secondary{background:#fcfbff;color:#3a2d55;border-color:#d9c9ff}
+
+/* Lead Dashboard — the same clean purple surface system as Lead Directory. */
+body[data-view="dashboard"] main{background:#f7f4ff;color:#35166e}
+body[data-view="dashboard"] .topbar,
+body[data-view="dashboard"] .sidebar{background:#fcfbff;border-color:#ece7f7}
+body[data-view="dashboard"] .sidebar{color:#3a2d55}
+body[data-view="dashboard"] .topbar{color:#6a5d85}
+body[data-view="dashboard"] .topbar-brand strong,
+body[data-view="dashboard"] .profile-trigger,
+body[data-view="dashboard"] .topbar-account-copy strong{color:#35166e}
+body[data-view="dashboard"] .topbar-brand small,
+body[data-view="dashboard"] .topbar-account-copy small{color:#6a5d85}
+body[data-view="dashboard"] .topbar-avatar{background:#35166e;color:#d9c9ff}
+body[data-view="dashboard"] .sidebar nav .active{background:#4c2394;color:#fcfbff;border-left-color:#35166e}
+body[data-view="dashboard"] .sidebar nav .active .nav-icon{color:#fcfbff}
+body[data-view="dashboard"] .sidebar nav a:hover,
+body[data-view="dashboard"] .sidebar nav button:hover{background:#ede5ff;color:#35166e}
+
+#lead-dashboard{min-height:calc(100vh - var(--topbar-height));background:#f7f4ff;color:#3a2d55}
+#lead-dashboard .eyebrow{color:#4c2394}
+#lead-dashboard .heading h1{color:#35166e}
+#lead-dashboard .heading h1::after{background:#7a4fc0}
+#lead-dashboard .heading p{color:#6a5d85}
+#lead-dashboard button.primary{background:#4c2394;color:#fcfbff}
+#lead-dashboard button.primary:hover,
+#lead-dashboard button.primary:focus-visible{background:#5d2fb0}
+
+#lead-dashboard .stat,
+#lead-dashboard .stat:last-child,
+#lead-dashboard .management-card{background:#fcfbff;border-color:#d9c9ff;box-shadow:none}
+#lead-dashboard .stat strong,
+#lead-dashboard .stat:last-child strong,
+#lead-dashboard .management-card h2,
+#lead-dashboard .directory-row strong{color:#35166e}
+#lead-dashboard .stat-label,
+#lead-dashboard .stat:last-child .stat-label,
+#lead-dashboard .stat small,
+#lead-dashboard .stat:last-child small,
+#lead-dashboard .stage-summary,
+#lead-dashboard .directory-row small{color:#6a5d85}
+#lead-dashboard .management-card h2{border-bottom-color:#d9c9ff}
+#lead-dashboard .management-card h2::after{background:#7a4fc0}
+#lead-dashboard .stage-summary,
+#lead-dashboard .directory-row{border-bottom-color:#d9c9ff}
+#lead-dashboard .directory-row:hover,
+#lead-dashboard .directory-row:focus-visible{background:#ede5ff;outline:2px solid #c3a9ff}
+#lead-dashboard .status-chip{background:#ede5ff;color:#4c2394}
+
+/* Purple-only sales-stage progression on the dashboard. */
+#lead-dashboard .stage-summary::before{background:#d9c9ff}
+#lead-dashboard .stage-summary:nth-child(2)::before{background:#c3a9ff}
+#lead-dashboard .stage-summary:nth-child(3)::before{background:#7a4fc0}
+#lead-dashboard .stage-summary:nth-child(4)::before{background:#5d2fb0}
+#lead-dashboard .stage-summary:nth-child(5)::before{background:#4c2394}
+#lead-dashboard .stage-summary:nth-child(6),
+#lead-dashboard .stage-summary:nth-child(7){margin:0;padding:12px 0 12px 16px;border:0;border-bottom:1px solid #d9c9ff;border-radius:0;background:#fcfbff;color:#6a5d85}
+#lead-dashboard .stage-summary:nth-child(6)::before{left:0;background:#35166e}
+#lead-dashboard .stage-summary:nth-child(6) strong,
+#lead-dashboard .stage-summary:nth-child(7) strong{color:#35166e}
+#lead-dashboard .stage-summary:nth-child(7)::before{background:#6a5d85}
+#lead-dashboard strong,
+#lead-dashboard .directory-row,
+#lead-dashboard .directory-row>span{color:#35166e}
+
+body[data-view="dashboard"] .lead-profile,
+body[data-view="dashboard"] .profile-footer,
+body[data-view="dashboard"] .profile-quick-actions a,
+body[data-view="dashboard"] .profile-quick-actions button{background:#fcfbff;color:#3a2d55;border-color:#d9c9ff;box-shadow:none}
+body[data-view="dashboard"] .lead-profile{color:#35166e}
+body[data-view="dashboard"] .lead-profile-head,
+body[data-view="dashboard"] .profile-details,
+body[data-view="dashboard"] .profile-details>div,
+body[data-view="dashboard"] .profile-footer{border-color:#d9c9ff}
+body[data-view="dashboard"] .lead-profile .close,
+body[data-view="dashboard"] .profile-details dt,
+body[data-view="dashboard"] .profile-history article small{color:#6a5d85}
+body[data-view="dashboard"] .lead-profile button.primary{background:#4c2394;color:#fcfbff}
+body[data-view="dashboard"] .lead-profile button.secondary{background:#fcfbff;color:#3a2d55;border-color:#d9c9ff}
+
+/* Lead Pipeline and Scoreboard — shared professional purple surface system. */
+body[data-view="pipeline"] main,
+body[data-view="scoreboard"] main{background:#f7f4ff;color:#35166e}
+body[data-view="pipeline"] .topbar,
+body[data-view="pipeline"] .sidebar,
+body[data-view="scoreboard"] .topbar,
+body[data-view="scoreboard"] .sidebar{background:#fcfbff;border-color:#ece7f7}
+body[data-view="pipeline"] .sidebar,
+body[data-view="scoreboard"] .sidebar{color:#3a2d55}
+body[data-view="pipeline"] .topbar,
+body[data-view="scoreboard"] .topbar{color:#6a5d85}
+body[data-view="pipeline"] .topbar-brand strong,
+body[data-view="pipeline"] .profile-trigger,
+body[data-view="pipeline"] .topbar-account-copy strong,
+body[data-view="scoreboard"] .topbar-brand strong,
+body[data-view="scoreboard"] .profile-trigger,
+body[data-view="scoreboard"] .topbar-account-copy strong{color:#35166e}
+body[data-view="pipeline"] .topbar-brand small,
+body[data-view="pipeline"] .topbar-account-copy small,
+body[data-view="scoreboard"] .topbar-brand small,
+body[data-view="scoreboard"] .topbar-account-copy small{color:#6a5d85}
+body[data-view="pipeline"] .topbar-avatar,
+body[data-view="scoreboard"] .topbar-avatar{background:#35166e;color:#d9c9ff}
+body[data-view="pipeline"] .sidebar nav .active,
+body[data-view="scoreboard"] .sidebar nav .active{background:#4c2394;color:#fcfbff;border-left-color:#35166e}
+body[data-view="pipeline"] .sidebar nav .active .nav-icon,
+body[data-view="scoreboard"] .sidebar nav .active .nav-icon{color:#fcfbff}
+body[data-view="pipeline"] .sidebar nav a:hover,
+body[data-view="pipeline"] .sidebar nav button:hover,
+body[data-view="scoreboard"] .sidebar nav a:hover,
+body[data-view="scoreboard"] .sidebar nav button:hover{background:#ede5ff;color:#35166e}
+
+#workspace,
+#scoreboard{min-height:calc(100vh - var(--topbar-height));background:#f7f4ff;color:#3a2d55}
+#workspace .eyebrow,
+#scoreboard .eyebrow{color:#4c2394}
+#workspace .heading h1,
+#scoreboard .heading h1{position:relative;padding-bottom:16px;color:#35166e}
+#workspace .heading h1::after,
+#scoreboard .heading h1::after{content:'';position:absolute;left:0;bottom:0;width:36px;height:2px;border-radius:1px;background:#7a4fc0}
+#workspace .heading p,
+#scoreboard .heading p{color:#6a5d85}
+#workspace button.primary{background:#4c2394;color:#fcfbff}
+#workspace button.primary:hover,
+#workspace button.primary:focus-visible{background:#5d2fb0}
+#workspace button.secondary{background:#fcfbff;color:#3a2d55;border-color:#d9c9ff}
+#workspace button.secondary:hover,
+#workspace button.secondary:focus-visible{background:#ede5ff;border-color:#c3a9ff}
+
+#workspace .stat,
+#workspace .stat:last-child,
+#workspace .column,
+#workspace .lead-card,
+#workspace .empty,
+#workspace input,
+#workspace select{background:#fcfbff;border-color:#d9c9ff;box-shadow:none}
+#workspace .stat strong,
+#workspace .stat:last-child strong,
+#workspace .lead-open,
+#workspace .empty h2{color:#35166e}
+#workspace .stat-label,
+#workspace .stat:last-child .stat-label,
+#workspace .stat small,
+#workspace .stat:last-child small,
+#workspace .lead-card p,
+#workspace .card-meta,
+#workspace .column-empty,
+#workspace .board-hint,
+#workspace footer{color:#6a5d85}
+#workspace .count{background:#ede5ff;color:#35166e}
+#workspace .column:nth-child(6){background:#fcfbff;border-color:#d9c9ff}
+#workspace .column:nth-child(6) .count{background:#ede5ff;color:#35166e;border:0}
+#workspace .card-meta{border-color:#ece7f7}
+#workspace .due,
+#workspace .pending{color:#4c2394!important}
+#workspace .column-empty{border-color:#d9c9ff}
+#workspace .empty-symbol{color:#7a4fc0}
+#workspace input:focus,
+#workspace select:focus,
+#workspace button:focus-visible{border-color:#c3a9ff;outline:2px solid #c3a9ff}
+
+#scoreboard .score-card{background:#fcfbff;border-color:#d9c9ff;box-shadow:none}
+#scoreboard .score-card h2,
+#scoreboard .score-card strong{color:#35166e}
+#scoreboard .score-card p,
+#scoreboard .score-card small{color:#6a5d85}
+#scoreboard .score-rank{background:#4c2394;color:#fcfbff}
+#scoreboard .score-card:hover{background:#ede5ff;border-color:#c3a9ff}
+
+body[data-view="pipeline"] dialog,
+body[data-view="scoreboard"] dialog,
+body[data-view="pipeline"] .lead-profile,
+body[data-view="scoreboard"] .lead-profile,
+body[data-view="pipeline"] .profile-footer,
+body[data-view="scoreboard"] .profile-footer{background:#fcfbff;color:#35166e;border-color:#d9c9ff;box-shadow:none}
+body[data-view="pipeline"] dialog input,
+body[data-view="pipeline"] dialog select,
+body[data-view="pipeline"] dialog textarea{background:#fcfbff;color:#3a2d55;border-color:#d9c9ff}
+body[data-view="pipeline"] dialog button.primary,
+body[data-view="scoreboard"] dialog button.primary,
+body[data-view="pipeline"] .lead-profile button.primary,
+body[data-view="scoreboard"] .lead-profile button.primary{background:#4c2394;color:#fcfbff}
+body[data-view="pipeline"] dialog button.secondary,
+body[data-view="scoreboard"] dialog button.secondary,
+body[data-view="pipeline"] .lead-profile button.secondary,
+body[data-view="scoreboard"] .lead-profile button.secondary{background:#fcfbff;color:#3a2d55;border-color:#d9c9ff}
+body[data-view="pipeline"] .lead-profile .close,
+body[data-view="scoreboard"] .lead-profile .close,
+body[data-view="pipeline"] .profile-details dt,
+body[data-view="scoreboard"] .profile-details dt,
+body[data-view="pipeline"] .profile-history article small,
+body[data-view="scoreboard"] .profile-history article small{color:#6a5d85}
