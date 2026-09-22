@@ -317,10 +317,16 @@ table.spec td.k{font-weight:500;color:#35166e;width:36%;}
 .vflow.trad .vstep .cir{border-color:#d9c9ff;}
 .vflow.trad .vstep .cir svg{color:#7a4fc0;}
 .vstep .tx{margin-left:3.4mm;padding-top:1.1mm;flex:1;}
-.vstep .tx .t{font-family:'Cormorant';font-weight:700;font-size:12pt;line-height:1.1;}
-.vflow.trad .vstep .tx .t{color:#6a5d85;}
+.vstep .tx .t{font-family:'Cormorant';font-weight:700;font-size:13pt;line-height:1.1;}
+.vflow.trad .vstep .tx .t{color:#3a2d55;}
 .vstep .tx .d{font-family:'Jost';font-weight:300;font-size:7.6pt;line-height:1.45;color:#6f6490;margin-top:1mm;}
-.strategy-page .lead{font-size:9.3pt;line-height:1.58;}
+.vstep .tx .d ul{margin:0;padding:0;list-style:none;}
+.vstep .tx .d li{position:relative;padding-left:2.9mm;margin-top:.9mm;text-align:left;}
+.vstep .tx .d li:first-child{margin-top:0;}
+.vstep .tx .d li:before{content:"";position:absolute;left:.6mm;top:1.7mm;width:1mm;height:1mm;border-radius:50%;background:#a98fd8;}
+.vflow.elite .vstep .tx .d li:before{background:#7a4fc0;}
+.strategy-page .lead{font-size:10.4pt;line-height:1.52;color:#35166e;}
+.strategy-page .vstep .tx .d{color:#3a2d55;font-weight:400;}
 .strategy-page .cols .lead,.strategy-page .vstep .tx .d{text-align:justify;text-align-last:left;text-justify:inter-word;}
 .strategy-page .p1body{padding-top:7mm;}
 .strategy-intro{font-family:'Cormorant';font-weight:600;font-size:18pt;line-height:1.15;color:#5d2fb0;text-align:center;margin-bottom:2.5mm;}
@@ -337,8 +343,8 @@ table.spec td.k{font-weight:500;color:#35166e;width:36%;}
 .strategy-page .cols .c:last-child .flab{grid-column:2;grid-row:3;}
 .strategy-page .cols .c:first-child .vflow{grid-column:1;grid-row:4;}
 .strategy-page .cols .c:last-child .vflow{grid-column:2;grid-row:4;}
-.strategy-page .vstep{padding-bottom:4mm;}
-.strategy-page .vstep .tx .d{font-size:7.7pt;line-height:1.42;margin-top:1mm;}
+.strategy-page .vstep{padding-bottom:6mm;}
+.strategy-page .vstep .tx .d{font-size:8.1pt;line-height:1.5;margin-top:1.2mm;}
 .strategy-page .vflow{display:flex;flex-direction:column;align-self:stretch;}
 .strategy-page .vflow .vstep{flex:1 1 0;}
 .benefits-page .sechead{padding-top:10mm;}
@@ -446,14 +452,14 @@ body.presentation-expanded .brochure-slide-3 .strategy-intro{font-size:34px;marg
 body.presentation-expanded .brochure-slide-3 .strategy-answer{font-size:15px;}
 body.presentation-expanded .brochure-slide-3 h1.strategy-display{font-size:51px;margin-top:9px;line-height:.93;}
 body.presentation-expanded .brochure-slide-3 .cols{column-gap:60px;margin-top:20px;}
-body.presentation-expanded .brochure-slide-3 .strategy-page .lead,body.presentation-expanded .brochure-slide-3 .lead{font-size:14px;line-height:1.46;}
-body.presentation-expanded .brochure-slide-3 .clab,body.presentation-expanded .brochure-slide-3 .flab{font-size:12px;}
-body.presentation-expanded .brochure-slide-3 .vstep{padding-bottom:12px;}
+body.presentation-expanded .brochure-slide-3 .strategy-page .lead,body.presentation-expanded .brochure-slide-3 .lead{font-size:15px;line-height:1.43;}
+body.presentation-expanded .brochure-slide-3 .clab,body.presentation-expanded .brochure-slide-3 .flab{font-size:13px;color:#4c2394;}
+body.presentation-expanded .brochure-slide-3 .vstep{padding-bottom:4px;}
 body.presentation-expanded .brochure-slide-3 .vstep .cir{width:38px;height:38px;}
 body.presentation-expanded .brochure-slide-3 .vflow .vstep:before{left:19px;top:42px;}
 body.presentation-expanded .brochure-slide-3 .vstep .tx{padding-left:16px;}
 body.presentation-expanded .brochure-slide-3 .vstep .tx .t{font-size:17px;}
-body.presentation-expanded .brochure-slide-3 .vstep .tx .d{font-size:13px;line-height:1.36;margin-top:4px;}
+body.presentation-expanded .brochure-slide-3 .vstep .tx .d{font-size:14px;line-height:1.28;margin-top:3px;}
 
 body.presentation-expanded .brochure-slide-4 .sechead,body.presentation-expanded .brochure-slide-5 .sechead{padding:38px 64px 24px;max-width:none;}
 body.presentation-expanded .brochure-slide-4 h2{font-size:47px;margin-top:14px;}
@@ -717,11 +723,11 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
         <p class="lead">In the traditional model, retailers purchase finished gold ornaments, pay making charges and hold them as inventory before customer demand is confirmed. Every showcased design locks capital into a specific style, purity, weight and size while waiting for a customer whose taste and budget match it. Until it sells, the retailer bears finance, insurance, security and storage costs, along with the risks of changing trends and gold prices. The displayed range is limited by available capital, while replacing sold or outdated pieces requires further investment and keeps working capital tied to inventory.</p>
         <div class="flab trad">The Traditional Retail Cycle</div>
         <div class="vflow trad">
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="16" cy="8" rx="9" ry="3.5"/><path d="M7 8v7c0 2 4 3.5 9 3.5s9-1.5 9-3.5V8"/><path d="M7 15v7c0 2 4 3.5 9 3.5s9-1.5 9-3.5v-7"/></svg></div><div class="tx"><div class="t">1. Purchasing Gold Ornaments</div><div class="d">Gold ornaments are purchased according to estimated future demand before any customer or confirmed order exists. Cash leaves the business immediately, locking working capital in finished stock and exposing the retailer to changes in the gold price.</div></div></div>
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="8" width="24" height="15" rx="1.5"/><path d="M4 14h24M16 8v15M7 27v-4M25 27v-4"/></svg></div><div class="tx"><div class="t">2. Display Gold Jewellery</div><div class="d">Every displayed ornament occupies showcase space and continues to attract  insurance, security and storage costs, . While it remains unsold, the retailer carries both the holding cost and gold-price exposure that may erode the expected margin.</div></div></div>
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="16" cy="16" r="12"/><path d="M16 8v8l6 3"/></svg></div><div class="tx"><div class="t">3. Wait for Right Customer</div><div class="d">Each ornament must wait for a customer whose taste, size, budget, design, weight and purity match it. During this period, preferences may change, the design may age and the piece may remain idle for months, delaying recovery of the invested capital.</div></div></div>
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="16" cy="16" r="12"/><path d="M10.5 16.2l3.6 3.6 7.4-7.6"/></svg></div><div class="tx"><div class="t">4. Sale Completed &amp; Gold Repurchased</div><div class="d">The sold gold must be repurchased to refill the inventory gap, often at the new market rate.</div></div></div>
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M27 16a11 11 0 0 1-18.9 7.6M5 16A11 11 0 0 1 23.9 8.4"/><path d="M23.5 4v5h-5M8.5 28v-5h5"/></svg></div><div class="tx"><div class="t">5. Discount / Remelt Unsold Stock</div><div class="d">Pieces that still do not sell must be discounted, exchanged or returned for melting. The retailer absorbs lost making charges, wastage, handling and time. Fresh capital must then be committed to replace outdated stock, restarting the same inventory cycle.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="16" cy="8" rx="9" ry="3.5"/><path d="M7 8v7c0 2 4 3.5 9 3.5s9-1.5 9-3.5V8"/><path d="M7 15v7c0 2 4 3.5 9 3.5s9-1.5 9-3.5v-7"/></svg></div><div class="tx"><div class="t">1. Purchasing Gold Ornaments</div><div class="d"><ul><li>Bought on estimated demand, with no order in hand</li><li>Cash leaves at once; capital locks into finished stock</li><li>Gold-price exposure starts the day it is bought</li></ul></div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><rect x="4" y="8" width="24" height="15" rx="1.5"/><path d="M4 14h24M16 8v15M7 27v-4M25 27v-4"/></svg></div><div class="tx"><div class="t">2. Display Gold Jewellery</div><div class="d"><ul><li>Showcase space is occupied and unavailable</li><li>Insurance, security and storage recur every month</li><li>Price exposure runs throughout, eroding the margin</li></ul></div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="16" cy="16" r="12"/><path d="M16 8v8l6 3"/></svg></div><div class="tx"><div class="t">3. Wait for Right Customer</div><div class="d"><ul><li>Taste, size, budget, design, weight, purity &mdash; all six</li><li>Preferences shift and the design ages while it waits</li><li>Months idle delay recovery of the invested capital</li></ul></div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="16" cy="16" r="12"/><path d="M10.5 16.2l3.6 3.6 7.4-7.6"/></svg></div><div class="tx"><div class="t">4. Sale Completed &amp; Gold Repurchased</div><div class="d"><ul><li>The sale completes and the piece leaves the showcase</li><li>The gold sold must be repurchased to refill stock</li><li>Often at the new market rate, not the original cost</li></ul></div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M27 16a11 11 0 0 1-18.9 7.6M5 16A11 11 0 0 1 23.9 8.4"/><path d="M23.5 4v5h-5M8.5 28v-5h5"/></svg></div><div class="tx"><div class="t">5. Discount / Remelt Unsold Stock</div><div class="d"><ul><li>Unsold pieces are discounted, exchanged or melted</li><li>Making charges, wastage, handling and time are lost</li><li>Fresh capital replaces it and the cycle starts again</li></ul></div></div></div>
         </div>
       </div>
       <div class="c">
@@ -729,11 +735,11 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
         <p class="lead">In the KARATS SMART model, you sell before investing in gold inventory. The counter displays precision-crafted 925 gold-plated silver ornaments. They reproduce the form, detail and finish of the final gold ornament. At roughly 30 times cheaper the cost of gold ornaments, they require far less display investment. Customers can see, touch and try each design before placing an order. They select their preferred purity, weight, stones, size, colour and finish. Production begins only after the order and advance are confirmed. Every gold purchase is therefore linked to a real sale, avoiding unsold gold inventory.</p>
         <div class="flab">The Karats Smart Cycle</div>
         <div class="vflow elite">
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M6 12h20l-3 15H9z"/><path d="M11 12V8a5 5 0 0 1 10 0v4"/></svg></div><div class="tx"><div class="t">1. Purchase &amp; Display of Gold-Plated Silver Ornaments</div><div class="d">The showcase carries precisely finished, gold-plated 925 silver prototypes at a fraction of the cost of gold stock. Lower display investment allows the retailer to present a broader collection and refresh designs more frequently.</div></div></div>
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="13" cy="10" r="5"/><path d="M4 27c0-5 4-8 9-8s9 3 9 8"/><path d="M22 11l2.5 2.5L29 8"/></svg></div><div class="tx"><div class="t">2. Customer Selects &amp; Customises</div><div class="d">The customer handles and tries the physical sample, then personalises purity, weight, stones, size, colour and finish. The same design can be quoted across five price ranges, making it easier to match individual tastes and budgets.</div></div></div>
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M7 3h13l5 5v21H7z"/><path d="M19 3v6h6"/><path d="M12 19l3 3 6-7"/></svg></div><div class="tx"><div class="t">3. Order Confirmed</div><div class="d">A final specification and transparent price are approved at the prevailing rate. The customer pays an advance and the order is booked, giving the retailer confirmed demand before committing capital to gold.</div></div></div>
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 22l11-11"/><path d="M12 9l5-5 11 11-5 5z"/><path d="M2 28h12"/></svg></div><div class="tx"><div class="t">4. Manufacture the Ornament</div><div class="d">Only the required quantity of gold is procured for the confirmed order. Skilled production then recreates the selected prototype to the customer's exact specifications, keeping material, labour and working capital tied to a sale.</div></div></div>
-          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="16" cy="13" r="9"/><path d="M11 27l5-3 5 3V20h-10z"/><path d="M12.5 13l2.5 2.5 5-5"/></svg></div><div class="tx"><div class="t">5. Delivered &amp; Sale Completed</div><div class="d">The finished ornament is hallmarked, quality checked and delivered against the confirmed order. The balance is collected and the transaction closes without leaving an unsold gold piece, ageing design or blocked investment behind.</div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M6 12h20l-3 15H9z"/><path d="M11 12V8a5 5 0 0 1 10 0v4"/></svg></div><div class="tx"><div class="t">1. Purchase &amp; Display of Gold-Plated Silver Ornaments</div><div class="d"><ul><li>Gold-plated 925 silver prototypes fill the showcase</li><li>A fraction of gold cost, so display investment is low</li><li>A broader collection, refreshed more often</li></ul></div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="13" cy="10" r="5"/><path d="M4 27c0-5 4-8 9-8s9 3 9 8"/><path d="M22 11l2.5 2.5L29 8"/></svg></div><div class="tx"><div class="t">2. Customer Selects &amp; Customises</div><div class="d"><ul><li>The customer handles and tries the actual sample</li><li>Purity, weight, stones, size, colour and finish chosen</li><li>One design quoted across five price ranges</li></ul></div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M7 3h13l5 5v21H7z"/><path d="M19 3v6h6"/><path d="M12 19l3 3 6-7"/></svg></div><div class="tx"><div class="t">3. Order Confirmed</div><div class="d"><ul><li>Final specification and price approved at today's rate</li><li>The customer pays an advance and the order is booked</li><li>Demand is confirmed before any gold is bought</li></ul></div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M3 22l11-11"/><path d="M12 9l5-5 11 11-5 5z"/><path d="M2 28h12"/></svg></div><div class="tx"><div class="t">4. Manufacture the Ornament</div><div class="d"><ul><li>Only the gold the confirmed order needs is bought</li><li>Production recreates the prototype exactly to spec</li><li>Material, labour and capital stay tied to a sale</li></ul></div></div></div>
+          <div class="vstep"><div class="cir"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="16" cy="13" r="9"/><path d="M11 27l5-3 5 3V20h-10z"/><path d="M12.5 13l2.5 2.5 5-5"/></svg></div><div class="tx"><div class="t">5. Delivered &amp; Sale Completed</div><div class="d"><ul><li>Hallmarked, quality checked and delivered to order</li><li>The balance is collected and the sale closes</li><li>No unsold gold, ageing design or blocked capital</li></ul></div></div></div>
         </div>
       </div>
     </div>
@@ -1114,11 +1120,13 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
   function ensureCalculatorSlides(){
     if(document.querySelector('.calculator-presentation-page')){deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page')&&!el.classList.contains('deleted-page'));return}
     const anchor=document.querySelector('.benefits-page')||originalPages[3]||null;
-    ['summary','reuse'].forEach((mode,index)=>{
+    // The opportunity-cost page opens the argument, straight after the cover.
+    const anchorFor=mode=>mode==='opportunity'?(originalPages[1]||anchor):anchor;
+    ['summary','opportunity','design','reuse'].forEach((mode,index)=>{
       const page=document.createElement('div');page.className='page calculator-presentation-page';page.dataset.calculatorPage=mode;
-      const frame=document.createElement('iframe');frame.title=index===0?'KARATS SMART live capital comparison':'KARATS SMART reuse and break-even calculator';frame.dataset.mode=mode;frame.loading='eager';
+      const frame=document.createElement('iframe');frame.title=['KARATS SMART live capital comparison','KARATS SMART opportunity-cost comparison','KARATS SMART design comparison','KARATS SMART reuse and break-even calculator'][index];frame.dataset.mode=mode;frame.loading='eager';
       frame.addEventListener('load',()=>{frame.dataset.seeded='true';frame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*')});
-      page.appendChild(frame);document.body.insertBefore(page,anchor);
+      page.appendChild(frame);document.body.insertBefore(page,anchorFor(mode));
     });
     deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page')&&!el.classList.contains('deleted-page'));
     refreshCalculatorFrames();

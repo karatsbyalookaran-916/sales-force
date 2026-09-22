@@ -75,7 +75,7 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .control-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px}
 .reset{background:none;border:0;color:var(--gold);font-size:13px;font-weight:700;cursor:pointer;padding:5px}
 .preset-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:8px}
-.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:18px}
+.presets{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:18px}
 .preset{border:1px solid var(--line);background:#ffffff;color:var(--ink);padding:9px 4px;cursor:pointer;font-size:13px;font-weight:700}
 .preset:hover,.preset:focus-visible,.preset.active{border-color:var(--gold-2);background:#ffffff;outline:none}
 .field-group{border:1px solid var(--line);padding:14px 12px 3px;margin-top:16px;background:#ffffff}
@@ -133,12 +133,13 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .design-count{grid-column:2;grid-row:1/4;background:#f1ebff;border-color:#d4c4f5;border-left:6px solid #6f3fc3;color:#352653;padding:25px 28px;display:flex;flex-direction:column;justify-content:center}
 .design-weight{display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;margin-top:14px;padding-top:13px;border-top:1px solid #ece7f7}
 .dw-row{display:flex;align-items:baseline;gap:10px;flex:0 0 auto;font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#6f6490;white-space:nowrap}
-.dw-row b{font-size:19px;font-weight:700;letter-spacing:0;text-transform:none;color:#4c2394;font-variant-numeric:tabular-nums lining-nums}
+.dw-row .weight-entry{display:inline-flex;align-items:baseline;gap:2px;font-size:19px;font-weight:700;letter-spacing:0;text-transform:none;color:#4c2394;font-variant-numeric:tabular-nums lining-nums}
+.dw-row input[type=text]{width:5em;padding:2px 4px;border:1px solid #cfc0ee;border-radius:4px;background:#fff;color:#35166e;font:inherit;text-align:center;font-variant-numeric:tabular-nums lining-nums}
 .design-weight input[type=range]{flex:1 1 150px;min-width:120px;margin:0;accent-color:#4c2394;cursor:pointer}
 .business-example strong{display:block;color:#35166e;font-size:19px;line-height:1.25;margin-bottom:7px;font-variant-numeric:tabular-nums lining-nums}
 .design-count>strong{color:#35166e;font-size:31px;line-height:1.08;margin-bottom:8px}
 .design-count .design-weight{border-color:#cfc0ee}
-.design-count .dw-row{color:#675781}.design-count .dw-row b{color:#35166e}
+.design-count .dw-row{color:#675781}.design-count .dw-row .weight-entry{color:#35166e}
 .design-intro{color:#4c2394;font-size:20px;font-weight:700;line-height:1.4;text-align:center}
 .design-breakdown{display:grid;grid-template-columns:1fr .78fr 1fr;gap:14px;width:100%;margin:22px 0 4px;align-items:stretch}
 .material-card,.design-math{border:1px solid #d8caf3;border-radius:6px;padding:18px;text-align:left;background:#fff}
@@ -170,7 +171,9 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .break-even-slider{display:flex;align-items:center;gap:14px;margin-top:11px;padding-top:10px;border-top:1px solid #cfc0ee}
 .break-even-slider span{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#675781;white-space:nowrap}
 .break-even-slider b{font-size:16px;color:#35166e;letter-spacing:0;text-transform:none}
-.break-even-slider input{flex:1;min-width:120px;accent-color:#5d2fb0;cursor:pointer}
+.break-even-slider input[type=range]{flex:1;min-width:120px;accent-color:#5d2fb0;cursor:pointer}
+.break-even-slider input[type=text]{width:64px;height:30px;flex:0 0 auto;border:1px solid #cfc0ee;border-radius:4px;background:#fff;color:#35166e;font:700 16px Arial,sans-serif;text-align:center}
+.break-even-slider .weight-unit{font-size:14px;font-weight:700;color:#35166e}
 .break-even-foot{font-size:11px;line-height:1.4;color:#4a3c6b;margin-top:10px;padding-left:11px;border-left:3px solid #8b4bd1}
 .business-impact.feature-impact{width:100%;margin-left:0;padding:0;border:0;background:transparent}
 .business-impact.feature-impact .business-examples{display:block}
@@ -357,7 +360,7 @@ body.embed-calculator .split-capital-bar{height:3mm;gap:1.5mm}
 body.embed-calculator .design-count>strong{font-size:19px;line-height:1.08;margin-bottom:2mm}
 body.embed-calculator .design-weight{margin-top:1.5mm;padding-top:1.5mm;gap:3px 9px}
 body.embed-calculator .dw-row{font-size:8px;letter-spacing:.08em}
-body.embed-calculator .dw-row b{font-size:13px}
+body.embed-calculator .dw-row .weight-entry{font-size:13px}
 body.embed-summary .section-panel,body.embed-summary .support-impact,body.embed-summary .detail-grid,body.embed-summary .method-note{display:none!important}
 body.embed-summary .break-even-illustration{display:none!important}
 body.embed-reuse .hero-panel,body.embed-reuse .method-note{display:none}
@@ -791,7 +794,7 @@ body.embed-calculator .reuse-table td{border-color:#d9c9ff}
 body.embed-calculator .reuse-table th{color:#6a5d85}
 body.embed-calculator .reuse-table td:last-child{color:#4c2394}
 
-/* Page 5: match the SMART calculator's light lavender treatment. */
+/* Reuse page: match the SMART calculator's light lavender treatment. */
 body.embed-reuse .break-card{
   background:#f1ebff;
   color:#35166e;
@@ -822,6 +825,248 @@ body.embed-calculator .scale-result-value,
 body.embed-calculator .scale-result-note{color:#35166e}
 body.embed-calculator .scale-line,
 body.embed-calculator .scale-result{border-color:#c3a9ff}
+
+/* Pages 4, 5 and 6 share the same full-width calculator header. */
+body.embed-summary .feature-impact{display:none!important}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .workspace{display:flex;flex-direction:column;gap:12px;height:calc(100vh - 14mm)}
+body.embed-design .support-impact,body.embed-design .output-tools,body.embed-design .assumption,
+body.embed-design .hero-copy,body.embed-design .comparison,body.embed-design .kpis,
+body.embed-design .section-panel,body.embed-design .break-even-illustration,
+body.embed-design .detail-grid,body.embed-design .method-note{display:none!important}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .controls-card{display:block;width:100%;height:auto;max-height:none;padding:14px 20px;flex:none}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .control-title{margin-bottom:5px}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .control-title h2{font-size:20px}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .preset-label{margin-bottom:4px}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .presets{display:flex;gap:6px;margin-bottom:7px}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .preset{min-width:72px;padding:5px 8px}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .field-groups{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .field-group{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 10px;margin:0;padding:7px 10px}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .field-group-title{grid-column:1/-1;margin:0}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .field{min-width:0;margin:0}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .field label{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .field label small{display:none}
+body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .field input{height:30px}
+body.embed-summary .results-area{display:flex;width:100%;min-height:0;height:auto;flex:1 1 auto;flex-direction:column;gap:12px}
+body.embed-summary .hero-panel{width:100%;height:auto;min-height:0;padding:20px 34px;overflow:hidden;flex:1 1 auto}
+body.embed-summary .support-impact{display:flex!important;flex:0 0 auto;flex-direction:column;width:100%;height:auto;margin:0;padding:14px 18px;overflow:hidden}
+body.embed-summary .support-impact .business-impact-title{font-size:11px;margin-bottom:9px}
+body.embed-summary .support-impact .business-examples{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none;gap:10px;height:auto}
+body.embed-summary .support-impact .business-example{display:block;min-height:100px;padding:11px 13px;font-size:10.5px;line-height:1.3;overflow:hidden}
+body.embed-summary .support-impact .business-example strong{font-size:13px;line-height:1.2;margin-bottom:5px}
+body.embed-reuse .support-impact{display:none!important}
+body.embed-reuse .results-area{display:flex;width:100%;min-width:0;height:auto;min-height:0;flex:1 1 auto;flex-direction:column;gap:12px;overflow:hidden}
+body.embed-reuse .section-panel,body.embed-reuse .break-even-illustration{width:min(100%,1220px);max-width:1220px;margin-left:auto;margin-right:auto}
+body.embed-design .results-area{display:flex;width:100%;min-height:0;flex:1 1 auto;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px}
+body.embed-design .hero-panel{display:flex;width:100%;height:auto;padding:0;border:0;background:transparent;box-shadow:none;overflow:visible;align-items:center;justify-content:center}
+body.embed-design .business-impact.feature-impact{display:block!important;width:min(100%,1220px);height:auto;margin:0;overflow:visible;flex:none}
+body.embed-design .feature-impact .business-examples{display:block;height:auto}
+body.embed-design .business-impact.feature-impact .design-count{display:flex;width:100%;height:auto;min-height:0;padding:34px 44px 38px;justify-content:center}
+body.embed-design .business-impact.feature-impact .design-count>.design-intro{font-size:23px;max-width:1050px}
+body.embed-design .design-breakdown{width:100%;gap:20px;margin:24px 0 18px}
+body.embed-design .material-card,body.embed-design .design-math{min-height:170px;padding:16px}
+body.embed-design .material-number{font-size:45px}
+body.embed-design .material-meta{font-size:12px}
+body.embed-design .math-equation{font-size:20px}
+body.embed-design .feature-impact .design-weight,body.embed-design .feature-capital-bars{width:min(100%,850px)}
+body.embed-design .design-intro{font-size:24px;margin-bottom:6px}
+body.embed-design .material-number{font-size:78px;line-height:1.02}
+body.embed-design .math-equation{font-size:26px;line-height:1.35}
+body.embed-design .material-card{padding:22px 18px}
+body.embed-design .material-meta,body.embed-design .material-budget{font-size:13px}
+body.embed-design .feature-impact .design-weight{margin-top:26px;padding-top:22px}
+body.embed-design .feature-capital-bars{margin-top:24px}
+body.embed-design .dw-row{font-size:13px}
+body.embed-design .dw-row .weight-entry{font-size:19px}
+body.embed-design .feature-capital-bars .capital-profit-meta{font-size:13px}
+body.embed-design .feature-capital-bars .capital-profit-meta strong{font-size:17px}
+body.embed-design .break-even-illustration{display:block!important;width:min(100%,1220px);max-width:1220px;margin:0 auto;padding:12px 16px;flex:0 0 auto;overflow:hidden}
+body.embed-design .break-even-heading{margin-bottom:7px}
+body.embed-design .break-even-heading h3{font-size:15px}
+body.embed-design .break-even-heading p{max-width:220px;font-size:9px}
+body.embed-design .break-even-steps{gap:7px}
+body.embed-design .break-even-step{padding:8px 9px}
+body.embed-design .break-even-label{font-size:7px}
+body.embed-design .break-even-value{font-size:14px}
+body.embed-design .break-even-step.result .break-even-value{font-size:13px}
+body.embed-design .break-even-detail,body.embed-design .break-even-foot{font-size:8px}
+body.embed-design .break-even-slider{margin-top:6px;padding-top:6px}
+body.embed-design .break-even-slider span{font-size:8px}
+body.embed-design .break-even-slider b{font-size:12px}
+body.embed-reuse .break-even-illustration{display:none!important}
+
+/* Opportunity-cost page: one assumption, two plans and two readable 12-month tracks. */
+.opportunity-panel{display:none}
+body.embed-opportunity .hero-panel,body.embed-opportunity .section-panel,body.embed-opportunity .break-even-illustration,
+body.embed-opportunity .support-impact,body.embed-opportunity .detail-grid,body.embed-opportunity .method-note{display:none!important}
+body.embed-opportunity .results-area{display:flex;width:100%;min-width:0;height:auto;min-height:0;flex:1 1 auto;overflow:hidden}
+body.embed-opportunity .opportunity-panel{display:flex;width:100%;height:100%;min-height:0;padding:18px 22px;flex-direction:column;background:#fcfbff;border:1px solid #d9c9ff;overflow:hidden}
+.opp-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:18px}
+.opp-head h1{font-family:Georgia,serif;font-size:26px;line-height:1.05;margin-top:3px;color:#35166e}
+.opp-head p{max-width:520px;margin-top:5px;color:#6a5d85;font-size:11px;line-height:1.35}
+.opp-dials{display:flex;gap:8px}
+.opp-dial{display:flex;flex-direction:column;justify-content:center;gap:3px;padding:7px 10px;background:#ede5ff;border:1px solid #c3a9ff;color:#4c2394;font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.opp-dial strong,.opp-dial input{color:#35166e;font:700 19px Arial,sans-serif}
+.opp-dial.editable{flex-direction:row;align-items:center;gap:7px}
+.opp-dial input{width:52px;height:28px;border:1px solid #c3a9ff;background:#fff;text-align:center}
+.opp-dial b{font-size:13px;letter-spacing:0}
+.opp-core{display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,1fr);gap:12px;margin-top:14px;flex:1 1 auto;min-height:0}
+.opp-hero{display:flex;flex-direction:column;justify-content:center;padding:14px;background:#35166e;color:#fcfbff;text-align:center}
+.opp-hero strong{display:block;font-family:Georgia,serif;font-size:60px;line-height:.9;overflow-wrap:anywhere}
+.opp-hero>span{display:block;margin-top:4px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#d7c4ff}
+.opp-hero p{margin-top:9px;font-size:10.5px;line-height:1.35;color:#ede5ff}
+.opp-formula{margin-top:9px;padding-top:8px;border-top:1px solid #6f3fc3;font-size:10px;color:#d7c4ff;overflow-wrap:anywhere}
+.opp-chart{display:flex;flex-direction:column;padding:12px 14px;background:#fff;border:1px solid #d9c9ff}
+.opp-chart-title{color:#4c2394;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.opp-table{width:100%;margin-top:8px;border-collapse:collapse;table-layout:fixed}
+.opp-table th{padding:4px 6px;background:#ede5ff;border:1px solid #d9c9ff;color:#4c2394;font-size:7px;font-weight:800;line-height:1.2;letter-spacing:.07em;text-transform:uppercase;text-align:right}
+.opp-table th:first-child{text-align:left}
+.opp-table th:nth-child(1){width:18%}
+.opp-table th:nth-child(2){width:21%}
+.opp-table td{padding:3px 6px;border:1px solid #e3daf5;color:#35166e;font-size:11px;font-weight:700;line-height:1.15;text-align:right}
+.opp-table td:first-child{color:#6f6490;font-size:9px;font-weight:800;text-align:left}
+.opp-table td i{display:block;margin-top:1px;color:#6f6490;font-style:normal;font-size:7.5px;font-weight:600}
+.opp-table td.negative,.opp-table td.negative i{color:#a1273d}
+.opp-table td:nth-child(4){background:#f6f2ff}
+.opp-table tr.cross td:nth-child(-n+3){background:#fff4d8;border-color:#e5c86f}
+.opp-table tr.cross td:first-child{color:#805d15}
+.opp-table tr.loss td:nth-child(-n+3){background:#fdebee;border-color:#e4aab5}
+.opp-table tr.loss td:first-child{color:#91263b}
+.opp-table tr.cross td:first-child b{display:block;margin-top:1px;white-space:nowrap;color:#805d15;font-size:6.5px;letter-spacing:.06em;text-transform:uppercase}
+.opp-chart-foot{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:6px;padding-top:6px;border-top:1px solid #e3daf5;color:#6a5d85;font-size:9px}
+.opp-chart-foot strong{color:#a1273d;font-size:11px;white-space:nowrap}
+.opp-plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.opp-plan{display:flex;flex-direction:column;padding:11px 13px;border:1px solid #d9c9ff;background:#fff}
+.opp-plan.smart{background:#ede5ff;border-left:5px solid #6f3fc3}
+.opp-plan-name{color:#4c2394;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.opp-plan h2{font-size:16px;margin-top:3px;color:#35166e;line-height:1.15}
+.opp-plan-rows{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:auto;padding-top:9px}
+.opp-plan-rows>div{min-width:0;padding:7px 8px;background:#f7f4ff;border:1px solid #e3daf5}
+.opp-plan.smart .opp-plan-rows>div{background:#fff}
+.opp-plan-rows span{display:block;color:#6f6490;font-size:7px;font-weight:800;line-height:1.2;letter-spacing:.08em;text-transform:uppercase}
+.opp-plan-rows strong{display:block;margin-top:3px;color:#35166e;font-size:15px;line-height:1.1;overflow-wrap:anywhere}
+.opp-takeaway{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:14px;margin-top:14px;padding:10px 13px;background:#35166e;color:#fcfbff}
+.opp-takeaway strong{font-family:Georgia,serif;font-size:30px;white-space:nowrap}
+.opp-takeaway span{font-size:10px;line-height:1.35;color:#ede5ff}
+.opp-tension{margin-top:8px;color:#6a5d85;font-size:8.5px;line-height:1.35;text-align:center}
+.opp-tension strong{color:#4c2394}
+.legacy-opportunity{display:none!important}
+body.embed-opportunity .expiry-page{display:flex!important;padding:14px 18px;gap:9px}
+/* This page argues the traditional model only, so its scenario card drops the SMART
+   inputs and gives the four traditional fields the full width. */
+body.embed-opportunity .field-groups{grid-template-columns:minmax(0,1fr)}
+body.embed-opportunity .field-groups>.field-group:nth-child(2){display:none}
+body.embed-opportunity .expiry-capital{grid-template-columns:minmax(0,1fr);width:100%;margin:0;padding-top:0;border-top:0}
+body.embed-opportunity .expiry-capital .capital-profit-row{padding:6px 11px}
+body.embed-opportunity .expiry-capital .capital-profit-meta{font-size:10.5px;margin-bottom:4px}
+body.embed-opportunity .expiry-capital .capital-profit-meta strong{font-size:15px}
+body.embed-opportunity .expiry-capital .split-capital-bar{height:10px;gap:5px}
+.expiry-months-bar{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px}
+.expiry-months-bar span{display:block;min-width:0;padding-top:3px;border-top:9px solid #c4a8f0;color:#4c2394;font-size:8.5px;font-weight:700;line-height:1.2;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums lining-nums}
+.expiry-months-bar span b{display:block;color:#6f6490;font-size:7px;font-weight:800;letter-spacing:.05em}
+.expiry-months-bar span.exhausted{border-top-color:#6f3fc3;color:#35166e;font-weight:800}
+.expiry-months-bar span.exhausted b{color:#6f3fc3}
+.expiry-months-bar span.loss{border-top-color:#4c2394;color:#4c2394}
+.expiry-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:16px}
+.expiry-head h1{font-family:Georgia,serif;font-size:25px;line-height:1;margin-top:3px;color:#35166e}
+.expiry-head p{max-width:520px;margin-top:4px;color:#6a5d85;font-size:10px;line-height:1.3}
+.expiry-head label{display:flex;align-items:center;gap:7px;padding:8px 10px;background:#ede5ff;border:1px solid #c3a9ff;color:#4c2394;font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.expiry-head input{width:55px;height:29px;border:1px solid #c3a9ff;background:#fff;color:#35166e;font:700 17px Arial;text-align:center}.expiry-head label b{font-size:13px}
+.expiry-proof{display:grid;grid-template-columns:1fr 155px;background:#35166e;color:#fff}
+.expiry-proof>div:first-child{display:flex;flex-direction:column;justify-content:center;padding:10px 14px}.expiry-proof>div:first-child span{font-size:8px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#d7c4ff}.expiry-proof>div:first-child strong{margin-top:4px;font:700 18px Georgia;line-height:1.15}.expiry-proof small{margin-top:4px;color:#d7c4ff;font-size:8px}
+.expiry-result{padding:8px 12px;background:#6f3fc3;text-align:center}.expiry-result strong{display:block;font:700 34px Georgia;line-height:.9}.expiry-result span{display:block;font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.expiry-result small{display:block;margin-top:3px;font-size:7px;color:#ede5ff}
+.expiry-calendar{display:flex;min-height:0;flex:0 0 auto;flex-direction:column;padding:10px 12px;border:1px solid #d8caf3;background:#fbf9ff;box-shadow:inset 0 0 0 1px #fff}.expiry-calendar-head{display:flex;justify-content:space-between;gap:12px;margin-bottom:7px;color:#35166e;font-size:11px}.expiry-calendar-head strong{font-family:Georgia,serif;font-size:13px}.expiry-calendar-head span{color:#6f3fc3;font-weight:700}
+.expiry-table-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-height:0}.expiry-table{width:100%;height:auto;border-collapse:separate;border-spacing:0;table-layout:fixed;background:#fff;border:1px solid #d8caf3}.expiry-table caption{padding:6px;background:#e9defb;color:#4c2394;border:1px solid #d8caf3;border-bottom:0;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.expiry-table th,.expiry-table td{padding:7px 8px;border-right:1px solid #e6ddf5;border-bottom:1px solid #e6ddf5;text-align:right;font-size:11px;font-variant-numeric:tabular-nums lining-nums}.expiry-table th:last-child,.expiry-table td:last-child{border-right:0}.expiry-table tbody tr:last-child td{border-bottom:0}.expiry-table th{background:#f2ecfc;color:#6a5283;font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.035em}.expiry-table td{background:#fdfbff;color:#3f2d55;font-weight:600}.expiry-table tbody tr:nth-child(even) td{background:#f8f3ff}.expiry-table th:first-child,.expiry-table td:first-child{text-align:center;width:18%;font-weight:800}.expiry-table tr.warning td{background:#eee6ff!important;color:#5d3990;border-color:#d8caf3}.expiry-table tr.loss td{background:#eee8f8!important;color:#5b3a7a;border-color:#d8caf3}.expiry-table tr.exhausted td{background:#ddd0f2!important;color:#4c2394;border-color:#c3a9e6;font-weight:800}.expiry-table tr.exhausted td:first-child{box-shadow:inset 4px 0 0 #6f3fc3}.expiry-table td b{display:block;margin-top:2px;color:#5d2f9e;font-size:7px;letter-spacing:.08em;text-transform:uppercase}
+.rotation-target{display:grid;grid-template-columns:180px minmax(0,1fr);gap:13px;padding:11px 12px;border:1px solid #cbb5f1;background:#f5f0ff;color:#35166e}
+.rotation-answer{display:flex;flex-direction:column;justify-content:center;padding:10px 12px;background:#35166e;color:#fff;text-align:center}
+.rotation-answer span{font-size:8px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#d7c4ff}
+.rotation-answer strong{margin-top:3px;font:700 31px Georgia,serif;line-height:.95}
+.rotation-answer small{margin-top:5px;color:#ede5ff;font-size:8px;line-height:1.25}
+.rotation-detail{display:flex;min-width:0;flex-direction:column;justify-content:center}
+.rotation-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.rotation-heading strong{font:700 14px Georgia,serif}.rotation-heading span{color:#6f3fc3;font-size:9px;font-weight:700;text-align:right}
+.rotation-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:7px}
+.rotation-card{min-width:0;padding:7px 8px;border:1px solid #d8caf3;background:#fff}
+.rotation-card.required{background:#e3d5fa;border:2px solid #6f3fc3;padding:6px 7px}
+.rotation-card .r{font-size:9px;font-weight:800;color:#6f6490;text-transform:uppercase;letter-spacing:.07em}.rotation-card .r b{color:#35166e;font-size:15px;letter-spacing:0}
+.rotation-card .math{margin-top:3px;color:#5b4d76;font-size:8px;line-height:1.25}.rotation-card .net{margin-top:3px;color:#6f3fc3;font-size:11px;font-weight:800}.rotation-card.short .net{color:#8a4562}
+.rotation-card em{display:block;margin-top:2px;color:#4c2394;font-size:6.5px;font-style:normal;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.rotation-sales{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:9px;padding:7px 12px;border:1px solid #cbb5f1;background:#f5f0ff;color:#35166e}
+.rotation-sales-inputs{display:flex;min-width:0;flex-direction:column;justify-content:center;gap:5px}
+.rotation-sales-inputs>strong{font:700 12px Georgia,serif}
+.rotation-sales-controls{display:flex;align-items:center;gap:12px}
+.rotation-sales-inputs label,.rotation-days{display:flex;align-items:center;gap:6px;color:#4c2394;font-size:8px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.rotation-sales-inputs input{width:56px;height:22px;border:1px solid #c3a9ff;background:#fff;color:#35166e;font:700 13px Arial,sans-serif;text-align:center}
+.rotation-sales-inputs label b{font-size:10px;letter-spacing:0}
+.rotation-days button{min-width:30px;height:20px;border:1px solid #c3a9ff;background:#fff;color:#4c2394;font:800 10px Arial,sans-serif;cursor:pointer}
+.rotation-days button[aria-pressed="true"]{background:#35166e;border-color:#35166e;color:#fff}
+.rotation-sales-out{display:flex;min-width:0;flex-direction:column;justify-content:center;padding:5px 9px;border:1px solid #d8caf3;background:#fff}
+.rotation-sales-out.daily{border:2px solid #6f3fc3;padding:4px 8px;background:#efe7ff}
+.rotation-sales-out span{color:#6f6490;font-size:8px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.rotation-sales-out strong{margin-top:2px;color:#35166e;font-size:18px;line-height:1.05;overflow-wrap:anywhere;font-variant-numeric:tabular-nums lining-nums}
+.rotation-sales-out small{margin-top:3px;color:#5b4d76;font-size:8px;line-height:1.25}
+.material-budget{margin-top:8px;color:#35166e;font-size:12px;font-weight:700;line-height:1.35;text-align:center}
+.recipe-builder{width:min(100%,850px);margin:8px auto 0;padding:8px 0;border-top:1px solid #cfc0ee;text-align:left}
+.recipe-list{max-height:122px;overflow-y:auto;margin-top:5px}
+.recipe-row{display:grid;grid-template-columns:auto 64px 24px minmax(140px,1fr);align-items:center;gap:10px;min-height:42px;padding:4px 0;color:#5b4d76;font-size:12px;font-weight:700}
+.recipe-row label{font:700 12px Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#6f6490}
+.recipe-row label{white-space:nowrap}
+.recipe-row input[type=text]{width:100%;height:28px;border:1px solid #cfc0ee;border-radius:4px;background:#fff;color:#35166e;font:700 16px Arial,sans-serif;text-align:center}
+.recipe-row input[type=range]{width:100%;margin:0;accent-color:#4c2394;cursor:pointer}
+.recipe-unit{color:#35166e;font-size:14px}
+body.embed-design .design-breakdown{margin:10px 0 5px}
+body.embed-design .material-card,body.embed-design .design-math{min-height:185px}
+body.embed-design .material-meta,body.embed-design .material-budget{font-size:11px;overflow-wrap:anywhere}
+@media(min-width:900px){body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .workspace{height:calc(100vh - 24px)}}
+@media(min-width:900px){
+  body.embed-design .break-even-illustration{padding:16px 20px}
+  body.embed-design .break-even-heading{margin-bottom:10px}
+  body.embed-design .break-even-heading h3{font-size:18px}
+  body.embed-design .break-even-heading p{font-size:11px}
+  body.embed-design .break-even-steps{gap:9px}
+  body.embed-design .break-even-step{padding:10px 11px}
+  body.embed-design .break-even-label{font-size:8px}
+  body.embed-design .break-even-value{font-size:18px}
+  body.embed-design .break-even-step.result .break-even-value{font-size:16px}
+  body.embed-design .break-even-detail,body.embed-design .break-even-foot{font-size:10px}
+  body.embed-design .break-even-slider{margin-top:8px;padding-top:8px}
+  body.embed-design .break-even-slider span{font-size:9px}
+  body.embed-design .break-even-slider b{font-size:14px}
+}
+@media(max-width:899px){
+  body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .field-group{grid-template-columns:repeat(2,minmax(0,1fr))}
+  body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .controls-card{padding:10px 12px}
+  body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .preset{min-width:0;flex:1;padding:5px 2px}
+  body.embed-design .break-even-illustration{flex:1 1 auto;min-height:0}
+  body.embed-design .business-impact.feature-impact .design-count{padding:18px 16px}
+  body.embed-design .business-impact.feature-impact .design-count>.design-intro{font-size:19px}
+  body.embed-design .design-breakdown{grid-template-columns:minmax(0,1fr) minmax(0,.78fr) minmax(0,1fr);gap:10px}
+  body.embed-design .design-breakdown>*{min-width:0;overflow:hidden}
+  body.embed-design .material-card,body.embed-design .design-math{min-height:230px;padding:14px 10px}
+  body.embed-design .material-number{font-size:48px;max-width:100%;overflow-wrap:anywhere}
+  body.embed-design .material-result-label{font-size:10px}
+  body.embed-design .math-equation{font-size:18px;overflow-wrap:anywhere}
+  body.embed-design .material-meta,body.embed-design .material-budget{font-size:9.5px}
+  body.embed-opportunity .opportunity-panel{padding:14px 16px}
+  body.embed-opportunity .opp-head h1{font-size:23px}
+  body.embed-opportunity .opp-core{gap:10px;margin-top:10px}
+  body.embed-opportunity .opp-hero{padding:12px}
+  body.embed-opportunity .opp-hero p{font-size:11.5px;margin-top:12px}
+  body.embed-opportunity .opp-formula{font-size:10.5px;margin-top:12px}
+  body.embed-opportunity .opp-hero strong{font-size:74px}
+  body.embed-opportunity .opp-table td{padding:5px}
+  body.embed-opportunity .opp-plan-grid{gap:9px;margin-top:10px}
+  body.embed-opportunity .opp-plan{padding:9px 11px}
+  body.embed-opportunity .opp-plan h2{font-size:14px}
+  body.embed-opportunity .opp-plan-rows{gap:6px}
+  body.embed-opportunity .opp-plan-rows strong{font-size:13px}
+  body.embed-opportunity .opp-takeaway{margin-top:10px}
+  body.embed-opportunity .opp-takeaway strong{font-size:26px}
+  .recipe-row{grid-template-columns:auto 50px 20px minmax(90px,1fr);gap:6px;font-size:9px}
+  .recipe-row label{font-size:9px}
+}
+/* The opportunity page keeps the four Traditional Model inputs on one horizontal line in
+   both the portrait PDF view and the scaled presentation view. */
+body.embed-opportunity .field-group{grid-template-columns:repeat(4,minmax(0,1fr))}
 </style>
 </head>
 <body>
@@ -842,10 +1087,11 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
       <div class="control-title"><div><div class="eyebrow">Your Scenario</div><h2>Enter the figures</h2></div><button class="reset" id="resetBtn" type="button">Reset</button></div>
       <div class="preset-label">Quick weight presets</div>
       <div class="presets" role="group" aria-label="Weight presets">
-        <button class="preset active" type="button" data-weight="1">1g</button>
-        <button class="preset" type="button" data-weight="100">100g</button>
-        <button class="preset" type="button" data-weight="500">500g</button>
-        <button class="preset" type="button" data-weight="1000">1,000g</button>
+        <button class="preset" type="button" data-weight="1">1gm</button>
+        <button class="preset" type="button" data-weight="10">10gm</button>
+        <button class="preset" type="button" data-weight="100">100gm</button>
+        <button class="preset" type="button" data-weight="500">500gm</button>
+        <button class="preset" type="button" data-weight="1000">1,000gm</button>
       </div>
       <div class="field-groups">
         <div class="field-group">
@@ -912,20 +1158,22 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
                   <div class="material-label">Gold ornament</div>
                   <div class="material-number" id="goldDesignNumber">1</div>
                   <div class="material-result-label" id="goldDesignLabel">gold design</div>
-                  <div class="material-meta" id="goldDesignMeta">1g each at ₹15,475 per piece.</div>
+                  <div class="material-meta" id="goldDesignMeta">1 complete mix · 1 × 1.0gm</div>
+                  <div class="material-budget" id="goldBudgetDetail">Cost ₹15,475 · Remaining ₹0</div>
                 </div>
                 <div class="design-math">
                   <div class="math-label">Same-capital calculation</div>
-                  <div class="math-equation" id="designCalculation">₹15,475 ÷ ₹500 = 30 designs</div>
+                  <div class="math-equation" id="designCalculation">₹15,475 ÷ ₹500 = 30 complete mixes</div>
                 </div>
                 <div class="material-card smart-material">
                   <div class="material-label">Gold-plated silver ornament</div>
                   <div class="material-number" id="smartDesignNumber">30</div>
                   <div class="material-result-label" id="smartDesignLabel">gold-plated silver designs</div>
-                  <div class="material-meta" id="smartDesignMeta">1g each at ₹500 per design.</div>
+                  <div class="material-meta" id="smartDesignMeta">30 complete mixes · 30 × 1.0gm</div>
+                  <div class="material-budget" id="smartBudgetDetail">Cost ₹15,000 · Remaining ₹475</div>
                 </div>
               </div>
-              <label class="design-weight"><span class="dw-row">Weight of each design<b id="designWeightLabel">1g</b></span><input id="designWeight" type="range" min="0.5" max="20" step="0.5" value="1" aria-label="Weight of each design in grams"></label>
+              <div class="recipe-builder" aria-label="Weight of each design"><div class="recipe-list" id="recipeList"><div class="recipe-row"><label for="designWeightNumber">Weight of each design</label><input class="recipe-weight-number" id="designWeightNumber" type="text" inputmode="decimal" value="1.0" aria-label="Design weight in grams"><span class="recipe-unit">gm</span><input class="recipe-weight-slider" id="designWeight" type="range" min="0.1" max="20" step="0.1" value="1" aria-label="Design weight slider"></div></div></div>
               <div class="bar-set feature-capital-bars" aria-label="Display capital comparison">
                 <div class="capital-profit-row">
                   <div class="capital-profit-meta"><span>Traditional display capital<strong id="featureTradBarLabel">₹15,475</strong></span><span><b id="featureTradProfitRate">4%</b> profit<strong id="featureTradProfit">₹619</strong></span></div>
@@ -939,6 +1187,65 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="opportunity-panel expiry-page" aria-label="Your margin has an expiry date">
+        <div class="expiry-head"><div><div class="eyebrow">The Cost of Waiting</div><h1>Your Margin Has an Expiry Date.</h1><p>Every month an ornament remains unsold, the opportunity cost of blocked capital consumes part of its expected margin.</p></div><label>Annual opportunity-cost rate <input id="expiryRate" type="number" min="0" step="0.5" value="10" inputmode="decimal"><b>%</b></label></div>
+        <div class="expiry-proof"><div><span>The proof in one line</span><strong id="expiryFormula">4% margin ÷ 10% annual opportunity cost × 12</strong><small id="expiryFigures">₹1,00,000 capital · ₹4,000 expected margin · ₹833 consumed monthly</small></div><div class="expiry-result"><strong id="expiryMonths">4.8</strong><span>months</span><small>to protect the expected margin</small></div></div>
+        <div class="bar-set feature-capital-bars expiry-capital" aria-label="Traditional display capital">
+          <div class="capital-profit-row">
+            <div class="capital-profit-meta"><span>Traditional display capital<strong id="expiryTradBarLabel">₹1,56,000</strong></span><span><b id="expiryTradProfitRate">4%</b> profit<strong id="expiryTradProfit">₹6,240</strong></span></div>
+            <div class="split-capital-bar"><div class="capital-segment" id="expiryTradCapitalSegment" style="flex:96 1 0"></div><div class="profit-segment" id="expiryTradProfitSegment" style="flex:4 1 0"></div></div>
+          </div>
+        </div>
+        <div class="bar-set feature-capital-bars expiry-capital expiry-waiting" aria-label="Opportunity cost of display capital">
+          <div class="capital-profit-row">
+            <div class="capital-profit-meta"><span>Opportunity cost on display capital<strong id="expiryWaitCapital">₹15,600</strong></span><span><b id="expiryWaitRate">10%</b> opportunity cost<strong id="expiryWaitAnnual">₹1,560</strong></span></div>
+            <div class="expiry-months-bar" id="expiryMonthsBar" role="list" aria-label="Cost of waiting, month by month"></div>
+          </div>
+        </div>
+        <div class="expiry-calendar"><div class="expiry-calendar-head"><strong>12-month proof</strong><span id="expiryCalendarStatus">Expected margin fully consumed after 4.8 months</span></div><div class="expiry-table-grid"><table class="expiry-table"><caption>Months 1–6</caption><thead><tr><th>Month</th><th>Cost of waiting</th><th>Margin remaining</th></tr></thead><tbody id="expiryFirst"></tbody></table><table class="expiry-table"><caption>Months 7–12</caption><thead><tr><th>Month</th><th>Cost of waiting</th><th>Economic shortfall</th></tr></thead><tbody id="expirySecond"></tbody></table></div></div>
+        <div class="rotation-target" aria-label="Annual stock rotation target">
+          <div class="rotation-answer"><span>Minimum annual target</span><strong id="rotationMinimum">2 rotations</strong><small id="rotationPace">One complete stock cycle every 6 months or faster</small></div>
+          <div class="rotation-detail"><div class="rotation-heading"><strong>Stock rotation target</strong><span id="rotationFormula">10% opportunity cost ÷ 6% profit per rotation = 1.67 rotations</span></div><div class="rotation-cards" id="rotationCards"></div></div>
+        </div>
+        <div class="rotation-sales" aria-label="Sales weight needed at the minimum rotation">
+          <div class="rotation-sales-inputs"><strong id="rotationSalesTitle">Sales needed at 3 rotations</strong><div class="rotation-sales-controls"><label>Retailer stock <input id="rotationStock" type="number" min="0" step="0.5" value="10" inputmode="decimal"><b>kg</b></label><div class="rotation-days" role="group" aria-label="Working days a month"><span>Days a month</span><button type="button" data-days="25" aria-pressed="true">25</button><button type="button" data-days="30" aria-pressed="false">30</button></div></div></div>
+          <div class="rotation-sales-out"><span>Yearly sales</span><strong id="rotationYear">30 kg</strong><small id="rotationYearNote">10 kg × 3 rotations</small></div>
+          <div class="rotation-sales-out"><span>Monthly sales</span><strong id="rotationMonth">2.5 kg</strong><small id="rotationMonthNote">30 kg ÷ 12 months</small></div>
+          <div class="rotation-sales-out daily"><span>Daily sales</span><strong id="rotationDay">100 g</strong><small id="rotationDayNote">2.5 kg ÷ 25 days</small></div>
+        </div>
+      </section>
+
+      <section class="opportunity-panel legacy-opportunity" aria-label="The opportunity cost of holding stock">
+        <div class="opp-head">
+          <div><div class="eyebrow">The Cost of Waiting</div><h1>The Capital Remains.<br>The Profit Doesn't.</h1><p>Your money is not spent — it is parked. Parked money still has a price.</p></div>
+          <div class="opp-dials">
+            <div class="opp-dial"><span>Expected profit on sale</span><strong id="oppMarginEcho">4%</strong></div>
+            <label class="opp-dial editable">Annual cost<br>of capital <input id="opportunityRate" type="number" min="0" step="0.5" value="10" inputmode="decimal" aria-label="Annual opportunity-cost percentage"><b>%</b></label>
+          </div>
+        </div>
+        <div class="opp-core">
+          <div class="opp-hero">
+            <strong id="oppHeroValue">4.8</strong><span id="oppHeroUnit">months</span>
+            <p id="oppHeroCaption">4% profit. 4.8 months to protect it.</p>
+            <div class="opp-formula" id="oppFormula">4% ÷ (10% ÷ 12) = 4.8 months</div>
+          </div>
+          <div class="opp-chart">
+            <div class="opp-chart-title" id="oppChartTitle">How long can your 4% profit afford to wait?</div>
+            <table class="opp-table">
+              <thead><tr><th>Month</th><th>Cost of waiting</th><th>Traditional</th><th>KARATS SMART</th></tr></thead>
+              <tbody id="oppTableBody"></tbody>
+            </table>
+            <div class="opp-chart-foot"><span>Profit remaining, as a share of the capital each model locks</span><strong id="oppYearEnd">−6% after 12 months</strong></div>
+          </div>
+        </div>
+        <div class="opp-plan-grid">
+          <article class="opp-plan"><div class="opp-plan-name">Traditional</div><h2>Capital waits with the ornament.</h2><div class="opp-plan-rows"><div><span>Return on locked capital</span><strong id="oppTradReturn">4%</strong></div><div><span>Profit absorbed in</span><strong id="oppTradAbsorb">4.8 months</strong></div></div></article>
+          <article class="opp-plan smart"><div class="opp-plan-name">KARATS SMART</div><h2>Gold is purchased after the order is confirmed.</h2><div class="opp-plan-rows"><div><span>Return on locked capital</span><strong id="oppSmartReturn">124.8%</strong></div><div><span>Profit absorbed in</span><strong id="oppSmartAbsorb">12.5 years</strong></div></div></article>
+        </div>
+        <div class="opp-takeaway"><strong id="oppRatio">31.2×</strong><span id="oppRatioNote">longer before waiting absorbs the profit — the same capital ratio shown on the previous page, measured in time.</span></div>
+        <div class="opp-tension">This represents opportunity-cost-adjusted profit, not an accounting loss: the capital itself remains in the ornament. <strong>Excludes remelting, discounting, insurance and security — each of which shortens the period further.</strong></div>
       </section>
 
       <section class="panel section-panel">
@@ -983,7 +1290,6 @@ body.embed-calculator .scale-result{border-color:#c3a9ff}
             <div class="break-even-detail" id="breakEvenSurplus">₹119 surplus after recovery</div>
           </div>
         </div>
-        <label class="break-even-slider"><span>Confirmed order weight&nbsp; <b id="recoveryOrderWeightLabel">1g</b></span><input id="recoveryOrderWeight" type="range" min="0.5" max="100" step="0.5" value="1" aria-label="Confirmed order weight in grams"></label>
         <p class="break-even-foot" id="breakEvenFoot">From the 2nd order onward, each reuse can generate the full ₹619 profit without additional display investment.</p>
       </section>
 
@@ -1082,14 +1388,15 @@ const $=id=>document.getElementById(id);
 const pageParams=new URLSearchParams(location.search);
 const embedMode=pageParams.get('embed');
 let syncingFromParent=false;
-if(embedMode){document.body.classList.add('embed-calculator',embedMode==='reuse'?'embed-reuse':'embed-summary')}
+if(embedMode){document.body.classList.add('embed-calculator',`embed-${embedMode}`)}
 const inr=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
 const num=new Intl.NumberFormat('en-IN',{maximumFractionDigits:0});
 const roundDisplay=n=>{n=Number.isFinite(n)?n:0;const sign=n<0?-1:1,a=Math.abs(n),whole=Math.floor(a);return sign*(whole+(a-whole>=0.4?1:0))};
 const fmtInr=n=>inr.format(roundDisplay(n)).replace(/\.00$/,"");
 const fmtNum=n=>num.format(roundDisplay(n));
 const fmtPct=n=>`${fmtNum(n)}%`;
-const fmtW=n=>new Intl.NumberFormat('en-IN',{maximumFractionDigits:2}).format(Number.isFinite(n)?Math.max(0,n):0);
+const fmtW=n=>new Intl.NumberFormat('en-IN',{maximumFractionDigits:12}).format(Number.isFinite(n)?Math.max(0,n):0);
+const fmtDesignWeight=n=>Number(n).toFixed(1);
 const ordinal=n=>{n=Math.max(1,Math.ceil(n));const m=n%100;if(m>=11&&m<=13)return `${n}th`;return `${n}${n%10===1?'st':n%10===2?'nd':n%10===3?'rd':'th'}`};
 const safe=(a,b)=>b? a/b:0;
 
@@ -1129,7 +1436,7 @@ function calculate(v){
 function setText(id,value){const el=$(id);if(el&&el.textContent!==String(value))el.textContent=value}
 function projectionRows(v,c){
   const uses=[1,2,5,10];
-  const orderWeight=Math.max(.5,Number($('recoveryOrderWeight')?.value)||1);
+  const orderWeight=Math.max(.1,Number($('designWeight')?.value)||1);
   return uses.map(use=>{
     const total=c.smartProfitPerGram*orderWeight*use;
     // Keep the one-time prototype value visible as a reference in every row. It is
@@ -1141,6 +1448,12 @@ function rowMarkup(rows){return rows.map(r=>`<tr><td>${r.use}</td><td>${fmtInr(r
 
 function update(){
   const v=readValues(),c=calculate(v),rows=projectionRows(v,c);
+  const displayWeight=$('goldDisplayWeight').value.trim();
+  document.querySelectorAll('.preset').forEach(button=>{
+    const active=displayWeight!==''&&Number(displayWeight)===Number(button.dataset.weight);
+    button.classList.toggle('active',active);
+    button.setAttribute('aria-pressed',String(active));
+  });
   const tradProfit=fmtInr(c.tradProfitPerSale),smartProfit=fmtInr(c.smartProfitPerSale);
   setText('tradProfitFormula',`${tradProfit} ÷ ${fmtInr(c.tradCapital)}`);setText('tradRoi',fmtPct(c.tradRoi));
   setText('smartProfitFormula',`${smartProfit} ÷ ${fmtInr(c.prototypeCapital)}`);setText('smartRoi',fmtPct(c.smartRoi));
@@ -1149,32 +1462,130 @@ function update(){
   setText('smartMessage',`${fmtInr(c.prototypeCapital)} is committed to generate ${smartProfit} profit.`);
   setText('sameProfitKpi',smartProfit);setText('lowerInvestmentKpi',`${fmtNum(c.capitalRatio)}×`);setText('efficiencyKpi',`${fmtNum(c.efficiencyRatio)}×`);setText('breakEvenKpi',ordinal(c.breakEvenWhole));
   {
-    // How many separate designs the same capital puts in the showcase. The 31x ratio
-    // never moves, because weight cancels on both sides; the counts do, which is what a
-    // retailer is actually asking.
-    const dw=Math.max(0.1,Number($('designWeight')?.value)||1);
-    setText('designWeightLabel',`${fmtW(dw)}g`);
-    const protoEach=(v.silverCost+v.silverMakingCharges)*dw;
-    const goldEach=c.tradCapital/Math.max(v.goldDisplayWeight,0.0001)*dw;
-    const tradDesigns=Math.floor(safe(v.goldDisplayWeight,dw));
-    const smartDesigns=Math.floor(safe(c.tradCapital,protoEach));
-    setText('businessRatioNote',tradDesigns>=1
-      ?`Same budget: ${fmtNum(tradDesigns)} gold ${tradDesigns===1?'design':'designs'} or ${fmtNum(smartDesigns)} gold-plated silver ${smartDesigns===1?'design':'designs'}.`
-      :`Not enough for 1 gold design. Enough for ${fmtNum(smartDesigns)} gold-plated silver ${smartDesigns===1?'design':'designs'}.`);
-    setText('goldDesignNumber',fmtNum(tradDesigns));
-    setText('goldDesignLabel',`gold ${tradDesigns===1?'design':'designs'}`);
-    setText('goldDesignMeta',`${fmtW(dw)}g each at ${fmtInr(goldEach)} per gold piece.`);
-    setText('designCalculation',`${fmtInr(c.tradCapital)} ÷ ${fmtInr(protoEach)} = ${fmtNum(smartDesigns)} designs`);
-    setText('smartDesignNumber',fmtNum(smartDesigns));
-    setText('smartDesignLabel',`gold-plated silver ${smartDesigns===1?'design':'designs'}`);
-    setText('smartDesignMeta',`${fmtW(dw)}g each at ${fmtInr(protoEach)} per gold-plated silver design.`);
+    // Opportunity cost as a share of the capital each model locks, so the conclusion holds
+    // at any stock value: months = return on locked capital ÷ (annual rate ÷ 12).
+    const annualRate=Math.max(0,Number($('expiryRate')?.value??$('opportunityRate')?.value)||0);
+    const monthlyRate=annualRate/12;
+    const absorbMonths=roi=>roi<=0?0:(monthlyRate>0?roi/monthlyRate:Infinity);
+    const tradMonths=absorbMonths(c.tradRoi);
+    // One decimal, trailing .0 stripped. The page-wide rounding helper rounds to whole
+    // numbers, which would print the 4.8-month headline as 5 and stop the sums reconciling.
+    const dec=n=>(Number.isFinite(n)?n:0).toFixed(1).replace(/\.0$/,'').replace('-','−');
+    const pct=n=>`${dec(n)}%`;
+    const span=months=>!Number.isFinite(months)?'—':months<24?`${dec(months)} months`:`${dec(months/12)} years`;
+    const yearEnd=c.tradRoi-annualRate;
+    setText('oppMarginEcho',pct(c.tradRoi));
+    if(!Number.isFinite(tradMonths)){setText('oppHeroValue','—');setText('oppHeroUnit','no waiting cost applied')}
+    else if(tradMonths<24){setText('oppHeroValue',dec(tradMonths));setText('oppHeroUnit',tradMonths===1?'month':'months')}
+    else{setText('oppHeroValue',dec(tradMonths/12));setText('oppHeroUnit','years')}
+    setText('oppHeroCaption',`${pct(c.tradRoi)} profit. ${span(tradMonths)} to protect it.`);
+    setText('oppFormula',`${pct(c.tradRoi)} ÷ (${pct(annualRate)} ÷ 12) = ${span(tradMonths)}`);
+    setText('oppChartTitle',`How long can your ${pct(c.tradRoi)} profit afford to wait?`);
+    setText('oppTradReturn',pct(c.tradRoi));setText('oppTradAbsorb',span(tradMonths));
+    setText('oppSmartReturn',pct(c.smartRoi));setText('oppSmartAbsorb',span(absorbMonths(c.smartRoi)));
+    // Both models earn the same profit, so the ratio of their holding periods is exactly the
+    // ratio of the capital they lock — the same figure the design page reports.
+    setText('oppRatio',`${dec(c.capitalRatio)}×`);
+    setText('oppYearEnd',`${pct(yearEnd)} after 12 months`);
+    $('oppYearEnd').style.color=yearEnd<0?'#a1273d':'#35166e';
+    {
+      // One row per month. The cost of waiting is the same share of capital in both models
+      // (0.83%/month at 10% a year); what differs is how much profit that share has to eat.
+      const tradCash=c.tradCapital*monthlyRate/100,smartCash=c.prototypeCapital*monthlyRate/100;
+      let crossed=false;
+      $('oppTableBody').innerHTML=Array.from({length:12},(_,index)=>{
+        const month=index+1,cost=monthlyRate*month;
+        const tradLeft=c.tradRoi-cost,smartLeft=c.smartRoi-cost;
+        let state='';
+        if(tradLeft<-1e-9){state=crossed?'loss':'cross';crossed=true}
+        const cell=(pctValue,cashValue)=>`<td class="${pctValue<-1e-9?'negative':''}">${pct(pctValue)}<i>${fmtInr(cashValue).replace('-','−')}</i></td>`;
+        return `<tr class="${state}"><td>${month}${state==='cross'?'<b>break-even</b>':''}</td><td>${pct(cost)}</td>`
+          +cell(tradLeft,c.tradProfitPerSale-tradCash*month)
+          +cell(smartLeft,c.smartProfitPerSale-smartCash*month)+'</tr>'
+      }).join('');
+    }
+    {
+      const monthlyCash=c.tradCapital*annualRate/100/12;
+      const expiryMonth=Number.isFinite(tradMonths)?Math.max(1,Math.ceil(tradMonths-1e-9)):Infinity;
+      const stateFor=(month,left)=>month===expiryMonth?'exhausted':left<0?'loss':(month===Math.max(1,Math.floor(tradMonths))?'warning':'');
+      const rows=Array.from({length:12},(_,index)=>{const month=index+1,cost=monthlyCash*month,left=c.tradProfitPerSale-cost;const state=stateFor(month,left);return `<tr class="${state}"><td>${month}${state==='exhausted'?'<b>expiry</b>':''}</td><td>${fmtInr(cost)}</td><td>${left>=0?fmtInr(left):`−${fmtInr(Math.abs(left))}`}</td></tr>`});
+      $('expiryFirst').innerHTML=rows.slice(0,6).join('');$('expirySecond').innerHTML=rows.slice(6).join('');
+      setText('expiryWaitCapital',fmtInr(c.tradCapital));setText('expiryWaitRate',pct(annualRate));setText('expiryWaitAnnual',fmtInr(monthlyCash*12));
+      // Each segment is one month; its label is the running total, matching the table's cost-of-waiting column.
+      $('expiryMonthsBar').innerHTML=Array.from({length:12},(_,index)=>{const month=index+1,cost=monthlyCash*month;return `<span role="listitem" class="${stateFor(month,c.tradProfitPerSale-cost)}" title="Month ${month}: ${fmtInr(monthlyCash)} this month, ${fmtInr(cost)} to date"><b>M${month}</b>${fmtInr(cost)}</span>`}).join('');
+      setText('expiryFormula',`${pct(c.tradRoi)} margin ÷ ${pct(annualRate)} annual opportunity cost × 12`);
+      setText('expiryFigures',`${fmtInr(c.tradCapital)} capital · ${fmtInr(c.tradProfitPerSale)} expected margin · ${fmtInr(monthlyCash)} consumed monthly`);
+      setText('expiryMonths',Number.isFinite(tradMonths)?dec(tradMonths):'—');
+      setText('expiryCalendarStatus',Number.isFinite(tradMonths)?`Expected margin fully consumed after ${dec(tradMonths)} months`:'No opportunity-cost benchmark applied');
+      const profitPerRotation=c.tradRoi;
+      const minimumRotations=profitPerRotation>0?Math.floor(annualRate/profitPerRotation+1e-10)+1:null;
+      if(minimumRotations){
+        const theoretical=annualRate/profitPerRotation;
+        const rotationRatio=n=>Number(n).toFixed(2).replace(/\.?0+$/,'');
+        const monthsPerRotation=12/minimumRotations;
+        setText('rotationMinimum',`${minimumRotations} ${minimumRotations===1?'rotation':'rotations'}`);
+        setText('rotationPace',`One complete stock cycle every ${dec(monthsPerRotation)} months or faster`);
+        setText('rotationFormula',`${pct(annualRate)} opportunity cost ÷ ${pct(profitPerRotation)} profit per rotation = ${rotationRatio(theoretical)} rotations`);
+        const rotations=minimumRotations<=4?[1,2,3,4]:[minimumRotations-1,minimumRotations,minimumRotations+1,minimumRotations+2];
+        $('rotationCards').innerHTML=rotations.map(rotation=>{
+          const annualProfit=profitPerRotation*rotation,net=annualProfit-annualRate;
+          const classes=['rotation-card',rotation===minimumRotations?'required':'',net<=0?'short':''].filter(Boolean).join(' ');
+          const signedNet=`${net>0?'+':net<0?'−':''}${pct(Math.abs(net))}`;
+          return `<div class="${classes}"><div class="r"><b>${rotation}×</b> per year</div><div class="math">${pct(annualProfit)} profit − ${pct(annualRate)} cost</div><div class="net">${signedNet} net</div>${rotation===minimumRotations?'<em>Minimum to outperform</em>':''}</div>`;
+        }).join('');
+      }else{
+        setText('rotationMinimum','No target');setText('rotationPace','Enter a profit margin above 0%');setText('rotationFormula','A positive profit per rotation is required');$('rotationCards').innerHTML='';
+      }
+      {
+        const stockGrams=Math.max(0,Number($('rotationStock').value)||0)*1000;
+        const days=Number(document.querySelector('.rotation-days [aria-pressed="true"]')?.dataset.days)||25;
+        const weight=grams=>grams>=1000?`${(grams/1000).toLocaleString('en-IN',{maximumFractionDigits:2})} kg`:`${grams.toLocaleString('en-IN',{maximumFractionDigits:1})} g`;
+        if(minimumRotations){
+          const yearly=stockGrams*minimumRotations,monthly=yearly/12,daily=monthly/days;
+          setText('rotationSalesTitle',`Sales needed at ${minimumRotations} ${minimumRotations===1?'rotation':'rotations'}`);
+          setText('rotationYear',weight(yearly));setText('rotationYearNote',`${weight(stockGrams)} × ${minimumRotations} ${minimumRotations===1?'rotation':'rotations'}`);
+          setText('rotationMonth',weight(monthly));setText('rotationMonthNote',`${weight(yearly)} ÷ 12 months`);
+          setText('rotationDay',weight(daily));setText('rotationDayNote',`${weight(monthly)} ÷ ${days} days`);
+        }else{
+          setText('rotationSalesTitle','No rotation target');
+          ['rotationYear','rotationMonth','rotationDay'].forEach(id=>setText(id,'—'));
+          ['rotationYearNote','rotationMonthNote','rotationDayNote'].forEach(id=>setText(id,'Needs a profit margin above 0%'));
+        }
+      }
+    }
+    try{localStorage.setItem('karatsOpportunityRate',String(annualRate))}catch(e){}
   }
-  const recoveryOrderWeight=Math.max(.5,Number($('recoveryOrderWeight')?.value)||1);
+
+  {
+    // One design weight: how many whole pieces the display capital buys in each material.
+    const budget=c.tradCapital;
+    const goldPerGram=safe(c.tradCapital,v.goldDisplayWeight);
+    const silverPerGram=v.silverCost+v.silverMakingCharges;
+    const affords=(perGram,weight)=>perGram>0&&weight>0?Math.floor((budget+0.000001)/(perGram*weight)):0;
+    const designs=n=>`${fmtNum(n)} ${n===1?'design':'designs'}`;
+    const weight=Math.max(0.1,Number($('designWeight').value)||1);
+    const goldEach=goldPerGram*weight, silverEach=silverPerGram*weight;
+    const goldPieces=affords(goldPerGram,weight), silverPieces=affords(silverPerGram,weight);
+    setText('businessRatioNote',`Same budget: ${fmtNum(goldPieces)} gold ${goldPieces===1?'design':'designs'} or ${fmtNum(silverPieces)} gold-plated silver ${silverPieces===1?'design':'designs'}.`);
+    setText('goldDesignNumber',fmtNum(goldPieces));
+    setText('goldDesignLabel',`gold ${goldPieces===1?'design':'designs'}`);
+    setText('goldDesignMeta',goldPieces
+      ?`${fmtDesignWeight(weight)}gm each at ${fmtInr(goldEach)} per gold piece.`
+      :`One ${fmtDesignWeight(weight)}gm gold piece costs ${fmtInr(goldEach)} and does not fit the budget.`);
+    setText('goldBudgetDetail',`Cost ${fmtInr(goldPieces*goldEach)} · Remaining ${fmtInr(Math.max(0,budget-goldPieces*goldEach))}`);
+    setText('designCalculation',`${fmtInr(budget)} ÷ ${fmtInr(silverEach)} = ${designs(silverPieces)}`);
+    setText('smartDesignNumber',fmtNum(silverPieces));
+    setText('smartDesignLabel',`gold-plated silver ${silverPieces===1?'design':'designs'}`);
+    setText('smartDesignMeta',silverPieces
+      ?`${fmtDesignWeight(weight)}gm each at ${fmtInr(silverEach)} per gold-plated silver design.`
+      :`One ${fmtDesignWeight(weight)}gm prototype costs ${fmtInr(silverEach)} and does not fit the budget.`);
+    setText('smartBudgetDetail',`Cost ${fmtInr(silverPieces*silverEach)} · Remaining ${fmtInr(Math.max(0,budget-silverPieces*silverEach))}`);
+  }
+  const recoveryOrderWeight=Math.max(.1,Number($('designWeight')?.value)||1);
   const recoveryProfitPerOrder=c.smartProfitPerGram*recoveryOrderWeight;
   const recoveryOrders=safe(c.prototypeCapital,recoveryProfitPerOrder);
   const recoveryWhole=Math.max(1,Math.ceil(recoveryOrders));
   const recoveryProfitText=fmtInr(recoveryProfitPerOrder);
-  setText('recoveryOrderWeightLabel',`${fmtW(recoveryOrderWeight)}g`);
   setText('breakEvenProfitLabel',`Profit per ${fmtW(recoveryOrderWeight)}g confirmed order`);
   setText('breakEvenInvestment',fmtInr(c.prototypeCapital));
   setText('breakEvenProfit',recoveryProfitText);
@@ -1212,6 +1623,8 @@ function update(){
   setText('featureTradBarLabel',fmtInr(c.tradCapital));setText('featureTradProfitRate',fmtPct(c.tradRoi));setText('featureTradProfit',tradProfit);
   setText('featureSmartBarLabel',fmtInr(c.prototypeCapital));setText('featureSmartProfitRate',fmtPct(c.smartRoi));setText('featureSmartProfit',smartProfit);
   $('featureTradCapitalSegment').style.flexGrow=String(Math.max(c.tradCapital,0));$('featureTradProfitSegment').style.flexGrow=String(Math.max(c.tradProfitPerSale,0));
+  setText('expiryTradBarLabel',fmtInr(c.tradCapital));setText('expiryTradProfitRate',fmtPct(c.tradRoi));setText('expiryTradProfit',tradProfit);
+  $('expiryTradCapitalSegment').style.flexGrow=String(Math.max(c.tradCapital,0));$('expiryTradProfitSegment').style.flexGrow=String(Math.max(c.tradProfitPerSale,0));
   $('featureSmartCapitalSegment').style.flexGrow=String(Math.max(c.prototypeCapital,0));$('featureSmartProfitSegment').style.flexGrow=String(Math.max(c.smartProfitPerSale,0));
   setText('scalePrototype',`1,000g × (${fmtInr(v.silverCost)} + ${fmtInr(v.silverMakingCharges)}) = ${fmtInr(c.scalePrototype)}`);setText('scaleProfit',`1,000g × ${fmtInr(c.smartProfitPerGram)} = ${fmtInr(c.scaleProfit)}`);setText('scaleSurplus',fmtInr(c.scaleSurplus));
   updatePrint(v,c,rows);
@@ -1299,20 +1712,44 @@ function togglePresentation(){document.body.classList.contains('presentation')?e
 function openBrochurePresentation(){location.href=`Karats-Elite-Plan-Brochure-source.html?lang=${currentLanguage()}#presentation`}
 
 let designUpdateFrame=0;
-$('designWeight')?.addEventListener('input',()=>{
+function scheduleDesignUpdate(){
   cancelAnimationFrame(designUpdateFrame);
   designUpdateFrame=requestAnimationFrame(update);
+}
+$('recipeList').addEventListener('input',event=>{
+  const row=event.target.closest('.recipe-row');if(!row)return;
+  const slider=row.querySelector('.recipe-weight-slider');
+  const number=row.querySelector('.recipe-weight-number');
+  if(event.target===slider)number.value=fmtDesignWeight(slider.value);
+  if(event.target===number){
+    const raw=number.value.trim(),value=Number(raw);
+    if(!raw||!Number.isFinite(value)||value<=0)return;
+    const rounded=Math.max(0.1,Math.round(value*10)/10);
+    slider.max=String(Math.max(20,rounded));slider.value=String(rounded);
+  }
+  scheduleDesignUpdate();
 });
-$('recoveryOrderWeight')?.addEventListener('input',()=>{
-  cancelAnimationFrame(designUpdateFrame);
-  designUpdateFrame=requestAnimationFrame(update);
+$('recipeList').addEventListener('change',event=>{
+  const row=event.target.closest('.recipe-row');if(!row)return;
+  if(event.target.classList.contains('recipe-weight-number')){
+    const slider=row.querySelector('.recipe-weight-slider');
+    const value=Number(event.target.value);
+    const rounded=Number.isFinite(value)&&value>0?Math.max(0.1,Math.round(value*10)/10):Number(slider.value);
+    event.target.value=fmtDesignWeight(rounded);
+    slider.max=String(Math.max(20,rounded));slider.value=String(rounded);
+  }
+  update();
 });
 ids.forEach(id=>{
-  $(id).addEventListener('input',()=>{document.querySelectorAll('.preset').forEach(b=>b.classList.remove('active'));update()});
+  $(id).addEventListener('input',update);
   $(id).addEventListener('keydown',event=>{if(event.key==='ArrowUp'||event.key==='ArrowDown')event.preventDefault()});
 });
-document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{const w=Number(btn.dataset.weight);$('goldDisplayWeight').value=w;$('silverWeight').value=w;document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b===btn));update()}));
-$('resetBtn').addEventListener('click',()=>{ids.forEach(id=>$(id).value=defaults[id]);if($('recoveryOrderWeight'))$('recoveryOrderWeight').value=1;document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('active',b.dataset.weight==='1'));update();showToast('Defaults restored')});
+$('opportunityRate').addEventListener('input',update);
+$('expiryRate').addEventListener('input',()=>{$('opportunityRate').value=$('expiryRate').value;update()});
+$('rotationStock').addEventListener('input',update);
+document.querySelectorAll('.rotation-days button').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.rotation-days button').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));update()}));
+document.querySelectorAll('.preset').forEach(btn=>btn.addEventListener('click',()=>{const w=Number(btn.dataset.weight);$('goldDisplayWeight').value=w;$('silverWeight').value=w;update()}));
+$('resetBtn').addEventListener('click',()=>{ids.forEach(id=>$(id).value=defaults[id]);$('opportunityRate').value=10;$('expiryRate').value=10;$('rotationStock').value=10;document.querySelectorAll('.rotation-days button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.days==='25')));$('designWeight').max='20';$('designWeight').value='1';$('designWeightNumber').value='1.0';update();showToast('Defaults restored')});
 $('copyBtn').addEventListener('click',copyResults);$('slideBtn').addEventListener('click',exportSlide);$('printBtn').addEventListener('click',()=>{update();window.print()});
 $('closePortfolioBtn').addEventListener('click',()=>$('portfolioDialog').close());
 $('languageSelect').addEventListener('change',()=>{
@@ -1333,9 +1770,11 @@ window.addEventListener('message',event=>{
 });
 document.addEventListener('keydown',event=>{
   if(!embedMode||!['ArrowLeft','ArrowRight','PageUp','PageDown','Escape'].includes(event.key))return;
+  if(event.key!=='Escape'&&event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
   event.preventDefault();window.parent.postMessage({type:'karats-deck-key',key:event.key},'*');
 });
 try{const saved=JSON.parse(localStorage.getItem('karatsSmartCalculator'));if(saved)ids.forEach(id=>{if(saved[id]!=null)$(id).value=saved[id]})}catch(e){}
+try{const savedRate=localStorage.getItem('karatsOpportunityRate');if(savedRate!=null&&savedRate!==''){$('opportunityRate').value=savedRate;$('expiryRate').value=savedRate}}catch(e){}
 let initialLanguage=pageParams.get('lang')||'en';if(!pageParams.get('lang')){try{initialLanguage=localStorage.getItem('karatsLanguage')||'en'}catch(e){}}
 applyLanguage(initialLanguage);update();
 if(location.hash==='#portfolio')setTimeout(openPortfolio,80);
