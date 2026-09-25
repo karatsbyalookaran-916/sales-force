@@ -87,6 +87,9 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .input-wrap{position:relative}
 .input-prefix,.input-suffix{position:absolute;top:50%;transform:translateY(-50%);color:#4a3c6b;font-size:14px;pointer-events:none}
 .input-prefix{left:12px}.input-suffix{right:12px}
+.gold-rate-wrap input{padding-right:68px}
+.gold-purity-select{position:absolute;right:0;top:0;width:64px;height:100%;border:0;border-left:1px solid #c3a9ff;background:#f7f3ff;color:#35166e;font-size:11px;font-weight:700;text-align:center;cursor:pointer;outline:none}
+.gold-purity-select:focus{background:#ede5ff;box-shadow:inset 0 0 0 1px #6f3fc3}
 .field input{width:100%;height:44px;border:1px solid #e4dcf5;background:#ffffff;color:var(--ink);padding:0 42px 0 30px;font-size:16px;font-weight:700;border-radius:0}
 .field input[type="number"]{-moz-appearance:textfield;appearance:textfield}
 .field input[type="number"]::-webkit-outer-spin-button,.field input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
@@ -175,6 +178,22 @@ h3{font-family:Georgia,serif;font-size:20px;line-height:1.15}
 .break-even-slider input[type=text]{width:64px;height:30px;flex:0 0 auto;border:1px solid #cfc0ee;border-radius:4px;background:#fff;color:#35166e;font:700 16px Arial,sans-serif;text-align:center}
 .break-even-slider .weight-unit{font-size:14px;font-weight:700;color:#35166e}
 .break-even-foot{font-size:11px;line-height:1.4;color:#4a3c6b;margin-top:10px;padding-left:11px;border-left:3px solid #8b4bd1}
+.break-even-asset{margin-top:12px;padding-top:11px;border-top:1px solid #d9c9ff}
+.break-even-asset-title{color:#4c2394;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.break-even-asset-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:9px}
+.break-even-asset-grid>div{min-width:0;padding:11px 14px;border:1px solid #d8caf3;border-radius:5px;background:#fff}
+.break-even-asset-grid span{display:block;color:#6f6490;font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.break-even-asset-grid strong{display:block;margin-top:4px;color:#35166e;font-size:22px;line-height:1.05;overflow-wrap:anywhere}
+.break-even-asset-grid small{display:block;margin-top:4px;color:#5b4d76;font-size:10px;line-height:1.35}
+.break-even-asset-foot{margin-top:8px;color:#4a3c6b;font-size:10px;line-height:1.4}
+body.embed-design .break-even-asset{margin-top:9px;padding-top:8px}
+body.embed-design .break-even-asset-title{font-size:9px}
+body.embed-design .break-even-asset-grid{gap:10px;margin-top:8px}
+body.embed-design .break-even-asset-grid>div{padding:9px 12px}
+body.embed-design .break-even-asset-grid span{font-size:9px}
+body.embed-design .break-even-asset-grid strong{font-size:19px}
+body.embed-design .break-even-asset-grid small{font-size:9px;line-height:1.3}
+body.embed-design .break-even-asset-foot{margin-top:6px;font-size:7.5px;line-height:1.3}
 .business-impact.feature-impact{width:100%;margin-left:0;padding:0;border:0;background:transparent}
 .business-impact.feature-impact .business-examples{display:block}
 .business-impact.feature-impact .design-count{min-height:420px;padding:44px 64px;align-items:center;text-align:center}
@@ -851,7 +870,9 @@ body.embed-summary .hero-panel{width:100%;height:auto;min-height:0;padding:20px 
 body.embed-summary .support-impact{display:flex!important;flex:0 0 auto;flex-direction:column;width:100%;height:auto;margin:0;padding:14px 18px;overflow:hidden}
 body.embed-summary .support-impact .business-impact-title{font-size:11px;margin-bottom:9px}
 body.embed-summary .support-impact .business-examples{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:none;gap:10px;height:auto}
+body.embed-summary .support-impact .business-examples.two-items{grid-template-columns:repeat(2,minmax(0,1fr))}
 body.embed-summary .support-impact .business-example{display:block;min-height:100px;padding:11px 13px;font-size:10.5px;line-height:1.3;overflow:hidden}
+body.embed-summary .support-impact .business-example[hidden]{display:none!important}
 body.embed-summary .support-impact .business-example strong{font-size:13px;line-height:1.2;margin-bottom:5px}
 body.embed-reuse .support-impact{display:none!important}
 body.embed-reuse .results-area{display:flex;width:100%;min-width:0;height:auto;min-height:0;flex:1 1 auto;flex-direction:column;gap:12px;overflow:hidden}
@@ -1018,6 +1039,45 @@ body.embed-design .material-card,body.embed-design .design-math{min-height:185px
 body.embed-design .material-meta,body.embed-design .material-budget{font-size:11px;overflow-wrap:anywhere}
 @media(min-width:900px){body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .workspace{height:calc(100vh - 24px)}}
 @media(min-width:900px){
+  /* Landscape presentation: keep the complete opportunity story visible without
+     shrinking the proof table. The month proof stays on the left while the two
+     action panels share a compact right-hand rail. */
+  body.embed-opportunity .expiry-page{
+    display:grid!important;
+    grid-template-columns:minmax(0,1.65fr) minmax(500px,.75fr);
+    grid-template-rows:auto auto auto auto minmax(0,1fr) auto;
+    align-items:stretch;
+    gap:7px 10px;
+  }
+  body.embed-opportunity .expiry-head{grid-column:1/-1;grid-row:1}
+  body.embed-opportunity .expiry-proof{grid-column:1/-1;grid-row:2}
+  body.embed-opportunity .expiry-capital:not(.expiry-waiting){grid-column:1/-1;grid-row:3}
+  body.embed-opportunity .expiry-waiting{grid-column:1/-1;grid-row:4}
+  body.embed-opportunity .expiry-calendar{grid-column:1;grid-row:5/7;height:100%;overflow:hidden}
+  body.embed-opportunity .expiry-table-grid{flex:1 1 auto}
+  body.embed-opportunity .expiry-table tbody tr:last-child td{padding-top:2px;padding-bottom:12px}
+  body.embed-opportunity .rotation-target{grid-column:2;grid-row:5;grid-template-columns:128px minmax(0,1fr);gap:8px;height:100%;min-height:0;padding:8px}
+  body.embed-opportunity .rotation-answer{padding:7px 8px}
+  body.embed-opportunity .rotation-answer strong{font-size:23px}
+  body.embed-opportunity .rotation-answer small{font-size:7px}
+  body.embed-opportunity .rotation-heading{gap:7px}
+  body.embed-opportunity .rotation-heading strong{font-size:12px}
+  body.embed-opportunity .rotation-heading span{font-size:7px}
+  body.embed-opportunity .rotation-cards{gap:4px;margin-top:5px}
+  body.embed-opportunity .rotation-card{padding:5px 6px}
+  body.embed-opportunity .rotation-card.required{padding:4px 5px}
+  body.embed-opportunity .rotation-card .r{font-size:7px}
+  body.embed-opportunity .rotation-card .r b{font-size:12px}
+  body.embed-opportunity .rotation-card .math{font-size:7px}
+  body.embed-opportunity .rotation-card .net{font-size:9px}
+  body.embed-opportunity .rotation-sales{grid-column:2;grid-row:6;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:6px 8px}
+  body.embed-opportunity .rotation-sales-inputs{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;gap:8px}
+  body.embed-opportunity .rotation-sales-inputs>strong{font-size:11px}
+  body.embed-opportunity .rotation-sales-controls{gap:8px}
+  body.embed-opportunity .rotation-sales-out{padding:4px 6px}
+  body.embed-opportunity .rotation-sales-out.daily{padding:3px 5px}
+  body.embed-opportunity .rotation-sales-out strong{font-size:14px}
+  body.embed-opportunity .rotation-sales-out small{font-size:7px}
   body.embed-design .break-even-illustration{padding:16px 20px}
   body.embed-design .break-even-heading{margin-bottom:10px}
   body.embed-design .break-even-heading h3{font-size:18px}
@@ -1096,7 +1156,7 @@ body.embed-opportunity .field-group{grid-template-columns:repeat(4,minmax(0,1fr)
       <div class="field-groups">
         <div class="field-group">
           <div class="field-group-title">Traditional model</div>
-          <div class="field"><label for="goldPrice">Gold value per gram <small>₹/g</small></label><div class="input-wrap"><span class="input-prefix">₹</span><input id="goldPrice" type="number" value="15000" min="1" step="100" inputmode="decimal"><span class="input-suffix">/g</span></div></div>
+        <div class="field"><label for="goldPrice">Gold value per gram <small>select rate purity</small></label><div class="input-wrap gold-rate-wrap"><span class="input-prefix">₹</span><input id="goldPrice" type="number" value="15000" min="1" step="100" inputmode="decimal"><select class="gold-purity-select" id="goldPurity" aria-label="Purity represented by the entered gold rate"><option value="24">24KT</option><option value="22" selected>22KT</option><option value="18">18KT</option><option value="14">14KT</option><option value="9">9KT</option></select></div></div>
           <div class="field"><label for="makingCharges">Making charges <small>percentage</small></label><div class="input-wrap"><input class="no-prefix" id="makingCharges" type="number" value="0" min="0" step="1" inputmode="numeric"><span class="input-suffix">%</span></div></div>
           <div class="field"><label for="margin">Profit margin <small>percentage</small></label><div class="input-wrap"><input class="no-prefix" id="margin" type="number" value="6" min="0" step="0.1" inputmode="decimal"><span class="input-suffix">%</span></div></div>
           <div class="field"><label for="goldDisplayWeight">Display weight <small>capital held</small></label><div class="input-wrap"><input class="no-prefix" id="goldDisplayWeight" type="number" value="1" min="0.01" step="0.1" inputmode="decimal"><span class="input-suffix">g</span></div></div>
@@ -1192,18 +1252,6 @@ body.embed-opportunity .field-group{grid-template-columns:repeat(4,minmax(0,1fr)
       <section class="opportunity-panel expiry-page" aria-label="Your margin has an expiry date">
         <div class="expiry-head"><div><div class="eyebrow">The Cost of Waiting</div><h1>Your Margin Has an Expiry Date.</h1><p>Every month an ornament remains unsold, the opportunity cost of blocked capital consumes part of its expected margin.</p></div><label>Annual opportunity-cost rate <input id="expiryRate" type="number" min="0" step="0.5" value="10" inputmode="decimal"><b>%</b></label></div>
         <div class="expiry-proof"><div><span>The proof in one line</span><strong id="expiryFormula">4% margin ÷ 10% annual opportunity cost × 12</strong><small id="expiryFigures">₹1,00,000 capital · ₹4,000 expected margin · ₹833 consumed monthly</small></div><div class="expiry-result"><strong id="expiryMonths">4.8</strong><span>months</span><small>to protect the expected margin</small></div></div>
-        <div class="bar-set feature-capital-bars expiry-capital" aria-label="Traditional display capital">
-          <div class="capital-profit-row">
-            <div class="capital-profit-meta"><span>Traditional display capital<strong id="expiryTradBarLabel">₹1,56,000</strong></span><span><b id="expiryTradProfitRate">4%</b> profit<strong id="expiryTradProfit">₹6,240</strong></span></div>
-            <div class="split-capital-bar"><div class="capital-segment" id="expiryTradCapitalSegment" style="flex:96 1 0"></div><div class="profit-segment" id="expiryTradProfitSegment" style="flex:4 1 0"></div></div>
-          </div>
-        </div>
-        <div class="bar-set feature-capital-bars expiry-capital expiry-waiting" aria-label="Opportunity cost of display capital">
-          <div class="capital-profit-row">
-            <div class="capital-profit-meta"><span>Opportunity cost on display capital<strong id="expiryWaitCapital">₹15,600</strong></span><span><b id="expiryWaitRate">10%</b> opportunity cost<strong id="expiryWaitAnnual">₹1,560</strong></span></div>
-            <div class="expiry-months-bar" id="expiryMonthsBar" role="list" aria-label="Cost of waiting, month by month"></div>
-          </div>
-        </div>
         <div class="expiry-calendar"><div class="expiry-calendar-head"><strong>12-month proof</strong><span id="expiryCalendarStatus">Expected margin fully consumed after 4.8 months</span></div><div class="expiry-table-grid"><table class="expiry-table"><caption>Months 1–6</caption><thead><tr><th>Month</th><th>Cost of waiting</th><th>Margin remaining</th></tr></thead><tbody id="expiryFirst"></tbody></table><table class="expiry-table"><caption>Months 7–12</caption><thead><tr><th>Month</th><th>Cost of waiting</th><th>Economic shortfall</th></tr></thead><tbody id="expirySecond"></tbody></table></div></div>
         <div class="rotation-target" aria-label="Annual stock rotation target">
           <div class="rotation-answer"><span>Minimum annual target</span><strong id="rotationMinimum">2 rotations</strong><small id="rotationPace">One complete stock cycle every 6 months or faster</small></div>
@@ -1291,14 +1339,22 @@ body.embed-opportunity .field-group{grid-template-columns:repeat(4,minmax(0,1fr)
           </div>
         </div>
         <p class="break-even-foot" id="breakEvenFoot">From the 2nd order onward, each reuse can generate the full ₹619 profit without additional display investment.</p>
+        <div class="break-even-asset">
+          <div class="break-even-asset-title">And the display is still an asset</div>
+          <div class="break-even-asset-grid">
+            <div><span>Silver you still own</span><strong id="assetMetal">₹1,65,000</strong><small id="assetMetalNote">550g at ₹300/g</small></div>
+            <div><span>From the next order on</span><strong id="assetReuse">₹5,035 each</strong><small>Clear profit, with no new display spend</small></div>
+          </div>
+          <p class="break-even-asset-foot" id="assetFoot">Sell it and the metal is yours, or exchange it for a new collection — the silver weight is adjusted against the new bill at the day’s rate, with making charged on the new pieces.</p>
+        </div>
       </section>
 
       <section class="support-impact" aria-label="Supporting real-world business impact">
         <div class="business-impact-title">Real-world business impact</div>
-        <div class="business-examples">
+        <div class="business-examples" id="businessExamples">
           <div class="business-example"><strong id="businessReleased">₹14,500 capital stays free</strong>Keep working capital available for confirmed orders, marketing, and daily operations.</div>
           <div class="business-example"><strong id="businessHundredValue">Traditional ROI – 4% · SMART ROI – 124%</strong><span id="businessHundredText">For every ₹100 committed, Traditional generates a 4% return and ₹104 total value. SMART generates a 124% return and ₹224 total economic value while its display asset remains reusable.</span></div>
-          <div class="business-example"><strong id="businessRecovery">1st order recovers display cost</strong><span id="businessRecoveryNote">The first sale recovers the display cost and the ornament stays available for later orders.</span></div>
+          <div class="business-example" id="businessRecoveryCard"><strong id="businessRecovery">One order fully recovers the display investment</strong><span id="businessRecoveryNote">Example: profit from one confirmed order covers the full gold-plated silver display investment. The reusable ornament remains with no unrecovered display cost.</span></div>
         </div>
       </section>
 
@@ -1353,7 +1409,7 @@ body.embed-opportunity .field-group{grid-template-columns:repeat(4,minmax(0,1fr)
   </div>
   <div class="print-section-title">One Prototype. Multiple Confirmed Orders.</div>
   <div class="print-middle">
-    <div class="print-break"><div class="lab" id="printFirstLabel">First-order cost recovery</div><div class="big" id="printFirstSurplus">₹400 surplus</div><div class="eq" id="printFirstEquation">₹900 profit − ₹500 prototype investment. The prototype remains available for future orders.</div></div>
+    <div class="print-break"><div class="lab" id="printFirstLabel">First-order cost recovery</div><div class="big" id="printFirstSurplus">₹400 surplus</div><div class="eq" id="printFirstEquation">₹900 profit − ₹500 prototype investment. The prototype remains available for future orders.</div><div class="eq" id="printAssetNote">Of that display cost, ₹1,65,000 is silver you continue to own.</div></div>
     <table class="print-table"><thead><tr><th>Uses</th><th>Total profit</th><th>Prototype</th><th>Surplus</th></tr></thead><tbody id="printReuseRows"></tbody></table>
   </div>
   <div class="print-scale"><div><div class="ey">1,000-Gram Illustration</div><h2>Recover once. Earn repeatedly.</h2><p id="printScaleText">1,000g of prototypes cost ₹5,00,000. The first 1,000g of confirmed orders produces an illustrative ₹9,00,000 profit.</p></div><div class="value" id="printScaleSurplus">₹4,00,000<small>First-cycle surplus</small></div></div>
@@ -1382,7 +1438,7 @@ body.embed-opportunity .field-group{grid-template-columns:repeat(4,minmax(0,1fr)
 </dialog>
 <script>
 try{if(window.name.startsWith('karats-project-migration:')){const migrated=JSON.parse(window.name.slice('karats-project-migration:'.length));Object.entries(migrated).forEach(([key,value])=>localStorage.setItem(key,value));window.name=''}}catch(e){}
-const defaults={goldPrice:15000,makingCharges:0,margin:6,goldDisplayWeight:1,silverCost:500,silverMakingCharges:0,smartMargin:6,silverWeight:1};
+const defaults={goldPrice:15000,goldPurity:22,makingCharges:0,margin:6,goldDisplayWeight:1,silverCost:500,silverMakingCharges:0,smartMargin:6,silverWeight:1};
 const ids=Object.keys(defaults);
 const $=id=>document.getElementById(id);
 const pageParams=new URLSearchParams(location.search);
@@ -1510,9 +1566,6 @@ function update(){
       const stateFor=(month,left)=>month===expiryMonth?'exhausted':left<0?'loss':(month===Math.max(1,Math.floor(tradMonths))?'warning':'');
       const rows=Array.from({length:12},(_,index)=>{const month=index+1,cost=monthlyCash*month,left=c.tradProfitPerSale-cost;const state=stateFor(month,left);return `<tr class="${state}"><td>${month}${state==='exhausted'?'<b>expiry</b>':''}</td><td>${fmtInr(cost)}</td><td>${left>=0?fmtInr(left):`−${fmtInr(Math.abs(left))}`}</td></tr>`});
       $('expiryFirst').innerHTML=rows.slice(0,6).join('');$('expirySecond').innerHTML=rows.slice(6).join('');
-      setText('expiryWaitCapital',fmtInr(c.tradCapital));setText('expiryWaitRate',pct(annualRate));setText('expiryWaitAnnual',fmtInr(monthlyCash*12));
-      // Each segment is one month; its label is the running total, matching the table's cost-of-waiting column.
-      $('expiryMonthsBar').innerHTML=Array.from({length:12},(_,index)=>{const month=index+1,cost=monthlyCash*month;return `<span role="listitem" class="${stateFor(month,c.tradProfitPerSale-cost)}" title="Month ${month}: ${fmtInr(monthlyCash)} this month, ${fmtInr(cost)} to date"><b>M${month}</b>${fmtInr(cost)}</span>`}).join('');
       setText('expiryFormula',`${pct(c.tradRoi)} margin ÷ ${pct(annualRate)} annual opportunity cost × 12`);
       setText('expiryFigures',`${fmtInr(c.tradCapital)} capital · ${fmtInr(c.tradProfitPerSale)} expected margin · ${fmtInr(monthlyCash)} consumed monthly`);
       setText('expiryMonths',Number.isFinite(tradMonths)?dec(tradMonths):'—');
@@ -1589,6 +1642,14 @@ function update(){
   setText('breakEvenProfitLabel',`Profit per ${fmtW(recoveryOrderWeight)}g confirmed order`);
   setText('breakEvenInvestment',fmtInr(c.prototypeCapital));
   setText('breakEvenProfit',recoveryProfitText);
+  {
+    // The display investment is metal plus making. Only the making is consumed: the silver
+    // stays an asset, so the orders that bought it are not a sunk cost.
+    const metalValue=v.silverCost*v.silverWeight;
+    setText('assetMetal',fmtInr(metalValue));
+    setText('assetMetalNote',`${fmtW(v.silverWeight)}g at ${fmtInr(v.silverCost)}/g`);
+    setText('assetReuse',recoveryProfitPerOrder>0?`${recoveryProfitText} each`:'—');
+  }
   if(recoveryProfitPerOrder>0){
     const recoveredBefore=recoveryProfitPerOrder*Math.max(0,recoveryWhole-1);
     const remainingBefore=Math.max(0,c.prototypeCapital-recoveredBefore);
@@ -1609,7 +1670,17 @@ function update(){
     setText('breakEvenFoot','Break-even updates automatically when the profit per confirmed order is greater than zero.');
   }
   setText('businessReleased',`${fmtInr(Math.max(0,c.tradCapital-c.prototypeCapital))} capital stays free`);
-  setText('businessHundredValue',`Traditional ROI – ${fmtPct(c.tradRoi)} · SMART ROI – ${fmtPct(c.smartRoi)}`);setText('businessRecovery',`Display cost recovered by the ${ordinal(recoveryWhole)} order`);setText('businessRecoveryNote',`${recoveryProfitText} profit per ${fmtW(recoveryOrderWeight)}g confirmed order recovers the ${fmtInr(c.prototypeCapital)} display cost by the ${ordinal(recoveryWhole)} order. From the ${ordinal(recoveryWhole+1)} order onward, each reuse can generate the full ${recoveryProfitText} profit without additional display investment.`);
+  setText('businessHundredValue',`Traditional ROI – ${fmtPct(c.tradRoi)} · SMART ROI – ${fmtPct(c.smartRoi)}`);
+  {
+    const oneOrderCoversDisplay=c.prototypeCapital>0&&c.smartProfitPerSale>=c.prototypeCapital;
+    const recoveryCard=$('businessRecoveryCard'),businessExamples=$('businessExamples');
+    if(recoveryCard)recoveryCard.hidden=!oneOrderCoversDisplay;
+    if(businessExamples)businessExamples.classList.toggle('two-items',!oneOrderCoversDisplay);
+    if(oneOrderCoversDisplay){
+      setText('businessRecovery','One order fully recovers the display investment');
+      setText('businessRecoveryNote',`Example: ${smartProfit} profit from one ${fmtW(v.silverWeight)}g confirmed order covers the ${fmtInr(c.prototypeCapital)} gold-plated silver display investment. The reusable ornament remains with no unrecovered display cost.`);
+    }
+  }
   setText('businessHundredText',`For every ₹100 committed, Traditional generates a ${fmtPct(c.tradRoi)} return and ${fmtInr(100+c.tradRoi)} total value. SMART generates a ${fmtPct(c.smartRoi)} return and ${fmtInr(100+c.smartRoi)} total economic value while its display asset remains reusable.`);
   const firstOrderBalance=recoveryProfitPerOrder-c.prototypeCapital;
   const surplusLabel=firstOrderBalance>=0?`${fmtInr(firstOrderBalance)} surplus`:`${fmtInr(Math.abs(firstOrderBalance))} to break even`;
@@ -1623,8 +1694,6 @@ function update(){
   setText('featureTradBarLabel',fmtInr(c.tradCapital));setText('featureTradProfitRate',fmtPct(c.tradRoi));setText('featureTradProfit',tradProfit);
   setText('featureSmartBarLabel',fmtInr(c.prototypeCapital));setText('featureSmartProfitRate',fmtPct(c.smartRoi));setText('featureSmartProfit',smartProfit);
   $('featureTradCapitalSegment').style.flexGrow=String(Math.max(c.tradCapital,0));$('featureTradProfitSegment').style.flexGrow=String(Math.max(c.tradProfitPerSale,0));
-  setText('expiryTradBarLabel',fmtInr(c.tradCapital));setText('expiryTradProfitRate',fmtPct(c.tradRoi));setText('expiryTradProfit',tradProfit);
-  $('expiryTradCapitalSegment').style.flexGrow=String(Math.max(c.tradCapital,0));$('expiryTradProfitSegment').style.flexGrow=String(Math.max(c.tradProfitPerSale,0));
   $('featureSmartCapitalSegment').style.flexGrow=String(Math.max(c.prototypeCapital,0));$('featureSmartProfitSegment').style.flexGrow=String(Math.max(c.smartProfitPerSale,0));
   setText('scalePrototype',`1,000g × (${fmtInr(v.silverCost)} + ${fmtInr(v.silverMakingCharges)}) = ${fmtInr(c.scalePrototype)}`);setText('scaleProfit',`1,000g × ${fmtInr(c.smartProfitPerGram)} = ${fmtInr(c.scaleProfit)}`);setText('scaleSurplus',fmtInr(c.scaleSurplus));
   updatePrint(v,c,rows);
@@ -1640,6 +1709,7 @@ function updatePrint(v,c,rows){
   setText('printSameProfit',fmtInr(c.smartProfitPerSale));setText('printLowerInvestment',`${fmtNum(c.capitalRatio)}×`);setText('printEfficiency',`${fmtNum(c.efficiencyRatio)}×`);setText('printBreakEven',ordinal(c.breakEvenWhole));
   setText('printFirstSurplus',c.firstSurplus>=0?`${fmtInr(c.firstSurplus)} surplus`:`${fmtInr(Math.abs(c.firstSurplus))} to break even`);setText('printFirstLabel',c.firstSurplus>=0?`${ordinal(c.breakEvenWhole)} order recovers ${fmtInr(c.prototypeCapital)} display cost`:`Display cost recovered by the ${ordinal(c.breakEvenWhole)} order`);setText('printFirstEquation',c.firstSurplus>=0?`${fmtInr(c.smartProfitPerSale)} first-sale profit recovers the display cost and leaves ${fmtInr(c.firstSurplus)} surplus. From the second order onward, the reusable ornament can generate the full ${fmtInr(c.smartProfitPerSale)} profit without additional display investment.`:`${fmtInr(c.smartProfitPerSale)} per sale does not cover the ${fmtInr(c.prototypeCapital)} display cost on its own. The cost is fully recovered by the ${ordinal(c.breakEvenWhole)} order; from the ${ordinal(c.breakEvenWhole+1)} onward each sale returns the full ${fmtInr(c.smartProfitPerSale)} without additional display investment.`);
   $('printReuseRows').innerHTML=rowMarkup(rows.slice(0,4));
+  setText('printAssetNote',`Of that display cost, ${fmtInr(v.silverCost*v.silverWeight)} is silver you continue to own — sell it, or exchange it and have the weight adjusted against a new collection.`);
   setText('printScaleText',`1,000g of prototypes cost ${fmtInr(c.scalePrototype)}. The first 1,000g of confirmed orders produces an illustrative ${fmtInr(c.scaleProfit)} profit.`);$('printScaleSurplus').innerHTML=`${fmtInr(c.scaleSurplus)}<small>First-cycle surplus</small>`;
 }
 
@@ -1766,7 +1836,11 @@ $('saveForm').addEventListener('submit',event=>{event.preventDefault();saveCurre
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&document.body.classList.contains('presentation'))exitPresentation(true)});
 window.addEventListener('message',event=>{
   if(!embedMode||!event.data||event.data.type!=='karats-set-values')return;
-  syncingFromParent=true;ids.forEach(id=>{if(event.data.values&&event.data.values[id]!=null)$(id).value=event.data.values[id]});update();syncingFromParent=false;
+  syncingFromParent=true;ids.forEach(id=>{if(event.data.values&&event.data.values[id]!=null)$(id).value=event.data.values[id]});
+  // The brochure page also owns an opportunity-cost rate control, so accept it here.
+  const sentRate=event.data.values&&event.data.values.opportunityRate;
+  if(sentRate!=null&&Number.isFinite(Number(sentRate))){if($('opportunityRate'))$('opportunityRate').value=sentRate;if($('expiryRate'))$('expiryRate').value=sentRate}
+  update();syncingFromParent=false;
 });
 document.addEventListener('keydown',event=>{
   if(!embedMode||!['ArrowLeft','ArrowRight','PageUp','PageDown','Escape'].includes(event.key))return;

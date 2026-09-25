@@ -127,6 +127,96 @@ h2.section{font-family:'Cormorant';font-weight:700;font-size:25pt;line-height:1.
 .reality-page .bridge{margin-top:5mm;padding-top:4mm;}
 .reality-page .bridge .q{font-size:15.5pt;}
 
+/* ---------- the economics of waiting ---------- */
+.wait-scenario{margin-top:5mm;padding:3.5mm 4mm;border:.6pt solid #d7c4ff;background:#fcfbff;}
+.ws-top{display:flex;align-items:center;justify-content:space-between;gap:4mm;}
+.ws-title{color:#4c2394;font-size:7pt;font-weight:800;letter-spacing:.16em;text-transform:uppercase;}
+.ws-presets{display:flex;gap:1.5mm;}
+.ws-presets button{padding:1mm 2.6mm;border:.6pt solid #c3a9ff;background:#fff;color:#4c2394;font:600 7pt 'Jost';cursor:pointer;}
+.ws-presets button[aria-pressed="true"]{background:#35166e;border-color:#35166e;color:#fff;}
+.ws-fields{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3mm;margin-top:2.5mm;}
+.ws-fields label{display:block;color:#35166e;font-family:'Jost';font-size:7.4pt;font-weight:600;}
+.ws-in{display:flex;align-items:center;gap:1mm;margin-top:1mm;padding:0 2mm;border:.6pt solid #c3a9ff;background:#fff;}
+.ws-in i{color:#6f6490;font-style:normal;font-size:8pt;}
+.ws-in b{color:#6f6490;font-size:8pt;}
+.ws-in input{width:100%;min-width:0;height:8mm;border:0;background:transparent;color:#35166e;font:700 10pt 'Jost';outline:none;}
+.ws-in select{height:8mm;border:0;border-left:.6pt solid #e3daf5;background:transparent;color:#4c2394;font:600 7.6pt 'Jost';outline:none;}
+.wait-capital{display:grid;gap:3mm;margin-top:4mm;}
+.wc-box{padding:2.6mm 3.4mm;border:.6pt solid #d8caf3;background:#fff;}
+.wc-meta{display:flex;align-items:flex-end;justify-content:space-between;gap:6mm;color:#4a3c6b;font-size:8.4pt;}
+.wc-meta .r{text-align:right;color:#6f3fc3;}
+.wc-meta strong{display:block;margin-top:.6mm;color:#35166e;font-size:12.5pt;}
+.wc-bar{display:flex;gap:1.4mm;height:3mm;margin-top:2mm;}
+.wc-bar i{background:#6a5d85;}
+.wc-bar em{background:#8b4bd1;}
+.wc-months{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:.8mm;margin-top:2mm;}
+.wc-months span{display:block;min-width:0;color:#4c2394;font-size:5.6pt;font-weight:700;line-height:1.15;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.wc-months span b{display:block;margin-bottom:.7mm;color:#35166e;font-size:5.6pt;font-weight:800;}
+.wc-months span b.neg{color:#8a4562;}
+.wc-months span i{display:block;height:2.4mm;background:#c4a8f0;}
+.wc-months span u{display:block;margin-top:.9mm;color:#6f6490;font-size:5pt;font-weight:800;text-decoration:none;}
+.wc-months span.exhausted i{background:#6f3fc3;}
+.wc-months span.exhausted{color:#35166e;}
+.wc-months span.loss i{background:#4c2394;}
+.wc-months span.loss{color:#4c2394;}
+.wc-rate{display:inline-flex;align-items:center;gap:1mm;padding:.6mm 1.6mm;border:.8pt solid #6f3fc3;background:#ede5ff;color:#4c2394;font-size:6.6pt;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+.wc-rate input{width:11mm;height:5.4mm;border:.6pt solid #c3a9ff;background:#fff;color:#35166e;font:700 9pt 'Jost';text-align:center;outline:none;}
+.wc-rate input:focus{border-color:#5d2fb0;box-shadow:0 0 0 1px #d7c4ff;}
+.wc-rate i{font-style:normal;font-size:8pt;}
+.wc-months-head{display:block;margin-top:2mm;color:#6f6490;font-size:5.8pt;font-weight:800;letter-spacing:.1em;text-transform:uppercase;}
+.wait-figures{display:grid;grid-template-columns:1fr 1fr 1.15fr;align-items:stretch;gap:3.4mm;margin-top:2.4mm;}
+.wait-figures .wf{padding:3.2mm 3.6mm;border:.6pt solid #d7c4ff;background:#f7f3ff;}
+.wait-figures .wf span{display:block;color:#6f6490;font-size:7.5pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+.wait-figures .wf strong{display:block;margin-top:2mm;color:#35166e;font-family:'Jost',sans-serif;font-size:19pt;font-weight:700;line-height:1.05;font-variant-numeric:lining-nums tabular-nums;}
+.wait-figures .wf.wf-main{background:#35166e;border-color:#35166e;color:#fff;}
+.wait-figures .wf.wf-main span{color:#d7c4ff;}
+.wait-figures .wf.wf-main strong{color:#fff;font-size:25pt;}
+.wait-figures .wf.wf-main em{display:block;margin-top:1mm;color:#d7c4ff;font-size:8pt;font-style:normal;font-weight:700;letter-spacing:.2em;text-transform:uppercase;}
+.wait-caption{margin-top:2mm;color:#5b4d76;font-size:8.8pt;line-height:1.45;}
+.wait-cases{display:grid;grid-template-columns:repeat(3,1fr);gap:3.4mm;margin-top:2.4mm;}
+.wait-cases>div{padding:2.4mm 3mm;border-left:2.2pt solid #7a4fc0;background:#faf8ff;}
+.wc-state{display:inline-block;margin-bottom:.9mm;padding:.5mm 1.8mm;font-size:6.2pt;font-weight:800;letter-spacing:.11em;text-transform:uppercase;}
+.wait-cases>div.ok{border-left-color:#1f7a52;}
+.wait-cases>div.ok .wc-state{background:#e4f3ea;color:#1a6647;}
+.wait-cases>div.even{border-left-color:#b08320;}
+.wait-cases>div.even .wc-state{background:#fdf2d9;color:#7d5c12;}
+.wait-cases>div.bad{border-left-color:#a1273d;}
+.wait-cases>div.bad .wc-state{background:#fbe4e8;color:#932035;}
+.wait-cases h4{color:#35166e;font-family:'Jost',sans-serif;font-size:10pt;font-weight:600;font-variant-numeric:lining-nums;}
+.wait-cases p{margin-top:1.4mm;color:#5b4d76;font-size:8.2pt;line-height:1.4;}
+.wait-target{display:grid;grid-template-columns:44mm minmax(0,1fr);gap:3.6mm;margin-top:2.4mm;padding:2.6mm 3.6mm;border:.6pt solid #cbb5f1;background:#f5f0ff;color:#35166e;}
+.wt-answer{display:flex;flex-direction:column;justify-content:center;padding:2.4mm 3mm;background:#35166e;color:#fff;text-align:center;}
+.wt-answer span{font-size:6.4pt;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#d7c4ff;}
+.wt-answer strong{margin-top:1mm;font-family:'Cormorant';font-size:24pt;font-weight:700;line-height:.98;}
+.wt-answer small{margin-top:1.2mm;color:#ede5ff;font-size:6.4pt;line-height:1.25;}
+.wt-detail{display:flex;min-width:0;flex-direction:column;justify-content:center;}
+.wt-head{display:flex;align-items:baseline;justify-content:space-between;gap:4mm;}
+.wt-head strong{font-family:'Cormorant';font-size:12pt;font-weight:700;}
+.wt-head span{color:#6f3fc3;font-size:7pt;font-weight:700;text-align:right;}
+.wt-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.8mm;margin-top:1.8mm;}
+.wt-card{min-width:0;padding:1.8mm 2mm;border:.6pt solid #d8caf3;background:#fff;}
+.wt-card.required{background:#e3d5fa;border:1.2pt solid #6f3fc3;}
+.wt-card .r{color:#6f6490;font-size:6.4pt;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+.wt-card .r b{color:#35166e;font-size:11pt;letter-spacing:0;}
+.wt-card .math{margin-top:.6mm;color:#5b4d76;font-size:6pt;line-height:1.25;}
+.wt-card .net{margin-top:.6mm;color:#6f3fc3;font-size:8.4pt;font-weight:800;}
+.wt-card.short .net{color:#8a4562;}
+.wt-card em{display:block;margin-top:.4mm;color:#4c2394;font-size:5.2pt;font-style:normal;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+.wait-sales{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:3mm;margin-top:2.4mm;padding:2.6mm 3.8mm;border:.6pt solid #cbb5f1;background:#f5f0ff;}
+.wsal-inputs{display:flex;min-width:0;flex-direction:column;justify-content:center;gap:1.6mm;}
+.wsal-inputs>strong{color:#35166e;font-family:'Cormorant';font-size:12pt;font-weight:700;}
+.wsal-controls{display:flex;flex-direction:column;align-items:flex-start;gap:1.6mm;}
+.wsal-inputs label,.wsal-days{display:flex;align-items:center;gap:1.6mm;color:#4c2394;font-size:6.6pt;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;}
+.wsal-inputs input{width:15mm;height:6mm;border:.6pt solid #c3a9ff;background:#fff;color:#35166e;font:700 9pt 'Jost';text-align:center;outline:none;}
+.wsal-inputs label b{font-size:7.6pt;letter-spacing:0;}
+.wsal-days button{min-width:8mm;height:5.4mm;border:.6pt solid #c3a9ff;background:#fff;color:#4c2394;font:800 7.6pt 'Jost';cursor:pointer;}
+.wsal-days button[aria-pressed="true"]{background:#35166e;border-color:#35166e;color:#fff;}
+.wsal-out{display:flex;min-width:0;flex-direction:column;justify-content:center;padding:3mm 3.4mm;border:.6pt solid #d8caf3;background:#fff;}
+.wsal-out.daily{border:1.4pt solid #6f3fc3;background:#efe7ff;}
+.wsal-out span{color:#6f6490;font-size:7.4pt;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+.wsal-out strong{margin-top:1mm;color:#35166e;font-size:17pt;line-height:1.05;white-space:nowrap;}
+.wsal-out small{margin-top:1mm;color:#5b4d76;font-size:7pt;line-height:1.3;}
+.wait-foot{margin-top:2.2mm;padding-left:3.4mm;border-left:2pt solid #c3a9ff;color:#6f6490;font-size:8.2pt;line-height:1.42;}
 /* ---------- page 1 ---------- */
 .hero{height:104mm;background:#f7f4ff;position:relative;color:#35166e;}
 .hero .frame{position:absolute;top:7mm;left:7mm;right:7mm;bottom:7mm;border:.6pt solid #e6d5ae;}
@@ -183,22 +273,59 @@ h2.section{font-family:'Cormorant';font-weight:700;font-size:25pt;line-height:1.
 .card p{font-family:'Jost';font-weight:300;font-size:9pt;line-height:1.56;color:#6a5d85;margin-top:3mm;}
 
 /* ---------- infographic: one design ---------- */
-.info{margin-top:2mm;background:#35166e;padding:7mm 9mm 8mm;color:#ede5ff;}
+.info{margin-top:2mm;background:#fbf9ff;border:1.2pt solid #6f3fc3;padding:0 7mm 6mm;color:#35166e;box-shadow:inset 0 0 0 2.2mm #f3edff;}
 .info .t{text-align:center;}
-.info .t .e{font-family:'Jost';font-weight:500;font-size:7.6pt;letter-spacing:.32em;text-transform:uppercase;color:#c3a9ff;}
-.pill{display:inline-block;margin-top:3mm;border:.8pt solid #c3a9ff;color:#ede5ff;font-family:'Cormorant';font-weight:700;font-size:14pt;padding:2mm 9mm;letter-spacing:.04em;}
-.stem{width:1px;height:6mm;background:#c3a9ff;margin:0 auto;}
-.bracket{height:1px;background:#c3a9ff;margin:0 9%;}
-.chips{display:flex;}
-.chip{width:20%;text-align:center;}
-.chip .st{width:1px;height:5mm;background:#c3a9ff;margin:0 auto;}
-.chip .dot{width:15px;height:15px;border-radius:50%;margin:2mm auto 0;border:.5pt solid #d9c9ff;}
-.chip .nm{font-family:'Jost';font-weight:500;font-size:8pt;letter-spacing:.12em;margin-top:2.4mm;color:#ede5ff;}
-.chip .px{font-family:'Jost';font-weight:300;font-size:6.6pt;letter-spacing:.14em;text-transform:uppercase;color:#7a4fc0;margin-top:.8mm;}
-.arrowd{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #7a4fc0;margin:4mm auto 0;}
-.outcome{margin-top:4mm;border:.6pt solid #d9c9ff;background:#ede5ff;padding:3.6mm;text-align:center;}
-.outcome .a{font-family:'Cormorant';font-weight:700;font-size:13.4pt;color:#ede5ff;}
-.outcome .b{font-family:'Jost';font-weight:300;font-size:7.6pt;letter-spacing:.3em;text-transform:uppercase;color:#7a4fc0;margin-top:1.6mm;}
+.info .t .e{margin:0 -7mm;padding:3.2mm 5mm;background:#35166e;border-bottom:1pt solid #6f3fc3;font-family:'Jost';font-weight:600;font-size:7.4pt;letter-spacing:.3em;text-transform:uppercase;color:#ede5ff;}
+.pill{display:inline-block;margin-top:3.4mm;border:1pt solid #6f3fc3;background:#fff;color:#35166e;font-family:'Cormorant';font-weight:700;font-size:14pt;padding:2mm 10mm;letter-spacing:.04em;box-shadow:3px 3px 0 #d7c4ff;}
+.metal-price-tools{display:flex;align-items:center;justify-content:center;gap:4mm;margin:3mm auto 0;color:#35166e;font-family:'Jost';font-size:6.5pt;font-weight:600;}
+.metal-price-tools label{display:flex;align-items:center;gap:1.5mm;white-space:nowrap;}
+.metal-price-tools select,.metal-price-tools input{height:23px;border:.7pt solid #c3a9ff;background:#fff;color:#35166e;font:600 7.5pt 'Jost';text-align:center;outline:none;}
+.metal-price-tools select{width:54px}.metal-price-tools input{width:52px}
+.metal-price-tools select:focus,.metal-price-tools input:focus{border-color:#5d2fb0;box-shadow:0 0 0 1px #d7c4ff;}
+.metal-price-tools button{height:23px;padding:0 3mm;border:.7pt solid #6f3fc3;background:#ede5ff;color:#4c2394;font:600 6.4pt 'Jost';cursor:pointer;}
+.metal-source-note{margin-top:1.5mm;color:#6f6490;font-family:'Jost';font-size:5.8pt;text-align:center;}
+.stem{width:1px;height:5mm;background:#8b62c8;margin:0 auto;}
+.bracket{height:1px;background:#8b62c8;margin:0 8%;}
+.chips{display:flex;gap:2mm;padding:0 1mm;}
+.chip{width:20%;min-height:37mm;border:.6pt solid #d7c4ff;border-top:2.2pt solid #6f3fc3;background:#f7f3ff;text-align:center;}
+.chip .st{display:none;}
+.chip .dot{width:15px;height:15px;border-radius:50%;margin:3mm auto 0;border:.5pt solid rgba(53,22,110,.28);box-shadow:inset 2px 2px 3px rgba(255,255,255,.72),0 1px 1px rgba(53,22,110,.16);}
+.chip .dot.gold-22{background:linear-gradient(145deg,#fff1a0 5%,#f2c313 45%,#a66b00 100%);}
+.chip .dot.gold-18{background:linear-gradient(145deg,#fff0b0 5%,#ddb64a 48%,#926516 100%);}
+.chip .dot.gold-9{background:linear-gradient(145deg,#f6e9c4 5%,#c8aa73 48%,#81683d 100%);}
+.chip .dot.silver-925{background:linear-gradient(145deg,#ffffff 4%,#d9dde2 48%,#858e99 100%);}
+.chip .dot.gold-plated{background:linear-gradient(145deg,#f9df76 0 45%,#f4f6f8 48% 68%,#929ba5 100%);}
+.chip .nm{font-family:'Jost';font-weight:700;font-size:8pt;letter-spacing:.12em;margin-top:2.8mm;color:#35166e;}
+.chip .px{font-family:'Jost';font-weight:500;font-size:6.4pt;letter-spacing:.13em;text-transform:uppercase;color:#6f3fc3;margin-top:.8mm;}
+.metal-rate-edit{display:flex;align-items:center;width:calc(100% - 4mm);height:22px;margin:2.2mm auto 0;border:.6pt solid #c3a9ff;background:#fff;color:#6a5d85;font:500 6.3pt 'Jost';}
+.metal-rate-edit span{padding-left:1.5mm}.metal-rate-edit small{padding-right:1.2mm;font-size:5.5pt}
+.metal-rate-edit input{width:100%;min-width:0;height:20px;padding:0 1mm;border:0;background:transparent;color:#35166e;font:700 7.1pt 'Jost';text-align:center;outline:none;}
+.chip.manual .metal-rate-edit{border-color:#5d2fb0;box-shadow:inset 0 -2px 0 #5d2fb0;}
+.metal-total{margin-top:1.2mm;color:#35166e;font:700 7pt 'Jost';}
+.metal-total small{display:block;margin-top:.3mm;color:#6f6490;font-size:5.3pt;font-weight:500;letter-spacing:.05em;text-transform:uppercase;}
+.arrowd{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #6f3fc3;margin:3mm auto 0;}
+.outcome{margin-top:3mm;border:1pt solid #6f3fc3;background:#fff;padding:3.2mm;text-align:center;box-shadow:inset 4px 0 0 #35166e,inset -4px 0 0 #35166e;}
+.outcome .a{font-family:'Cormorant';font-weight:700;font-size:13.4pt;color:#35166e;}
+.outcome .b{font-family:'Jost';font-weight:500;font-size:7.3pt;letter-spacing:.28em;text-transform:uppercase;color:#6f3fc3;margin-top:1.4mm;}
+.customisation-showcase .a{font-size:12.5pt;}
+.customisation-icons{display:flex;align-items:flex-start;justify-content:space-between;gap:2mm;margin-top:2.4mm;color:#6f3fc3;}
+.customisation-icon{width:14.28%;text-align:center;}
+.customisation-icons svg{width:20px;height:20px;}
+.customisation-icon span{display:block;margin-top:1.4mm;color:#6a5d85;font-family:'Jost';font-size:6.1pt;font-weight:400;line-height:1.2;letter-spacing:.04em;}
+.answers-page .p4{height:237mm;padding:9mm 16mm 0;overflow:hidden;display:flex;flex-direction:column;}
+.answers-page h1{margin-top:2.8mm;color:#35166e;font-family:'Cormorant';font-size:28pt;line-height:.96;}
+.answers-page .answers-intro{max-width:174mm;margin-top:3mm;color:#6a5d85;font-family:'Jost';font-size:8.5pt;line-height:1.45;}
+.smart-answer-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,auto);align-content:stretch;flex:1 1 auto;min-height:0;gap:2.6mm 3.6mm;margin-top:4.5mm;margin-bottom:3mm;}
+.smart-answer{min-height:0;border:.7pt solid #d9c9ff;border-left:3.4pt solid #4c2394;background:#f7f4ff;padding:3mm 3.6mm;}
+.smart-answer-head{display:flex;align-items:flex-start;gap:2mm;}
+.smart-answer-no{flex:0 0 auto;color:#7a4fc0;font-family:'Jost';font-size:8pt;font-weight:700;letter-spacing:.12em;line-height:1.2;}
+.smart-answer h3{color:#35166e;font-family:'Cormorant';font-size:13.2pt;line-height:1.08;}
+.smart-answer p{margin-top:1.2mm;color:#6a5d85;font-family:'Jost';font-size:11pt;line-height:1.3;}
+.smart-answer p strong{color:#5d2fb0;font-size:9.4pt;letter-spacing:.055em;text-transform:uppercase;}
+body.localized-template .smart-answer p{font-size:10pt;}
+body.localized-template .smart-answer p strong{font-size:8.6pt;}
+.smart-answer .answer-result{margin-top:1.2mm;padding-top:1.2mm;border-top:.6pt solid #d9c9ff;color:#35166e;font-weight:500;}
+.smart-answer .answer-result strong{color:#35166e;}
 /* ---------- page 4 ---------- */
 .p4{padding:10mm 16mm 0;}
 .s-title{display:flex;align-items:center;margin-top:4.2mm;}
@@ -213,15 +340,29 @@ table.spec{width:100%;border-collapse:collapse;margin-top:4mm;}
 table.spec th{font-family:'Jost';font-weight:600;font-size:6.9pt;letter-spacing:.22em;text-transform:uppercase;color:#7a4fc0;text-align:left;padding:0 3mm 1.6mm 0;border-bottom:.7pt solid #c3a9ff;}
 table.spec td{font-family:'Jost';font-weight:300;font-size:8pt;color:#3a2d55;padding:1.35mm 3mm 1.35mm 0;border-bottom:.4pt solid #ede5ff;line-height:1.35;}
 table.spec td.k{font-weight:500;color:#35166e;width:36%;}
-.tlrow{display:flex;margin-top:4mm;}
+.customisation-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2mm;margin-top:3mm;}
+.customisation-card{min-height:40mm;border:.7pt solid #d7c4ff;border-top:2.4pt solid #6f3fc3;background:linear-gradient(145deg,#ffffff,#f1e9ff);padding:2.6mm 2.8mm;text-align:center;box-shadow:inset 0 0 0 .6pt #faf8ff;}
+.customisation-card:nth-child(n+5){transform:translateX(50%);}
+.customisation-card svg{width:23px;height:23px;color:#6f3fc3;}
+.customisation-card h4{margin-top:1.1mm;color:#35166e;font-family:'Jost';font-size:14.2pt;font-weight:700;line-height:1.05;}
+.customisation-card p{margin-top:1.1mm;color:#5f5278;font-family:'Jost';font-size:12.3pt;font-weight:400;line-height:1.12;}
+.customisation-card-grid+.s-title{margin-top:1.5mm;}
+.customisation-page .p4{height:100%;padding:10mm 16mm 13mm;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;}
+.customisation-page .info{margin-top:0;}
+.customisation-page .page7-section{flex:0 0 auto;}
+.customisation-page .page7-section>.s-title{margin-top:0;}
+.customisation-page .customisation-card-grid{gap:3mm;margin-top:3.5mm;}
+.customisation-page .tlrow,.customisation-page .flow{margin-top:3.5mm;}
+.tlrow{display:flex;margin-top:2.5mm;}
 .tl{width:33.33%;padding-right:3mm;}
 .tl:last-child{padding-right:0;}
 .tl .b{border:.5pt solid #ece7f7;background:#fcfbff;padding:4mm 4.5mm;position:relative;}
 .tl .b:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2.5px;background:linear-gradient(180deg,#d9c9ff,#7a4fc0);}
 .tl .c{font-family:'Jost';font-weight:500;font-size:7.4pt;letter-spacing:.2em;text-transform:uppercase;color:#7a4fc0;}
 .tl .d{font-family:'Cormorant';font-weight:700;font-size:17pt;margin-top:1.5mm;}
+.tl .d .days-number{font-family:'Cormorant',Georgia,serif;font-weight:700;font-variant-numeric:proportional-nums oldstyle-nums;letter-spacing:.015em;}
 .tl .e{font-family:'Jost';font-weight:300;font-size:7pt;color:#6f6490;margin-top:1mm;}
-.flow{display:flex;align-items:stretch;margin-top:4mm;}
+.flow{display:flex;align-items:stretch;margin-top:2.5mm;}
 .step{flex:1;text-align:center;}
 .step .sb{border:.5pt solid #ece7f7;background:#fcfbff;padding:3.2mm 1mm;height:100%;}
 .step svg{width:18px;height:18px;color:#7a4fc0;}
@@ -237,6 +378,7 @@ table.spec td.k{font-weight:500;color:#35166e;width:36%;}
 .cred .ct{width:20%;text-align:center;padding:0 2mm;}
 .cred .ct .v{font-family:'Cormorant';font-weight:700;font-size:13pt;color:#5d2fb0;line-height:1.05;}
 .cred .ct .l{font-family:'Jost';font-weight:400;font-size:6.4pt;letter-spacing:.12em;text-transform:uppercase;color:#6f6490;margin-top:1.2mm;line-height:1.3;}
+.cover-page .cred{position:absolute;left:16mm;right:16mm;bottom:16mm;z-index:2;margin:0;border:.7pt solid #c3a9ff;padding:4mm 5mm;background:#ede5ff;}
 .footer{position:absolute;left:0;right:0;bottom:0;height:60mm;background:#35166e;color:#ede5ff;padding:6.5mm 16mm 5mm;}
 .footer .fx{display:flex;}
 .footer .fl{width:56%;padding-right:8mm;}
@@ -433,73 +575,77 @@ body.presentation-expanded .brochure-slide-1 .brand{font-size:62px;}
 body.presentation-expanded .brochure-slide-1 .brand-sub{font-size:14px;}
 body.presentation-expanded .brochure-slide-1 .tagline{font-size:40px;margin-top:28px;}
 
-body.presentation-expanded .brochure-slide-2 .p1prob{padding:52px 70px 34px;overflow:hidden;}
-body.presentation-expanded .brochure-slide-2 .p1prob h1{font-size:54px;margin-top:18px;}
-body.presentation-expanded .brochure-slide-2 .p1prob .intro{font-size:16px;line-height:1.5;max-width:1180px;margin-top:14px;}
-body.presentation-expanded .brochure-slide-2 .subh{margin-top:25px;font-size:13px;}
-body.presentation-expanded .brochure-slide-2 .probs{margin-top:18px;}
-body.presentation-expanded .brochure-slide-2 .prob{padding:0 8px 12px 0;}
-body.presentation-expanded .brochure-slide-2 .prob:nth-child(even){padding:0 0 12px 8px;}
-body.presentation-expanded .brochure-slide-2 .prob .pb{padding:14px 18px;}
-body.presentation-expanded .brochure-slide-2 .prob .h h4{font-size:20px;}
-body.presentation-expanded .brochure-slide-2 .prob p{font-size:13px;line-height:1.38;margin-top:7px;padding-left:30px;}
-body.presentation-expanded .brochure-slide-2 .bridge{margin-top:13px;padding-top:13px;}
-body.presentation-expanded .brochure-slide-2 .bridge .q{font-size:22px;}
-body.presentation-expanded .brochure-slide-2 .bridge .decision{font-size:26px;padding:12px 26px;margin-top:14px;}
+body.presentation-expanded .brochure-slide-3 .p1prob{padding:52px 70px 34px;overflow:hidden;}
+body.presentation-expanded .brochure-slide-3 .p1prob h1{font-size:54px;margin-top:18px;}
+body.presentation-expanded .brochure-slide-3 .p1prob .intro{font-size:16px;line-height:1.5;max-width:1180px;margin-top:14px;}
+body.presentation-expanded .brochure-slide-3 .subh{margin-top:25px;font-size:13px;}
+body.presentation-expanded .brochure-slide-3 .probs{margin-top:18px;}
+body.presentation-expanded .brochure-slide-3 .prob{padding:0 8px 12px 0;}
+body.presentation-expanded .brochure-slide-3 .prob:nth-child(even){padding:0 0 12px 8px;}
+body.presentation-expanded .brochure-slide-3 .prob .pb{padding:14px 18px;}
+body.presentation-expanded .brochure-slide-3 .prob .h h4{font-size:20px;}
+body.presentation-expanded .brochure-slide-3 .prob p{font-size:13px;line-height:1.38;margin-top:7px;padding-left:30px;}
+body.presentation-expanded .brochure-slide-3 .bridge{margin-top:13px;padding-top:13px;}
+body.presentation-expanded .brochure-slide-3 .bridge .q{font-size:22px;}
+body.presentation-expanded .brochure-slide-3 .bridge .decision{font-size:26px;padding:12px 26px;margin-top:14px;}
 
-body.presentation-expanded .brochure-slide-3 .p1body{padding:28px 54px 20px;height:900px;overflow:hidden;}
-body.presentation-expanded .brochure-slide-3 .strategy-intro{font-size:34px;margin-bottom:10px;}
-body.presentation-expanded .brochure-slide-3 .strategy-answer{font-size:15px;}
-body.presentation-expanded .brochure-slide-3 h1.strategy-display{font-size:51px;margin-top:9px;line-height:.93;}
-body.presentation-expanded .brochure-slide-3 .cols{column-gap:60px;margin-top:20px;}
-body.presentation-expanded .brochure-slide-3 .strategy-page .lead,body.presentation-expanded .brochure-slide-3 .lead{font-size:15px;line-height:1.43;}
-body.presentation-expanded .brochure-slide-3 .clab,body.presentation-expanded .brochure-slide-3 .flab{font-size:13px;color:#4c2394;}
-body.presentation-expanded .brochure-slide-3 .vstep{padding-bottom:4px;}
-body.presentation-expanded .brochure-slide-3 .vstep .cir{width:38px;height:38px;}
-body.presentation-expanded .brochure-slide-3 .vflow .vstep:before{left:19px;top:42px;}
-body.presentation-expanded .brochure-slide-3 .vstep .tx{padding-left:16px;}
-body.presentation-expanded .brochure-slide-3 .vstep .tx .t{font-size:17px;}
-body.presentation-expanded .brochure-slide-3 .vstep .tx .d{font-size:14px;line-height:1.28;margin-top:3px;}
+body.presentation-expanded .brochure-slide-4 .p1body{padding:28px 54px 20px;height:900px;overflow:hidden;}
+body.presentation-expanded .brochure-slide-4 .strategy-intro{font-size:34px;margin-bottom:10px;}
+body.presentation-expanded .brochure-slide-4 .strategy-answer{font-size:15px;}
+body.presentation-expanded .brochure-slide-4 h1.strategy-display{font-size:51px;margin-top:9px;line-height:.93;}
+body.presentation-expanded .brochure-slide-4 .cols{column-gap:60px;margin-top:12px;}
+body.presentation-expanded .brochure-slide-4 .strategy-page .lead,body.presentation-expanded .brochure-slide-4 .lead{font-size:15px;line-height:1.35;}
+body.presentation-expanded .brochure-slide-4 .clab,body.presentation-expanded .brochure-slide-4 .flab{font-size:13px;color:#4c2394;}
+body.presentation-expanded .brochure-slide-4 .vstep{padding-bottom:0;}
+body.presentation-expanded .brochure-slide-4 .vstep .cir{width:38px;height:38px;}
+body.presentation-expanded .brochure-slide-4 .vflow .vstep:before{left:19px;top:42px;}
+body.presentation-expanded .brochure-slide-4 .vstep .tx{padding-left:16px;}
+body.presentation-expanded .brochure-slide-4 .vstep .tx .t{font-size:17px;}
+/* Page 5: keep the process points open and readable while retaining a calm
+   lower margin inside the 16:9 presentation frame. */
+body.presentation-expanded .brochure-slide-4 .vstep .tx .d{font-size:14px;line-height:1.34;margin-top:3px;}
+body.presentation-expanded .brochure-slide-4 .vstep .tx .d li{margin-top:4px;}
+body.presentation-expanded .brochure-slide-4 .vstep .tx .d li:first-child{margin-top:0;}
 
-body.presentation-expanded .brochure-slide-4 .sechead,body.presentation-expanded .brochure-slide-5 .sechead{padding:38px 64px 24px;max-width:none;}
-body.presentation-expanded .brochure-slide-4 h2{font-size:47px;margin-top:14px;}
-body.presentation-expanded .brochure-slide-4 .capital-intro{font-size:13px;max-width:1150px;margin-top:10px;}
-body.presentation-expanded .brochure-slide-4 .capital-cards{gap:24px;margin-top:22px;}
-body.presentation-expanded .brochure-slide-4 .capital-card{padding:17px 24px;}
-body.presentation-expanded .brochure-slide-4 .capital-card h3{font-size:24px;}
-body.presentation-expanded .brochure-slide-4 .capital-card .formula{font-size:29px;padding:8px 0;}
-body.presentation-expanded .brochure-slide-4 .capital-card .takeaway{font-size:17px;}
-body.presentation-expanded .brochure-slide-4 .capital-table{margin-top:10px;}
-body.presentation-expanded .brochure-slide-4 .capital-table th{font-size:10px;padding:7px 14px;}
-body.presentation-expanded .brochure-slide-4 .capital-table td{font-size:12px;padding:8px 14px;}
-body.presentation-expanded .brochure-slide-4 .same-capital{margin-top:16px;padding:16px 24px;}
-body.presentation-expanded .brochure-slide-4 .same-capital h3{font-size:25px;}
-body.presentation-expanded .brochure-slide-4 .capital-note{font-size:9px;margin-top:8px;}
+body.presentation-expanded .brochure-slide-5 .sechead,body.presentation-expanded .brochure-slide-6 .sechead{padding:38px 64px 24px;max-width:none;}
+body.presentation-expanded .brochure-slide-5 h2{font-size:47px;margin-top:14px;}
+body.presentation-expanded .brochure-slide-5 .capital-intro{font-size:13px;max-width:1150px;margin-top:10px;}
+body.presentation-expanded .brochure-slide-5 .capital-cards{gap:24px;margin-top:22px;}
+body.presentation-expanded .brochure-slide-5 .capital-card{padding:17px 24px;}
+body.presentation-expanded .brochure-slide-5 .capital-card h3{font-size:24px;}
+body.presentation-expanded .brochure-slide-5 .capital-card .formula{font-size:29px;padding:8px 0;}
+body.presentation-expanded .brochure-slide-5 .capital-card .takeaway{font-size:17px;}
+body.presentation-expanded .brochure-slide-5 .capital-table{margin-top:10px;}
+body.presentation-expanded .brochure-slide-5 .capital-table th{font-size:10px;padding:7px 14px;}
+body.presentation-expanded .brochure-slide-5 .capital-table td{font-size:12px;padding:8px 14px;}
+body.presentation-expanded .brochure-slide-5 .same-capital{margin-top:16px;padding:16px 24px;}
+body.presentation-expanded .brochure-slide-5 .same-capital h3{font-size:25px;}
+body.presentation-expanded .brochure-slide-5 .capital-note{font-size:9px;margin-top:8px;}
 
-body.presentation-expanded .brochure-slide-5 .sechead{padding-top:30px;}
-body.presentation-expanded .brochure-slide-5 h2.section{font-size:39px;margin-top:10px!important;}
-body.presentation-expanded .brochure-slide-5 .subh{margin-top:12px;font-size:11px;}
-body.presentation-expanded .brochure-slide-5 .probs{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;}
-body.presentation-expanded .brochure-slide-5 .prow{display:contents;}
-body.presentation-expanded .brochure-slide-5 .prob,body.presentation-expanded .brochure-slide-5 .prob:nth-child(even){width:auto;padding:0;}
-body.presentation-expanded .brochure-slide-5 .prob .pb{padding:9px 13px;}
-body.presentation-expanded .brochure-slide-5 .prob .h h4{font-size:15px;}
-body.presentation-expanded .brochure-slide-5 .prob p{font-size:9px;line-height:1.28;margin-top:4px;padding-left:26px;}
-body.presentation-expanded .brochure-slide-5 .info{margin-top:13px;padding:15px 24px 16px;}
-body.presentation-expanded .brochure-slide-5 .info .stem,body.presentation-expanded .brochure-slide-5 .info .bracket,body.presentation-expanded .brochure-slide-5 .info .chip .st,body.presentation-expanded .brochure-slide-5 .info .arrowd{display:none;}
-body.presentation-expanded .brochure-slide-5 .info .chips{margin-top:10px;}
-body.presentation-expanded .brochure-slide-5 .info .outcome{margin-top:10px;padding:8px;}
+body.presentation-expanded .brochure-slide-6 .sechead{padding-top:30px;}
+body.presentation-expanded .brochure-slide-6 h2.section{font-size:39px;margin-top:10px!important;}
+body.presentation-expanded .brochure-slide-6 .subh{margin-top:12px;font-size:11px;}
+body.presentation-expanded .brochure-slide-6 .probs{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;}
+body.presentation-expanded .brochure-slide-6 .prow{display:contents;}
+body.presentation-expanded .brochure-slide-6 .prob,body.presentation-expanded .brochure-slide-6 .prob:nth-child(even){width:auto;padding:0;}
+body.presentation-expanded .brochure-slide-6 .prob .pb{padding:9px 13px;}
+body.presentation-expanded .brochure-slide-6 .prob .h h4{font-size:15px;}
+body.presentation-expanded .brochure-slide-6 .prob p{font-size:9px;line-height:1.28;margin-top:4px;padding-left:26px;}
+body.presentation-expanded .brochure-slide-6 .info{margin-top:13px;padding:15px 24px 16px;}
+body.presentation-expanded .brochure-slide-6 .info .stem,body.presentation-expanded .brochure-slide-6 .info .bracket,body.presentation-expanded .brochure-slide-6 .info .chip .st,body.presentation-expanded .brochure-slide-6 .info .arrowd{display:none;}
+body.presentation-expanded .brochure-slide-6 .info .chips{margin-top:10px;}
+body.presentation-expanded .brochure-slide-6 .info .outcome{margin-top:10px;padding:8px;}
 
-body.presentation-expanded .brochure-slide-6 .p4{padding:28px 54px 0;height:710px;overflow:hidden;}
-body.presentation-expanded .brochure-slide-6 .s-title{margin-top:18px;}
-body.presentation-expanded .brochure-slide-6 .icorow{margin-top:12px;}
-body.presentation-expanded .brochure-slide-6 table.spec{margin-top:12px;}
-body.presentation-expanded .brochure-slide-6 table.spec th,body.presentation-expanded .brochure-slide-6 table.spec td{padding:5px 12px;font-size:10px;}
-body.presentation-expanded .brochure-slide-6 .tlrow{margin-top:10px;}
-body.presentation-expanded .brochure-slide-6 .flow{margin-top:12px;}
-body.presentation-expanded .brochure-slide-6 .why{margin-top:10px;}
-body.presentation-expanded .brochure-slide-6 .cred{margin-top:12px;}
-body.presentation-expanded .brochure-slide-6 .footer{height:190px;padding:22px 54px 18px;}
+body.presentation-expanded .brochure-slide-7 .p4{padding:28px 54px 0;height:710px;overflow:hidden;}
+body.presentation-expanded .brochure-slide-7 .s-title{margin-top:18px;}
+body.presentation-expanded .brochure-slide-7 .icorow{margin-top:12px;}
+body.presentation-expanded .brochure-slide-7 table.spec{margin-top:12px;}
+body.presentation-expanded .brochure-slide-7 table.spec th,body.presentation-expanded .brochure-slide-7 table.spec td{padding:5px 12px;font-size:10px;}
+body.presentation-expanded .brochure-slide-7 .tlrow{margin-top:10px;}
+body.presentation-expanded .brochure-slide-7 .flow{margin-top:12px;}
+body.presentation-expanded .brochure-slide-7 .why{margin-top:10px;}
+body.presentation-expanded .brochure-slide-7 .cred{margin-top:12px;}
+body.presentation-expanded .brochure-slide-7 .footer{height:190px;padding:22px 54px 18px;}
 
 
 /* Numbers only, matching the workspace. */
@@ -542,9 +688,6 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
 .statement{background:#f7f4ff;color:#3a2d55;border-left:3px solid #4c2394}
 .statement .note{color:#6a5d85}
 .statement .b{display:none}
-.info{background:#35166e;color:#fcfbff}
-.info .t .e{color:#d9c9ff}
-.outcome{background:#ede5ff;border-color:#c3a9ff}
 .footer{background:#35166e;color:#fcfbff}
 .capital-card{background:#f7f4ff}
 .capital-card.smart{background:#ede5ff;color:#35166e;border-color:#c3a9ff}
@@ -650,10 +793,74 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
 
       <div class="tagline">#DesignYourDesire</div>
     </div>
+    <div class="cred">
+      <div class="ct"><div class="v">35+ Years</div><div class="l">Jewellery Expertise</div></div>
+      <div class="ct"><div class="v">Legacy</div><div class="l">Established Retail Heritage</div></div>
+      <div class="ct"><div class="v">CAD / CAM</div><div class="l">Advanced Manufacturing Technology</div></div>
+      <div class="ct"><div class="v">B2B</div><div class="l">Retailer-Focused Business Model</div></div>
+      <div class="ct"><div class="v">Made in India</div><div class="l">Crafted &amp; Hallmarked Locally</div></div>
+    </div>
   </div>
 </div>
 
 <!-- ================= PAGE 1 : the retailer's reality ================= -->
+<div class="page waiting-page">
+  <div class="p1prob">
+    <div class="kicker-row"><div class="eyebrow">The Economics of Waiting</div><div class="rule"></div></div>
+    <h1>How Long Can Your Capital<br>Afford to Wait?</h1>
+    <p class="intro">A sale made after the break-even point is still profitable in your books. What it no longer does is beat the return the same capital could have earned elsewhere.</p>
+    <div class="wait-scenario" id="waitScenario">
+      <div class="ws-top"><span class="ws-title">Your scenario</span><div class="ws-presets">
+        <button type="button" data-weight="1">1gm</button><button type="button" data-weight="10">10gm</button><button type="button" data-weight="100">100gm</button><button type="button" data-weight="500">500gm</button><button type="button" data-weight="1000">1,000gm</button>
+      </div></div>
+      <div class="ws-fields">
+        <label>Gold value per gram<span class="ws-in"><i>₹</i><input id="waitGoldPrice" type="number" min="0" step="1" inputmode="decimal"><select id="waitGoldPurity" aria-label="Purity of the entered gold rate"><option value="24">24KT</option><option value="22">22KT</option><option value="18">18KT</option><option value="14">14KT</option><option value="9">9KT</option></select></span></label>
+        <label>Making charges<span class="ws-in"><input id="waitMaking" type="number" min="0" step="0.1" inputmode="decimal"><b>%</b></span></label>
+        <label>Profit margin<span class="ws-in"><input id="waitMargin" type="number" min="0" step="0.1" inputmode="decimal"><b>%</b></span></label>
+        <label>Display weight<span class="ws-in"><input id="waitWeight" type="number" min="0" step="1" inputmode="decimal"><b>g</b></span></label>
+      </div>
+    </div>
+    <div class="wait-capital" id="waitCapital">
+      <div class="wc-box">
+        <div class="wc-meta"><span>Traditional display capital<strong id="waitCapitalValue">—</strong></span><span class="r"><b id="waitCapitalRate">—</b> profit<strong id="waitCapitalProfit">—</strong></span></div>
+        <div class="wc-bar"><i id="waitCapitalSeg"></i><em id="waitProfitSeg"></em></div>
+      </div>
+      <div class="wc-box">
+        <div class="wc-meta"><span>Opportunity cost on display capital<strong id="waitOppCapital">—</strong></span><span class="r"><label class="wc-rate">Opportunity cost <input id="waitOppRateInput" type="number" min="0" step="0.5" value="10" inputmode="decimal"><i>%</i></label><strong id="waitOppAnnual">—</strong></span></div>
+        <div class="wc-months" id="waitOppMonths"></div>
+      </div>
+    </div>
+    <div class="wait-figures">
+      <div class="wf"><span>Profit per rotation</span><strong data-calc-value="waitRoi">8%</strong></div>
+      <div class="wf"><span>Opportunity cost</span><strong data-calc-value="waitBenchmark">10%</strong></div>
+      <div class="wf wf-main"><span>Break-even</span><strong data-calc-value="waitMonths">9.6</strong><em>months</em></div>
+    </div>
+    <p class="wait-caption">The point where the opportunity cost of waiting equals the expected <span data-calc-value="waitRoi">8%</span> profit.</p>
+    <div class="wait-cases">
+      <div class="ok"><span class="wc-state">Economic profit</span><h4>Sold before <span data-calc-value="waitMonths">9.6</span> months</h4><p>Profit exceeds the accumulated opportunity cost.</p></div>
+      <div class="even"><span class="wc-state">Break-even</span><h4>At <span data-calc-value="waitMonths">9.6</span> months</h4><p>Profit equals the accumulated opportunity cost.</p></div>
+      <div class="bad"><span class="wc-state">Economic loss</span><h4>Sold after <span data-calc-value="waitMonths">9.6</span> months</h4><p>The sale can still be profitable, but the capital has underperformed the opportunity-cost benchmark rate.</p></div>
+    </div>
+    <div class="wait-target">
+      <div class="wt-answer"><span>Minimum annual target</span><strong id="waitTargetCount">3 rotations</strong><small id="waitTargetPace">One complete stock cycle every 4 months or faster</small></div>
+      <div class="wt-detail">
+        <div class="wt-head"><strong>Stock rotation target</strong><span id="waitTargetFormula">10% opportunity cost ÷ 4% profit per rotation = 2.5 rotations</span></div>
+        <div class="wt-cards" id="waitTargetCards"></div>
+      </div>
+    </div>
+    <div class="wait-sales" id="waitSales">
+      <div class="wsal-inputs"><strong id="waitSalesTitle">Sales needed at 1.25 rotations</strong>
+        <div class="wsal-controls"><label>Retailer stock <input id="waitStock" type="number" min="0" step="0.5" value="10" inputmode="decimal"><b>kg</b></label>
+        <div class="wsal-days" role="group" aria-label="Working days a month"><span>Days a month</span><button type="button" data-days="25" aria-pressed="true">25</button><button type="button" data-days="30" aria-pressed="false">30</button></div></div>
+      </div>
+      <div class="wsal-out"><span>Yearly sales</span><strong id="waitYear">—</strong><small id="waitYearNote"></small></div>
+      <div class="wsal-out"><span>Monthly sales</span><strong id="waitMonth">—</strong><small id="waitMonthNote"></small></div>
+      <div class="wsal-out daily"><span>Daily sales</span><strong id="waitDay">—</strong><small id="waitDayNote"></small></div>
+    </div>
+    <p class="wait-foot">Opportunity cost is not an expense deducted from your books. It is the benchmark for what the same capital could have earned elsewhere.</p>
+  </div>
+</div>
+
 <div class="page reality-page">
   <div class="p1prob">
     <div class="kicker-row"><div class="eyebrow">The Retailer's Reality</div><div class="rule"></div></div>
@@ -809,7 +1016,7 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
 </div>
 
 <!-- ================= PAGE 4 : the 8 benefits ================= -->
-<div class="page benefits-page">
+<div class="page benefits-page deleted-page" aria-hidden="true">
   <div class="pad sechead">
     <div class="kicker-row"><div class="eyebrow">The Answer</div><div class="rule"></div></div>
     <h2 class="section" style="margin-top:4mm;">8 Challenges.<br>8 SMART Answers.</h2>
@@ -865,65 +1072,58 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
       </div>
     </div>
 
-    <div class="info">
-      <div class="t">
-        <div class="e">One Design &nbsp;&middot;&nbsp; Five Price Ranges &nbsp;&middot;&nbsp; One Happy Customer</div>
-        <div class="pill">ONE DESIGN</div>
-      </div>
-      <div class="stem"></div>
-      <div class="bracket"></div>
-      <div class="chips">
-        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#ede5ff,#7a4fc0)"></div><div class="nm">22KT</div><div class="px">Gold</div></div>
-        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#ede5ff,#7a4fc0)"></div><div class="nm">18KT</div><div class="px">Gold</div></div>
-        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#ede5ff,#c3a9ff)"></div><div class="nm">9KT</div><div class="px">Gold</div></div>
-        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#fcfbff,#c3a9ff)"></div><div class="nm">925</div><div class="px">Silver</div></div>
-        <div class="chip"><div class="st"></div><div class="dot" style="background:linear-gradient(145deg,#ede5ff,#d9c9ff)"></div><div class="nm">Plated</div><div class="px">Gold on Silver</div></div>
-      </div>
-      <div class="arrowd"></div>
-      <div class="outcome">
-        <div class="a">Five Different Price Ranges &nbsp;&middot;&nbsp; One Happy Customer</div>
-        <div class="b">Same design &nbsp;&middot;&nbsp; Same finish &nbsp;&middot;&nbsp; Every budget</div>
-      </div>
-    </div>
   </div>
   <div class="pagetag"><span>04</span></div>
 </div>
 
 <!-- ================= PAGE 5 ================= -->
-<div class="page">
+<div class="page customisation-page">
   <div class="p4">
-    <div class="kicker-row"><div class="eyebrow">How It Works</div><div class="rule"></div></div>
+    <div class="info">
+      <div class="t">
+        <div class="e">One Design &nbsp;&middot;&nbsp; 5 Price Ranges &nbsp;&middot;&nbsp; 7 Customisations</div>
+        <div class="pill">ONE DESIGN</div>
+      </div>
+      <div class="metal-price-tools" id="metalPriceTools">
+        <label>Gold rate basis <select id="metalGoldPurity" aria-label="Purity represented by the calculator gold value"><option value="24">24KT</option><option value="22">22KT</option><option value="18">18KT</option><option value="14">14KT</option><option value="9">9KT</option></select></label>
+        <label>Compare weight <input id="metalWeight" type="number" min="0.1" step="0.1" value="1" inputmode="decimal"> gm</label>
+        <button id="resetMetalRates" type="button">Reset derived rates</button>
+      </div>
+      <div class="metal-source-note" id="metalSourceNote">Gold prices use the selected purity basis and include making charges.</div>
+      <div class="stem"></div>
+      <div class="bracket"></div>
+      <div class="chips">
+        <div class="chip" data-metal-card="22"><div class="st"></div><div class="dot gold-22"></div><div class="nm">22KT</div><div class="px">Gold</div><label class="metal-rate-edit"><span>₹</span><input data-metal-rate="22" type="number" min="0" step="1" inputmode="decimal" aria-label="22KT price per gram"><small>/g</small></label><div class="metal-total" data-metal-total="22"></div></div>
+        <div class="chip" data-metal-card="18"><div class="st"></div><div class="dot gold-18"></div><div class="nm">18KT</div><div class="px">Gold</div><label class="metal-rate-edit"><span>₹</span><input data-metal-rate="18" type="number" min="0" step="1" inputmode="decimal" aria-label="18KT price per gram"><small>/g</small></label><div class="metal-total" data-metal-total="18"></div></div>
+        <div class="chip" data-metal-card="9"><div class="st"></div><div class="dot gold-9"></div><div class="nm">9KT</div><div class="px">Gold</div><label class="metal-rate-edit"><span>₹</span><input data-metal-rate="9" type="number" min="0" step="1" inputmode="decimal" aria-label="9KT price per gram"><small>/g</small></label><div class="metal-total" data-metal-total="9"></div></div>
+        <div class="chip" data-metal-card="925"><div class="st"></div><div class="dot silver-925"></div><div class="nm">925</div><div class="px">Silver</div><label class="metal-rate-edit"><span>₹</span><input data-metal-rate="925" type="number" min="0" step="1" inputmode="decimal" aria-label="925 silver price per gram"><small>/g</small></label><div class="metal-total" data-metal-total="925"></div></div>
+        <div class="chip" data-metal-card="plated"><div class="st"></div><div class="dot gold-plated"></div><div class="nm">Plated</div><div class="px">Gold on Silver</div><label class="metal-rate-edit"><span>₹</span><input data-metal-rate="plated" type="number" min="0" step="1" inputmode="decimal" aria-label="Gold plated silver price per gram"><small>/g</small></label><div class="metal-total" data-metal-total="plated"></div></div>
+      </div>
+    </div>
 
     <!-- 1. customisation -->
-    <div class="s-title"><div class="n">01</div><h3>360&deg; Jewellery Customisation</h3><div class="ln"></div></div>
-    <div class="icorow">
-      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M9 4h14l6 8-13 16L3 12z"/><path d="M3 12h26M9 4l7 8 7-8M16 12v16"/></svg><span>Stone<br>Customisation</span></div>
-      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M17 3H7a4 4 0 0 0-4 4v10l12 12 14-14z"/><circle cx="10" cy="10" r="2"/></svg><span>Purity<br>&amp; Price</span></div>
-      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M16 4v24M6 28h20"/><path d="M4 12h24"/><path d="M4 12l-2 7h8zM28 12l2 7h-8z"/></svg><span>Weight</span></div>
-      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="3" y="11" width="26" height="10" rx="1.5"/><path d="M9 11v4M15 11v6M21 11v4"/></svg><span>Size</span></div>
-      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="16" cy="16" r="12"/><circle cx="11" cy="12" r="1.8"/><circle cx="20" cy="11" r="1.8"/><circle cx="22" cy="19" r="1.8"/></svg><span>Colour<br>Tone</span></div>
-      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M16 3l3.2 8.8L28 15l-8.8 3.2L16 27l-3.2-8.8L4 15l8.8-3.2z"/></svg><span>Surface<br>Finish</span></div>
-      <div class="i"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M22 3l7 7-16 16-9 2 2-9z"/><path d="M19 6l7 7"/></svg><span>Personalisation</span></div>
-    </div>
-    <table class="spec">
-      <tr><th>Parameter</th><th>Options Available to Your Customer</th></tr>
-      <tr><td class="k">Stone Customisation</td><td>Natural diamond, lab-grown diamond, precious &amp; semi-precious stones, CZ, or plain gold</td></tr>
-      <tr><td class="k">Purity &amp; Price</td><td>22KT &middot; 18KT &middot; 9KT &middot; 925 Silver &middot; Gold-Plated Silver</td></tr>
-      <tr><td class="k">Weight</td><td>Light, medium or heavy variant of the very same design</td></tr>
-      <tr><td class="k">Size</td><td>Ring size, bangle size, chain and necklace length</td></tr>
-      <tr><td class="k">Colour Tone</td><td>Yellow, rose or white &mdash; single tone or dual tone</td></tr>
-      <tr><td class="k">Surface Finish</td><td>High polish, matte, satin, antique or textured finish</td></tr>
-      <tr><td class="k">Personalisation</td><td>Names, initials, dates and custom engraving</td></tr>
-    </table>
+    <section class="page7-section customisation-section">
+      <div class="s-title"><h3>360&deg; Jewellery Customisation</h3><div class="ln"></div></div>
+      <div class="customisation-card-grid">
+      <article class="customisation-card"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M9 4h14l6 8-13 16L3 12z"/><path d="M3 12h26M9 4l7 8 7-8M16 12v16"/></svg><h4>Stone Customisation</h4><p>Diamonds, gemstones, CZ, or plain gold.</p></article>
+      <article class="customisation-card"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M17 3H7a4 4 0 0 0-4 4v10l12 12 14-14z"/><circle cx="10" cy="10" r="2"/></svg><h4>Purity &amp; Price</h4><p>22KT, 18KT, 9KT, silver, or plated silver.</p></article>
+      <article class="customisation-card"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M16 4v24M6 28h20"/><path d="M4 12h24"/><path d="M4 12l-2 7h8zM28 12l2 7h-8z"/></svg><h4>Weight</h4><p>Light, medium, or heavy.</p></article>
+      <article class="customisation-card"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="3" y="11" width="26" height="10" rx="1.5"/><path d="M9 11v4M15 11v6M21 11v4"/></svg><h4>Size</h4><p>Ring, bangle, chain, and necklace sizes.</p></article>
+      <article class="customisation-card"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="16" cy="16" r="12"/><circle cx="11" cy="12" r="1.8"/><circle cx="20" cy="11" r="1.8"/><circle cx="22" cy="19" r="1.8"/></svg><h4>Colour Tone</h4><p>Yellow, rose, white, or dual tone.</p></article>
+      <article class="customisation-card"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M16 3l3.2 8.8L28 15l-8.8 3.2L16 27l-3.2-8.8L4 15l8.8-3.2z"/></svg><h4>Surface Finish</h4><p>Polish, matte, satin, antique, or texture.</p></article>
+      <article class="customisation-card"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M22 3l7 7-16 16-9 2 2-9z"/><path d="M19 6l7 7"/></svg><h4>Personalisation</h4><p>Names, initials, dates, or engraving.</p></article>
+      </div>
+    </section>
 
     <!-- 2. delivery -->
-    <div class="s-title"><div class="n">02</div><h3>Delivery Timeline</h3><div class="ln"></div></div>
-    <div class="tlrow">
-      <div class="tl"><div class="b"><div class="c">Standard Collection</div><div class="d">2 &ndash; 3 Days</div><div class="e">Working days from order confirmation</div></div></div>
-      <div class="tl"><div class="b"><div class="c">Classic Collection</div><div class="d">3 &ndash; 5 Days</div><div class="e">Working days from order confirmation</div></div></div>
-      <div class="tl"><div class="b"><div class="c">Signature Collection</div><div class="d">5 &ndash; 7 Days</div><div class="e">Working days from order confirmation</div></div></div>
-    </div>
-    <div class="flow">
+    <section class="page7-section delivery-section">
+      <div class="s-title"><h3>Delivery Timeline</h3><div class="ln"></div></div>
+      <div class="tlrow">
+      <div class="tl"><div class="b"><div class="c">Standard Orders</div><div class="d"><span class="days-number">3 &ndash; 5</span> Days</div><div class="e">Working days from order confirmation</div></div></div>
+      <div class="tl"><div class="b"><div class="c">Classic Orders</div><div class="d"><span class="days-number">5 &ndash; 7</span> Days</div><div class="e">Working days from order confirmation</div></div></div>
+      <div class="tl"><div class="b"><div class="c">Signature Orders</div><div class="d"><span class="days-number">7 &ndash; 10</span> Days</div><div class="e">Working days from order confirmation</div></div></div>
+      </div>
+      <div class="flow">
       <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M3 5h4l3.5 15h14L28 9H9"/><circle cx="12" cy="26" r="2"/><circle cx="23" cy="26" r="2"/></svg><div class="t">Order</div><div class="no">01</div></div></div>
       <div class="chev"><i></i></div>
       <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M16 3l12 6.5v13L16 29 4 22.5v-13z"/><path d="M4 9.5l12 6.5 12-6.5M16 16v13"/></svg><div class="t">CAD</div><div class="no">02</div></div></div>
@@ -935,28 +1135,27 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
       <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><circle cx="16" cy="13" r="9"/><path d="M11 27l5-3 5 3V20h-10z"/><path d="M12.5 13l2.5 2.5 5-5"/></svg><div class="t">Hallmark</div><div class="no">05</div></div></div>
       <div class="chev"><i></i></div>
       <div class="step"><div class="sb"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 10l12-5 12 5v12l-12 5-12-5z"/><path d="M4 10l12 5 12-5M16 15v12"/></svg><div class="t">Dispatch</div><div class="no">06</div></div></div>
-    </div>
+      </div>
+    </section>
+  </div>
+  <div class="page-no-dark">05</div>
+</div>
 
-    <!-- 3. why choose -->
-    <div class="s-title"><div class="n">03</div><h3>Why Choose Alookaran?</h3><div class="ln"></div></div>
-    <div class="why">
-      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>State-of-the-Art Manufacturing Facility</span></div>
-      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Precision CAD / CAM Technology</span></div>
-      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Hallmark Certified Jewellery</span></div>
-      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Skilled Artisan Craftsmanship</span></div>
-      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Fast, Committed Turnaround Time</span></div>
-      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Dedicated Retailer Support</span></div>
-      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Consistent Quality Standards</span></div>
-      <div class="w"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5l3.5 3.5 7.5-8"/></svg><span>Ethical &amp; Transparent Manufacturing</span></div>
-    </div>
-
-    <!-- credibility strip -->
-    <div class="cred">
-      <div class="ct"><div class="v">35+ Years</div><div class="l">Jewellery Expertise</div></div>
-      <div class="ct"><div class="v">Legacy</div><div class="l">Established Retail Heritage</div></div>
-      <div class="ct"><div class="v">CAD / CAM</div><div class="l">Advanced Manufacturing Technology</div></div>
-      <div class="ct"><div class="v">B2B</div><div class="l">Retailer-Focused Business Model</div></div>
-      <div class="ct"><div class="v">Made in India</div><div class="l">Crafted &amp; Hallmarked Locally</div></div>
+<!-- ================= PAGE 6 ================= -->
+<div class="page answers-page">
+  <div class="p4">
+    <div class="kicker-row"><div class="eyebrow">The KARATS Response</div><div class="rule"></div></div>
+    <h1>8 Operational Challenges.<br>8 SMART Answers.</h1>
+    <p class="answers-intro">KARATS separates product display from gold ownership. Retailers display reusable silver prototypes, confirm the customer&rsquo;s specifications and purchase gold only against an actual order.</p>
+    <div class="smart-answer-grid">
+      <article class="smart-answer"><div class="smart-answer-head"><span class="smart-answer-no">01</span><h3>Release Capital from Unsold Inventory</h3></div><p><strong>SMART response</strong> Display reusable gold-plated silver prototypes. Purchase gold only after the customer confirms the order and advance.</p><p class="answer-result"><strong>Result</strong> Less working capital remains locked in unsold gold.</p></article>
+      <article class="smart-answer"><div class="smart-answer-head"><span class="smart-answer-no">02</span><h3>Limit Gold-Price Exposure</h3></div><p><strong>SMART response</strong> Confirm the gold rate, purity and weight with the customer, then procure gold promptly against that order.</p><p class="answer-result"><strong>Result</strong> Exposure narrows to the order-to-procurement period.</p></article>
+      <article class="smart-answer"><div class="smart-answer-head"><span class="smart-answer-no">03</span><h3>Reduce Security Exposure</h3></div><p><strong>SMART response</strong> Replace most display gold with lower-value silver prototypes and hold gold only for confirmed production.</p><p class="answer-result"><strong>Result</strong> Less bullion value remains exposed at the retail counter.</p></article>
+      <article class="smart-answer"><div class="smart-answer-head"><span class="smart-answer-no">04</span><h3>Lower Inventory Holding Costs</h3></div><p><strong>SMART response</strong> Maintain a broad prototype collection instead of an equivalent finished-gold collection.</p><p class="answer-result"><strong>Result</strong> Lower insured inventory value and reduced long-term storage requirements.</p></article>
+      <article class="smart-answer"><div class="smart-answer-head"><span class="smart-answer-no">05</span><h3>Control Effective Making Cost</h3></div><p><strong>SMART response</strong> Use confirmed specifications, CAD/CAM workflows and centralised production to reduce speculative manufacturing, remakes and wastage.</p><p class="answer-result"><strong>Result</strong> Manufacturing costs become more controlled and predictable.</p></article>
+      <article class="smart-answer"><div class="smart-answer-head"><span class="smart-answer-no">06</span><h3>Expand Designs and Price Options</h3></div><p><strong>SMART response</strong> Present one design in 22KT, 18KT, 9KT, silver and gold-plated silver using the five-price calculator.</p><p class="answer-result"><strong>Result</strong> More designs and budgets without stocking every variation in gold.</p></article>
+      <article class="smart-answer"><div class="smart-answer-head"><span class="smart-answer-no">07</span><h3>Respond Faster to New Trends</h3></div><p><strong>SMART response</strong> Refresh lower-cost silver prototypes as preferences change, while producing gold only after selection.</p><p class="answer-result"><strong>Result</strong> Fewer outdated gold designs and faster collection updates.</p></article>
+      <article class="smart-answer"><div class="smart-answer-head"><span class="smart-answer-no">08</span><h3>Build Customisation into the Order</h3></div><p><strong>SMART response</strong> Finalise stone, purity, weight, size, colour, surface finish and personalisation before production.</p><p class="answer-result"><strong>Result</strong> A customer-approved piece without modifying finished inventory.</p></article>
     </div>
   </div>
 
@@ -992,7 +1191,7 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
       </div>
     </div>
   </div>
-  <div class="page-no-dark">05</div>
+  <div class="page-no-dark">06</div>
 </div>
 <script src="karats-pdf-libs/html2canvas.min.js"></script>
 <script src="karats-pdf-libs/jspdf.umd.min.js"></script>
@@ -1024,7 +1223,7 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
     '.page .step .t','.page .step .no','.page .why .w span','.page .cred .v','.page .cred .l',
     '.page .footer h4','.page .cta-h','.page .cta-s','.page .cta-p','.page .ct-list .r span','.page .qr .lbl'
   ];
-  const directTextElements=Array.from(document.querySelectorAll('.page *')).filter(el=>!el.closest('svg')&&Array.from(el.childNodes).some(node=>node.nodeType===Node.TEXT_NODE&&node.textContent.trim()));
+  const directTextElements=Array.from(document.querySelectorAll('.page *')).filter(el=>!el.closest('svg,.metal-price-tools,.metal-rate-edit,.metal-total,.wait-scenario,.wait-capital,.wait-sales')&&Array.from(el.childNodes).some(node=>node.nodeType===Node.TEXT_NODE&&node.textContent.trim()));
   const candidates=Array.from(new Set([...document.querySelectorAll(selectors.join(',')),...directTextElements]));
   const editables=candidates.filter((el,index,array)=>!array.some(other=>other!==el&&other.contains(el)));
   editables.forEach((el,index)=>{el.dataset.editKey=`brochure-text-${index}`;el.dataset.defaultHtml=el.innerHTML;el.addEventListener('paste',event=>{if(!document.body.classList.contains('brochure-editing'))return;event.preventDefault();const text=(event.clipboardData||window.clipboardData).getData('text/plain');document.execCommand('insertText',false,text)})});
@@ -1075,7 +1274,7 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
   const originalPages=allBrochurePages.filter(page=>!page.classList.contains('deleted-page'));
   let deckSlides=[];
   let currentSlide=0;
-  const calculatorDefaults={goldPrice:15000,makingCharges:0,margin:6,goldDisplayWeight:1,silverCost:500,silverMakingCharges:0,smartMargin:6,silverWeight:1};
+  const calculatorDefaults={goldPrice:15000,goldPurity:22,makingCharges:0,margin:6,goldDisplayWeight:1,silverCost:500,silverMakingCharges:0,smartMargin:6,silverWeight:1};
   const currency=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
   const decimal=new Intl.NumberFormat('en-IN',{maximumFractionDigits:0});
   const roundDisplay=n=>{n=Number.isFinite(n)?n:0;const sign=n<0?-1:1,a=Math.abs(n),whole=Math.floor(a);return sign*(whole+(a-whole>=0.4?1:0))};
@@ -1083,15 +1282,144 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
   const formatDecimal=n=>decimal.format(roundDisplay(n));
   function readStoredCalculatorValues(){try{return {...calculatorDefaults,...JSON.parse(localStorage.getItem('karatsBrochureCalculatorValues'))}}catch(e){return {...calculatorDefaults}}}
   let latestCalculatorValues=readStoredCalculatorValues();
+  const metalRateKeys=['22','18','9','925','plated'];
+  const validGoldPurities=[24,22,18,14,9];
+  let metalPriceState={overrides:{},weight:null};
+  try{metalPriceState={...metalPriceState,...JSON.parse(localStorage.getItem('karatsMetalPriceState'))};metalPriceState.overrides=metalPriceState.overrides||{}}catch(e){}
+  function derivedMetalRates(v){
+    const basis=validGoldPurities.includes(Number(v.goldPurity))?Number(v.goldPurity):22;
+    const goldRate=Math.max(0,Number(v.goldPrice)||0),goldMaking=Math.max(0,Number(v.makingCharges)||0)/100;
+    const goldFor=purity=>goldRate*(purity/basis)*(1+goldMaking);
+    const silver=Math.max(0,Number(v.silverCost)||0),silverMaking=Math.max(0,Number(v.silverMakingCharges)||0);
+    return {'22':goldFor(22),'18':goldFor(18),'9':goldFor(9),'925':silver,plated:silver+silverMaking};
+  }
+  function saveMetalPriceState(){try{localStorage.setItem('karatsMetalPriceState',JSON.stringify(metalPriceState))}catch(e){}}
+  function renderMetalPriceCalculator(v){
+    const basis=validGoldPurities.includes(Number(v.goldPurity))?Number(v.goldPurity):22;
+    const basisSelect=document.getElementById('metalGoldPurity'),weightInput=document.getElementById('metalWeight');
+    if(!basisSelect||!weightInput)return;
+    basisSelect.value=String(basis);
+    if(metalPriceState.weight==null)metalPriceState.weight=Math.max(.1,Number(v.goldDisplayWeight)||1);
+    if(document.activeElement!==weightInput)weightInput.value=String(metalPriceState.weight);
+    const weight=Math.max(.1,Number(metalPriceState.weight)||1),derived=derivedMetalRates(v);
+    metalRateKeys.forEach(key=>{
+      const input=document.querySelector(`[data-metal-rate="${key}"]`),total=document.querySelector(`[data-metal-total="${key}"]`),card=document.querySelector(`[data-metal-card="${key}"]`);
+      const manual=Object.prototype.hasOwnProperty.call(metalPriceState.overrides,key),rate=manual?Number(metalPriceState.overrides[key]):derived[key];
+      if(input&&document.activeElement!==input)input.value=String(Math.round(rate));
+      if(total)total.innerHTML=`${formatCurrency(rate*weight)}<small>${formatDecimal(weight)} gm price</small>`;
+      if(card)card.classList.toggle('manual',manual);
+    });
+    const note=document.getElementById('metalSourceNote');
+    if(note)note.textContent=`Gold source: ${formatCurrency(v.goldPrice)}/g at ${basis}KT + ${formatDecimal(v.makingCharges)}% making. Silver: ${formatCurrency(v.silverCost)}/g; plated silver adds ${formatCurrency(v.silverMakingCharges)}/g.`;
+    saveMetalPriceState();
+  }
   function applyCalculatorValues(input){
     const v={...calculatorDefaults,...(input||{})};latestCalculatorValues=v;
+    v.goldPurity=validGoldPurities.includes(Number(v.goldPurity))?Number(v.goldPurity):22;
     v.smartMargin=v.margin;
     v.silverWeight=v.goldDisplayWeight;
     const safe=(a,b)=>b?a/b:0;const tradCostPerGram=v.goldPrice*(1+v.makingCharges/100);const tradProfitPerSale=tradCostPerGram*(v.margin/100)*v.goldDisplayWeight;const smartProfitPerSale=tradCostPerGram*(v.margin/100)*v.silverWeight;const profitPerSale=smartProfitPerSale;
     const tradGoldValue=v.goldPrice*v.goldDisplayWeight;const tradCapital=tradCostPerGram*v.goldDisplayWeight;const prototypeCapital=(v.silverCost+v.silverMakingCharges)*v.silverWeight;const tradRoi=safe(tradProfitPerSale,tradCapital)*100;const smartRoi=safe(smartProfitPerSale,prototypeCapital)*100;
     const capitalRatio=safe(tradCapital,prototypeCapital);const efficiencyRatio=safe(smartRoi,tradRoi);const prototypeCount=Math.max(0,Math.floor(safe(tradCapital,prototypeCapital)));const sameCapitalProfit=prototypeCount*profitPerSale;
     const values={tradCapital:formatCurrency(tradCapital),prototypeCapital:formatCurrency(prototypeCapital),tradProfitPerSale:formatCurrency(tradProfitPerSale),profitPerSale:formatCurrency(profitPerSale),margin:`${formatDecimal(v.margin)}%`,tradRoi:`${formatDecimal(tradRoi)}%`,smartRoi:`${formatDecimal(smartRoi)}%`,capitalRatio:`${formatDecimal(capitalRatio)}×`,efficiencyRatio:`${formatDecimal(efficiencyRatio)}×`,prototypeCount:formatDecimal(prototypeCount),sameCapitalProfit:formatCurrency(sameCapitalProfit)};
+    {
+      // The waiting page compares profit per rotation against the capital benchmark the
+      // calculator page uses, so both slides always quote the same break-even.
+      let benchmark=10;
+      try{const saved=localStorage.getItem('karatsOpportunityRate');if(saved!=null&&saved!=='')benchmark=Math.max(0,Number(saved)||0)}catch(e){}
+      if(Number.isFinite(Number(v.opportunityRate)))benchmark=Math.max(0,Number(v.opportunityRate));
+      const oneDp=n=>Number(n).toFixed(1).replace(/\.0$/,'');
+      const months=benchmark>0&&tradRoi>0?tradRoi/benchmark*12:null;
+      const breakEvenRotations=tradRoi>0?benchmark/tradRoi:null;
+      const whole=breakEvenRotations!=null?Math.floor(breakEvenRotations+1e-9)+1:null;
+      values.waitRoi=`${formatDecimal(tradRoi)}%`;
+      values.waitBenchmark=`${formatDecimal(benchmark)}%`;
+      values.waitMonths=months!=null?oneDp(months):'—';
+      values.waitBreakEven=breakEvenRotations!=null?Number(breakEvenRotations).toFixed(2).replace(/\.?0+$/,''):'—';
+      values.waitWhole=whole!=null?String(whole):'—';
+      {
+        const answer=document.getElementById('waitTargetCount'),pace=document.getElementById('waitTargetPace');
+        const formula=document.getElementById('waitTargetFormula'),cards=document.getElementById('waitTargetCards');
+        const rotationText=n=>Number(n).toFixed(2).replace(/\.?0+$/,'');
+        if(breakEvenRotations!=null&&breakEvenRotations>0&&tradRoi>0){
+          const exact=breakEvenRotations;
+          // The exact turnover is the target; rounding it up overstates what is required.
+          if(answer)answer.textContent=`${rotationText(exact)} ${exact===1?'rotation':'rotations'}`;
+          if(pace)pace.textContent=`One complete stock cycle every ${oneDp(12/exact)} months or faster`;
+          if(formula)formula.textContent=`${formatDecimal(benchmark)}% opportunity cost ÷ ${formatDecimal(tradRoi)}% profit per rotation = ${rotationText(exact)} rotations`;
+          if(cards){
+            // The exact figure occupies the slot of its whole part, so the strip reads
+            // 1×, 2.5×, 3×, 4× rather than hiding the real threshold.
+            const floorExact=Math.floor(exact+1e-9);
+            const counts=floorExact<1
+              ?[exact,1,2,3,4]
+              :[0,1,2,3,4].map(step=>(floorExact<=3?1:floorExact-2)+step).map(count=>count===floorExact?exact:count);
+            cards.innerHTML=counts.map(count=>{
+              const isTarget=Math.abs(count-exact)<1e-9;
+              const profit=tradRoi*count,net=profit-benchmark;
+              const sign=net>1e-9?'+':net<-1e-9?'−':'';
+              return `<div class="wt-card${isTarget?' required':''}${net<-1e-9?' short':''}"><div class="r"><b>${rotationText(count)}×</b> per year</div>`
+                +`<div class="math">${formatDecimal(profit)}% profit − ${formatDecimal(benchmark)}% cost</div>`
+                +`<div class="net">${sign}${formatDecimal(Math.abs(net))}% net</div>`
+                +`${isTarget?'<em>Break-even point</em>':''}</div>`;
+            }).join('');
+          }
+        }else{
+          if(answer)answer.textContent='No target';
+          if(pace)pace.textContent='Enter a profit margin above 0%';
+          if(formula)formula.textContent='A positive profit per rotation is required';
+          if(cards)cards.innerHTML='';
+        }
+      }
+      // Scenario inputs mirror the shared values unless the user is typing in them.
+      const setVal=(id,val)=>{const el=document.getElementById(id);if(el&&document.activeElement!==el)el.value=val};
+      const txt2=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val};
+      {
+        // Grams are taken from the exact break-even turnover, not the rounded whole number,
+        // so the figures say what the stock must actually do to match the benchmark.
+        const stockGrams=Math.max(0,Number(document.getElementById('waitStock')?.value)||0)*1000;
+        const days=Number(document.querySelector('.wsal-days [aria-pressed="true"]')?.dataset.days)||25;
+        const weight=grams=>grams>=1000?`${(grams/1000).toLocaleString('en-IN',{maximumFractionDigits:2})} kg`:`${grams.toLocaleString('en-IN',{maximumFractionDigits:1})} g`;
+        const rotations=breakEvenRotations;
+        const title=document.getElementById('waitSalesTitle');
+        if(rotations!=null&&rotations>0){
+          const exact=Number(rotations).toFixed(2).replace(/\.?0+$/,'');
+          const yearly=stockGrams*rotations,monthly=yearly/12,daily=monthly/days;
+          if(title)title.textContent=`Sales needed at ${exact} rotations`;
+          txt2('waitYear',weight(yearly));txt2('waitYearNote',`${weight(stockGrams)} × ${exact} rotations`);
+          txt2('waitMonth',weight(monthly));txt2('waitMonthNote',`${weight(yearly)} ÷ 12 months`);
+          txt2('waitDay',weight(daily));txt2('waitDayNote',`${weight(monthly)} ÷ ${days} days`);
+        }else{
+          if(title)title.textContent='Sales needed to match the benchmark';
+          ['waitYear','waitMonth','waitDay'].forEach(id=>txt2(id,'—'));
+          ['waitYearNote','waitMonthNote','waitDayNote'].forEach(id=>txt2(id,'Needs a profit margin above 0%'));
+        }
+      }
+      setVal('waitGoldPrice',v.goldPrice);setVal('waitMaking',v.makingCharges);setVal('waitMargin',v.margin);setVal('waitWeight',v.goldDisplayWeight);
+      const purityEl=document.getElementById('waitGoldPurity');
+      if(purityEl&&document.activeElement!==purityEl)purityEl.value=String(v.goldPurity);
+      document.querySelectorAll('.ws-presets button').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.weight)===Number(v.goldDisplayWeight))));
+      const txt=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val};
+      txt('waitCapitalValue',formatCurrency(tradCapital));txt('waitCapitalRate',`${formatDecimal(tradRoi)}%`);txt('waitCapitalProfit',formatCurrency(tradProfitPerSale));
+      const capitalSeg=document.getElementById('waitCapitalSeg'),profitSeg=document.getElementById('waitProfitSeg');
+      if(capitalSeg&&profitSeg){capitalSeg.style.flexGrow=String(Math.max(tradCapital,0));profitSeg.style.flexGrow=String(Math.max(tradProfitPerSale,0))}
+      const annualCost=tradCapital*benchmark/100,monthlyCost=annualCost/12;
+      txt('waitOppCapital',formatCurrency(tradCapital));txt('waitOppAnnual',formatCurrency(annualCost));
+      const rateField=document.getElementById('waitOppRateInput');
+      if(rateField&&document.activeElement!==rateField)rateField.value=formatDecimal(benchmark);
+      const oppMonthsEl=document.getElementById('waitOppMonths');
+      if(oppMonthsEl){
+        const expiry=months!=null?Math.max(1,Math.ceil(months)):null;
+        oppMonthsEl.innerHTML=Array.from({length:12},(_,index)=>{
+          const month=index+1,cost=monthlyCost*month,left=tradProfitPerSale-cost;
+          const state=left<0?(month===expiry?'exhausted':'loss'):'';
+          const remain=tradProfitPerSale-cost;
+          return `<span class="${state}"><b class="${remain<0?'neg':''}">${remain<0?'−':''}${formatCurrency(Math.abs(remain))}</b><i></i><u>M${month}</u>${formatCurrency(cost)}</span>`;
+        }).join('');
+      }
+    }
     Object.entries(values).forEach(([key,value])=>document.querySelectorAll(`[data-calc-value="${key}"]`).forEach(el=>el.textContent=value));
+    renderMetalPriceCalculator(v);
     try{localStorage.setItem('karatsBrochureCalculatorValues',JSON.stringify(v))}catch(e){}
   }
   async function downloadBrochurePdf(){
@@ -1120,13 +1448,12 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
   function ensureCalculatorSlides(){
     if(document.querySelector('.calculator-presentation-page')){deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page')&&!el.classList.contains('deleted-page'));return}
     const anchor=document.querySelector('.benefits-page')||originalPages[3]||null;
-    // The opportunity-cost page opens the argument, straight after the cover.
-    const anchorFor=mode=>mode==='opportunity'?(originalPages[1]||anchor):anchor;
-    ['summary','opportunity','design','reuse'].forEach((mode,index)=>{
+    // The former second presentation page (opportunity cost) is intentionally omitted.
+    ['summary','design'].forEach(mode=>{
       const page=document.createElement('div');page.className='page calculator-presentation-page';page.dataset.calculatorPage=mode;
-      const frame=document.createElement('iframe');frame.title=['KARATS SMART live capital comparison','KARATS SMART opportunity-cost comparison','KARATS SMART design comparison','KARATS SMART reuse and break-even calculator'][index];frame.dataset.mode=mode;frame.loading='eager';
+      const frame=document.createElement('iframe');frame.title=mode==='summary'?'KARATS SMART live capital comparison':'KARATS SMART design comparison';frame.dataset.mode=mode;frame.loading='eager';
       frame.addEventListener('load',()=>{frame.dataset.seeded='true';frame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*')});
-      page.appendChild(frame);document.body.insertBefore(page,anchorFor(mode));
+      page.appendChild(frame);document.body.insertBefore(page,anchor);
     });
     deckSlides=Array.from(document.body.children).filter(el=>el.classList&&el.classList.contains('page')&&!el.classList.contains('deleted-page'));
     refreshCalculatorFrames();
@@ -1201,6 +1528,47 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
   document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='s'&&document.body.classList.contains('brochure-editing')){event.preventDefault();saveCurrent(false)}});
   previousSlide.addEventListener('click',()=>showSlide(currentSlide-1));nextSlide.addEventListener('click',()=>showSlide(currentSlide+1));
   expandPresentation.addEventListener('click',expandPresentationDeck);collapsePresentation.addEventListener('click',collapsePresentationDeck);
+  function pushCalculatorValues(){
+    applyCalculatorValues(latestCalculatorValues);
+    document.querySelectorAll('.calculator-presentation-page iframe').forEach(frame=>frame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*'));
+  }
+  Object.entries({waitGoldPrice:'goldPrice',waitMaking:'makingCharges',waitMargin:'margin',waitWeight:'goldDisplayWeight'}).forEach(([id,key])=>{
+    const field=document.getElementById(id);
+    if(field)field.addEventListener('input',()=>{const entered=Number(field.value);if(!Number.isFinite(entered)||entered<0)return;latestCalculatorValues[key]=entered;pushCalculatorValues()});
+  });
+  const waitOppRate=document.getElementById('waitOppRateInput');
+  if(waitOppRate)waitOppRate.addEventListener('input',()=>{
+    const entered=Number(waitOppRate.value);
+    if(!Number.isFinite(entered)||entered<0)return;
+    try{localStorage.setItem('karatsOpportunityRate',String(entered))}catch(e){}
+    latestCalculatorValues.opportunityRate=entered;
+    pushCalculatorValues();
+  });
+  const waitStock=document.getElementById('waitStock');
+  if(waitStock)waitStock.addEventListener('input',()=>applyCalculatorValues(latestCalculatorValues));
+  document.querySelectorAll('.wsal-days button').forEach(button=>button.addEventListener('click',()=>{
+    document.querySelectorAll('.wsal-days button').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));
+    applyCalculatorValues(latestCalculatorValues);
+  }));
+  const waitPurity=document.getElementById('waitGoldPurity');
+  if(waitPurity)waitPurity.addEventListener('change',event=>{latestCalculatorValues.goldPurity=Number(event.target.value)||22;pushCalculatorValues()});
+  document.querySelectorAll('.ws-presets button').forEach(button=>button.addEventListener('click',()=>{
+    latestCalculatorValues.goldDisplayWeight=Number(button.dataset.weight)||1;pushCalculatorValues();
+  }));
+  document.getElementById('metalGoldPurity').addEventListener('change',event=>{
+    latestCalculatorValues.goldPurity=Number(event.target.value)||22;
+    applyCalculatorValues(latestCalculatorValues);
+    document.querySelectorAll('.calculator-presentation-page iframe').forEach(frame=>frame.contentWindow.postMessage({type:'karats-set-values',values:latestCalculatorValues},'*'));
+  });
+  document.getElementById('metalWeight').addEventListener('input',event=>{
+    const value=Number(event.target.value);if(!Number.isFinite(value)||value<=0)return;
+    metalPriceState.weight=value;renderMetalPriceCalculator(latestCalculatorValues);
+  });
+  document.querySelectorAll('[data-metal-rate]').forEach(input=>input.addEventListener('input',event=>{
+    const value=Number(event.target.value);if(!Number.isFinite(value)||value<0)return;
+    metalPriceState.overrides[event.target.dataset.metalRate]=value;renderMetalPriceCalculator(latestCalculatorValues);
+  }));
+  document.getElementById('resetMetalRates').addEventListener('click',()=>{metalPriceState.overrides={};renderMetalPriceCalculator(latestCalculatorValues)});
   downloadPdf.addEventListener('click',downloadBrochurePdf);
   window.addEventListener('resize',fitPresentationPage);
   document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&document.body.classList.contains('presentation-expanded')){document.body.classList.remove('presentation-expanded');requestAnimationFrame(fitPresentationPage)}});
