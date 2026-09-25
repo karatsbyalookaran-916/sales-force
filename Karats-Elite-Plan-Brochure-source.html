@@ -66,7 +66,7 @@ body.presentation-deck .pagetag,body.presentation-deck .page-no-dark{display:non
 body.presentation-expanded{padding-top:0;}
 body.presentation-expanded .brochure-editor-bar,body.presentation-expanded .presentation-controls{display:none!important;}
 body.presentation-expanded .presentation-close{display:block;}
-body.presentation-expanded .page{width:1600px;height:900px;top:var(--deck-top,8px);}
+body.presentation-expanded .page{width:1600px;height:var(--deck-page-height,900px);top:var(--deck-top,8px);}
 .calculator-presentation-page{display:none;background:#f7f4ff!important;}
 .calculator-presentation-page iframe{display:block;width:100%;height:100%;border:0;background:#f7f4ff;}
 @media(max-width:760px){.presentation-controls{grid-template-columns:34px 1fr 34px;gap:4px;bottom:5px}.presentation-controls .expand-presentation{grid-column:1/2;min-width:0}.presentation-controls .deck-language{grid-column:2/4;min-width:0}.presentation-controls .deck-language select{min-width:0;flex:1}.presentation-controls .download-pdf{grid-column:1/4;min-width:0}.presentation-controls .deck-indicator{min-width:0}}
@@ -568,12 +568,37 @@ table.spec td.k{font-weight:500;color:#35166e;width:36%;}
 /* Landscape presentation layout */
 body.presentation-expanded .brochure-slide-1{background:#35166e;}
 body.presentation-expanded .brochure-slide-1.presentation-active{display:block;}
-body.presentation-expanded .brochure-slide-1 .hero{height:900px;}
+body.presentation-expanded .brochure-slide-1 .hero{height:100%;}
 body.presentation-expanded .brochure-slide-1 .hero .inner{padding:52px 60px;}
 body.presentation-expanded .brochure-slide-1 .hero-art{width:560px;height:auto;margin-top:28px;}
 body.presentation-expanded .brochure-slide-1 .brand{font-size:62px;}
 body.presentation-expanded .brochure-slide-1 .brand-sub{font-size:14px;}
 body.presentation-expanded .brochure-slide-1 .tagline{font-size:40px;margin-top:28px;}
+
+/* The waiting page carries more blocks than any other slide, so landscape trims
+   its spacing to land inside the shortest 16:9 canvas and spreads what is left
+   over when the screen is taller. */
+body.presentation-expanded .brochure-slide-2 .p1prob{display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:20px 54px 14px;overflow:hidden;}
+body.presentation-expanded .brochure-slide-2 h1{margin-top:6px;font-size:31px;line-height:1.02;}
+body.presentation-expanded .brochure-slide-2 .intro{max-width:1150px;margin-top:6px;font-size:12px;line-height:1.4;}
+body.presentation-expanded .brochure-slide-2 .wait-scenario{margin-top:9px;padding:6px 12px;}
+body.presentation-expanded .brochure-slide-2 .ws-fields{gap:12px;margin-top:7px;}
+body.presentation-expanded .brochure-slide-2 .ws-in input,body.presentation-expanded .brochure-slide-2 .ws-in select{height:24px;}
+body.presentation-expanded .brochure-slide-2 .wait-capital{gap:7px;margin-top:8px;}
+body.presentation-expanded .brochure-slide-2 .wc-box{padding:6px 10px;}
+body.presentation-expanded .brochure-slide-2 .wc-bar{height:8px;margin-top:5px;}
+body.presentation-expanded .brochure-slide-2 .wc-months{margin-top:5px;}
+body.presentation-expanded .brochure-slide-2 .wc-months span i{height:5px;}
+body.presentation-expanded .brochure-slide-2 .wait-figures{margin-top:7px;}
+body.presentation-expanded .brochure-slide-2 .wait-figures .wf{padding:7px 11px;}
+body.presentation-expanded .brochure-slide-2 .wait-figures .wf strong{margin-top:3px;font-size:22px;}
+body.presentation-expanded .brochure-slide-2 .wait-caption{margin-top:5px;font-size:10px;}
+body.presentation-expanded .brochure-slide-2 .wait-cases{margin-top:7px;}
+body.presentation-expanded .brochure-slide-2 .wait-cases>div{padding:6px 10px;}
+body.presentation-expanded .brochure-slide-2 .wait-cases p{margin-top:4px;}
+body.presentation-expanded .brochure-slide-2 .wait-target{margin-top:7px;padding:7px 12px;}
+body.presentation-expanded .brochure-slide-2 .wait-sales{margin-top:7px;}
+body.presentation-expanded .brochure-slide-2 .wait-foot{margin-top:5px;font-size:9px;}
 
 body.presentation-expanded .brochure-slide-3 .p1prob{padding:52px 70px 34px;overflow:hidden;}
 body.presentation-expanded .brochure-slide-3 .p1prob h1{font-size:54px;margin-top:18px;}
@@ -588,8 +613,14 @@ body.presentation-expanded .brochure-slide-3 .prob p{font-size:13px;line-height:
 body.presentation-expanded .brochure-slide-3 .bridge{margin-top:13px;padding-top:13px;}
 body.presentation-expanded .brochure-slide-3 .bridge .q{font-size:22px;}
 body.presentation-expanded .brochure-slide-3 .bridge .decision{font-size:26px;padding:12px 26px;margin-top:14px;}
+/* The challenge boxes take up whatever height the screen leaves, rather than
+   letting it pool under the page. */
+body.presentation-expanded .brochure-slide-3 .p1prob{display:flex;flex-direction:column;height:100%;}
+body.presentation-expanded .brochure-slide-3 .probs{display:flex;flex:1 1 auto;flex-direction:column;justify-content:space-between;}
+body.presentation-expanded .brochure-slide-3 .prow{flex:1 1 auto;}
+body.presentation-expanded .brochure-slide-3 .prob .pb{height:100%;}
 
-body.presentation-expanded .brochure-slide-4 .p1body{padding:28px 54px 20px;height:900px;overflow:hidden;}
+body.presentation-expanded .brochure-slide-4 .p1body{padding:28px 54px 20px;height:100%;overflow:hidden;}
 body.presentation-expanded .brochure-slide-4 .strategy-intro{font-size:34px;margin-bottom:10px;}
 body.presentation-expanded .brochure-slide-4 .strategy-answer{font-size:15px;}
 body.presentation-expanded .brochure-slide-4 h1.strategy-display{font-size:51px;margin-top:9px;line-height:.93;}
@@ -636,7 +667,7 @@ body.presentation-expanded .brochure-slide-6 .info .stem,body.presentation-expan
 body.presentation-expanded .brochure-slide-6 .info .chips{margin-top:10px;}
 body.presentation-expanded .brochure-slide-6 .info .outcome{margin-top:10px;padding:8px;}
 
-body.presentation-expanded .brochure-slide-7 .p4{padding:20px 54px 24px;height:900px;overflow:hidden;}
+body.presentation-expanded .brochure-slide-7 .p4{padding:20px 54px 24px;height:100%;overflow:hidden;}
 body.presentation-expanded .brochure-slide-7 .info{padding-bottom:12px;}
 body.presentation-expanded .brochure-slide-7 .info .pill{margin-top:9px;}
 body.presentation-expanded .brochure-slide-7 .metal-price-tools{margin-top:8px;}
@@ -656,7 +687,7 @@ body.presentation-expanded .brochure-slide-7 .footer{height:190px;padding:22px 5
 
 /* The eight answers stack 2x4 down an A4 page, which is taller than a 16:9 slide
    can show; landscape turns the grid on its side so all eight boxes stay on screen. */
-body.presentation-expanded .brochure-slide-8 .p4{height:700px;padding:26px 54px 0;}
+body.presentation-expanded .brochure-slide-8 .p4{height:calc(100% - 200px);padding:26px 54px 0;}
 body.presentation-expanded .brochure-slide-8 h1{margin-top:7px;font-size:36px;}
 body.presentation-expanded .brochure-slide-8 .answers-intro{max-width:1150px;margin-top:9px;font-size:13px;line-height:1.4;}
 body.presentation-expanded .brochure-slide-8 .smart-answer-grid{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0 16px;}
@@ -1489,11 +1520,16 @@ body.presentation-deck .page{box-shadow:0 0 0 1px #d9c9ff}
   function fitPresentationPage(){
     if(!document.body.classList.contains('presentation-deck'))return;
     const active=deckSlides[currentSlide];if(!active)return;
-    const expanded=document.body.classList.contains('presentation-expanded');const header=document.querySelector('.brochure-editor-bar');const top=expanded?8:Math.ceil(header.getBoundingClientRect().bottom+8);
+    const expanded=document.body.classList.contains('presentation-expanded');const header=document.querySelector('.brochure-editor-bar');const top=expanded?0:Math.ceil(header.getBoundingClientRect().bottom+8);
+    // Full screen the slide takes the shape of the screen rather than a fixed 16:9
+    // canvas, so a 16:10 or 3:2 laptop is not left with a band under the slide. The
+    // clamp stops an unusual window shape from stretching a slide past its design.
+    if(expanded)document.body.style.setProperty('--deck-page-height',`${Math.round(Math.min(1120,Math.max(800,1600*window.innerHeight/window.innerWidth)))}px`);
+    else document.body.style.removeProperty('--deck-page-height');
     const naturalWidth=active.offsetWidth||794,naturalHeight=active.offsetHeight||1123;
     const laneWidth=expanded?0:parseFloat(getComputedStyle(document.body).getPropertyValue('--karats-lane'))||0;
-    const availableWidth=Math.max(240,window.innerWidth-laneWidth-(expanded?16:26));
-    const bottomSpace=expanded?8:(presentationControls.offsetHeight||52)+20;const scale=Math.max(.2,Math.min(availableWidth/naturalWidth,(window.innerHeight-top-bottomSpace)/naturalHeight,expanded?2:1.15));
+    const availableWidth=Math.max(240,window.innerWidth-laneWidth-(expanded?0:26));
+    const bottomSpace=expanded?0:(presentationControls.offsetHeight||52)+20;const scale=Math.max(.2,Math.min(availableWidth/naturalWidth,(window.innerHeight-top-bottomSpace)/naturalHeight,expanded?2:1.15));
     document.body.style.setProperty('--deck-top',`${top}px`);document.body.style.setProperty('--deck-scale',String(scale));document.body.style.setProperty('--deck-rendered-width',`${naturalWidth*scale}px`);
   }
   function showSlide(index){
