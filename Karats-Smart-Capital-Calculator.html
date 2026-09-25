@@ -1078,19 +1078,36 @@ body.embed-design .material-meta,body.embed-design .material-budget{font-size:11
   body.embed-opportunity .rotation-sales-out.daily{padding:3px 5px}
   body.embed-opportunity .rotation-sales-out strong{font-size:14px}
   body.embed-opportunity .rotation-sales-out small{font-size:7px}
-  body.embed-design .break-even-illustration{padding:16px 20px}
-  body.embed-design .break-even-heading{margin-bottom:10px}
-  body.embed-design .break-even-heading h3{font-size:18px}
-  body.embed-design .break-even-heading p{font-size:11px}
-  body.embed-design .break-even-steps{gap:9px}
-  body.embed-design .break-even-step{padding:10px 11px}
-  body.embed-design .break-even-label{font-size:8px}
-  body.embed-design .break-even-value{font-size:18px}
-  body.embed-design .break-even-step.result .break-even-value{font-size:16px}
+  /* Landscape presentation: the design story is taller than a 16:9 slide, so the
+     same-budget panel and the break-even card sit side by side instead of stacked.
+     Each half then lands near its A4 width, where this content already fits. */
+  body.embed-design .results-area{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);align-items:stretch;gap:14px}
+  body.embed-design .hero-panel{min-width:0;height:100%}
+  body.embed-design .business-impact.feature-impact{width:100%;height:100%}
+  body.embed-design .feature-impact .business-examples{height:100%}
+  body.embed-design .business-impact.feature-impact .design-count{width:100%;height:100%;padding:22px 26px}
+  body.embed-design .break-even-illustration{display:flex!important;flex-direction:column;justify-content:center;width:100%;max-width:none;height:100%;margin:0;padding:22px 26px}
+  body.embed-design .break-even-heading{align-items:center;margin-bottom:14px}
+  body.embed-design .break-even-heading h3{font-size:19px;line-height:1.15}
+  body.embed-design .break-even-heading p{max-width:210px;font-size:10px}
+  body.embed-design .break-even-steps{gap:11px}
+  body.embed-design .break-even-step{padding:14px 13px}
+  body.embed-design .break-even-label{font-size:8.5px}
+  body.embed-design .break-even-value{font-size:22px}
+  body.embed-design .break-even-step.result .break-even-value{font-size:19px}
   body.embed-design .break-even-detail,body.embed-design .break-even-foot{font-size:10px}
+  body.embed-design .break-even-foot{margin-top:14px}
   body.embed-design .break-even-slider{margin-top:8px;padding-top:8px}
   body.embed-design .break-even-slider span{font-size:9px}
   body.embed-design .break-even-slider b{font-size:14px}
+  body.embed-design .break-even-asset{margin-top:18px;padding-top:16px}
+  body.embed-design .break-even-asset-title{font-size:10px}
+  body.embed-design .break-even-asset-grid{gap:14px;margin-top:12px}
+  body.embed-design .break-even-asset-grid>div{padding:14px 16px}
+  body.embed-design .break-even-asset-grid span{font-size:10px}
+  body.embed-design .break-even-asset-grid strong{font-size:26px}
+  body.embed-design .break-even-asset-grid small{font-size:10px}
+  body.embed-design .break-even-asset-foot{margin-top:10px;font-size:9.5px}
 }
 @media(max-width:899px){
   body:is(.embed-summary,.embed-opportunity,.embed-design,.embed-reuse) .field-group{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1204,10 +1221,10 @@ body.embed-opportunity .field-group{grid-template-columns:repeat(4,minmax(0,1fr)
           </article>
         </div>
         <div class="kpis">
-          <div class="kpi"><div class="kpi-value" id="sameProfitKpi">₹900</div><div class="kpi-label">SMART profit from sale</div></div>
           <div class="kpi"><div class="kpi-value" id="lowerInvestmentKpi">30×</div><div class="kpi-label">Lower display investment</div></div>
           <div class="kpi"><div class="kpi-value" id="efficiencyKpi">30×</div><div class="kpi-label">Greater capital efficiency</div></div>
           <div class="kpi"><div class="kpi-value" id="breakEvenKpi">1st</div><div class="kpi-label">Order recovers prototype cost</div></div>
+          <div class="kpi"><div class="kpi-value" id="sameProfitKpi">₹400</div><div class="kpi-label">SMART profit from sale</div></div>
         </div>
         <div class="business-impact feature-impact">
           <div class="business-examples">
@@ -1516,7 +1533,7 @@ function update(){
   setText('tradInvestment',fmtInr(c.tradCapital));setText('tradProfit',tradProfit);setText('smartInvestment',fmtInr(c.prototypeCapital));setText('smartProfit',smartProfit);
   setText('tradMessage',`${fmtInr(c.tradCapital)} remains exposed to generate ${tradProfit}.`);
   setText('smartMessage',`${fmtInr(c.prototypeCapital)} is committed to generate ${smartProfit} profit.`);
-  setText('sameProfitKpi',smartProfit);setText('lowerInvestmentKpi',`${fmtNum(c.capitalRatio)}×`);setText('efficiencyKpi',`${fmtNum(c.efficiencyRatio)}×`);setText('breakEvenKpi',ordinal(c.breakEvenWhole));
+  setText('lowerInvestmentKpi',`${fmtNum(c.capitalRatio)}×`);setText('efficiencyKpi',`${fmtNum(c.efficiencyRatio)}×`);setText('sameProfitKpi',fmtInr(Math.max(0,c.firstSurplus)));setText('breakEvenKpi',ordinal(c.breakEvenWhole));
   {
     // Opportunity cost as a share of the capital each model locks, so the conclusion holds
     // at any stock value: months = return on locked capital ÷ (annual rate ÷ 12).
